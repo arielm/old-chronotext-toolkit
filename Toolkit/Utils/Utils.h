@@ -5,6 +5,7 @@
 
 #include <string>
 #include <fstream>
+#include <iostream>
 
 #if defined( CINDER_COCOA )
 #include "cinder/cocoa/CinderCocoa.h"
@@ -62,6 +63,33 @@ std::wstring utf8ToWstring(const std::string &s);
 // ---
 
 ci::fs::path getCachesDirectory();
+
+// ---
+
+static std::string loadText(ci::DataSourceRef dataSource)
+{
+    if (dataSource->isFilePath())
+	{
+        std::ifstream file (dataSource->getFilePath().c_str(), std::ios::in|std::ios::binary|std::ios::ate);
+        
+        size_t size = file.tellg();
+        char *data = new char[size];
+        
+        file.seekg(0, std::ios::beg);
+        file.read(data, size);
+        file.close();
+        
+        std::string s;
+        s.assign(data, size);
+        delete[] data;
+        
+        return s;
+    }
+    else
+    {
+        return std::string((char*)dataSource->getBuffer().getData(), dataSource->getBuffer().getDataSize());
+    }
+}
 
 // ---
 
