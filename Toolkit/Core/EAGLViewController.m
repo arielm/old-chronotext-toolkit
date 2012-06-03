@@ -1,5 +1,4 @@
 #import "EAGLViewController.h"
-#import "RenderDelegate.h"
 
 NSString* kEAGLViewControllerPropertyInterfaceOrientation = @"kEAGLViewControllerPropertyInterfaceOrientation";
 

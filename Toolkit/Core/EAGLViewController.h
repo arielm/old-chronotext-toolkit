@@ -1,10 +1,9 @@
 #import <UIKit/UIKit.h>
 
 #import "EAGLView.h"
+#import "RenderDelegate.h"
 
 OBJC_EXPORT NSString* kEAGLViewControllerPropertyInterfaceOrientation;
-
-@class RenderDelegate;
 
 @interface EAGLViewController : UIViewController
 {
