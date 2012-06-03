@@ -17,8 +17,8 @@ public:
 	void shutdown();
 	void resize(ci::app::ResizeEvent event);
 	
-	void start();
-	void stop();
+	void start(int flags);
+	void stop(int flags);
 	
 	void update();
 	void draw();
