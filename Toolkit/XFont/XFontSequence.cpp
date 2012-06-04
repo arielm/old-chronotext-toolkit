@@ -3,18 +3,18 @@
 
 XFontSequence::XFontSequence()
 {
-	first = last = current = NULL;
-	ended = 0;
+    first = last = current = NULL;
+    ended = 0;
 }
 
 XFontSequence::~XFontSequence()
 {
-	dispose();
+    dispose();
 }
 
 void XFontSequence::dispose()
 {
-	Slot *tmp;
+    Slot *tmp;
     current = first;
     while (current)
     {
@@ -29,7 +29,7 @@ void XFontSequence::dispose()
 
 void XFontSequence::begin(XFont *font, int dimensions)
 {
-	if (!ended)
+    if (!ended)
     {
         this->font = font;
         this->dimensions = dimensions;
@@ -42,7 +42,7 @@ void XFontSequence::begin(XFont *font, int dimensions)
 
 void XFontSequence::end()
 {
-	ended++;
+    ended++;
 }
 
 void XFontSequence::flush(GLfloat *vertice, GLfloat *coords, int count)
@@ -79,7 +79,7 @@ void XFontSequence::flush(GLfloat *vertice, GLfloat *coords, int count)
 
 void XFontSequence::replay()
 {
-	font->begin();
+    font->begin();
     
     current = first;
     while (current)
