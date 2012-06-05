@@ -40,6 +40,12 @@
 {
     UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:rootViewController] autorelease];
     navController.modalPresentationStyle = UIModalPresentationFormSheet;
+    
+    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)
+    {
+        navController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    }
+
     [viewController presentModalViewController:navController animated:YES];
     
     return navController;
