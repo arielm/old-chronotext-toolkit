@@ -26,7 +26,7 @@ class TextureManager
     {
         cache[id] = texture;
     }
-
+    
 public:
     ~TextureManager();
 
@@ -37,4 +37,6 @@ public:
 #endif
     
     bool removeTexture(ci::gl::Texture *texture);
+    
+    void clear();
 };

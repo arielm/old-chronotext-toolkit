@@ -9,12 +9,7 @@ using namespace std;
 
 TextureManager::~TextureManager()
 {
-    for (map<uint64_t, gl::Texture*>::const_iterator it = cache.begin(); it != cache.end(); ++it)
-    {
-        delete it->second;
-    }
-    
-    DLOG(cache.size() << " TEXTURES DELETED");
+    clear();
 }
 
 #if defined( CINDER_MSW )
@@ -75,4 +70,16 @@ bool TextureManager::removeTexture(gl::Texture *texture)
     }
     
     return false;
+}
+
+void TextureManager::clear()
+{
+    for (map<uint64_t, gl::Texture*>::const_iterator it = cache.begin(); it != cache.end(); ++it)
+    {
+        delete it->second;
+    }
+    
+    DLOG(cache.size() << " TEXTURES DELETED");
+    
+    cache.clear();
 }
