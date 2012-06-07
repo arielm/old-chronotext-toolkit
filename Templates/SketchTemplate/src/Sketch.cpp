@@ -18,14 +18,14 @@ void Sketch::shutdown()
 {
 }
 
-void Sketch::start()
+void Sketch::start(int flags)
 {
 #if defined( CINDER_COCOA_TOUCH )
 	enableAccelerometer(30);
 #endif
 }
 
-void Sketch::stop()
+void Sketch::stop(int flags)
 {
 #if defined( CINDER_COCOA_TOUCH )
 	disableAccelerometer();
