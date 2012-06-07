@@ -183,7 +183,6 @@
 			children = (
 				29B97315FDCFA39411CA2CEA /* Headers */,
 				A89CA33D14D0B8E200C6B5AE /* Chronotext */,
-				A89CA33C14D0B8DF00C6B5AE /* Cinder */,
 				080E96DDFE201D6D7F000001 /* Source */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -242,6 +241,7 @@
 		A89CA33D14D0B8E200C6B5AE /* Chronotext */ = {
 			isa = PBXGroup;
 			children = (
+				A89CA33C14D0B8DF00C6B5AE /* Cinder */,
 				A8CF2515151623E200BD643A /* XFont */,
 				A8CF250B151623C100BD643A /* FollowablePath */,
 				A8CF25001516238F00BD643A /* Utils */,
