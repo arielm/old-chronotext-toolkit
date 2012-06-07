@@ -34,19 +34,6 @@
 		A8EF73D81538761C005DBEC2 /* FontMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8EF73D21538761C005DBEC2 /* FontMatrix.cpp */; };
 		A8EF73D91538761C005DBEC2 /* XFont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8EF73D41538761C005DBEC2 /* XFont.cpp */; };
 		A8EF73DA1538761C005DBEC2 /* XFontSequence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8EF73D61538761C005DBEC2 /* XFontSequence.cpp */; };
-		A8F2C3AD1566825D00D65459 /* frame 1.fxg in Resources */ = {isa = PBXBuildFile; fileRef = A8F2C3A01566825D00D65459 /* frame 1.fxg */; };
-		A8F2C3AE1566825D00D65459 /* frame 2.fxg in Resources */ = {isa = PBXBuildFile; fileRef = A8F2C3A11566825D00D65459 /* frame 2.fxg */; };
-		A8F2C3AF1566825D00D65459 /* frame 3.fxg in Resources */ = {isa = PBXBuildFile; fileRef = A8F2C3A21566825D00D65459 /* frame 3.fxg */; };
-		A8F2C3B01566825D00D65459 /* frame 4.fxg in Resources */ = {isa = PBXBuildFile; fileRef = A8F2C3A31566825D00D65459 /* frame 4.fxg */; };
-		A8F2C3B11566825D00D65459 /* frame 5.fxg in Resources */ = {isa = PBXBuildFile; fileRef = A8F2C3A41566825D00D65459 /* frame 5.fxg */; };
-		A8F2C3B21566825D00D65459 /* frame 6.fxg in Resources */ = {isa = PBXBuildFile; fileRef = A8F2C3A51566825D00D65459 /* frame 6.fxg */; };
-		A8F2C3B31566825D00D65459 /* frame 7.fxg in Resources */ = {isa = PBXBuildFile; fileRef = A8F2C3A61566825D00D65459 /* frame 7.fxg */; };
-		A8F2C3B41566825D00D65459 /* frame 8.fxg in Resources */ = {isa = PBXBuildFile; fileRef = A8F2C3A71566825D00D65459 /* frame 8.fxg */; };
-		A8F2C3B51566825D00D65459 /* frame 9.fxg in Resources */ = {isa = PBXBuildFile; fileRef = A8F2C3A81566825D00D65459 /* frame 9.fxg */; };
-		A8F2C3B61566825D00D65459 /* frame 10.fxg in Resources */ = {isa = PBXBuildFile; fileRef = A8F2C3A91566825D00D65459 /* frame 10.fxg */; };
-		A8F2C3B71566825D00D65459 /* Georgia_PLAIN_64_WESTERN.fnt in Resources */ = {isa = PBXBuildFile; fileRef = A8F2C3AA1566825D00D65459 /* Georgia_PLAIN_64_WESTERN.fnt */; };
-		A8F2C3B81566825D00D65459 /* line.png in Resources */ = {isa = PBXBuildFile; fileRef = A8F2C3AB1566825D00D65459 /* line.png */; };
-		A8F2C3B91566825D00D65459 /* line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A8F2C3AC1566825D00D65459 /* line@2x.png */; };
 		A8F2C3CB156682A000D65459 /* Sketch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8F2C3C7156682A000D65459 /* Sketch.cpp */; };
 		C725DFFE121DAC7F00FA186B /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C727C02B121B400300192073 /* CoreMedia.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C725E001121DAC8F00FA186B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C725E000121DAC8F00FA186B /* AVFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -116,19 +103,6 @@
 		A8EF73D51538761C005DBEC2 /* XFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XFont.h; sourceTree = "<group>"; };
 		A8EF73D61538761C005DBEC2 /* XFontSequence.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XFontSequence.cpp; sourceTree = "<group>"; };
 		A8EF73D71538761C005DBEC2 /* XFontSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XFontSequence.h; sourceTree = "<group>"; };
-		A8F2C3A01566825D00D65459 /* frame 1.fxg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "frame 1.fxg"; path = "../resources/frame 1.fxg"; sourceTree = "<group>"; };
-		A8F2C3A11566825D00D65459 /* frame 2.fxg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "frame 2.fxg"; path = "../resources/frame 2.fxg"; sourceTree = "<group>"; };
-		A8F2C3A21566825D00D65459 /* frame 3.fxg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "frame 3.fxg"; path = "../resources/frame 3.fxg"; sourceTree = "<group>"; };
-		A8F2C3A31566825D00D65459 /* frame 4.fxg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "frame 4.fxg"; path = "../resources/frame 4.fxg"; sourceTree = "<group>"; };
-		A8F2C3A41566825D00D65459 /* frame 5.fxg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "frame 5.fxg"; path = "../resources/frame 5.fxg"; sourceTree = "<group>"; };
-		A8F2C3A51566825D00D65459 /* frame 6.fxg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "frame 6.fxg"; path = "../resources/frame 6.fxg"; sourceTree = "<group>"; };
-		A8F2C3A61566825D00D65459 /* frame 7.fxg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "frame 7.fxg"; path = "../resources/frame 7.fxg"; sourceTree = "<group>"; };
-		A8F2C3A71566825D00D65459 /* frame 8.fxg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "frame 8.fxg"; path = "../resources/frame 8.fxg"; sourceTree = "<group>"; };
-		A8F2C3A81566825D00D65459 /* frame 9.fxg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "frame 9.fxg"; path = "../resources/frame 9.fxg"; sourceTree = "<group>"; };
-		A8F2C3A91566825D00D65459 /* frame 10.fxg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "frame 10.fxg"; path = "../resources/frame 10.fxg"; sourceTree = "<group>"; };
-		A8F2C3AA1566825D00D65459 /* Georgia_PLAIN_64_WESTERN.fnt */ = {isa = PBXFileReference; lastKnownFileType = file; name = Georgia_PLAIN_64_WESTERN.fnt; path = ../resources/Georgia_PLAIN_64_WESTERN.fnt; sourceTree = "<group>"; };
-		A8F2C3AB1566825D00D65459 /* line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = line.png; path = ../resources/line.png; sourceTree = "<group>"; };
-		A8F2C3AC1566825D00D65459 /* line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "line@2x.png"; path = "../resources/line@2x.png"; sourceTree = "<group>"; };
 		A8F2C3C7156682A000D65459 /* Sketch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Sketch.cpp; path = ../src/Sketch.cpp; sourceTree = "<group>"; };
 		A8F2C3C8156682A000D65459 /* Sketch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sketch.h; path = ../src/Sketch.h; sourceTree = "<group>"; };
 		A8F2C3CC156682C600D65459 /* Resources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Resources.h; path = ../include/Resources.h; sourceTree = "<group>"; };
@@ -202,19 +176,6 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A8F2C3A01566825D00D65459 /* frame 1.fxg */,
-				A8F2C3A11566825D00D65459 /* frame 2.fxg */,
-				A8F2C3A21566825D00D65459 /* frame 3.fxg */,
-				A8F2C3A31566825D00D65459 /* frame 4.fxg */,
-				A8F2C3A41566825D00D65459 /* frame 5.fxg */,
-				A8F2C3A51566825D00D65459 /* frame 6.fxg */,
-				A8F2C3A61566825D00D65459 /* frame 7.fxg */,
-				A8F2C3A71566825D00D65459 /* frame 8.fxg */,
-				A8F2C3A81566825D00D65459 /* frame 9.fxg */,
-				A8F2C3A91566825D00D65459 /* frame 10.fxg */,
-				A8F2C3AA1566825D00D65459 /* Georgia_PLAIN_64_WESTERN.fnt */,
-				A8F2C3AB1566825D00D65459 /* line.png */,
-				A8F2C3AC1566825D00D65459 /* line@2x.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -439,19 +400,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A8F2C3AD1566825D00D65459 /* frame 1.fxg in Resources */,
-				A8F2C3AE1566825D00D65459 /* frame 2.fxg in Resources */,
-				A8F2C3AF1566825D00D65459 /* frame 3.fxg in Resources */,
-				A8F2C3B01566825D00D65459 /* frame 4.fxg in Resources */,
-				A8F2C3B11566825D00D65459 /* frame 5.fxg in Resources */,
-				A8F2C3B21566825D00D65459 /* frame 6.fxg in Resources */,
-				A8F2C3B31566825D00D65459 /* frame 7.fxg in Resources */,
-				A8F2C3B41566825D00D65459 /* frame 8.fxg in Resources */,
-				A8F2C3B51566825D00D65459 /* frame 9.fxg in Resources */,
-				A8F2C3B61566825D00D65459 /* frame 10.fxg in Resources */,
-				A8F2C3B71566825D00D65459 /* Georgia_PLAIN_64_WESTERN.fnt in Resources */,
-				A8F2C3B81566825D00D65459 /* line.png in Resources */,
-				A8F2C3B91566825D00D65459 /* line@2x.png in Resources */,
 				A87A04541580D4C800BB603B /* Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

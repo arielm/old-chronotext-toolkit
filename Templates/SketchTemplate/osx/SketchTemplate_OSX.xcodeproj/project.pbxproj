@@ -36,19 +36,6 @@
 		A8EF74151539D1E0005DBEC2 /* Looper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8EF740C1539D1E0005DBEC2 /* Looper.cpp */; };
 		A8EF74161539D1E0005DBEC2 /* MessageQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8EF740F1539D1E0005DBEC2 /* MessageQueue.cpp */; };
 		A8EF74171539D1E0005DBEC2 /* AudioLoop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8EF74121539D1E0005DBEC2 /* AudioLoop.cpp */; };
-		A8F2C37915667EB500D65459 /* frame 1.fxg in Resources */ = {isa = PBXBuildFile; fileRef = A8F2C36B15667EB500D65459 /* frame 1.fxg */; };
-		A8F2C37A15667EB500D65459 /* frame 2.fxg in Resources */ = {isa = PBXBuildFile; fileRef = A8F2C36C15667EB500D65459 /* frame 2.fxg */; };
-		A8F2C37B15667EB500D65459 /* frame 3.fxg in Resources */ = {isa = PBXBuildFile; fileRef = A8F2C36D15667EB500D65459 /* frame 3.fxg */; };
-		A8F2C37C15667EB500D65459 /* frame 4.fxg in Resources */ = {isa = PBXBuildFile; fileRef = A8F2C36E15667EB500D65459 /* frame 4.fxg */; };
-		A8F2C37D15667EB500D65459 /* frame 5.fxg in Resources */ = {isa = PBXBuildFile; fileRef = A8F2C36F15667EB500D65459 /* frame 5.fxg */; };
-		A8F2C37E15667EB500D65459 /* frame 6.fxg in Resources */ = {isa = PBXBuildFile; fileRef = A8F2C37015667EB500D65459 /* frame 6.fxg */; };
-		A8F2C37F15667EB500D65459 /* frame 7.fxg in Resources */ = {isa = PBXBuildFile; fileRef = A8F2C37115667EB500D65459 /* frame 7.fxg */; };
-		A8F2C38015667EB500D65459 /* frame 8.fxg in Resources */ = {isa = PBXBuildFile; fileRef = A8F2C37215667EB500D65459 /* frame 8.fxg */; };
-		A8F2C38115667EB500D65459 /* frame 9.fxg in Resources */ = {isa = PBXBuildFile; fileRef = A8F2C37315667EB500D65459 /* frame 9.fxg */; };
-		A8F2C38215667EB500D65459 /* frame 10.fxg in Resources */ = {isa = PBXBuildFile; fileRef = A8F2C37415667EB500D65459 /* frame 10.fxg */; };
-		A8F2C38315667EB500D65459 /* Georgia_PLAIN_64_WESTERN.fnt in Resources */ = {isa = PBXBuildFile; fileRef = A8F2C37515667EB500D65459 /* Georgia_PLAIN_64_WESTERN.fnt */; };
-		A8F2C38515667EB500D65459 /* line.png in Resources */ = {isa = PBXBuildFile; fileRef = A8F2C37715667EB500D65459 /* line.png */; };
-		A8F2C38615667EB500D65459 /* line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A8F2C37815667EB500D65459 /* line@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,19 +99,6 @@
 		A8EF74101539D1E0005DBEC2 /* MessageQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageQueue.h; sourceTree = "<group>"; };
 		A8EF74121539D1E0005DBEC2 /* AudioLoop.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioLoop.cpp; sourceTree = "<group>"; };
 		A8EF74131539D1E0005DBEC2 /* AudioLoop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioLoop.h; sourceTree = "<group>"; };
-		A8F2C36B15667EB500D65459 /* frame 1.fxg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "frame 1.fxg"; path = "../resources/frame 1.fxg"; sourceTree = "<group>"; };
-		A8F2C36C15667EB500D65459 /* frame 2.fxg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "frame 2.fxg"; path = "../resources/frame 2.fxg"; sourceTree = "<group>"; };
-		A8F2C36D15667EB500D65459 /* frame 3.fxg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "frame 3.fxg"; path = "../resources/frame 3.fxg"; sourceTree = "<group>"; };
-		A8F2C36E15667EB500D65459 /* frame 4.fxg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "frame 4.fxg"; path = "../resources/frame 4.fxg"; sourceTree = "<group>"; };
-		A8F2C36F15667EB500D65459 /* frame 5.fxg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "frame 5.fxg"; path = "../resources/frame 5.fxg"; sourceTree = "<group>"; };
-		A8F2C37015667EB500D65459 /* frame 6.fxg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "frame 6.fxg"; path = "../resources/frame 6.fxg"; sourceTree = "<group>"; };
-		A8F2C37115667EB500D65459 /* frame 7.fxg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "frame 7.fxg"; path = "../resources/frame 7.fxg"; sourceTree = "<group>"; };
-		A8F2C37215667EB500D65459 /* frame 8.fxg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "frame 8.fxg"; path = "../resources/frame 8.fxg"; sourceTree = "<group>"; };
-		A8F2C37315667EB500D65459 /* frame 9.fxg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "frame 9.fxg"; path = "../resources/frame 9.fxg"; sourceTree = "<group>"; };
-		A8F2C37415667EB500D65459 /* frame 10.fxg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "frame 10.fxg"; path = "../resources/frame 10.fxg"; sourceTree = "<group>"; };
-		A8F2C37515667EB500D65459 /* Georgia_PLAIN_64_WESTERN.fnt */ = {isa = PBXFileReference; lastKnownFileType = file; name = Georgia_PLAIN_64_WESTERN.fnt; path = ../resources/Georgia_PLAIN_64_WESTERN.fnt; sourceTree = "<group>"; };
-		A8F2C37715667EB500D65459 /* line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = line.png; path = ../resources/line.png; sourceTree = "<group>"; };
-		A8F2C37815667EB500D65459 /* line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "line@2x.png"; path = "../resources/line@2x.png"; sourceTree = "<group>"; };
 		A8F2C38815667F0100D65459 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A8F2C39715667FB800D65459 /* Resources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Resources.h; path = ../include/Resources.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -219,19 +193,6 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A8F2C36B15667EB500D65459 /* frame 1.fxg */,
-				A8F2C36C15667EB500D65459 /* frame 2.fxg */,
-				A8F2C36D15667EB500D65459 /* frame 3.fxg */,
-				A8F2C36E15667EB500D65459 /* frame 4.fxg */,
-				A8F2C36F15667EB500D65459 /* frame 5.fxg */,
-				A8F2C37015667EB500D65459 /* frame 6.fxg */,
-				A8F2C37115667EB500D65459 /* frame 7.fxg */,
-				A8F2C37215667EB500D65459 /* frame 8.fxg */,
-				A8F2C37315667EB500D65459 /* frame 9.fxg */,
-				A8F2C37415667EB500D65459 /* frame 10.fxg */,
-				A8F2C37515667EB500D65459 /* Georgia_PLAIN_64_WESTERN.fnt */,
-				A8F2C37715667EB500D65459 /* line.png */,
-				A8F2C37815667EB500D65459 /* line@2x.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -432,19 +393,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A8F2C37915667EB500D65459 /* frame 1.fxg in Resources */,
-				A8F2C37A15667EB500D65459 /* frame 2.fxg in Resources */,
-				A8F2C37B15667EB500D65459 /* frame 3.fxg in Resources */,
-				A8F2C37C15667EB500D65459 /* frame 4.fxg in Resources */,
-				A8F2C37D15667EB500D65459 /* frame 5.fxg in Resources */,
-				A8F2C37E15667EB500D65459 /* frame 6.fxg in Resources */,
-				A8F2C37F15667EB500D65459 /* frame 7.fxg in Resources */,
-				A8F2C38015667EB500D65459 /* frame 8.fxg in Resources */,
-				A8F2C38115667EB500D65459 /* frame 9.fxg in Resources */,
-				A8F2C38215667EB500D65459 /* frame 10.fxg in Resources */,
-				A8F2C38315667EB500D65459 /* Georgia_PLAIN_64_WESTERN.fnt in Resources */,
-				A8F2C38515667EB500D65459 /* line.png in Resources */,
-				A8F2C38615667EB500D65459 /* line@2x.png in Resources */,
 				A87A04681580D8FF00BB603B /* CinderApp.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
