@@ -25,8 +25,9 @@
 		A89CA4E614D0BE8300C6B5AE /* RenderDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A89CA4E214D0BE8300C6B5AE /* RenderDelegate.m */; };
 		A89CA4EB14D0BE9700C6B5AE /* CinderRenderDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = A89CA4E714D0BE9700C6B5AE /* CinderRenderDelegate.mm */; };
 		A89CA4EC14D0BE9700C6B5AE /* CinderSketch.mm in Sources */ = {isa = PBXBuildFile; fileRef = A89CA4E914D0BE9700C6B5AE /* CinderSketch.mm */; };
+		A8AB668815826FAD00B93CD7 /* FontManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8AB668415826FAD00B93CD7 /* FontManager.cpp */; };
+		A8AB668915826FAD00B93CD7 /* TextLayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8AB668615826FAD00B93CD7 /* TextLayout.cpp */; };
 		A8B1C97D156304D3004BBA73 /* TextureManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8B1C978156304D3004BBA73 /* TextureManager.cpp */; };
-		A8B1C97E156304D3004BBA73 /* FontManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8B1C979156304D3004BBA73 /* FontManager.cpp */; };
 		A8CF25461516263900BD643A /* ASPC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8CF25251516263900BD643A /* ASPC.cpp */; };
 		A8CF25471516263900BD643A /* FollowablePath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8CF25271516263900BD643A /* FollowablePath.cpp */; };
 		A8CF25481516263900BD643A /* SplinePath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8CF25291516263900BD643A /* SplinePath.cpp */; };
@@ -79,9 +80,12 @@
 		A89CA4E814D0BE9700C6B5AE /* CinderSketch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CinderSketch.h; path = "../../../../chronotext-public/Toolkit/Cinder/ios/CinderSketch.h"; sourceTree = "<group>"; };
 		A89CA4E914D0BE9700C6B5AE /* CinderSketch.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CinderSketch.mm; path = "../../../../chronotext-public/Toolkit/Cinder/ios/CinderSketch.mm"; sourceTree = "<group>"; };
 		A89CA4EA14D0BE9700C6B5AE /* CinderRenderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CinderRenderDelegate.h; path = "../../../../chronotext-public/Toolkit/Cinder/ios/CinderRenderDelegate.h"; sourceTree = "<group>"; };
+		A8AB668315826FAD00B93CD7 /* FontHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontHelper.h; sourceTree = "<group>"; };
+		A8AB668415826FAD00B93CD7 /* FontManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FontManager.cpp; sourceTree = "<group>"; };
+		A8AB668515826FAD00B93CD7 /* FontManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontManager.h; sourceTree = "<group>"; };
+		A8AB668615826FAD00B93CD7 /* TextLayout.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextLayout.cpp; sourceTree = "<group>"; };
+		A8AB668715826FAD00B93CD7 /* TextLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextLayout.h; sourceTree = "<group>"; };
 		A8B1C978156304D3004BBA73 /* TextureManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureManager.cpp; sourceTree = "<group>"; };
-		A8B1C979156304D3004BBA73 /* FontManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FontManager.cpp; sourceTree = "<group>"; };
-		A8B1C97A156304D3004BBA73 /* FontManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontManager.h; sourceTree = "<group>"; };
 		A8B1C97B156304D3004BBA73 /* TextureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureManager.h; sourceTree = "<group>"; };
 		A8B1C97C156304D3004BBA73 /* Hasher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hasher.h; sourceTree = "<group>"; };
 		A8CF25251516263900BD643A /* ASPC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ASPC.cpp; sourceTree = "<group>"; };
@@ -96,7 +100,6 @@
 		A8CF253C1516263900BD643A /* TextureHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureHelper.h; sourceTree = "<group>"; };
 		A8CF253D1516263900BD643A /* Utils.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = Utils.h; sourceTree = "<group>"; };
 		A8CF253E1516263900BD643A /* Utils.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = Utils.cpp; sourceTree = "<group>"; };
-		A8EF73CF153875FC005DBEC2 /* FontHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontHelper.h; sourceTree = "<group>"; };
 		A8EF73D21538761C005DBEC2 /* FontMatrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FontMatrix.cpp; sourceTree = "<group>"; };
 		A8EF73D31538761C005DBEC2 /* FontMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontMatrix.h; sourceTree = "<group>"; };
 		A8EF73D41538761C005DBEC2 /* XFont.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XFont.cpp; sourceTree = "<group>"; };
@@ -265,6 +268,7 @@
 				A89CA4D914D0BE4300C6B5AE /* Core */,
 				A89CA4D814D0BE4000C6B5AE /* Cinder */,
 				A8EF73D11538761C005DBEC2 /* XFont */,
+				A8AB668215826FAD00B93CD7 /* Text */,
 				A8CF25241516263900BD643A /* FollowablePath */,
 				A8CF25361516263900BD643A /* Utils */,
 				A82CFC7A153A35FF0085FDA3 /* OS */,
@@ -299,6 +303,19 @@
 			name = Core;
 			sourceTree = "<group>";
 		};
+		A8AB668215826FAD00B93CD7 /* Text */ = {
+			isa = PBXGroup;
+			children = (
+				A8AB668315826FAD00B93CD7 /* FontHelper.h */,
+				A8AB668415826FAD00B93CD7 /* FontManager.cpp */,
+				A8AB668515826FAD00B93CD7 /* FontManager.h */,
+				A8AB668615826FAD00B93CD7 /* TextLayout.cpp */,
+				A8AB668715826FAD00B93CD7 /* TextLayout.h */,
+			);
+			name = Text;
+			path = ../../../Toolkit/Text;
+			sourceTree = "<group>";
+		};
 		A8CF25241516263900BD643A /* FollowablePath */ = {
 			isa = PBXGroup;
 			children = (
@@ -328,9 +345,6 @@
 				A8CF253C1516263900BD643A /* TextureHelper.h */,
 				A8B1C97B156304D3004BBA73 /* TextureManager.h */,
 				A8B1C978156304D3004BBA73 /* TextureManager.cpp */,
-				A8EF73CF153875FC005DBEC2 /* FontHelper.h */,
-				A8B1C97A156304D3004BBA73 /* FontManager.h */,
-				A8B1C979156304D3004BBA73 /* FontManager.cpp */,
 			);
 			name = Utils;
 			path = "../../../../chronotext-public/Toolkit/Utils";
@@ -430,9 +444,10 @@
 				A82CFC87153A35FF0085FDA3 /* MessageQueue.cpp in Sources */,
 				A82CFC88153A35FF0085FDA3 /* AudioLoop.cpp in Sources */,
 				A8B1C97D156304D3004BBA73 /* TextureManager.cpp in Sources */,
-				A8B1C97E156304D3004BBA73 /* FontManager.cpp in Sources */,
 				A8F2C3CB156682A000D65459 /* Sketch.cpp in Sources */,
 				A87A04531580D4C800BB603B /* AppDelegate.mm in Sources */,
+				A8AB668815826FAD00B93CD7 /* FontManager.cpp in Sources */,
+				A8AB668915826FAD00B93CD7 /* TextLayout.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
