@@ -6,7 +6,7 @@
 class FontHelper
 {
 public:
-    static void drawText(XFont *font, const std::wstring &text, float x, float y, bool snap)
+    static void drawText(XFont *font, const std::wstring &text, float x, float y, bool snap = false)
     {
         int len = text.size();
         
@@ -30,7 +30,7 @@ public:
         font->endSequence();
     }
 
-    static void drawText(XFont *font, const std::wstring &text, float x, float y1, float y2, bool snap)
+    static void drawText(XFont *font, const std::wstring &text, float x, float y1, float y2, bool snap = false)
     {
         float h = y2 - y1;
         float y = y1 + h / 2 - font->getStrikethroughOffset();
@@ -38,7 +38,7 @@ public:
         drawText(font, text, x, y, snap);
     }
     
-    static void drawText(XFont *font, const std::wstring &text, float x1, float y1, float x2, float y2, bool snap)
+    static void drawText(XFont *font, const std::wstring &text, float x1, float y1, float x2, float y2, bool snap = false)
     {
         float w = x2 - x1;
         float x = x1 + (w - getStringWidth(font, text, snap)) / 2;
@@ -46,7 +46,7 @@ public:
         drawText(font, text, x, y1, y2, snap);
     }
     
-    static float getStringWidth(XFont *font, const std::wstring &text, bool snap)
+    static float getStringWidth(XFont *font, const std::wstring &text, bool snap = false)
     {
         if (snap)
         {
