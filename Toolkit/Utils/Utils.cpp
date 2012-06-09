@@ -1,3 +1,7 @@
+/*
+ * WARNING: FOR COCOA PROJECTS, THE FILE-TYPE SHOULD BE SET TO Objective-C++
+ */
+
 #include "Utils.h"
 
 using namespace std;
@@ -14,7 +18,7 @@ string wstringToUtf8(const wstring &s)
 	
 	vector<char> resultString( utf8Size );
 	
-	int convResult = ::WideCharToMultiByte( CP_UTF8, 0, s.c_str(), -1, &resultString[0], utf8Size, NULL, NULL );
+	int convResult = ::/Users/arielm/Documents/DEV/chronotext-public/Toolkit/TextWideCharToMultiByte( CP_UTF8, 0, s.c_str(), -1, &resultString[0], utf8Size, NULL, NULL );
 	
 	if( convResult != utf8Size )
 	{
