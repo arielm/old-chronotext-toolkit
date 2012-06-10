@@ -35,6 +35,8 @@ TextureAtlas::TextureAtlas(DataSourceRef dataSource)
         
         float ox = spriteElement->getAttributeValue<float>("oX", 0);
         float oy = spriteElement->getAttributeValue<float>("oY", 0);
+        float ow = spriteElement->getAttributeValue<float>("oW", spriteWidth);
+        float oh = spriteElement->getAttributeValue<float>("oH", spriteHeight);
         
         bool rotated = spriteElement->hasAttribute("r");
         
@@ -44,7 +46,7 @@ TextureAtlas::TextureAtlas(DataSourceRef dataSource)
         float tx2 = (x + spriteWidth) / width;
         float ty2 = (y + spriteHeight) / height;
         
-        sprites[spritePath] = Sprite(spriteWidth, spriteHeight, ox, oy, rotated, tx1, ty1, tx2, ty2);
+        sprites[spritePath] = Sprite(spriteWidth, spriteHeight, ox, oy, ow, oh, rotated, tx1, ty1, tx2, ty2);
     }
 }
 
@@ -68,7 +70,12 @@ void TextureAtlas::reload()
     texture = TextureHelper::loadTexture(loadResource(texturePath));
 }
 
-void TextureAtlas::drawSprite(std::string path, float rx, float ry, bool originUp)
+Sprite TextureAtlas::getSprite(const string &path)
+{
+    return sprites[path];
+}
+
+void TextureAtlas::drawSprite(const string &path, float rx, float ry, bool originUp)
 {
     sprites[path].draw(rx, ry, originUp);
 }

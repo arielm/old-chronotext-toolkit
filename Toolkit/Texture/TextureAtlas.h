@@ -28,6 +28,7 @@ public:
     
     void clear();
     void reload();
-    
-    void drawSprite(std::string path, float rx = 0, float ry = 0, bool originUp = true);
+
+    Sprite getSprite(const std::string &path);
+    void drawSprite(const std::string &path, float rx = 0, float ry = 0, bool originUp = true);
 };

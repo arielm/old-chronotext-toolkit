@@ -12,6 +12,8 @@ public:
     float height;
     float ox;
     float oy;
+    float ow;
+    float oh;
     bool rotated;
 
     float tx1;
@@ -21,12 +23,14 @@ public:
     
     Sprite() {}
 
-    Sprite(float width, float height, float ox, float oy, bool rotated, float tx1, float ty1, float tx2, float ty2)
+    Sprite(float width, float height, float ox, float oy, float ow, float oh, bool rotated, float tx1, float ty1, float tx2, float ty2)
     :
     width(width),
     height(height),
     ox(ox),
     oy(oy),
+    ow(ow),
+    oh(oh),
     rotated(rotated),
     tx1(tx1),
     ty1(ty1),
