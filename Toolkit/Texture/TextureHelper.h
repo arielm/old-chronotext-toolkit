@@ -11,6 +11,7 @@ public:
     static ci::gl::Texture* loadTexture(ci::DataSourceRef dataSource, bool useMipmap = false, bool forceToAlpha = false, GLenum wrapS = GL_CLAMP_TO_EDGE, GLenum wrapT = GL_CLAMP_TO_EDGE)
     {
         ci::gl::Texture::Format format;
+        format.setWrap(wrapS, wrapT);
         
         if (useMipmap)
         {
@@ -50,8 +51,6 @@ public:
                 return new ci::gl::Texture(channel.getData(), dataFormat, channel.getWidth(), channel.getHeight(), format);
             }
         }
-        
-        format.setWrap(wrapS, wrapT);
         
         return new ci::gl::Texture(loadImage(dataSource), format);
     }
