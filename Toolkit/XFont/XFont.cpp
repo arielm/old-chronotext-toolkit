@@ -165,7 +165,7 @@ void XFont::readFromStream(istream &in)
 		char *data = new char[size];
 		in.read(data, size);
 		atlasAddUnit(data, cc, left, top);
-		delete data;
+		delete[] data;
     }
 
     // ---
@@ -207,7 +207,7 @@ void XFont::readFromStream(istream &in)
 		glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_FALSE);
     }
 	
-	delete atlasData;
+	delete[] atlasData;
     
     // ---
     
