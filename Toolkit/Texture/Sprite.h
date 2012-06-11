@@ -2,7 +2,6 @@
  * WORKS WITH TextureAtlas
  */
 
-
 #pragma once
 
 class Sprite

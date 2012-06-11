@@ -80,6 +80,24 @@ Sprite* TextureAtlas::getSprite(const string &path)
     return sprites[path];
 }
 
+vector<Sprite*> TextureAtlas::getAnimationSprites(const string &pattern) const
+{
+    vector<Sprite*> animationSprites;
+    
+    for (map<string, Sprite*>::const_iterator it = sprites.begin(); it != sprites.end(); ++it)
+    {
+        int i = -1;
+        sscanf((it->first).c_str(), pattern.c_str(), &i);
+        
+        if (i != -1)
+        {
+            animationSprites.push_back(it->second);
+        }
+    }
+    
+    return animationSprites;
+}
+
 void TextureAtlas::drawSprite(const string &path, float rx, float ry, bool originUp)
 {
     sprites[path]->draw(rx, ry, originUp);
