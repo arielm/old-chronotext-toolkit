@@ -80,9 +80,10 @@ Sprite* TextureAtlas::getSprite(const string &path)
     return sprites[path];
 }
 
-vector<Sprite*> TextureAtlas::getAnimationSprites(const string &pattern) const
+vector<Sprite*> TextureAtlas::getAnimationSprites(const string &path) const
 {
     vector<Sprite*> animationSprites;
+    string pattern = path + "%d";
     
     for (map<string, Sprite*>::const_iterator it = sprites.begin(); it != sprites.end(); ++it)
     {

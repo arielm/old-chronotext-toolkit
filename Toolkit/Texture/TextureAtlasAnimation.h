@@ -10,7 +10,7 @@ class TextureAtlasAnimation
     std::vector<Sprite*> sprites;
 
 public:
-    TextureAtlasAnimation(TextureAtlas *atlas, const std::string &pattern);
+    TextureAtlasAnimation(TextureAtlas *atlas, const std::string &path);
     
     int getFrameCount();
     void draw(int frameIndex);

@@ -1,8 +1,8 @@
 #include "TextureAtlasAnimation.h"
 
-TextureAtlasAnimation::TextureAtlasAnimation(TextureAtlas *atlas, const std::string &pattern) : atlas(atlas)
+TextureAtlasAnimation::TextureAtlasAnimation(TextureAtlas *atlas, const std::string &path) : atlas(atlas)
 {
-    sprites = atlas->getAnimationSprites(pattern);
+    sprites = atlas->getAnimationSprites(path);
 }
 
 int TextureAtlasAnimation::getFrameCount()
