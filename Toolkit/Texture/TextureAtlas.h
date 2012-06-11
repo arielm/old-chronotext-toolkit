@@ -18,7 +18,7 @@ class TextureAtlas
     float width;
     float height;
     
-    std::map<std::string, Sprite> sprites;
+    std::map<std::string, Sprite*> sprites;
 
 public:
     ci::gl::Texture *texture;
@@ -29,6 +29,6 @@ public:
     void clear();
     void reload();
 
-    Sprite getSprite(const std::string &path);
+    Sprite* getSprite(const std::string &path);
     void drawSprite(const std::string &path, float rx = 0, float ry = 0, bool originUp = true);
 };

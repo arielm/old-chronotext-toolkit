@@ -46,13 +46,18 @@ TextureAtlas::TextureAtlas(DataSourceRef dataSource)
         float tx2 = (x + spriteWidth) / width;
         float ty2 = (y + spriteHeight) / height;
         
-        sprites[spritePath] = Sprite(spriteWidth, spriteHeight, ox, oy, ow, oh, rotated, tx1, ty1, tx2, ty2);
+        sprites[spritePath] = new Sprite(spriteWidth, spriteHeight, ox, oy, ow, oh, rotated, tx1, ty1, tx2, ty2);
     }
 }
 
 TextureAtlas::~TextureAtlas()
 {
     delete texture;
+    
+    for (map<string, Sprite*>::iterator it = sprites.begin(); it != sprites.end(); ++it)
+    {
+        delete it->second;
+    }
 }
 
 void TextureAtlas::clear()
@@ -70,12 +75,12 @@ void TextureAtlas::reload()
     texture = TextureHelper::loadTexture(loadResource(texturePath));
 }
 
-Sprite TextureAtlas::getSprite(const string &path)
+Sprite* TextureAtlas::getSprite(const string &path)
 {
     return sprites[path];
 }
 
 void TextureAtlas::drawSprite(const string &path, float rx, float ry, bool originUp)
 {
-    sprites[path].draw(rx, ry, originUp);
+    sprites[path]->draw(rx, ry, originUp);
 }
