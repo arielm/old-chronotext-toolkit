@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Utils.h"
+#include "cinder/Utilities.h"
 
 #include <iostream>
 #include <sstream>
@@ -67,7 +67,7 @@ public:
 		in.read((char*)&t, sizeof(T));
 		
 #if BOOST_BIG_ENDIAN
-		t = _swapEndian(t);
+		t = ci::swapEndian(t);
 #endif
 		
 		return t;
@@ -80,7 +80,7 @@ public:
 		in.read((char*)&t, sizeof(T));
 		
 #ifndef BOOST_BIG_ENDIAN
-		t = _swapEndian(t);
+		t = ci::swapEndian(t);
 #endif
 
 		return t;
@@ -92,7 +92,7 @@ public:
 	static void writeLittle(std::ostream &out, T t)
 	{
 #if BOOST_BIG_ENDIAN
-		t = _swapEndian(t);
+		t = ci::swapEndian(t);
 #endif
 		
 		out.write((char*)&t, sizeof(T));
@@ -102,7 +102,7 @@ public:
 	static void writeBig(std::ostream &out, T t)
 	{
 #ifndef BOOST_BIG_ENDIAN
-		t = _swapEndian(t);
+		t = ci::swapEndian(t);
 #endif
 		
 		out.write((char*)&t, sizeof(T));
