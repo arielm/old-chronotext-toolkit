@@ -1,6 +1,6 @@
-/*
- * WARNING: FOR COCOA PROJECTS, THE FILE-TYPE SHOULD BE SET TO Objective-C++
- */
+#if defined( CINDER_COCOA ) && ( ! defined( __OBJC__ ) )
+#error "This file must be compiled as Objective-C++ on the Mac"
+#endif
 
 #include "Utils.h"
 
@@ -38,14 +38,13 @@ string wstringToUtf8(const wstring &s)
     NSString *utf32NS = [[NSString alloc] initWithBytes:s.data() length:length encoding:NSUTF32LittleEndianStringEncoding];
     
     length = [utf32NS lengthOfBytesUsingEncoding:NSUTF8StringEncoding] + 1;
-    char *buffer = (char*)calloc(length, 1);
+    char buffer[length];
+    memset (buffer, 0, length);
+
     [utf32NS getCString:buffer maxLength:length encoding:NSUTF8StringEncoding];
     [utf32NS release];
     
-    string utf8 = string(buffer);
-    free(buffer);
-
-    return utf8;
+    return string(buffer);
 #endif
 }
 
@@ -80,14 +79,13 @@ wstring utf8ToWstring(const string &s)
     NSString *utf8NS = [[NSString alloc] initWithUTF8String:s.c_str()];
     
     int length = [utf8NS lengthOfBytesUsingEncoding:NSUTF32LittleEndianStringEncoding] + sizeof(wchar_t);
-    char *buffer = (char*)calloc(length, 1);
+    char buffer[length];
+    memset (buffer, 0, length);
+
     [utf8NS getCString:buffer maxLength:length encoding:NSUTF32LittleEndianStringEncoding];
     [utf8NS release];
     
-    wstring utf32 = wstring(reinterpret_cast<const wchar_t*>(buffer));
-    free(buffer);
-
-    return utf32;
+    return wstring(reinterpret_cast<const wchar_t*>(buffer));
 #endif
 }
 
