@@ -54,8 +54,6 @@ XFont::XFont(XFont *source, bool useAnisotropy, int maxDimensions, int character
 
 XFont::~XFont()
 {
-    DLOG("XFont DELETED");
-    
     if (!derived)
     {
         delete[] w;
