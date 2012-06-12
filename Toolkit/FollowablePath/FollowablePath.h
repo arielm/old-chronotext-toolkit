@@ -1,6 +1,7 @@
 #pragma once
 
 #include "cinder/DataSource.h"
+#include "cinder/Vector.h"
 
 #include "DataStreamIO.h"
 

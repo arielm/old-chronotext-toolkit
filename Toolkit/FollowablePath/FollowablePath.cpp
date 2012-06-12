@@ -1,6 +1,7 @@
 #include "FollowablePath.h"
 
 #include <math.h>
+#include <float.h>
 
 using namespace ci;
 using namespace std;
