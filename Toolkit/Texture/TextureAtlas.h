@@ -21,7 +21,6 @@ class TextureAtlas
     std::map<std::string, Sprite*> sprites;
 
 public:
-
     ci::gl::Texture *texture;
 
     TextureAtlas(ci::DataSourceRef dataSource);    

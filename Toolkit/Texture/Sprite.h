@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include "cinder/gl/gl.h"
+
 class Sprite
 {
 public:

@@ -77,7 +77,14 @@ void TextureAtlas::reload()
 
 Sprite* TextureAtlas::getSprite(const string &path)
 {
-    return sprites[path];
+    map<string, Sprite*>::iterator it = sprites.find(path);
+    
+    if (it == sprites.end())
+    {
+        throw runtime_error("SPRITE NOT FOUND: " + path);
+    }
+
+    return it->second;
 }
 
 vector<Sprite*> TextureAtlas::getAnimationSprites(const string &path) const

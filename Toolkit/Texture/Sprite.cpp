@@ -1,7 +1,5 @@
 #include "Sprite.h"
 
-#include "cinder/gl/gl.h"
-
 void Sprite::draw(float rx, float ry, bool originUp)
 {
     float x1;
