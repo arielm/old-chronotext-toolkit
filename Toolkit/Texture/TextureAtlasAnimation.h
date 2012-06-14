@@ -13,5 +13,5 @@ public:
     TextureAtlasAnimation(TextureAtlas *atlas, const std::string &path);
     
     int getFrameCount();
-    void draw(int frameIndex);
+    void draw(int frameIndex, bool originUp = true);
 };

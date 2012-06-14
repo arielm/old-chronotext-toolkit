@@ -1,5 +1,10 @@
 #include "Sprite.h"
 
+void Sprite::drawFromCenter(bool originUp)
+{
+    draw(ow * 0.5, oh * 0.5, originUp);
+}
+
 void Sprite::draw(float rx, float ry, bool originUp)
 {
     float x1;

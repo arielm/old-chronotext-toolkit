@@ -10,8 +10,8 @@ int TextureAtlasAnimation::getFrameCount()
     return sprites.size();
 }
 
-void TextureAtlasAnimation::draw(int frameIndex)
+void TextureAtlasAnimation::draw(int frameIndex, bool originUp)
 {
     Sprite *sprite = sprites[frameIndex % sprites.size()];
-    sprite->draw(sprite->ow / 2, sprite->oh / 2);
+    sprite->drawFromCenter(originUp);
 }
