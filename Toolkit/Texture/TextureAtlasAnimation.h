@@ -13,5 +13,10 @@ public:
     TextureAtlasAnimation(TextureAtlas *atlas, const std::string &path);
     
     int getFrameCount();
-    void draw(int frameIndex, bool originUp = true);
+
+    void drawFromCenter(int frameIndex, bool originUp = true);
+    void drawFromCenter(float t, bool originUp = true);
+    
+    void draw(int frameIndex, float rx = 0, float ry = 0, bool originUp = true);
+    void draw(float t, float rx = 0, float ry = 0, bool originUp = true);
 };
