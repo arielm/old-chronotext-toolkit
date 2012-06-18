@@ -16,7 +16,7 @@ looping(looping)
     sprites = atlas->getAnimationSprites(path);
 }
 
-TextureAtlasAnimation::TextureAtlasAnimation(TextureAtlas *atlas, const string &path, int firstFrameIndex, int lastFrameIndex, float fps, bool looping)
+TextureAtlasAnimation::TextureAtlasAnimation(TextureAtlas *atlas, const string &path, float fps, bool looping, int firstFrameIndex, int lastFrameIndex)
 :
 fps(fps),
 looping(looping)
