@@ -7,12 +7,14 @@
 class TextureAtlasAnimation
 {
     std::vector<Sprite*> sprites;
-    float fps;
 
 public:
+    float fps;
+    bool looping;
+
     TextureAtlasAnimation(TextureAtlas *atlas, const std::string &path);
-    TextureAtlasAnimation(TextureAtlas *atlas, const std::string &path, float fps);
-    TextureAtlasAnimation(TextureAtlas *atlas, const std::string &path, int firstFrameIndex, int lastFrameIndex, float fps);
+    TextureAtlasAnimation(TextureAtlas *atlas, const std::string &path, float fps, bool looping);
+    TextureAtlasAnimation(TextureAtlas *atlas, const std::string &path, int firstFrameIndex, int lastFrameIndex, float fps, bool looping);
     
     int getFrameCount();
     float getDuration();
