@@ -1,3 +1,7 @@
+/*
+ * INSPIRED BY javax.media.Clock
+ */
+
 #pragma once
 
 #include "DefaultTimeBase.h"
@@ -6,13 +10,7 @@ namespace chronotext
 {
     class Clock
     {
-        enum
-        {
-            STOPPED,
-            STARTED
-        };
-
-        int mst;
+        double mst;
         double rate;
         int state;
         double tbst;
@@ -21,6 +19,12 @@ namespace chronotext
         bool timeBaseIsDefault;
         
     public:
+        enum
+        {
+            STOPPED,
+            STARTED
+        };
+
         Clock();
         Clock(TimeBase *timeBase);
         
