@@ -25,6 +25,7 @@ state(STOPPED)
 
 Clock::Clock(MasterClock *masterClock)
 :
+timeBaseIsOwned(false),
 mst(0),
 rate(1),
 state(STOPPED)
