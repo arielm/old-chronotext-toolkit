@@ -8,7 +8,9 @@
 
 namespace chronotext
 {
-    class Clock
+    class MasterClock;
+
+    class Clock : public TimeBase
     {
         double mst;
         double rate;
@@ -16,7 +18,7 @@ namespace chronotext
         double tbst;
 
         TimeBase *timeBase;
-        bool timeBaseIsDefault;
+        bool timeBaseIsOwned;
         
     public:
         enum
@@ -27,13 +29,14 @@ namespace chronotext
 
         Clock();
         Clock(TimeBase *timeBase);
+        Clock(MasterClock *masterClock);
         
         ~Clock();
         
         void start();
         void stop();
-        double getMediaTime();
-        void setMediaTime(int now);
+        double getTime();
+        void setTime(int now);
         int getState();
         void setRate(double factor);
     };
