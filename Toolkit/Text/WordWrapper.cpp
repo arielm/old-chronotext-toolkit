@@ -1,8 +1,8 @@
-#include "TextLayout.h"
+#include "WordWrapper.h"
 
 using namespace std;
 
-float TextLayout::wrap()
+float WordWrapper::wrap(XFont *font, wstring *text)
 {
 	size = 0;
     int length = text->size();
@@ -49,7 +49,7 @@ float TextLayout::wrap()
     return max;
 }
 
-void TextLayout::wrap(float width)
+void WordWrapper::wrap(XFont *font, wstring *text, float width)
 {
 	size = 0;
     int length = text->size();
@@ -169,7 +169,7 @@ void TextLayout::wrap(float width)
     }
 }
 
-void TextLayout::addLine(wstring *text, int offset, int length)
+void WordWrapper::addLine(wstring *text, int offset, int length)
 {
     /*
      * TRIMMING TRAILING SPACES FROM DISPLAY
@@ -182,29 +182,4 @@ void TextLayout::addLine(wstring *text, int offset, int length)
 	offsets.push_back(offset);
     lengths.push_back(length);
 	size++;
-}
-
-void TextLayout::draw(float x, float y)
-{
-	float yy = y + font->getMaxAscent();
-    
-    font->beginSequence(NULL, 2);
-    
-	for (int j = 0; j < size; j++)
-	{
-		float offset = offsets[j];
-		float length = lengths[j];
-		float xx = x;
-		
-		for (int i = offset; i < offset + length; i++)
-		{
-			wchar_t c = text->at(i);
-            font->addSequenceCharacter(c, xx, yy);
-			xx += font->getCharWidth(c);
-		}
-        
-		yy += font->getHeight();
-	}
-    
-	font->endSequence();
 }

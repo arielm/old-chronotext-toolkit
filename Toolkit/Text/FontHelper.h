@@ -1,6 +1,6 @@
 #pragma once
 
-#include "XFont.h"
+#include "WordWrapper.h"
 #include "FollowablePath.h"
 
 class FontHelper
@@ -67,7 +67,7 @@ public:
         }
     }
 
-    static float drawTextOnPath(XFont *font, FollowablePath *path, const std::wstring &text, float offset)
+    static float drawTextOnPath(XFont *font, const std::wstring &text, FollowablePath *path, float offset)
     {
         float res[3];
         
@@ -102,5 +102,30 @@ public:
         font->endSequence();
         
         return offsetX;
+    }
+    
+    static void drawWrappedText(XFont *font, const std::wstring &text, WordWrapper *wrapper, float x, float y, float lineHeight)
+    {
+        float yy = y + font->getMaxAscent();
+        
+        font->beginSequence(NULL, 2);
+        
+        for (int j = 0; j < wrapper->size; j++)
+        {
+            float offset = wrapper->offsets[j];
+            float length = wrapper->lengths[j];
+            float xx = x;
+            
+            for (int i = offset; i < offset + length; i++)
+            {
+                wchar_t c = text.at(i);
+                font->addSequenceCharacter(c, xx, yy);
+                xx += font->getCharWidth(c);
+            }
+            
+            yy += lineHeight;
+        }
+        
+        font->endSequence();
     }
 };
