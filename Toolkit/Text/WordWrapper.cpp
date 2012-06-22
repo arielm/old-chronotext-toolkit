@@ -40,7 +40,7 @@ float WordWrapper::wrap(XFont *font, wstring *text)
 		x += font->getCharWidth(c);
     }
     
-    if (!lineLength)
+    if (lineLength > 0)
     {
 		max = fmaxf(max, x);
         addLine(text, lineIndex, lineLength);
@@ -163,7 +163,7 @@ void WordWrapper::wrap(XFont *font, wstring *text, float width)
 		}
     }
     
-    if (!lineLength)
+    if (lineLength > 0)
     {
         addLine(text, lineIndex, lineLength);
     }
