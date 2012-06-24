@@ -1,3 +1,9 @@
+/*
+ * FIXME:
+ * 1) CORRECT offset AND length: THEY ARE CURRENTLY BASED ON THE STRING WITH THE HTML
+ * 2) CHECK HOW IT WORKS WITH NON-ASCII CHARACTERS: WE MAY NEED TO USE A wstring AS INPUT
+ */
+
 #pragma once
 
 #include <string>
