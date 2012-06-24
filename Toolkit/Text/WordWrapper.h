@@ -15,4 +15,6 @@ public:
     
     float wrap(XFont *font, std::wstring *text);
     void wrap(XFont *font, std::wstring *text, float width);
+
+    int find(int value);
 };

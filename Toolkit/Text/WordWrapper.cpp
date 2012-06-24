@@ -183,3 +183,16 @@ void WordWrapper::addLine(wstring *text, int offset, int length)
     lengths.push_back(length);
 	size++;
 }
+
+int WordWrapper::find(int value)
+{
+    for (int i = 1; i < size; i++)
+    {
+        if (offsets[i] > value)
+        {
+            return i - 1;
+        }
+    }
+    
+    return size - 1;
+}
