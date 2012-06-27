@@ -19,11 +19,11 @@ public:
     int getFrameCount();
     float getDuration();
 
-    void drawFromCenter(int frameIndex, bool originUp = true);
-    void drawFromCenter(float t, bool originUp = true);
-    void playFromCenter(double now, bool originUp = true);
+    void drawFromCenter(int frameIndex);
+    void drawFromCenter(float t);
+    void playFromCenter(double now);
     
-    void draw(int frameIndex, float rx = 0, float ry = 0, bool originUp = true);
-    void draw(float t, float rx = 0, float ry = 0, bool originUp = true);
-    void play(double now, float rx = 0, float ry = 0, bool originUp = true);
+    void draw(int frameIndex, float rx = 0, float ry = 0);
+    void draw(float t, float rx = 0, float ry = 0);
+    void play(double now, float rx = 0, float ry = 0);
 };

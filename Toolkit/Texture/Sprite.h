@@ -39,6 +39,6 @@ public:
     ty2(ty2)
     {}
     
-    void drawFromCenter(bool originUp = true);
-    void draw(float rx = 0, float ry = 0, bool originUp = true);
+    void drawFromCenter();
+    void draw(float rx = 0, float ry = 0);
 };

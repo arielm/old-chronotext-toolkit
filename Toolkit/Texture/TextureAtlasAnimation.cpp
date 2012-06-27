@@ -54,38 +54,38 @@ float TextureAtlasAnimation::getDuration()
     return sprites.size() / fps;
 }
 
-void TextureAtlasAnimation::drawFromCenter(int frameIndex, bool originUp)
+void TextureAtlasAnimation::drawFromCenter(int frameIndex)
 {
     Sprite *sprite = sprites[looping ? (frameIndex % sprites.size()) : min<int>(frameIndex, sprites.size() - 1)];
-    sprite->drawFromCenter(originUp);
+    sprite->drawFromCenter();
 }
 
-void TextureAtlasAnimation::drawFromCenter(float t, bool originUp)
+void TextureAtlasAnimation::drawFromCenter(float t)
 {
     int frameIndex = t * sprites.size();
-    drawFromCenter(frameIndex, originUp);
+    drawFromCenter(frameIndex);
 }
 
-void TextureAtlasAnimation::playFromCenter(double now, bool originUp)
+void TextureAtlasAnimation::playFromCenter(double now)
 {
     float t = now / getDuration();
-    drawFromCenter(t, originUp);
+    drawFromCenter(t);
 }
 
-void TextureAtlasAnimation::draw(int frameIndex, float rx, float ry, bool originUp)
+void TextureAtlasAnimation::draw(int frameIndex, float rx, float ry)
 {
     Sprite *sprite = sprites[looping ? (frameIndex % sprites.size()) : min<int>(frameIndex, sprites.size() - 1)];
-    sprite->draw(rx, ry, originUp);
+    sprite->draw(rx, ry);
 }
 
-void TextureAtlasAnimation::draw(float t, float rx, float ry, bool originUp)
+void TextureAtlasAnimation::draw(float t, float rx, float ry)
 {
     int frameIndex = t * sprites.size();
-    draw(frameIndex, originUp);
+    draw(frameIndex);
 }
 
-void TextureAtlasAnimation::play(double now, float rx, float ry, bool originUp)
+void TextureAtlasAnimation::play(double now, float rx, float ry)
 {
     float t = now / getDuration();
-    draw(t, rx, ry, originUp);
+    draw(t, rx, ry);
 }

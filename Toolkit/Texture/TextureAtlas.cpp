@@ -106,7 +106,7 @@ vector<Sprite*> TextureAtlas::getAnimationSprites(const string &path) const
     return animationSprites;
 }
 
-void TextureAtlas::drawSprite(const string &path, float rx, float ry, bool originUp)
+void TextureAtlas::drawSprite(const string &path, float rx, float ry)
 {
-    sprites[path]->draw(rx, ry, originUp);
+    sprites[path]->draw(rx, ry);
 }

@@ -1,11 +1,11 @@
 #include "Sprite.h"
 
-void Sprite::drawFromCenter(bool originUp)
+void Sprite::drawFromCenter()
 {
-    draw(ow * 0.5, oh * 0.5, originUp);
+    draw(ow * 0.5, oh * 0.5);
 }
 
-void Sprite::draw(float rx, float ry, bool originUp)
+void Sprite::draw(float rx, float ry)
 {
     float x1;
     float y1;
@@ -34,10 +34,10 @@ void Sprite::draw(float rx, float ry, bool originUp)
         vertices[2][0] = y2; vertices[2][1] = x1;
         vertices[3][0] = y1; vertices[3][1] = x1;
         
-        coords[0][0] = originUp ? tx1 : tx2; coords[0][1] = ty1;
-        coords[1][0] = originUp ? tx1 : tx2; coords[1][1] = ty2;
-        coords[2][0] = originUp ? tx2 : tx1; coords[2][1] = ty2;
-        coords[3][0] = originUp ? tx2 : tx1; coords[3][1] = ty1;
+        coords[0][0] = tx1; coords[0][1] = ty1;
+        coords[1][0] = tx1; coords[1][1] = ty2;
+        coords[2][0] = tx2; coords[2][1] = ty2;
+        coords[3][0] = tx2; coords[3][1] = ty1;
     }
     else
     {
@@ -46,10 +46,10 @@ void Sprite::draw(float rx, float ry, bool originUp)
         vertices[2][0] = x2; vertices[2][1] = y2;
         vertices[3][0] = x1; vertices[3][1] = y2;
         
-        coords[0][0] = tx1; coords[0][1] = originUp ? ty1 : ty2;
-        coords[1][0] = tx2; coords[1][1] = originUp ? ty1 : ty2;
-        coords[2][0] = tx2; coords[2][1] = originUp ? ty2 : ty1;
-        coords[3][0] = tx1; coords[3][1] = originUp ? ty2 : ty1;
+        coords[0][0] = tx1; coords[0][1] = ty1;
+        coords[1][0] = tx2; coords[1][1] = ty1;
+        coords[2][0] = tx2; coords[2][1] = ty2;
+        coords[3][0] = tx1; coords[3][1] = ty2;
     }
     
     glTexCoordPointer(2, GL_FLOAT, 0, coords);
