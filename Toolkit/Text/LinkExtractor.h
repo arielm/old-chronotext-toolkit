@@ -1,7 +1,6 @@
 /*
- * FIXME:
- * 1) CORRECT offset AND length: THEY ARE CURRENTLY BASED ON THE STRING WITH THE HTML
- * 2) CHECK HOW IT WORKS WITH NON-ASCII CHARACTERS: WE MAY NEED TO USE A wstring AS INPUT
+ * TODO:
+ * 1) CHECK HOW IT WORKS WITH NON-ASCII CHARACTERS: WE MAY NEED TO USE A wstring AS INPUT
  */
 
 #pragma once
@@ -39,9 +38,8 @@ public:
                 int pos4 = pos3 + 2;
                 int pos5 = input.find("</a>", pos4);
 
-                links.push_back(ExtractedLink(pos4, pos5 - pos4, input.substr(pos2, pos3 - pos2)));
-
                 output.append(input, pos, pos1 - pos);
+                links.push_back(ExtractedLink(output.size(),pos5 - pos4, input.substr(pos2, pos3 - pos2)));
                 output.append(input, pos4, pos5 - pos4);
 
                 pos = pos5 + 4;
