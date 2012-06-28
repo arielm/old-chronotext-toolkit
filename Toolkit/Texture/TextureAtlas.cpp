@@ -110,3 +110,8 @@ void TextureAtlas::drawSprite(const string &path, float rx, float ry)
 {
     sprites[path]->draw(rx, ry);
 }
+
+void TextureAtlas::drawSpriteFromCenter(const std::string &path)
+{
+    sprites[path]->drawFromCenter();
+}
