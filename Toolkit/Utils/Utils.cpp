@@ -1,5 +1,5 @@
 #if defined( CINDER_COCOA ) && ( ! defined( __OBJC__ ) )
-#error "This file must be compiled as Objective-C++ on the Mac"
+#error "This file must be compiled as Objective-C++ on iOS or OSX"
 #endif
 
 #include "Utils.h"
