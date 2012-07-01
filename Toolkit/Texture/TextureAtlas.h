@@ -23,7 +23,7 @@ class TextureAtlas
 public:
     ci::gl::Texture *texture;
 
-    TextureAtlas(ci::DataSourceRef dataSource);    
+    TextureAtlas(ci::DataSourceRef dataSource, bool useMipmap = false);
     ~TextureAtlas();
     
     void clear();
