@@ -12,8 +12,7 @@ public:
     float fps;
     bool looping;
 
-    TextureAtlasAnimation(TextureAtlas *atlas, const std::string &path);
-    TextureAtlasAnimation(TextureAtlas *atlas, const std::string &path, float fps, bool looping);
+    TextureAtlasAnimation(TextureAtlas *atlas, const std::string &path, float fps = 24, bool looping = true);
     TextureAtlasAnimation(TextureAtlas *atlas, const std::string &path, float fps, bool looping, int firstFrameIndex, int lastFrameIndex);
     
     int getFrameCount();

@@ -3,11 +3,6 @@
 
 using namespace std;
 
-TextureAtlasAnimation::TextureAtlasAnimation(TextureAtlas *atlas, const string &path) : fps(24), looping(true)
-{
-    sprites = atlas->getAnimationSprites(path);
-}
-
 TextureAtlasAnimation::TextureAtlasAnimation(TextureAtlas *atlas, const string &path, float fps, bool looping)
 :
 fps(fps),
