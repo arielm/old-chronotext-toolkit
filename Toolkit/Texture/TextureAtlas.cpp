@@ -8,7 +8,7 @@ using namespace ci;
 using namespace ci::app;
 using namespace std;
 
-TextureAtlas::TextureAtlas(DataSourceRef dataSource, bool useMipmap)
+TextureAtlas::TextureAtlas(DataSourceRef dataSource, bool useMipmap, bool forceToAlpha)
 {
     XmlTree doc(dataSource);
     
@@ -17,7 +17,7 @@ TextureAtlas::TextureAtlas(DataSourceRef dataSource, bool useMipmap)
 
     // ---
 
-    texture = TextureHelper::loadTexture(loadResource(texturePath), useMipmap);
+    texture = TextureHelper::loadTexture(loadResource(texturePath), useMipmap, forceToAlpha);
     
     width = texture->getWidth();
     height = texture->getHeight();
