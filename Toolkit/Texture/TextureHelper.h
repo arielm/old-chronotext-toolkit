@@ -60,10 +60,10 @@ public:
         glBindTexture(GL_TEXTURE_2D, texture->getId());
     }
 
-    static void drawTextureFromCenter(ci::gl::Texture *texture, bool originUp = true, float cx = 0.5f, float cy = 0.5f)
+    static void drawTextureFromCenter(ci::gl::Texture *texture)
     {
-        float x1 = -texture->getWidth() * cx;
-        float y1 = -texture->getHeight() * cy;
+        float x1 = -texture->getWidth() * 0.5;
+        float y1 = -texture->getHeight() * 0.5;
         
         float x2 = x1 + texture->getWidth();
         float y2 = y1 + texture->getHeight();
@@ -76,15 +76,12 @@ public:
             x1, y2
         };
         
-        float ty1 = originUp ? 0 : 1;
-        float ty2 = originUp ? 1 : 0;
-        
         const GLfloat coords[] =
         {
-            0, ty1,
-            1, ty1,
-            1, ty2,
-            0, ty2
+            0, 0,
+            1, 0,
+            1, 1,
+            0, 1
         };
         
         glTexCoordPointer(2, GL_FLOAT, 0, coords);
