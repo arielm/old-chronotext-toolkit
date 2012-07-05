@@ -5,6 +5,7 @@ namespace chronotext
     class TimeBase
     {
     public:
-        virtual double getTime() {}
+        virtual ~TimeBase() {}
+        virtual double getTime() = 0;
     };
 }
