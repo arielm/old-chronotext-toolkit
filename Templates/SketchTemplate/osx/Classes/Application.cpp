@@ -23,4 +23,4 @@ void Application::prepareSettings(Settings *settings)
 	settings->setFrameRate(60);
 }
 
-CINDER_APP_BASIC( Application, RendererGl(0) )
+CINDER_APP_BASIC(Application, RendererGl(0))
