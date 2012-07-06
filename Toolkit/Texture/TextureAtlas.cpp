@@ -1,7 +1,6 @@
 #include "TextureAtlas.h"
 
 #include "cinder/app/AppBasic.h"
-#include "cinder/DataSource.h"
 #include "cinder/Xml.h"
 
 using namespace ci;
