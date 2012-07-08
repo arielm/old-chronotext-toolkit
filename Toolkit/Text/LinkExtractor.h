@@ -1,14 +1,16 @@
 #pragma once
 
+#include "Utils.h"
+
 #include <string>
 
 struct ExtractedLink
 {
     int offset;
     int length;
-    std::wstring url;
+    std::string url;
     
-    ExtractedLink(int offset, int length, std::wstring url) : offset(offset), length(length), url(url) {}
+    ExtractedLink(int offset, int length, std::string url) : offset(offset), length(length), url(url) {}
 };
 
 class LinkExtractor
@@ -34,7 +36,7 @@ public:
                 int pos5 = input.find(L"</a>", pos4);
                 
                 output.append(input, pos, pos1 - pos);
-                links.push_back(ExtractedLink(output.size(),pos5 - pos4, input.substr(pos2, pos3 - pos2)));
+                links.push_back(ExtractedLink(output.size(),pos5 - pos4, wstringToUtf8(input.substr(pos2, pos3 - pos2))));
                 output.append(input, pos4, pos5 - pos4);
                 
                 pos = pos5 + 4;
