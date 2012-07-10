@@ -240,7 +240,7 @@
 				A8641EF115A5D2E10054E5EC /* TextureManager.h */,
 			);
 			name = Texture;
-			path = ../../../Toolkit/Texture;
+			path = "../../../../chronotext-public/Toolkit/Texture";
 			sourceTree = "<group>";
 		};
 		A8641EF215A5D2E10054E5EC /* Time */ = {
@@ -254,7 +254,7 @@
 				A8641EF815A5D2E10054E5EC /* TimeBase.h */,
 			);
 			name = Time;
-			path = ../../../Toolkit/Time;
+			path = "../../../../chronotext-public/Toolkit/Time";
 			sourceTree = "<group>";
 		};
 		A8641EFF15A5D2FA0054E5EC /* Maths */ = {
@@ -264,7 +264,7 @@
 				A8641F0115A5D2FA0054E5EC /* Matrix2D.h */,
 			);
 			name = Maths;
-			path = ../../../Toolkit/Maths;
+			path = "../../../../chronotext-public/Toolkit/Maths";
 			sourceTree = "<group>";
 		};
 		A87A04621580D8D000BB603B /* OSX */ = {
@@ -344,7 +344,7 @@
 				A8AB667815826F2A00B93CD7 /* FontManager.h */,
 			);
 			name = Text;
-			path = ../../../Toolkit/Text;
+			path = "../../../../chronotext-public/Toolkit/Text";
 			sourceTree = "<group>";
 		};
 		A8CF25001516238F00BD643A /* Utils */ = {
