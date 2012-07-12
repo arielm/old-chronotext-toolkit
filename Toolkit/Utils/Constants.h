@@ -9,7 +9,7 @@ static const float HALF_PI = M_PI * 0.5;
 static const float D2R = M_PI / 180.0;
 static const float R2D = 180.0 / M_PI;
 
-static inline float boundf(float value, float range)
+static inline float bound(float value, float range)
 {
 	float bound = fmodf(value, range);
 	return (bound < 0) ? (bound + range) : bound;
@@ -21,7 +21,7 @@ static inline int bound(int value, int range)
 	return (bound < 0) ? (bound + range) : bound;
 }
 
-static inline float constrainf(float value, float min, float max)
+static inline float constrain(float value, float min, float max)
 {
 	return (value < min) ? min : ((value > max) ? max : value);
 }
