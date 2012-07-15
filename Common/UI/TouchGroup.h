@@ -30,6 +30,8 @@ namespace chronotext
         void addShape(Shape *shape);
         void addShapes(const std::vector<ShapeRef> &shapes);
         
+        Shape* getShapeByTag(int tag);
+        
         bool addTouch(int index, float x, float y);
         bool updateTouch(int index, float x, float y);
         bool removeTouch(int index, float x, float y);

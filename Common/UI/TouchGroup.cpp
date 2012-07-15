@@ -20,6 +20,19 @@ namespace chronotext
         }
     }
     
+    Shape* TouchGroup::getShapeByTag(int tag)
+    {
+        for (vector<Shape*>::const_iterator it = shapes.begin(); it != shapes.end(); ++it)
+        {
+            if ((*it)->tag == tag)
+            {
+                return &**it;
+            }
+        }
+
+        return NULL;
+    }
+    
     Touchable* TouchGroup::getClosestTouchable(const Vec2f &point)
     {
         Touchable *closestTouchable = NULL;
