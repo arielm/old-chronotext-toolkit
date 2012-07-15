@@ -6,6 +6,9 @@ using namespace ci;
 namespace chronotext
 {
     Shape::Shape(ShapeStyleRef style)
+    :
+    visible(style->visible),
+    tag(0)
     {
         setLocation(0, 0);
         setPadding(style->paddingLeft, style->paddingTop, style->paddingRight, style->paddingBottom);
@@ -30,8 +33,6 @@ namespace chronotext
             setAutoHeight(style->autoHeight);
             height = 0;
         }
-
-        visible = style->visible;
     }
     
     void Shape::setLocation(float x, float y)

@@ -13,7 +13,6 @@ namespace chronotext
     Shape(style),
     Touchable(this, TYPE_CLICKABLE, style->hitExtra),
     style(style),
-    tag(0),
     delegate(NULL)
     {}
 

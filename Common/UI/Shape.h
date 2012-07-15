@@ -43,6 +43,8 @@ namespace chronotext
         float marginRight;
         float marginBottom;
         
+        int tag;
+        
         Shape() {}
         Shape(ShapeStyleRef style);
         

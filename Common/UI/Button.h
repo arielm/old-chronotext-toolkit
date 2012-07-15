@@ -29,7 +29,6 @@ namespace chronotext
         std::wstring text;
         IconRef icon;
         
-        int tag;
         ButtonDelegate *delegate;
         
         Button(ButtonStyleRef style);

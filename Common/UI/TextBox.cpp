@@ -15,6 +15,7 @@ namespace chronotext
     overflowY(false),
     offsetX(0),
     offsetY(0),
+    textColor(style->textColor),
     updateWrapRequest(false),
     updateWidthRequest(false),
     updateHeightRequest(false),
@@ -33,8 +34,6 @@ namespace chronotext
         {
             setLineHeightFactor(style->lineHeightFactor);
         }
-
-        textColor = style->textColor;
     }
     
     void TextBox::setFont(XFont *newFont)
