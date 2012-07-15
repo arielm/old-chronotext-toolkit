@@ -4,6 +4,9 @@ using namespace std;
 
 float WordWrapper::wrap(XFont *font, wstring *text)
 {
+    offsets.clear();
+    lengths.clear();
+    
 	size = 0;
     int length = text->size();
     
@@ -51,6 +54,9 @@ float WordWrapper::wrap(XFont *font, wstring *text)
 
 void WordWrapper::wrap(XFont *font, wstring *text, float width)
 {
+    offsets.clear();
+    lengths.clear();
+
 	size = 0;
     int length = text->size();
     
