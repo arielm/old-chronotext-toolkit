@@ -22,3 +22,5 @@ namespace chronotext
         }
     };
 }
+
+namespace chr = chronotext;

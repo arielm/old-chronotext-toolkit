@@ -9,3 +9,5 @@ namespace chronotext
         virtual double getTime() = 0;
     };
 }
+
+namespace chr = chronotext;

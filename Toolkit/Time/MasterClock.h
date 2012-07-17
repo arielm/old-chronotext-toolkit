@@ -21,3 +21,5 @@ namespace chronotext
         void remove(Clock *slave);
     };
 }
+
+namespace chr = chronotext;

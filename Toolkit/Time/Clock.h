@@ -41,3 +41,5 @@ namespace chronotext
         void setRate(double factor);
     };
 }
+
+namespace chr = chronotext;

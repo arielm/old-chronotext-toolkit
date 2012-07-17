@@ -1,34 +1,36 @@
 #include "MasterClock.h"
 
 using namespace std;
-using namespace chronotext;
 
-void MasterClock::start()
+namespace chronotext
 {
-    Clock::start();
+    void MasterClock::start()
+    {
+        Clock::start();
+        
+        for (list<Clock*>::const_iterator it = slaves.begin(); it != slaves.end(); ++it)
+        {
+            (*it)->start();
+        }
+    }
     
-    for (list<Clock*>::const_iterator it = slaves.begin(); it != slaves.end(); ++it)
+    void MasterClock::stop()
     {
-        (*it)->start();
+        Clock::stop();
+        
+        for (list<Clock*>::const_iterator it = slaves.begin(); it != slaves.end(); ++it)
+        {
+            (*it)->stop();
+        }
     }
-}
-
-void MasterClock::stop()
-{
-    Clock::stop();
-
-    for (list<Clock*>::const_iterator it = slaves.begin(); it != slaves.end(); ++it)
+    
+    void MasterClock::add(Clock *slave)
     {
-        (*it)->stop();
+        slaves.push_back(slave);
     }
-}
-
-void MasterClock::add(Clock *slave)
-{
-    slaves.push_back(slave);
-}
-
-void MasterClock::remove(Clock *slave)
-{
-    slaves.remove(slave);
+    
+    void MasterClock::remove(Clock *slave)
+    {
+        slaves.remove(slave);
+    }
 }
