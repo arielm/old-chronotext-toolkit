@@ -7,7 +7,7 @@ namespace chronotext
 {
     void VerticalFlowContainer::layout()
     {
-        if (updateRequest)
+        if (layoutRequest)
         {
             float innerWidth = width - paddingLeft - paddingRight;
             float innerHeight = 0;
@@ -21,26 +21,29 @@ namespace chronotext
             {
                 ShapeRef shape = *it;
                 
-                innerHeight += mergedMargin(previousMargin, shape->marginTop);
-                shape->setLocation(xx, y + innerHeight);
-                
-                if (!shape->autoWidth)
+                if (shape->visible)
                 {
-                    if (autoWidth)
+                    innerHeight += mergedMargin(previousMargin, shape->marginTop);
+                    shape->setLocation(xx, y + innerHeight);
+                    
+                    if (!shape->autoWidth)
                     {
-                        throw runtime_error("VerticalFlowContainer WITH UNDEFINED-WIDTH MUST CONTAIN COMPONENTS WITH FIXED-WIDTH");
+                        if (autoWidth)
+                        {
+                            throw runtime_error("VerticalFlowContainer WITH UNDEFINED-WIDTH MUST CONTAIN COMPONENTS WITH FIXED-WIDTH");
+                        }
+                        else
+                        {
+                            shape->setWidth(innerWidth);
+                        }
                     }
-                    else
-                    {
-                        shape->setWidth(innerWidth);
-                    }
+                    
+                    contentWidth = fmaxf(contentWidth, shape->getWidth());
+                    contentHeight += shape->getHeight();
+                    
+                    innerHeight += shape->getHeight();
+                    previousMargin = shape->marginBottom;
                 }
-                
-                contentWidth = fmaxf(contentWidth, shape->getWidth());
-                contentHeight += shape->getHeight();
-                
-                innerHeight += shape->getHeight();
-                previousMargin = shape->marginBottom;
             }
             
             innerHeight += mergedMargin(previousMargin, paddingBottom);
@@ -56,7 +59,7 @@ namespace chronotext
             }
         }
         
-        updateRequest = false;
+        layoutRequest = false;
     }
     
     float VerticalFlowContainer::mergedMargin(float previousMargin, float nextMargin)

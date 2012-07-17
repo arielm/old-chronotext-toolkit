@@ -9,7 +9,7 @@ namespace chronotext
     {
         if (autoWidth || newWidth != width)
         {
-            updateRequest = true;
+            layoutRequest = true;
             Shape::setWidth(newWidth);
         }
     }
@@ -18,7 +18,7 @@ namespace chronotext
     {
         if (autoHeight || newHeight != height)
         {
-            updateRequest = true;
+            layoutRequest = true;
             Shape::setHeight(newHeight);
         }
     }
@@ -27,7 +27,7 @@ namespace chronotext
     {
         if (newAuto != autoWidth)
         {
-            updateRequest = true;
+            layoutRequest = true;
             Shape::setAutoWidth(newAuto);
         }
     }
@@ -36,14 +36,14 @@ namespace chronotext
     {
         if (newAuto != autoHeight)
         {
-            updateRequest = true;
+            layoutRequest = true;
             Shape::setAutoHeight(newAuto);
         }
     }
     
     void Container::setPadding(float left, float top, float right, float bottom)
     {
-        updateRequest = true;
+        layoutRequest = true;
         Shape::setPadding(left, top, right, bottom);
     }
     
@@ -61,8 +61,13 @@ namespace chronotext
     
     void Container::addComponent(ShapeRef component)
     {
-        updateRequest = true;
+        layoutRequest = true;
         components.push_back(component);
+    }
+    
+    void Container::requestLayout()
+    {
+        layoutRequest = true;
     }
     
     void Container::draw()
@@ -71,7 +76,12 @@ namespace chronotext
 
         for (vector<ShapeRef>::const_iterator it = components.begin(); it != components.end(); ++it)
         {
-            (*it)->draw();
+            ShapeRef shape = *it;
+            
+            if (shape->visible)
+            {
+                shape->draw();
+            }
         }
     }
 }

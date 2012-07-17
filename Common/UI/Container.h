@@ -7,7 +7,7 @@ namespace chronotext
     class Container : public Shape
     {
     protected:
-        bool updateRequest;
+        bool layoutRequest;
 
     public:
         std::vector<ShapeRef> components;
@@ -17,7 +17,7 @@ namespace chronotext
         Container(ShapeStyleRef style)
         :
         Shape(style),
-        updateRequest(false)
+        layoutRequest(false)
         {}
         
         void setWidth(float newWidth);
@@ -30,6 +30,7 @@ namespace chronotext
         float getHeight();
 
         void addComponent(ShapeRef component);
+        void requestLayout();
         
         virtual void layout() = 0;
         void draw();
