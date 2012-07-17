@@ -30,7 +30,7 @@ namespace chronotext
         font(NULL),
         fontSize(1),
         snap(false),
-        hitExtra(5)
+        hitExtra(8)
         {}
     };
 }

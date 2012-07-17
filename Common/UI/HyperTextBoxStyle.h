@@ -23,7 +23,7 @@ namespace chronotext
         selectedLinkBackgroundColor(ci::ColorA(0, 0, 0, 1)),
         linkUnderlineFactor(0.2),
         linkPaddingFactor(0.1),
-        linkHitExtra(5)
+        linkHitExtra(8)
         {}
     };
 }
