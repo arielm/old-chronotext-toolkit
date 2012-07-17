@@ -21,7 +21,7 @@ namespace chronotext
             {
                 ShapeRef shape = *it;
                 
-                innerHeight += fmaxf(previousMargin, shape->marginTop);
+                innerHeight += mergedMargin(previousMargin, shape->marginTop);
                 shape->setLocation(xx, y + innerHeight);
                 
                 if (!shape->autoWidth)
@@ -43,7 +43,7 @@ namespace chronotext
                 previousMargin = shape->marginBottom;
             }
             
-            innerHeight += fmaxf(previousMargin, paddingBottom);
+            innerHeight += mergedMargin(previousMargin, paddingBottom);
             
             if (autoWidth)
             {
@@ -57,5 +57,19 @@ namespace chronotext
         }
         
         updateRequest = false;
+    }
+    
+    float VerticalFlowContainer::mergedMargin(float previousMargin, float nextMargin)
+    {
+        if ((previousMargin > 0) && (nextMargin > 0))
+        {
+            return fmaxf(previousMargin, nextMargin);
+        }
+        else if ((previousMargin < 0) && (nextMargin < 0))
+        {
+            return fminf(previousMargin, nextMargin);
+        }
+        
+        return previousMargin + nextMargin;
     }
 }
