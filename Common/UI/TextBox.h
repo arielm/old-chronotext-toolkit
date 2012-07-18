@@ -79,7 +79,7 @@ namespace chronotext
         float getHeight();
         float getLineHeight();
         
-        virtual void layout();
+        void layout();
         void draw();
         
         ci::Vec2f getLocationAt(int line, int index);

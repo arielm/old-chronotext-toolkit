@@ -142,6 +142,7 @@ namespace chronotext
         {
             wrap = newWrap;
             updateWrapRequest = true;
+            requestContainerLayout();
         }
     }
     

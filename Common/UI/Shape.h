@@ -10,6 +10,8 @@ namespace chronotext
 {
     typedef boost::shared_ptr<class Shape> ShapeRef;
 
+    class Container;
+
     class Shape
     {
     public:
@@ -31,8 +33,6 @@ namespace chronotext
         bool autoWidth;
         bool autoHeight;
         
-        bool visible;
-        
         float paddingLeft;
         float paddingTop;
         float paddingRight;
@@ -42,22 +42,25 @@ namespace chronotext
         float marginTop;
         float marginRight;
         float marginBottom;
-        
+
+        bool visible;
         int tag;
+        Container *container;
         
         Shape() {}
         Shape(ShapeStyleRef style);
         
-        void setLocation(float x, float y);
+        virtual void setLocation(float x, float y);
         virtual void setWidth(float newWidth);
         virtual void setHeight(float newHeight);
         virtual void setAutoWidth(bool newAuto);
         virtual void setAutoHeight(bool newAuto);
         virtual void setBounds(const ci::Rectf &bounds);
         virtual void setPadding(float left, float top, float right, float bottom);
-        void setMargin(float left, float top, float right, float bottom);
+        virtual void setMargin(float left, float top, float right, float bottom);
+        virtual void setVisible(bool visible);
         
-        ci::Vec2f getLocation();
+        virtual ci::Vec2f getLocation();
         virtual float getWidth();
         virtual float getHeight();
         virtual ci::Rectf getBounds();
@@ -67,6 +70,10 @@ namespace chronotext
         virtual std::vector<Touchable*> getTouchables();
         virtual void touchStateChanged(Touchable *touchable, int state) {}
         virtual void touchActionPerformed(Touchable *touchable, int action) {}
+        
+        virtual void setContainer(Container *container);
+        virtual void requestContainerLayout();
+        virtual void layout() {}
     };
 }
 

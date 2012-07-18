@@ -32,7 +32,6 @@ namespace chronotext
         void addComponent(ShapeRef component);
         void requestLayout();
         
-        virtual void layout() = 0;
         void draw();
     };
 }

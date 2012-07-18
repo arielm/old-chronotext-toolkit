@@ -63,6 +63,7 @@ namespace chronotext
     {
         layoutRequest = true;
         components.push_back(component);
+        component->setContainer(this);
     }
     
     void Container::requestLayout()

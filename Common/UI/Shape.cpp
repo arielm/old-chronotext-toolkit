@@ -1,4 +1,5 @@
 #include "Shape.h"
+#include "Container.h"
 
 using namespace std;
 using namespace ci;
@@ -7,13 +8,14 @@ namespace chronotext
 {
     Shape::Shape(ShapeStyleRef style)
     :
-    visible(style->visible),
-    tag(0)
+    tag(0),
+    container(NULL)
     {
         setLocation(0, 0);
         setPadding(style->paddingLeft, style->paddingTop, style->paddingRight, style->paddingBottom);
         setMargin(style->marginLeft, style->marginTop, style->marginRight, style->marginBottom);
-        
+        setVisible(style->visible);
+
         if (style->width > 0)
         {
             setWidth(style->width);
@@ -45,22 +47,26 @@ namespace chronotext
     {
         width = newWidth;
         autoWidth = false;
+        requestContainerLayout();
     }
     
     void Shape::setHeight(float newHeight)
     {
         height = newHeight;
         autoHeight = false;
+        requestContainerLayout();
     }
     
     void Shape::setAutoWidth(bool newAuto)
     {
         autoWidth = newAuto;
+        requestContainerLayout();
     }
     
     void Shape::setAutoHeight(bool newAuto)
     {
         autoHeight = newAuto;
+        requestContainerLayout();
     }
     
     void Shape::setBounds(const Rectf &bounds)
@@ -86,8 +92,16 @@ namespace chronotext
         marginTop = top;
         marginRight = right;
         marginBottom = bottom;
+        
+        requestContainerLayout();
     }
     
+    void Shape::setVisible(bool visible)
+    {
+        this->visible = visible;
+        requestContainerLayout();
+    }
+
     ci::Vec2f Shape::getLocation()
     {
         return Vec2f(x, y);
@@ -111,5 +125,18 @@ namespace chronotext
     vector<Touchable*> Shape::getTouchables()
     {
         return vector<Touchable*>();
+    }
+    
+    void Shape::setContainer(Container *container)
+    {
+        this->container = container;
+    }
+    
+    void Shape::requestContainerLayout()
+    {
+        if (container)
+        {
+            container->requestLayout();
+        }
     }
 }
