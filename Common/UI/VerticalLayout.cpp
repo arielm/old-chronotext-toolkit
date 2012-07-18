@@ -1,11 +1,11 @@
-#include "VerticalFlowContainer.h"
+#include "VerticalLayout.h"
 
 using namespace std;
 using namespace ci;
 
 namespace chronotext
 {
-    void VerticalFlowContainer::layout()
+    void VerticalLayout::layout()
     {
         if (layoutRequest)
         {
@@ -30,7 +30,7 @@ namespace chronotext
                     {
                         if (autoWidth)
                         {
-                            throw runtime_error("VerticalFlowContainer WITH UNDEFINED-WIDTH MUST CONTAIN COMPONENTS WITH FIXED-WIDTH");
+                            throw runtime_error("VerticalLayout WITH UNDEFINED-WIDTH MUST CONTAIN COMPONENTS WITH FIXED-WIDTH");
                         }
                         else
                         {

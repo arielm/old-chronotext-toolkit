@@ -4,8 +4,8 @@
 
 /*
  * LIMITATIONS:
- * 1) COMPONENTS WITH FIXED-WIDTH RECEIVE THE WIDTH OF THE VerticalFlowContainer
- * 2) COMPONENTS WITH UNDEFINED-WIDTH CAN'T BE LAYED-OUT WHEN THE WIDTH OF THE VerticalFlowContainer IS UNDEFINED
+ * 1) COMPONENTS WITH FIXED-WIDTH RECEIVE THE WIDTH OF THE VerticalLayout
+ * 2) COMPONENTS WITH UNDEFINED-WIDTH CAN'T BE LAYED-OUT WHEN THE WIDTH OF THE VerticalLayout IS UNDEFINED
  *
  * TODO:
  * 1) FIX LIMITATION 1
@@ -15,16 +15,16 @@
 
 namespace chronotext
 {
-    class VerticalFlowContainer : public Container
+    class VerticalLayout : public Container
     {
     protected:
         float contentWidth;
         float contentHeight;
 
     public:
-        VerticalFlowContainer() : Container() {}
+        VerticalLayout() : Container() {}
 
-        VerticalFlowContainer(ShapeStyleRef style)
+        VerticalLayout(ShapeStyleRef style)
         :
         Container(style)
         {}
