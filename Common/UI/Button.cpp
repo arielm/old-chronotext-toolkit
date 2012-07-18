@@ -146,7 +146,7 @@ namespace chronotext
     
     bool Button::hitTest(const Vec2f &point, float *distance)
     {
-        Rectf extra = getBounds().getOffset(Vec2f(hitExtra, hitExtra));
+        Rectf extra = getBounds().inflated(Vec2f(hitExtra, hitExtra));
         
         if (extra.contains(point))
         {
