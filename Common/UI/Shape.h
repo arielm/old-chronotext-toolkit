@@ -53,8 +53,8 @@ namespace chronotext
         virtual void setLocation(float x, float y);
         virtual void setWidth(float newWidth);
         virtual void setHeight(float newHeight);
-        virtual void setAutoWidth(bool newAuto);
-        virtual void setAutoHeight(bool newAuto);
+        virtual void setAutoWidth(bool autoWidth);
+        virtual void setAutoHeight(bool autoHeight);
         virtual void setBounds(const ci::Rectf &bounds);
         virtual void setPadding(float left, float top, float right, float bottom);
         virtual void setMargin(float left, float top, float right, float bottom);

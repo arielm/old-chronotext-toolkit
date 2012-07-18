@@ -57,15 +57,15 @@ namespace chronotext
         requestContainerLayout();
     }
     
-    void Shape::setAutoWidth(bool newAuto)
+    void Shape::setAutoWidth(bool autoWidth)
     {
-        autoWidth = newAuto;
+        this->autoWidth = autoWidth;
         requestContainerLayout();
     }
     
-    void Shape::setAutoHeight(bool newAuto)
+    void Shape::setAutoHeight(bool autoHeight)
     {
-        autoHeight = newAuto;
+        this->autoHeight = autoHeight;
         requestContainerLayout();
     }
     

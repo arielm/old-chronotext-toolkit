@@ -24,8 +24,8 @@ namespace chronotext
         
         void setWidth(float newWidth);
         void setHeight(float newHeight);
-        void setAutoWidth(bool newAuto);
-        void setAutoHeight(bool newAuto);
+        void setAutoWidth(bool autoWidth);
+        void setAutoHeight(bool autoHeight);
         void setPadding(float left, float top, float right, float bottom);
         
         float getWidth();

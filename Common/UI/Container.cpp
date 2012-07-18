@@ -23,21 +23,21 @@ namespace chronotext
         }
     }
     
-    void Container::setAutoWidth(bool newAuto)
+    void Container::setAutoWidth(bool autoWidth)
     {
-        if (newAuto != autoWidth)
+        if (autoWidth != this->autoWidth)
         {
             layoutRequest = true;
-            Shape::setAutoWidth(newAuto);
+            Shape::setAutoWidth(autoWidth);
         }
     }
     
-    void Container::setAutoHeight(bool newAuto)
+    void Container::setAutoHeight(bool autoHeight)
     {
-        if (newAuto != autoHeight)
+        if (autoHeight != this->autoHeight)
         {
             layoutRequest = true;
-            Shape::setAutoHeight(newAuto);
+            Shape::setAutoHeight(autoHeight);
         }
     }
     

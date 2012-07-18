@@ -96,22 +96,22 @@ namespace chronotext
         }
     }
     
-    void TextBox::setAutoWidth(bool newAuto)
+    void TextBox::setAutoWidth(bool autoWidth)
     {
-        if (newAuto != autoWidth)
+        if (autoWidth != this->autoWidth)
         {
             updateWrapRequest = true;
             updateWidthRequest = true;
-            Shape::setAutoWidth(newAuto);
+            Shape::setAutoWidth(autoWidth);
         }
     }
     
-    void TextBox::setAutoHeight(bool newAuto)
+    void TextBox::setAutoHeight(bool autoHeight)
     {
-        if (newAuto != autoHeight)
+        if (autoHeight != this->autoHeight)
         {
             updateHeightRequest = true;
-            Shape::setAutoHeight(newAuto);
+            Shape::setAutoHeight(autoHeight);
         }
     }
     
