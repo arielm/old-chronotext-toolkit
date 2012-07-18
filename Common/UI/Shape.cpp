@@ -43,16 +43,16 @@ namespace chronotext
         this->y = y;
     }
     
-    void Shape::setWidth(float newWidth)
+    void Shape::setWidth(float width)
     {
-        width = newWidth;
+        this->width = width;
         autoWidth = false;
         requestContainerLayout();
     }
     
-    void Shape::setHeight(float newHeight)
+    void Shape::setHeight(float height)
     {
-        height = newHeight;
+        this->height = height;
         autoHeight = false;
         requestContainerLayout();
     }

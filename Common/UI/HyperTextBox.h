@@ -66,7 +66,7 @@ namespace chronotext
         selectedLinkIndex(-1)
         {}
 
-        void setText(const std::wstring &newText);
+        void setText(const std::wstring &text);
         void selectLink(int linkIndex);
         void deselectLink();
         

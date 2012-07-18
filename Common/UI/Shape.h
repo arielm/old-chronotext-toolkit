@@ -51,8 +51,8 @@ namespace chronotext
         Shape(ShapeStyleRef style);
         
         virtual void setLocation(float x, float y);
-        virtual void setWidth(float newWidth);
-        virtual void setHeight(float newHeight);
+        virtual void setWidth(float width);
+        virtual void setHeight(float height);
         virtual void setAutoWidth(bool autoWidth);
         virtual void setAutoHeight(bool autoHeight);
         virtual void setBounds(const ci::Rectf &bounds);

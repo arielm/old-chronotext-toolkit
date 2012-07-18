@@ -59,21 +59,21 @@ namespace chronotext
         TextBox() : Shape() {}
         TextBox(TextBoxStyleRef style);
         
-        void setFont(XFont *newFont);
+        void setFont(XFont *font);
         void setFontSize(float size);
         void setLineHeightFactor(float factor);
-        void setLineHeight(float newHeight);
-        void setWidth(float newWidth);
-        void setHeight(float newHeight);
+        void setLineHeight(float height);
+        void setWidth(float width);
+        void setHeight(float height);
         void setAutoWidth(bool autoWidth);
         void setAutoHeight(bool autoHeight);
         void setPadding(float left, float top, float right, float bottom);
-        void setTextAlign(int h, int v);
-        void setWrap(bool newWrap);
+        void setTextAlign(int x, int y);
+        void setWrap(bool wrap);
         void setOffsetX(float x);
         void setOffsetY(float y);
-        void setTextColor(const ci::ColorAT<float> &newTextColor);
-        virtual void setText(const std::wstring &newText);
+        void setTextColor(const ci::ColorAT<float> &textColor);
+        virtual void setText(const std::wstring &text);
         
         float getWidth();
         float getHeight();

@@ -36,15 +36,14 @@ namespace chronotext
         }
     }
     
-    void TextBox::setFont(XFont *newFont)
+    void TextBox::setFont(XFont *font)
     {
-        if (newFont != font)
+        if (font != this->font)
         {
             updateLineHeightRequest = true;
             updateWrapRequest = true;
+            this->font = font;
         }
-        
-        font = newFont;
     }
     
     void TextBox::setFontSize(float size)
@@ -53,7 +52,6 @@ namespace chronotext
         {
             updateLineHeightRequest = true;
             updateWrapRequest = true;
-            
             fontSize = size;
         }
     }
@@ -67,32 +65,32 @@ namespace chronotext
         }
     }
     
-    void TextBox::setLineHeight(float newHeight)
+    void TextBox::setLineHeight(float height)
     {
-        if (newHeight != lineHeight)
+        if (height != lineHeight)
         {
             updateLineHeightRequest = true;
             lineHeightFactor = 0;
-            lineHeight = newHeight;
+            lineHeight = height;
         }
     }
     
-    void TextBox::setWidth(float newWidth)
+    void TextBox::setWidth(float width)
     {
-        if (autoWidth || newWidth != width)
+        if (autoWidth || width != this->width)
         {
             updateWidthRequest = true;
             updateWrapRequest = true;
-            Shape::setWidth(newWidth);
+            Shape::setWidth(width);
         }
     }
     
-    void TextBox::setHeight(float newHeight)
+    void TextBox::setHeight(float height)
     {
-        if (autoHeight || newHeight != height)
+        if (autoHeight || height != this->height)
         {
             updateHeightRequest = true;
-            Shape::setHeight(newHeight);
+            Shape::setHeight(height);
         }
     }
     
@@ -130,19 +128,19 @@ namespace chronotext
         Shape::setPadding(left, top, right, bottom);
     }
     
-    void TextBox::setTextAlign(int h, int v)
+    void TextBox::setTextAlign(int x, int y)
     {
-        textAlignX = h;
-        textAlignY = v;
+        textAlignX = x;
+        textAlignY = y;
     }
     
-    void TextBox::setWrap(bool newWrap)
+    void TextBox::setWrap(bool wrap)
     {
-        if (newWrap != wrap)
+        if (wrap != this->wrap)
         {
-            wrap = newWrap;
             updateWrapRequest = true;
             requestContainerLayout();
+            this->wrap = wrap;
         }
     }
     
@@ -156,14 +154,14 @@ namespace chronotext
         offsetY = y;
     }
     
-    void TextBox::setTextColor(const ColorAT<float> &newTextColor)
+    void TextBox::setTextColor(const ColorAT<float> &textColor)
     {
-        textColor = newTextColor;
+        this->textColor = textColor;
     }
     
-    void TextBox::setText(const wstring &newText)
+    void TextBox::setText(const wstring &text)
     {
-        text = newText;
+        this->text = text;
         updateWrapRequest = true;
     }
     

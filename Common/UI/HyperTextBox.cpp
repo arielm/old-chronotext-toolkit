@@ -5,9 +5,9 @@ using namespace ci;
 
 namespace chronotext
 {
-    void HyperTextBox::setText(const wstring &newText)
+    void HyperTextBox::setText(const wstring &text)
     {
-        pair<vector<ExtractedLink>, wstring> extracted = LinkExtractor::extract(newText);
+        pair<vector<ExtractedLink>, wstring> extracted = LinkExtractor::extract(text);
         
         links.clear();
         links = extracted.first;
