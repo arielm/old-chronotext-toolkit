@@ -61,18 +61,4 @@ namespace chronotext
         
         layoutRequest = false;
     }
-    
-    float VerticalFlowContainer::mergedMargin(float previousMargin, float nextMargin)
-    {
-        if ((previousMargin > 0) && (nextMargin > 0))
-        {
-            return fmaxf(previousMargin, nextMargin);
-        }
-        else if ((previousMargin < 0) && (nextMargin < 0))
-        {
-            return fminf(previousMargin, nextMargin);
-        }
-        
-        return previousMargin + nextMargin;
-    }
 }

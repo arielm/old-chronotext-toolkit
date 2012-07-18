@@ -8,6 +8,8 @@ namespace chronotext
     {
     protected:
         bool layoutRequest;
+        
+        float mergedMargin(float previousMargin, float nextMargin);
 
     public:
         std::vector<ShapeRef> components;

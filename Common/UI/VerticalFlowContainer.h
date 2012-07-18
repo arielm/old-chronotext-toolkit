@@ -15,8 +15,6 @@ namespace chronotext
     protected:
         float contentWidth;
         float contentHeight;
-        
-        float mergedMargin(float previousMargin, float nextMargin);
 
     public:
         VerticalFlowContainer() : Container() {}
