@@ -10,7 +10,7 @@ namespace chronotext
         
         if (extra.contains(point))
         {
-            *distance = extra.distanceSquared(point);
+            *distance = bounds.distance(point);
             return true;
         }
         
