@@ -10,9 +10,9 @@ namespace chronotext
         if (layoutRequest)
         {
             float innerWidth = width - paddingLeft - paddingRight;
-            float innerHeight = 0;
-            float previousMargin = paddingTop;
-            float xx = x + paddingLeft;
+            float previousMargin = 0;
+            float left = x + paddingLeft;
+            float top = paddingTop;
             
             contentWidth = 0;
             contentHeight = 0;
@@ -23,8 +23,8 @@ namespace chronotext
                 
                 if (shape->visible)
                 {
-                    innerHeight += mergedMargin(previousMargin, shape->marginTop);
-                    shape->setLocation(xx, y + innerHeight);
+                    top += mergedMargin(previousMargin, shape->marginTop);
+                    shape->setLocation(left + shape->marginLeft, y + top);
                     
                     if (!shape->autoWidth)
                     {
@@ -34,19 +34,20 @@ namespace chronotext
                         }
                         else
                         {
-                            shape->setWidth(innerWidth);
+                            float availableWidth = fmaxf(0, innerWidth - shape->marginLeft - shape->marginRight);
+                            shape->setWidth(availableWidth);
                         }
                     }
                     
-                    contentWidth = fmaxf(contentWidth, shape->getWidth());
-                    contentHeight += shape->getHeight();
-                    
-                    innerHeight += shape->getHeight();
+                    contentWidth = fmaxf(contentWidth, shape->marginLeft + shape->getWidth() + shape->marginRight);
+                    top += shape->getHeight();
+
                     previousMargin = shape->marginBottom;
                 }
             }
             
-            innerHeight += mergedMargin(previousMargin, paddingBottom);
+            top += previousMargin;
+            contentHeight = top - paddingTop;
             
             if (autoWidth)
             {
@@ -55,7 +56,7 @@ namespace chronotext
             
             if (autoHeight)
             {
-                height = innerHeight;
+                height = top + paddingBottom;
             }
         }
         
