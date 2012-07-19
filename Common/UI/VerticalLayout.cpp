@@ -10,11 +10,10 @@ namespace chronotext
         if (layoutRequest)
         {
             float innerWidth = width - paddingLeft - paddingRight;
-            float previousMargin = 0;
             float left = x + paddingLeft;
             float top = paddingTop;
             
-            contentWidth = 0;
+            float previousMargin = 0;
             contentHeight = 0;
             
             for (vector<ShapeRef>::const_iterator it = components.begin(); it != components.end(); ++it)
@@ -30,7 +29,7 @@ namespace chronotext
                     {
                         if (autoWidth)
                         {
-                            throw runtime_error("VerticalLayout WITH UNDEFINED-WIDTH MUST CONTAIN COMPONENTS WITH FIXED-WIDTH");
+                            throw runtime_error("VerticalLayout WITH AUTO-WIDTH MUST CONTAIN COMPONENTS WITH FIXED-WIDTH");
                         }
                         else
                         {
@@ -40,8 +39,8 @@ namespace chronotext
                     }
                     
                     contentWidth = fmaxf(contentWidth, shape->marginLeft + shape->getWidth() + shape->marginRight);
-                    top += shape->getHeight();
 
+                    top += shape->getHeight();
                     previousMargin = shape->marginBottom;
                 }
             }

@@ -1,0 +1,36 @@
+#pragma once
+
+#include "Container.h"
+
+/*
+ * ...
+ */
+
+namespace chronotext
+{
+    class HorizontalLayout : public Container
+    {
+    protected:
+        float contentWidth;
+        float contentHeight;
+
+    public:
+        int alignX;
+        int alignY;
+
+        HorizontalLayout() : Container() {}
+
+        HorizontalLayout(ShapeStyleRef style)
+        :
+        Container(style),
+        alignX(ALIGN_MIDDLE),
+        alignY(ALIGN_MIDDLE)
+        {}
+        
+        void setAlign(int x, int y);
+        
+        void layout();
+    };
+}
+
+namespace chr = chronotext;
