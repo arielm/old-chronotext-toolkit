@@ -3,6 +3,11 @@
 #include "Container.h"
 #include "LayoutStyle.h"
 
+/*
+ * TODO:
+ * 1) HANDLE CONTENT-OVERFLOW
+ */
+
 namespace chronotext
 {
     class HorizontalLayout : public Container
