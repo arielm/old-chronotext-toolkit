@@ -16,9 +16,6 @@ namespace chronotext
         
         Touchable* getClosestTouchable(const ci::Vec2f &point);
         Touchable* getArmedTouchableByIndex(int index);
-        
-        void toggleTouchable(Touchable *touchable);
-        void clickTouchable(Touchable *touchable);
 
     public:
         TouchGroup()
@@ -29,6 +26,9 @@ namespace chronotext
         
         void addShape(Shape *shape);
         void addShapes(const std::vector<ShapeRef> &shapes);
+        
+        void toggleTouchable(Touchable *touchable);
+        void clickTouchable(Touchable *touchable);
         
         bool addTouch(int index, float x, float y);
         bool updateTouch(int index, float x, float y);
