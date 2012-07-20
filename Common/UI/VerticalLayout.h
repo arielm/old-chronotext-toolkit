@@ -6,7 +6,7 @@
 /*
  * LIMITATIONS:
  * 1) COMPONENTS WITH FIXED-WIDTH RECEIVE THE WIDTH OF THE VerticalLayout
- * 2) COMPONENTS WITH UNDEFINED-WIDTH CAN'T BE LAYED-OUT WHEN THE WIDTH OF THE VerticalLayout IS UNDEFINED
+ * 2) COMPONENTS WITH AUTO-WIDTH CAN'T BE LAYED-OUT WHEN THE WIDTH OF THE VerticalLayout IS UNDEFINED
  *
  * TODO:
  * 1) FIX LIMITATION 1
@@ -16,6 +16,8 @@
 
 namespace chronotext
 {
+    typedef boost::shared_ptr<class VerticalLayout> VerticalLayoutRef;
+    
     class VerticalLayout : public Container
     {
     protected:

@@ -48,8 +48,6 @@ namespace chronotext
             // ---
 
             float innerWidth = width - paddingLeft - paddingRight;
-            float innerHeight = height - paddingTop - paddingBottom;
-            
             float left = paddingLeft;
             
             switch (alignX)
@@ -65,6 +63,7 @@ namespace chronotext
             
             // ---
             
+            float innerHeight = height - paddingTop - paddingBottom;
             previousMargin = 0;
 
             for (vector<ShapeRef>::const_iterator it = components.begin(); it != components.end(); ++it)

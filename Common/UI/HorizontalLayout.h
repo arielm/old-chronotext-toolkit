@@ -10,6 +10,8 @@
 
 namespace chronotext
 {
+    typedef boost::shared_ptr<class HorizontalLayout> HorizontalLayoutRef;
+
     class HorizontalLayout : public Container
     {
     protected:

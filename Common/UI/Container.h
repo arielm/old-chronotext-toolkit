@@ -4,6 +4,8 @@
 
 namespace chronotext
 {
+    typedef boost::shared_ptr<class Container> ContainerRef;
+
     class Container : public Shape
     {
     protected:
@@ -30,6 +32,7 @@ namespace chronotext
         
         float getWidth();
         float getHeight();
+        Shape* getComponentByTag(int tag);
 
         void addComponent(ShapeRef component);
         void requestLayout();

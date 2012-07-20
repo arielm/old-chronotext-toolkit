@@ -59,6 +59,19 @@ namespace chronotext
         return height;
     }
     
+    Shape* Container::getComponentByTag(int tag)
+    {
+        for (vector<ShapeRef>::const_iterator it = components.begin(); it != components.end(); ++it)
+        {
+            if ((*it)->tag == tag)
+            {
+                return &**it;
+            }
+        }
+        
+        return NULL;
+    }
+    
     void Container::addComponent(ShapeRef component)
     {
         layoutRequest = true;
