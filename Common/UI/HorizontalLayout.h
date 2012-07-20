@@ -1,10 +1,7 @@
 #pragma once
 
 #include "Container.h"
-
-/*
- * ...
- */
+#include "LayoutStyle.h"
 
 namespace chronotext
 {
@@ -20,15 +17,15 @@ namespace chronotext
 
         HorizontalLayout() : Container() {}
 
-        HorizontalLayout(ShapeStyleRef style)
+        HorizontalLayout(LayoutStyleRef style)
         :
         Container(style),
-        alignX(ALIGN_MIDDLE),
-        alignY(ALIGN_MIDDLE)
+        alignX(style->alignX),
+        alignY(style->alignY)
         {}
         
         void setAlign(int x, int y);
-        
+
         void layout();
     };
 }

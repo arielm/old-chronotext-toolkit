@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Container.h"
+#include "LayoutStyle.h"
 
 /*
  * LIMITATIONS:
@@ -20,13 +21,18 @@ namespace chronotext
     protected:
         float contentWidth;
         float contentHeight;
-
+        
     public:
-        VerticalLayout() : Container() {}
+        int alignX;
+        int alignY;
 
-        VerticalLayout(ShapeStyleRef style)
+        VerticalLayout() : Container() {}
+        
+        VerticalLayout(LayoutStyleRef style)
         :
-        Container(style)
+        Container(style),
+        alignX(style->alignX),
+        alignY(style->alignY)
         {}
         
         void layout();
