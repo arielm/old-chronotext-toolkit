@@ -31,8 +31,7 @@ namespace chronotext
         lineHeight(0),
         lineHeightFactor(1),
         textAlignX(Shape::ALIGN_LEFT),
-        textAlignY(Shape::ALIGN_TOP),
-        textColor(ci::ColorA(0, 0, 0, 1))
+        textAlignY(Shape::ALIGN_TOP)
         {}
     };
 }

@@ -19,8 +19,6 @@ namespace chronotext
         HyperTextBoxStyle()
         :
         TextBoxStyle(),
-        selectedLinkTextColor(ci::ColorA(1, 1, 1, 1)),
-        selectedLinkBackgroundColor(ci::ColorA(0, 0, 0, 1)),
         linkUnderlineFactor(0.2),
         linkPaddingFactor(0.1),
         linkHitExtra(8)
