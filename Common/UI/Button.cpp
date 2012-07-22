@@ -53,19 +53,19 @@ namespace chronotext
         {
             inset = 1;
             
-            gl::color(style->borderColor[state]);
+            gl::color(*style->borderColor[state]);
             GraphicHelper::fillBox(x1, y1, x2, y2);
         }
         
         if (style->backgroundColor[state])
         {
-            gl::color(style->backgroundColor[state]);
+            gl::color(*style->backgroundColor[state]);
             GraphicHelper::fillBox(x1 + inset, y1 + inset, x2 - inset, y2 - inset);
         }
         
         // ---
         
-        gl::color(style->color[state]);
+        gl::color(*style->color[state]);
         
         if (icon)
         {

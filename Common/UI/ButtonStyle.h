@@ -3,8 +3,6 @@
 #include "ShapeStyle.h"
 #include "XFont.h"
 
-#include "cinder/Color.h"
-
 #include <map>
 
 namespace chronotext
@@ -18,9 +16,9 @@ namespace chronotext
         float fontSize;
         bool snap;
         
-        std::map< int, ci::ColorAT<float> > borderColor;
-        std::map< int, ci::ColorAT<float> > backgroundColor;
-        std::map< int, ci::ColorAT<float> > color;
+        std::map<int, ColorRef> borderColor;
+        std::map<int, ColorRef> backgroundColor;
+        std::map<int, ColorRef> color;
         
         float hitExtra;
 

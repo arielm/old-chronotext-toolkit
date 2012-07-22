@@ -2,8 +2,11 @@
 
 #include "Shape.h"
 
+#include "cinder/Color.h"
+
 namespace chronotext
 {
+    typedef boost::shared_ptr< class ci::ColorAT<float> > ColorRef;
     typedef boost::shared_ptr<class ShapeStyle> ShapeStyleRef;
     
     class ShapeStyle

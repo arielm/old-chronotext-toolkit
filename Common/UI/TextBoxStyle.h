@@ -3,8 +3,6 @@
 #include "ShapeStyle.h"
 #include "XFont.h"
 
-#include "cinder/Color.h"
-
 namespace chronotext
 {
     typedef boost::shared_ptr<class TextBoxStyle> TextBoxStyleRef;
