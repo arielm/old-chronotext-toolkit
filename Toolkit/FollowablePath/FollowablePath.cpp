@@ -1,7 +1,7 @@
 #include "FollowablePath.h"
 
-#include <math.h>
-#include <float.h>
+#include <cmath>
+#include <limits>
 
 using namespace ci;
 using namespace std;
@@ -35,7 +35,7 @@ static int search(float *array, float value, int min, int max)
 
 static inline float boundf(float value, float range)
 {
-	float bound = fmodf(value, range);
+	float bound = fmod(value, range);
 	return (bound < 0.0f) ? (bound + range) : bound;
 }
 
@@ -120,8 +120,8 @@ void FollowablePath::setPoints(const std::vector<ci::Vec2f> &points)
     ensureCapacity(points.size());
     size = 0;
 
-    float lastX = FLT_MAX;
-    float lastY = FLT_MAX;
+    float lastX = numeric_limits<float>::max();
+    float lastY = numeric_limits<float>::max();
     
     for (vector<Vec2f>::const_iterator it = points.begin(); it != points.end(); ++it)
     {
@@ -514,10 +514,10 @@ void FollowablePath::closestPointFromSegment(float xx, float yy, int segmentInde
 
 void FollowablePath::measure(float *minX, float *minY, float *maxX, float *maxY)
 {
-    *minX = FLT_MAX;
-	*minY = FLT_MAX;
-	*maxX = FLT_MIN;
-	*maxY = FLT_MIN;
+    *minX = numeric_limits<float>::max();
+	*minY = numeric_limits<float>::max();
+	*maxX = numeric_limits<float>::min();
+	*maxY = numeric_limits<float>::min();
 	
 	for (int i = 0; i < size; i++)
 	{

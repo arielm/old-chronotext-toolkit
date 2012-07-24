@@ -1,5 +1,6 @@
 #include "FontMatrix.h"
-#include <math.h>
+
+#include <cmath>
 
 void FontMatrix::setToIdentity()
 {
@@ -45,8 +46,8 @@ void FontMatrix::scale(float x, float y, float z)
 
 void FontMatrix::rotateX(float a)
 {
-	float c = cosf(a);
-	float s = sinf(a);
+	float c = cos(a);
+	float s = sin(a);
 	
 	float r01 = m01 * c + m02 * s;
 	float r02 = m02 * c - m01 * s;
@@ -72,8 +73,8 @@ void FontMatrix::rotateX(float a)
 
 void FontMatrix::rotateY(float a)
 {
-	float c = cosf(a);
-	float s = sinf(a);
+	float c = cos(a);
+	float s = sin(a);
 	
 	float r00 = m00 * c - m02 * s;
 	float r02 = m00 * s + m02 * c;
@@ -99,8 +100,8 @@ void FontMatrix::rotateY(float a)
 
 void FontMatrix::rotateZ(float a)
 {
-	float c = cosf(a);
-	float s = sinf(a);
+	float c = cos(a);
+	float s = sin(a);
 	
 	float r00 = m00 * c + m01 * s;
 	float r01 = m01 * c - m00 * s;
@@ -126,14 +127,14 @@ void FontMatrix::rotateZ(float a)
 
 void FontMatrix::rotateZYX(float ax, float ay, float az)
 {
-	float cx = cosf(ax);
-    float sx = sinf(ax);
+	float cx = cos(ax);
+    float sx = sin(ax);
 	
-    float cy = cosf(ay);
-    float sy = sinf(ay);
+    float cy = cos(ay);
+    float sy = sin(ay);
 	
-    float cz = cosf(az);
-    float sz = sinf(az);
+    float cz = cos(az);
+    float sz = sin(az);
 	
     float a0 = cz * cy;
     float a1 = sz * cy;

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <math.h>
+#include <cmath>
 
 static const float PI = M_PI;
 static const float TWO_PI = M_PI * 2.0;
@@ -11,7 +11,7 @@ static const float R2D = 180.0 / M_PI;
 
 static inline float bound(float value, float range)
 {
-	float bound = fmodf(value, range);
+	float bound = fmod(value, range);
 	return (bound < 0) ? (bound + range) : bound;
 }
 
