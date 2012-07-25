@@ -9,5 +9,5 @@ class BSplineHelper
 {
 public:
     static void readBSplinePath(FollowablePathRef path, ci::DataSourceRef dataSource);
-	static void readBSplinePathFromStream(FollowablePathRef path, std::istream &in);
+    static void readBSplinePathFromStream(FollowablePathRef path, std::istream &in);
 };

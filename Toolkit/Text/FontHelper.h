@@ -90,7 +90,7 @@ public:
             {
                 path->pos2Point(offsetX, res);
                 float theta = path->pos2SampledAngle(offsetX, sampleSize);
-				
+                
                 matrix->setTranslation(res[0], res[1], 0);
                 matrix->rotateZ(theta);
                 font->addTransformedEntity2D(cc, -half, offsetY);

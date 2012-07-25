@@ -10,7 +10,7 @@ class FlashShape
 {
 public:
     std::vector<ci::Vec2f> vertices;
-	std::vector<uint16_t> indices;
+    std::vector<uint16_t> indices;
     
     TexturedTriangleStrip strip;
     
