@@ -1,4 +1,5 @@
 #include "FollowablePath.h"
+#include "Constants.h"
 
 #include <cmath>
 #include <limits>
@@ -31,12 +32,6 @@ static int search(float *array, float value, int min, int max)
     }
     
     return mid - 1;
-}
-
-static inline float boundf(float value, float range)
-{
-    float bound = fmod(value, range);
-    return (bound < 0.0f) ? (bound + range) : bound;
 }
 
 FollowablePath::FollowablePath(int mode)
@@ -230,7 +225,7 @@ void FollowablePath::pos2Point(float pos, float *res)
     
     if (mode == MODE_LOOP || mode == MODE_MODULO)
     {
-        pos = boundf(pos, length);
+        pos = bound(pos, length);
     }
     else
     {
@@ -276,7 +271,7 @@ float FollowablePath::pos2Angle(float pos)
     
     if (mode == MODE_LOOP || mode == MODE_MODULO)
     {
-        pos = boundf(pos, length);
+        pos = bound(pos, length);
     }
     else
     {
@@ -304,7 +299,7 @@ float FollowablePath::pos2Angle(float pos)
     float x1 = x[index + 1];
     float y1 = y[index + 1];
     
-    return atan2f(y1 - y0, x1 - x0);
+    return atan2(y1 - y0, x1 - x0);
 }
 
 float FollowablePath::pos2SampledAngle(float pos, float sampleSize)
@@ -321,7 +316,7 @@ float FollowablePath::pos2SampledAngle(float pos, float sampleSize)
      */
     if ((dx * dx + dy * dy) > 1.0)
     {
-        return atan2f(dy, dx);
+        return atan2(dy, dx);
     }
     else
     {
@@ -440,7 +435,7 @@ bool FollowablePath::findClosestPoint(float xx, float yy, float min, float *res)
         res[0] = _x;
         res[1] = _y;
         res[2] = _len;
-        res[3] = sqrtf(min);
+        res[3] = sqrt(min);
         
         return true;
     }
@@ -483,7 +478,7 @@ void FollowablePath::closestPointFromSegment(float xx, float yy, int segmentInde
         *res++ = xp;
         *res++ = yp;
         *res++ = len[i0] + d * u;
-        *res   = sqrtf(mag);
+        *res   = sqrt(mag);
     }
     else
     {
@@ -500,14 +495,14 @@ void FollowablePath::closestPointFromSegment(float xx, float yy, int segmentInde
             *res++ = x0;
             *res++ = y0;
             *res++ = len[i0];
-            *res   = sqrtf(mag0);
+            *res   = sqrt(mag0);
         }
         else
         {
             *res++ = x1;
             *res++ = y1;
             *res++ = len[i1];
-            *res   = sqrtf(mag1);
+            *res   = sqrt(mag1);
         }
     }
 }

@@ -3,6 +3,8 @@
 #include "FollowablePath.h"
 #include "TexturedTriangleStrip.h"
 
+#include <cmath>
+
 class StrokeHelper
 {
 public:
@@ -84,7 +86,7 @@ public:
                 dx = p1.y - p0.y;
                 dy = p0.x - p1.x;
                 
-                d = sqrtf(dx * dx + dy * dy);
+                d = sqrt(dx * dx + dy * dy);
                 dx /= d;
                 dy /= d;
                 
@@ -114,11 +116,11 @@ public:
                     dx = p2.y - p0.y;
                     dy = p0.x - p2.x;
                     
-                    d = sqrtf(dx * dx + dy * dy);
+                    d = sqrt(dx * dx + dy * dy);
                     dx /= d;
                     dy /= d;
                     
-                    float dist = sqrtf((p1.x - p0.x) * (p1.x - p0.x) + (p1.y - p0.y) * (p1.y - p0.y));
+                    float dist = sqrt((p1.x - p0.x) * (p1.x - p0.x) + (p1.y - p0.y) * (p1.y - p0.y));
                     textureU += ufreq * dist;
                     
                     *coords++ = textureU;
@@ -143,7 +145,7 @@ public:
                 dx = p1.y - p0.y;
                 dy = p0.x - p1.x;
                 
-                d = sqrtf(dx * dx + dy * dy);
+                d = sqrt(dx * dx + dy * dy);
                 dx /= d;
                 dy /= d;
                 
