@@ -63,7 +63,7 @@ FollowablePath::FollowablePath(int capacity, int mode)
 FollowablePath::FollowablePath(const std::vector<ci::Vec2f> &points, int mode)
 {
     capacity = points.size();
-      this->mode = mode;
+    this->mode = mode;
     
     x = new float[capacity];
     y = new float[capacity];
@@ -119,7 +119,7 @@ void FollowablePath::setPoints(const std::vector<ci::Vec2f> &points)
 {
     ensureCapacity(points.size());
     size = 0;
-
+    
     float lastX = numeric_limits<float>::max();
     float lastY = numeric_limits<float>::max();
     

@@ -10,7 +10,7 @@ SplinePath::SplinePath(int capacity, float tol, float (*gamma)(float t, float *i
     this->capacity = capacity;
     this->tol = tol;
     this->gamma = gamma;
-
+    
     size = 0;
     x = new float[capacity];
     y = new float[capacity];
@@ -26,8 +26,8 @@ void SplinePath::ensureCapacity(int minCapacity)
 {
     if (minCapacity > capacity)
     {
-    capacity = (CAPACITY_INCREMENT > 0) ? (capacity + CAPACITY_INCREMENT) : (capacity * 2);
-    
+        capacity = (CAPACITY_INCREMENT > 0) ? (capacity + CAPACITY_INCREMENT) : (capacity * 2);
+        
         x = (float*) realloc(x, capacity * sizeof(float));
         y = (float*) realloc(y, capacity * sizeof(float));
     }
@@ -53,14 +53,14 @@ void SplinePath::compute(FollowablePath *path)
     
     for (int i = 0; i < size - 3; i++)
     {
-    aspc->segment(x + i, y + i);
+        aspc->segment(x + i, y + i);
     }
     
     delete aspc;
     
     if (path->mode == FollowablePath::MODE_LOOP)
     {
-    path->add(path->x[0], path->y[0]);
+        path->add(path->x[0], path->y[0]);
     }
 }
 
