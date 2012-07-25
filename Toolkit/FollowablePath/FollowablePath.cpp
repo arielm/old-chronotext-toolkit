@@ -1,9 +1,6 @@
 #include "FollowablePath.h"
 #include "Constants.h"
 
-#include <cmath>
-#include <limits>
-
 using namespace ci;
 using namespace std;
 

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <limits>
 #include <cmath>
 
 static const float PI = M_PI;
