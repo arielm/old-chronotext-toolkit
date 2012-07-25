@@ -51,11 +51,11 @@ void XFontSequence::flush(GLfloat *vertice, GLfloat *coords, int count)
     {
         current = (Slot *) calloc(1, sizeof(Slot)); // USING malloc WOULD REQUIRE: current->next = NULL
         current->count = count;
-		
+        
         int verticeCapacity = count * dimensions * 4;
         current->vertice = (GLfloat *) malloc(verticeCapacity * sizeof(GLfloat));
         memcpy(current->vertice, vertice, verticeCapacity * sizeof(GLfloat));
-		
+        
         int coordsCapacity = count * 2 * 4;
         current->coords = (GLfloat *) malloc(coordsCapacity * sizeof(GLfloat));
         memcpy(current->coords, coords, coordsCapacity * sizeof(GLfloat));
@@ -87,7 +87,7 @@ void XFontSequence::replay()
         glVertexPointer(dimensions, GL_FLOAT, 0, current->vertice);
         glTexCoordPointer(2, GL_FLOAT, 0, current->coords);
         glDrawElements(GL_TRIANGLES, current->count * 6, GL_UNSIGNED_SHORT, font->getIndices());
-		
+        
         current = current->next;
     }
     

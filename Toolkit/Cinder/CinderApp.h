@@ -16,5 +16,5 @@ public:
 	void mouseUp(ci::app::MouseEvent event);	
 	void mouseDrag(ci::app::MouseEvent event);
 	
-	CinderSketch *sketch;
+    CinderSketch *sketch;
 };

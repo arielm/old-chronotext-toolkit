@@ -28,8 +28,8 @@ void Matrix2D::scale(float s)
 
 void Matrix2D::rotate(float a)
 {
-	float c = cos(a);
-	float s = sin(a);
+    float c = cos(a);
+    float s = sin(a);
     
     float temp1 = m00;
     float temp2 = m01;

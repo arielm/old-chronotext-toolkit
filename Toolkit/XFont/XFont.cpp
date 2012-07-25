@@ -6,7 +6,7 @@ using namespace cinder;
 
 inline bool isSpace(wchar_t c)
 {
-	return ((c == 0x20) || (c == 0xa0));
+    return ((c == 0x20) || (c == 0xa0));
 }
 
 XFont::XFont(DataSourceRef dataSource, bool useMipmap, bool useAnisotropy, int maxDimensions, int charactersPerSlot) : useMipmap(useMipmap), useAnisotropy(useAnisotropy), maxDimensions(maxDimensions), charactersPerSlot(charactersPerSlot)
@@ -18,30 +18,30 @@ XFont::XFont(DataSourceRef dataSource, bool useMipmap, bool useAnisotropy, int m
 XFont::XFont(XFont *source, bool useAnisotropy, int maxDimensions, int charactersPerSlot) : useAnisotropy(useAnisotropy), maxDimensions(maxDimensions), charactersPerSlot(charactersPerSlot)
 {
     numChars = source->numChars;
-	w = source->w;
-	h = source->h;
-	le = source->le;
-	te = source->te;
-	lw = source->lw;
-	
-	nativeFontSize = source->nativeFontSize;
-	spaceWidth = source->spaceWidth;
-	height = source->height;
-	maxAscent = source->maxAscent;
-	maxDescent = source->maxDescent;
+    w = source->w;
+    h = source->h;
+    le = source->le;
+    te = source->te;
+    lw = source->lw;
+    
+    nativeFontSize = source->nativeFontSize;
+    spaceWidth = source->spaceWidth;
+    height = source->height;
+    maxAscent = source->maxAscent;
+    maxDescent = source->maxDescent;
     strikethroughOffset = source->strikethroughOffset;
     
-	lookup8bits = source->lookup8bits;
-	lookup16bits = source->lookup16bits;
-	ordered16bits = source->ordered16bits;
-	
-	lookup8Len = source->lookup8Len;
+    lookup8bits = source->lookup8bits;
+    lookup16bits = source->lookup16bits;
+    ordered16bits = source->ordered16bits;
+    
+    lookup8Len = source->lookup8Len;
     lookup16Len = source->lookup16Len;
-	
-	tx1 = source->tx1;
-	ty1 = source->ty1;
+    
+    tx1 = source->tx1;
+    ty1 = source->ty1;
     tx2 = source->tx2;
-	ty2 = source->ty2;
+    ty2 = source->ty2;
     
     anisotropyAvailable = source->anisotropyAvailable;
     maxAnisotropy = source->maxAnisotropy;
@@ -75,95 +75,95 @@ XFont::~XFont()
     }
 
     // ---
-	
-	delete[] vertice;
-	delete[] coords;
-	delete[] indices;
+    
+    delete[] vertice;
+    delete[] coords;
+    delete[] indices;
 }
 
 void XFont::read(DataSourceRef dataSource)
 {
-	if (dataSource->isFilePath())
-	{
-		ifstream in(dataSource->getFilePath().c_str(), ifstream::binary);
-		readFromStream(in);
-		in.close();
-	}
-	else
-	{
-		ReadStreamBuffer tmp(dataSource->getBuffer());
-		istream in(&tmp);
-		readFromStream(in);
-	}
+    if (dataSource->isFilePath())
+    {
+        ifstream in(dataSource->getFilePath().c_str(), ifstream::binary);
+        readFromStream(in);
+        in.close();
+    }
+    else
+    {
+        ReadStreamBuffer tmp(dataSource->getBuffer());
+        istream in(&tmp);
+        readFromStream(in);
+    }
 }
 
 void XFont::readFromStream(istream &in)
 {
-	numChars = DataStreamIO::readBig<uint16_t>(in);
-	nativeFontSize = DataStreamIO::readBig<uint16_t>(in);
-	spaceWidth = DataStreamIO::readBig<float>(in);
-	height = DataStreamIO::readBig<float>(in);
-	maxAscent = DataStreamIO::readBig<float>(in);
-	maxDescent = DataStreamIO::readBig<float>(in);
-	strikethroughOffset = DataStreamIO::readBig<float>(in);
-	
-	w = new float[numChars];
+    numChars = DataStreamIO::readBig<uint16_t>(in);
+    nativeFontSize = DataStreamIO::readBig<uint16_t>(in);
+    spaceWidth = DataStreamIO::readBig<float>(in);
+    height = DataStreamIO::readBig<float>(in);
+    maxAscent = DataStreamIO::readBig<float>(in);
+    maxDescent = DataStreamIO::readBig<float>(in);
+    strikethroughOffset = DataStreamIO::readBig<float>(in);
+    
+    w = new float[numChars];
     h = new float[numChars];
     le = new float[numChars];
     te = new float[numChars];
     lw = new float[numChars];
-	
+    
     for (int i = 0; i < numChars; i++)
     {
-		w[i] = DataStreamIO::readBig<uint16_t>(in);
-		h[i] = DataStreamIO::readBig<uint16_t>(in);
-		le[i] = DataStreamIO::readBig<int16_t>(in);
-		te[i] = DataStreamIO::readBig<int16_t>(in);
-		lw[i] = DataStreamIO::readBig<float>(in);
+        w[i] = DataStreamIO::readBig<uint16_t>(in);
+        h[i] = DataStreamIO::readBig<uint16_t>(in);
+        le[i] = DataStreamIO::readBig<int16_t>(in);
+        te[i] = DataStreamIO::readBig<int16_t>(in);
+        lw[i] = DataStreamIO::readBig<float>(in);
     }
-	
-	// ---
-	
-	lookup8Len = 256 - '!';
+    
+    // ---
+    
+    lookup8Len = 256 - '!';
     lookup8bits = new int[lookup8Len];
-	
+    
     for (int i = 0; i < lookup8Len; i++)
     {
-		lookup8bits[i] = DataStreamIO::readBig<uint16_t>(in);
+        lookup8bits[i] = DataStreamIO::readBig<uint16_t>(in);
     }
-	
+    
     lookup16Len = DataStreamIO::readBig<uint16_t>(in);
     lookup16bits = new int[lookup16Len];
     ordered16bits = new int[lookup16Len];
-	
+    
     for (int i = 0; i < lookup16Len; i++)
     {
-		lookup16bits[i] = DataStreamIO::readBig<uint16_t>(in);
-		ordered16bits[i] = DataStreamIO::readBig<uint16_t>(in);
+        lookup16bits[i] = DataStreamIO::readBig<uint16_t>(in);
+        ordered16bits[i] = DataStreamIO::readBig<uint16_t>(in);
     }
-	
-	// ---
-	
+    
+    // ---
+    
     tx1 = new float[numChars];
     ty1 = new float[numChars];
     tx2 = new float[numChars];
     ty2 = new float[numChars];
-	
+    
     atlasWidth = DataStreamIO::readBig<uint16_t>(in);
     atlasHeight = DataStreamIO::readBig<uint16_t>(in);
-	atlasData = new char[atlasWidth * atlasHeight];
-	
+    atlasData = new char[atlasWidth * atlasHeight];
+    
     for (int i = 0; i < numChars; i++)
     {
-		int cc = DataStreamIO::readBig<uint16_t>(in);
-		int left = DataStreamIO::readBig<uint16_t>(in);
-		int top = DataStreamIO::readBig<uint16_t>(in);
-		
-		size_t size = w[cc] * h[cc];
-		char *data = new char[size];
-		in.read(data, size);
-		atlasAddUnit(data, cc, left, top);
-		delete[] data;
+        int cc = DataStreamIO::readBig<uint16_t>(in);
+        int left = DataStreamIO::readBig<uint16_t>(in);
+        int top = DataStreamIO::readBig<uint16_t>(in);
+        
+        size_t size = w[cc] * h[cc];
+        char *data = new char[size];
+        in.read(data, size);
+        atlasAddUnit(data, cc, left, top);
+        delete[] data;
     }
 
     // ---
@@ -176,7 +176,7 @@ void XFont::readFromStream(istream &in)
 
     // --- TEXTURE INITIALIZATION
     
-	glGenTextures(1, &name);
+    glGenTextures(1, &name);
     glBindTexture(GL_TEXTURE_2D, name);
 
     if (useMipmap)
@@ -187,25 +187,25 @@ void XFont::readFromStream(istream &in)
     {
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     }
-	
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	
+    
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    
     if (useMipmap)
     {
-		glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);
-		glHint(GL_GENERATE_MIPMAP_HINT, GL_NICEST);
+        glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);
+        glHint(GL_GENERATE_MIPMAP_HINT, GL_NICEST);
     }
     
     glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, atlasWidth, atlasHeight, 0, GL_ALPHA, GL_UNSIGNED_BYTE, atlasData);
     
     if (useMipmap)
     {
-		glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_FALSE);
+        glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_FALSE);
     }
-	
-	delete[] atlasData;
+    
+    delete[] atlasData;
     
     // ---
     
@@ -214,30 +214,30 @@ void XFont::readFromStream(istream &in)
 
 void XFont::init()
 {
-	matrix.setToIdentity();
-	began = 0;
-	sequence = NULL;
-	setSize(1);
+    matrix.setToIdentity();
+    began = 0;
+    sequence = NULL;
+    setSize(1);
     
-	// --- BUFFER ALLOCATION
+    // --- BUFFER ALLOCATION
     
     vertice = new GLfloat[charactersPerSlot * maxDimensions * 4];
-	coords = new GLfloat[charactersPerSlot * 2 * 4];
-	indices = new GLshort[charactersPerSlot * 6];
+    coords = new GLfloat[charactersPerSlot * 2 * 4];
+    indices = new GLshort[charactersPerSlot * 6];
     
-	GLshort *tmp = indices;
-	int offset = 0;
+    GLshort *tmp = indices;
+    int offset = 0;
     
-	for (int i = 0; i < charactersPerSlot; i++)
-	{
-		*tmp++ = offset;
-		*tmp++ = offset + 1;
-		*tmp++ = offset + 2;
-		*tmp++ = offset + 2;
-		*tmp++ = offset + 3;
-		*tmp++ = offset;
-		offset += 4;
-	}
+    for (int i = 0; i < charactersPerSlot; i++)
+    {
+        *tmp++ = offset;
+        *tmp++ = offset + 1;
+        *tmp++ = offset + 2;
+        *tmp++ = offset + 2;
+        *tmp++ = offset + 3;
+        *tmp++ = offset;
+        offset += 4;
+    }
 }
 
 // ---
@@ -247,21 +247,21 @@ void XFont::atlasAddUnit(char *srcData, int cc, int left, int top)
     char *dstData = atlasData;
     int width = atlasWidth;
     int height = atlasHeight;
-	
+    
     int w1 = w[cc];
     int h1 = h[cc];
-	
+    
     tx1[cc] = left / (float) width;
     ty1[cc] = top / (float) height;
     tx2[cc] = (left + w1) / (float) width;
     ty2[cc] = (top + h1) / (float) height;
-	
+    
     for (int iy = 0; iy < h1; iy++)
     {
-		for (int ix = 0; ix < w1; ix++)
-		{
-			dstData[(iy + top) * width + ix + left] = srcData[iy * w1 + ix];
-		}
+        for (int ix = 0; ix < w1; ix++)
+        {
+            dstData[(iy + top) * width + ix + left] = srcData[iy * w1 + ix];
+        }
     }
 }
 
@@ -269,24 +269,24 @@ int XFont::binarySearch(int value)
 {
     int left = 0;
     int right = lookup16Len - 1;
-	
+    
     while (left <= right)
     {
-		int mid = (left + right) >> 1;
-		if (value > ordered16bits[mid])
-		{
-			left = mid + 1;
-		}
-		else if (value < ordered16bits[mid])
-		{
-			right = mid - 1;
-		}
-		else
-		{
-			return mid;
-		}
+        int mid = (left + right) >> 1;
+        if (value > ordered16bits[mid])
+        {
+            left = mid + 1;
+        }
+        else if (value < ordered16bits[mid])
+        {
+            right = mid - 1;
+        }
+        else
+        {
+            return mid;
+        }
     }
-	
+    
     return -1; // NOT FOUND
 }
 
@@ -294,52 +294,52 @@ int XFont::binarySearch(int value)
 
 bool XFont::isValid(wchar_t c)
 {
-	if (c > 0x1f)
-	{
-		if (c > 0xff)
-		{
-			return (binarySearch(c) >= 0);
-		}
-		else
-		{
-			return (lookup8bits[c - '!'] >= 0);
-		}
-	}
-	
-	return false;
+    if (c > 0x1f)
+    {
+        if (c > 0xff)
+        {
+            return (binarySearch(c) >= 0);
+        }
+        else
+        {
+            return (lookup8bits[c - '!'] >= 0);
+        }
+    }
+    
+    return false;
 }
 
 int XFont::lookup(wchar_t c)
 {
-	if (c > 0x1f && !isSpace(c))
-	{
-		if (c > 0xff)
-		{
-			int index = binarySearch(c);
-			if (index < 0)
-			{
-				return lookup8bits['?' - '!']; // XXX
-			}
-			else
-			{
-				return lookup16bits[index];
-			}
-		}
-		else
-		{
-			int index = lookup8bits[c - '!'];
-			if (index < 0)
-			{
-				return lookup8bits['?' - '!']; // XXX
-			}
-			else
-			{
-				return index;
-			}
-		}
-	}
-	
-	return -1;
+    if (c > 0x1f && !isSpace(c))
+    {
+        if (c > 0xff)
+        {
+            int index = binarySearch(c);
+            if (index < 0)
+            {
+                return lookup8bits['?' - '!']; // XXX
+            }
+            else
+            {
+                return lookup16bits[index];
+            }
+        }
+        else
+        {
+            int index = lookup8bits[c - '!'];
+            if (index < 0)
+            {
+                return lookup8bits['?' - '!']; // XXX
+            }
+            else
+            {
+                return index;
+            }
+        }
+    }
+    
+    return -1;
 }
 
 // ---
@@ -352,50 +352,50 @@ float XFont::getSize()
 void XFont::setSize(float size)
 {
     this->size = size;
-	sizeRatio = size / nativeFontSize;
+    sizeRatio = size / nativeFontSize;
 }
 
 float XFont::getCharWidth(wchar_t c)
 {
-	if (isSpace(c))
-	{
-		return spaceWidth * sizeRatio;
-	}
-	
+    if (isSpace(c))
+    {
+        return spaceWidth * sizeRatio;
+    }
+    
     if (c > 0x1f)
     {
-		if (c > 0xff)
-		{
-			int index = binarySearch(c);
-			if (index < 0)
-			{
-				return lw[lookup8bits['?' - '!']] * sizeRatio; // XXX
-			}
-			else
-			{
-				return lw[lookup16bits[index]] * sizeRatio;
-			}
-		}
-		else
-		{
-			int index = lookup8bits[c - '!'];
-			if (index < 0)
-			{
-				return lw[lookup8bits['?' - '!']] * sizeRatio; // XXX
-			}
-			else
-			{
-				return lw[index] * sizeRatio;
-			}
-		}
+        if (c > 0xff)
+        {
+            int index = binarySearch(c);
+            if (index < 0)
+            {
+                return lw[lookup8bits['?' - '!']] * sizeRatio; // XXX
+            }
+            else
+            {
+                return lw[lookup16bits[index]] * sizeRatio;
+            }
+        }
+        else
+        {
+            int index = lookup8bits[c - '!'];
+            if (index < 0)
+            {
+                return lw[lookup8bits['?' - '!']] * sizeRatio; // XXX
+            }
+            else
+            {
+                return lw[index] * sizeRatio;
+            }
+        }
     }
-	
-	return 0;
+    
+    return 0;
 }
 
 float XFont::getStringWidth(const wstring &s)
 {
-	return getSubStringWidth(s, 0, s.size());
+    return getSubStringWidth(s, 0, s.size());
 }
 
 float XFont::getSubStringWidth(const wstring &s, int begin, int end)
@@ -404,7 +404,7 @@ float XFont::getSubStringWidth(const wstring &s, int begin, int end)
 
     for (int i = begin; i < end; i++)
     {
-		width += getCharWidth(s.at(i));
+        width += getCharWidth(s.at(i));
     }
 
     return width;
@@ -417,27 +417,27 @@ float XFont::getHeight()
 
 float XFont::getMaxAscent()
 {
-	return maxAscent * sizeRatio;
+    return maxAscent * sizeRatio;
 }
 
 float XFont::getMaxDescent()
 {
-	return maxDescent * sizeRatio;
+    return maxDescent * sizeRatio;
 }
 
 float XFont::getStrikethroughOffset()
 {
-	return strikethroughOffset * sizeRatio;
+    return strikethroughOffset * sizeRatio;
 }
 
 FontMatrix* XFont::getMatrix()
 {
-	return &matrix;
+    return &matrix;
 }
 
 GLshort* XFont::getIndices()
 {
-	return indices;
+    return indices;
 }
 
 // --- STATE MANAGEMENT ---
@@ -485,7 +485,7 @@ void XFont::beginSequence(XFontSequence *seq, int dim)
 {
     sequenceDimensions = dim;
     sequenceCount = 0;
-	
+    
     if (seq == NULL)
     {
         begin();
@@ -493,7 +493,7 @@ void XFont::beginSequence(XFontSequence *seq, int dim)
     else
     {
         sequence = seq;
-		sequence->begin(this, dim);
+        sequence->begin(this, dim);
     }
 }
 
@@ -501,22 +501,22 @@ void XFont::endSequence()
 {
     if (sequence == NULL)
     {
-		flush(sequenceCount);
-		end();
+        flush(sequenceCount);
+        end();
     }
     else
     {
-		sequence->flush(vertice, coords, sequenceCount);
-		sequence->end();
-		sequence = NULL;
+        sequence->flush(vertice, coords, sequenceCount);
+        sequence->end();
+        sequence = NULL;
     }
 }
 
 void XFont::flush(int count)
 {
-	glTexCoordPointer(2, GL_FLOAT, 0, coords);
-	glVertexPointer(sequenceDimensions, GL_FLOAT, 0, vertice);
-	glDrawElements(GL_TRIANGLES, count * 6, GL_UNSIGNED_SHORT, indices);
+    glTexCoordPointer(2, GL_FLOAT, 0, coords);
+    glVertexPointer(sequenceDimensions, GL_FLOAT, 0, vertice);
+    glDrawElements(GL_TRIANGLES, count * 6, GL_UNSIGNED_SHORT, indices);
 }
 
 void XFont::flushIfRequired()
@@ -525,11 +525,11 @@ void XFont::flushIfRequired()
     {
         if (sequence == NULL)
         {
-			flush(sequenceCount);
+            flush(sequenceCount);
         }
         else
         {
-			sequence->flush(vertice, coords, sequenceCount);
+            sequence->flush(vertice, coords, sequenceCount);
         }
         
         sequenceCount = 0;
@@ -538,80 +538,80 @@ void XFont::flushIfRequired()
 
 void XFont::addSequenceCharacter(wchar_t c, float x, float y)
 {
-	int cc = lookup(c);
-	if (cc < 0)
-	{
-		return;
-	}
+    int cc = lookup(c);
+    if (cc < 0)
+    {
+        return;
+    }
     
     flushIfRequired();
-	
+    
     float x1 = x + le[cc] * sizeRatio;
     float x2 = x1 + w[cc] * sizeRatio;
     float y1 = y + te[cc] * sizeRatio;
     float y2 = y1 - h[cc] * sizeRatio;
-	
-	GLfloat *tmp = vertice + sequenceCount * 8;
-	*tmp++ = x1;
-	*tmp++ = y1;
-	*tmp++ = x1;
-	*tmp++ = y2;
-	*tmp++ = x2;
-	*tmp++ = y2;
-	*tmp++ = x2;
-	*tmp   = y1;
+    
+    GLfloat *tmp = vertice + sequenceCount * 8;
+    *tmp++ = x1;
+    *tmp++ = y1;
+    *tmp++ = x1;
+    *tmp++ = y2;
+    *tmp++ = x2;
+    *tmp++ = y2;
+    *tmp++ = x2;
+    *tmp   = y1;
     
     tmp = coords + sequenceCount * 8;
-	*tmp++ = tx1[cc];
-	*tmp++ = ty2[cc];
-	*tmp++ = tx1[cc];
-	*tmp++ = ty1[cc];
-	*tmp++ = tx2[cc];
-	*tmp++ = ty1[cc];
-	*tmp++ = tx2[cc];
-	*tmp   = ty2[cc];
+    *tmp++ = tx1[cc];
+    *tmp++ = ty2[cc];
+    *tmp++ = tx1[cc];
+    *tmp++ = ty1[cc];
+    *tmp++ = tx2[cc];
+    *tmp++ = ty1[cc];
+    *tmp++ = tx2[cc];
+    *tmp   = ty2[cc];
     
     sequenceCount++;
 }
 
 void XFont::addSequenceCharacter(wchar_t c, float x, float y, float z)
 {
-	int cc = lookup(c);
-	if (cc < 0)
-	{
-		return;
-	}
+    int cc = lookup(c);
+    if (cc < 0)
+    {
+        return;
+    }
     
     flushIfRequired();
-	
+    
     float x1 = x + le[cc] * sizeRatio;
     float x2 = x1 + w[cc] * sizeRatio;
     float y1 = y + te[cc] * sizeRatio;
     float y2 = y1 - h[cc] * sizeRatio;
     
-	GLfloat *tmp = vertice + sequenceCount * 12;
-	*tmp++ = x1;
-	*tmp++ = y1;
+    GLfloat *tmp = vertice + sequenceCount * 12;
+    *tmp++ = x1;
+    *tmp++ = y1;
     *tmp++ = z;
-	*tmp++ = x1;
-	*tmp++ = y2;
+    *tmp++ = x1;
+    *tmp++ = y2;
     *tmp++ = z;
-	*tmp++ = x2;
-	*tmp++ = y2;
+    *tmp++ = x2;
+    *tmp++ = y2;
     *tmp++ = z;
-	*tmp++ = x2;
-	*tmp++ = y1;
+    *tmp++ = x2;
+    *tmp++ = y1;
     *tmp   = z;
     
     tmp = coords + sequenceCount * 8;
-	*tmp++ = tx1[cc];
-	*tmp++ = ty2[cc];
-	*tmp++ = tx1[cc];
-	*tmp++ = ty1[cc];
-	*tmp++ = tx2[cc];
-	*tmp++ = ty1[cc];
-	*tmp++ = tx2[cc];
-	*tmp   = ty2[cc];
+    *tmp++ = tx1[cc];
+    *tmp++ = ty2[cc];
+    *tmp++ = tx1[cc];
+    *tmp++ = ty1[cc];
+    *tmp++ = tx2[cc];
+    *tmp++ = ty1[cc];
+    *tmp++ = tx2[cc];
+    *tmp   = ty2[cc];
     
     sequenceCount++;
 }
@@ -619,24 +619,24 @@ void XFont::addSequenceCharacter(wchar_t c, float x, float y, float z)
 void XFont::addTransformedEntity(int cc, float x, float y)
 {
     flushIfRequired();
-	
+    
     float x1 = x + le[cc] * sizeRatio;
     float x2 = x1 + w[cc] * sizeRatio;
     float y1 = y + te[cc] * sizeRatio;
     float y2 = y1 - h[cc] * sizeRatio;
-	
+    
     matrix.transform(x1, y2, x2, y1, vertice + sequenceCount * 12);
-	
+    
     GLfloat *tmp = coords + sequenceCount * 8;
-	*tmp++ = tx1[cc];
-	*tmp++ = ty2[cc];
-	*tmp++ = tx1[cc];
-	*tmp++ = ty1[cc];
-	*tmp++ = tx2[cc];
-	*tmp++ = ty1[cc];
-	*tmp++ = tx2[cc];
-	*tmp   = ty2[cc];
-	
+    *tmp++ = tx1[cc];
+    *tmp++ = ty2[cc];
+    *tmp++ = tx1[cc];
+    *tmp++ = ty1[cc];
+    *tmp++ = tx2[cc];
+    *tmp++ = ty1[cc];
+    *tmp++ = tx2[cc];
+    *tmp   = ty2[cc];
+    
     sequenceCount++;
 }
 
@@ -652,14 +652,14 @@ void XFont::addTransformedEntity2D(int cc, float x, float y)
     matrix.transform2D(x1, y2, x2, y1, vertice + sequenceCount * 8);
     
     GLfloat *tmp = coords + sequenceCount * 8;
-	*tmp++ = tx1[cc];
-	*tmp++ = ty2[cc];
-	*tmp++ = tx1[cc];
-	*tmp++ = ty1[cc];
-	*tmp++ = tx2[cc];
-	*tmp++ = ty1[cc];
-	*tmp++ = tx2[cc];
-	*tmp   = ty2[cc];
+    *tmp++ = tx1[cc];
+    *tmp++ = ty2[cc];
+    *tmp++ = tx1[cc];
+    *tmp++ = ty1[cc];
+    *tmp++ = tx2[cc];
+    *tmp++ = ty1[cc];
+    *tmp++ = tx2[cc];
+    *tmp   = ty2[cc];
     
     sequenceCount++;
 }

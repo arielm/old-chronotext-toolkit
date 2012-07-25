@@ -7,33 +7,33 @@ using namespace std;
 
 void* memAllocator(void *userData, unsigned int size)
 {
-	return malloc(size);
+    return malloc(size);
 }
 
 void* memReallocator(void *userData, void* ptr, unsigned int size)
 {
-	return realloc(ptr, size);
+    return realloc(ptr, size);
 }
 
 void memFree(void *userData, void *ptr)
 {
-	free(ptr);
+    free(ptr);
 }
 
 FlashTesselator::FlashTesselator()
 {
     TESSalloc allocator;
-	allocator.memalloc = memAllocator;
-	allocator.memrealloc = memReallocator;
-	allocator.memfree = memFree;
-	allocator.meshEdgeBucketSize = 0;
-	allocator.meshVertexBucketSize = 0;
-	allocator.meshFaceBucketSize = 0;
-	allocator.dictNodeBucketSize = 0;
-	allocator.regionBucketSize = 0;
-	allocator.extraVertices = 0;
+    allocator.memalloc = memAllocator;
+    allocator.memrealloc = memReallocator;
+    allocator.memfree = memFree;
+    allocator.meshEdgeBucketSize = 0;
+    allocator.meshVertexBucketSize = 0;
+    allocator.meshFaceBucketSize = 0;
+    allocator.dictNodeBucketSize = 0;
+    allocator.regionBucketSize = 0;
+    allocator.extraVertices = 0;
     
-	tess = tessNewTess(&allocator);
+    tess = tessNewTess(&allocator);
 }
 
 FlashTesselator::~FlashTesselator()

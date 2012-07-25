@@ -51,9 +51,9 @@ bool AudioLoop::init()
         streamFormat.mFormatID = kAudioFormatLinearPCM;
         streamFormat.mFormatFlags = kAudioFormatFlagsNativeFloatPacked | kAudioFormatFlagIsNonInterleaved;
         streamFormat.mBytesPerPacket = 4;
-        streamFormat.mFramesPerPacket = 1;	
-        streamFormat.mBytesPerFrame = 4;		
-        streamFormat.mChannelsPerFrame = 1;	
+        streamFormat.mFramesPerPacket = 1;    
+        streamFormat.mBytesPerFrame = 4;        
+        streamFormat.mChannelsPerFrame = 1;    
         streamFormat.mBitsPerChannel = 32;
         err = AudioUnitSetProperty(audioUnit,
                                    kAudioUnitProperty_StreamFormat,
@@ -83,7 +83,7 @@ bool AudioLoop::init()
 void AudioLoop::shutdown()
 {
     if (initialized)
-	{
+    {
         AudioOutputUnitStop(audioUnit);
         AudioUnitUninitialize(audioUnit);
         AudioComponentInstanceDispose(audioUnit);
@@ -94,7 +94,7 @@ void AudioLoop::shutdown()
 void AudioLoop::start()
 {
     if (initialized)
-	{
+    {
         OSStatus err = AudioOutputUnitStart(audioUnit);
         if (err) printf("AudioOutputUnitStart ERROR: %d\n", (int)err);
     }
@@ -103,7 +103,7 @@ void AudioLoop::start()
 void AudioLoop::stop()
 {
     if (initialized)
-	{
+    {
         OSStatus err = AudioOutputUnitStop(audioUnit);
         if (err) printf("AudioOutputUnitStop ERROR: %d\n", (int)err);
     }
