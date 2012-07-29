@@ -46,6 +46,35 @@ public:
         drawText(font, text, x, y1, y2, snap);
     }
     
+    static void drawStrikethrough(XFont *font, const std::wstring &text, float x1, float y1, float x2, float y2, bool snap = false)
+    {
+        float w1 = getStringWidth(font, text, snap);
+        float w2 = x2 - x1;
+        float x3 = x1 + (w2 - w1) / 2;
+        float x4 = x3 + w1;
+        
+        float h = y2 - y1;
+        float y3 = y1 + h / 2;
+        
+        if (snap)
+        {
+            x3 = floorf(x3);
+            x4 = floorf(x4);
+            y3 = floorf(y3);
+        }
+        
+        const GLfloat vertices[] =
+        {
+            x3, y3,
+            x4, y3
+        };
+
+        glEnableClientState(GL_VERTEX_ARRAY);
+        glVertexPointer(2, GL_FLOAT, 0, vertices);
+        glDrawArrays(GL_LINES, 0, 2);
+        glDisableClientState(GL_VERTEX_ARRAY);
+    }
+    
     static float getStringWidth(XFont *font, const std::wstring &text, bool snap = false)
     {
         if (snap)

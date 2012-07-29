@@ -19,7 +19,9 @@ namespace chronotext
         std::map<int, ColorRef> borderColor;
         std::map<int, ColorRef> backgroundColor;
         std::map<int, ColorRef> color;
-        
+
+        std::map<int, bool> strikethrough;
+
         float hitExtra;
 
         ButtonStyle()

@@ -90,6 +90,11 @@ namespace chronotext
         {
             style->font->setSize(style->fontSize);
             FontHelper::drawText(style->font, text, x1, y1, x2, y2, style->snap);
+            
+            if (style->strikethrough[state])
+            {
+                FontHelper::drawStrikethrough(style->font, text, x1, y1, x2, y2, style->snap);
+            }
         }
     }
     
