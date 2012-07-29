@@ -7,7 +7,6 @@
 
 class ScreenManager : public CinderSketch
 {
-    CinderSketch *currentScreen;
     std::list<CinderSketch*> screens;
     
     ci::Vec2i size;
@@ -15,6 +14,8 @@ class ScreenManager : public CinderSketch
     std::map<CinderSketch*, int> focused;
 
 public:
+    CinderSketch *currentScreen;
+
     ScreenManager(void *context)
     :
     CinderSketch(context),
