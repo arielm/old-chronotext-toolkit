@@ -135,7 +135,7 @@ void ScreenManager::setCurrentScreen(CinderSketch *screen)
      * REQUIRED IN ORDER TO AVOID SITUATIONS WHERE A "SCREEN_ENTER"
      * IS FOLLOWED BY SOME UN-NECESSARY "FOCUS_GAIN"
      */
-    focused[currentScreen] = true;
+    focused[screen] = true;
 
     screen->start(CinderSketch::FLAG_SCREEN_ENTER);
     
