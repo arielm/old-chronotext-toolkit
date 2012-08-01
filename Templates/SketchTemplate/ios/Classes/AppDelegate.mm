@@ -15,35 +15,35 @@ int main(int argc, char *argv[])
 
 - (BOOL) application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-	viewController = [[EAGLViewController alloc] initWithProperties:
-						[NSDictionary dictionaryWithObjectsAndKeys:
-						 [NSNumber numberWithBool:NO], kES1RendererPropertyUseDepthBuffer,
-						 [NSNumber numberWithInt:1], kEAGLViewPropertyAnimationFrameInterval,
-						 [NSNumber numberWithBool:YES], kEAGLViewPropertyMultipleTouchEnabled,
-						 nil]];
-	
-	viewController.renderDelegate = self;
+    viewController = [[EAGLViewController alloc] initWithProperties:
+                      [NSDictionary dictionaryWithObjectsAndKeys:
+                       [NSNumber numberWithBool:NO], kES1RendererPropertyUseDepthBuffer,
+                       [NSNumber numberWithInt:1], kEAGLViewPropertyAnimationFrameInterval,
+                       [NSNumber numberWithBool:YES], kEAGLViewPropertyMultipleTouchEnabled,
+                       nil]];
+    
+    viewController.renderDelegate = self;
 
-	sketch = new Sketch(self);
+    sketch = new Sketch(self);
 
-	window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-	window.backgroundColor = [UIColor blackColor];
-	
-	[window setRootViewController:viewController];
-	[window makeKeyAndVisible];
+    window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    window.backgroundColor = [UIColor blackColor];
+    
+    [window setRootViewController:viewController];
+    [window makeKeyAndVisible];
     
     return YES;
 }
 
 - (void) dealloc
 {
-	sketch->shutdown();
-	delete sketch;
-	
-	[viewController release];
-	[window release];
+    sketch->shutdown();
+    delete sketch;
+    
+    [viewController release];
+    [window release];
 
-	[super dealloc];
+    [super dealloc];
 }
 
 @end
