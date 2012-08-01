@@ -4,7 +4,7 @@
 
 @interface AppDelegate : CinderRenderDelegate <UIApplicationDelegate>
 {
-	UIWindow *window;
+    UIWindow *window;
 }
 
 @end
