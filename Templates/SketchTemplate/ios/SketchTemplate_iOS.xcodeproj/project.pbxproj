@@ -265,7 +265,7 @@
 				A8641F1115A5D4070054E5EC /* TextureManager.h */,
 			);
 			name = Texture;
-			path = ../../../Toolkit/Texture;
+			path = "../../../../chronotext-public/Toolkit/Texture";
 			sourceTree = "<group>";
 		};
 		A8641F1215A5D4070054E5EC /* Time */ = {
@@ -279,7 +279,7 @@
 				A8641F1815A5D4070054E5EC /* TimeBase.h */,
 			);
 			name = Time;
-			path = ../../../Toolkit/Time;
+			path = "../../../../chronotext-public/Toolkit/Time";
 			sourceTree = "<group>";
 		};
 		A8641F1F15A5D4120054E5EC /* Maths */ = {
@@ -289,7 +289,7 @@
 				A8641F2115A5D4120054E5EC /* Matrix2D.h */,
 			);
 			name = Maths;
-			path = ../../../Toolkit/Maths;
+			path = "../../../../chronotext-public/Toolkit/Maths";
 			sourceTree = "<group>";
 		};
 		A87A044D1580D48C00BB603B /* iOS */ = {
@@ -357,7 +357,7 @@
 				A8AB668515826FAD00B93CD7 /* FontManager.h */,
 			);
 			name = Text;
-			path = ../../../Toolkit/Text;
+			path = "../../../../chronotext-public/Toolkit/Text";
 			sourceTree = "<group>";
 		};
 		A8CF25241516263900BD643A /* FollowablePath */ = {
@@ -418,7 +418,7 @@
 				A8FFCAD915AC1BFB00512417 /* RenderDelegate.m */,
 			);
 			name = Core;
-			path = ../../../Toolkit/iOS/Core;
+			path = "../../../../chronotext-public/Toolkit/iOS/Core";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
