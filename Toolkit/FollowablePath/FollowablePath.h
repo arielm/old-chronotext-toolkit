@@ -1,9 +1,9 @@
 #pragma once
 
-#include "cinder/DataSource.h"
-#include "cinder/Vector.h"
-
 #include "DataStreamIO.h"
+
+#include "cinder/DataSource.h"
+#include "cinder/Rect.h"
 
 typedef boost::shared_ptr<class FollowablePath> FollowablePathRef;
 
@@ -55,5 +55,5 @@ public:
     bool findClosestPoint(float x, float y, float min, float *res);
     void closestPointFromSegment(float x, float y, int segmentIndex, float *res);
     
-    void measure(float *minX, float *minY, float *maxX, float *maxY);
+    ci::Rectf getBounds() const;
 };

@@ -504,22 +504,24 @@ void FollowablePath::closestPointFromSegment(float xx, float yy, int segmentInde
     }
 }
 
-void FollowablePath::measure(float *minX, float *minY, float *maxX, float *maxY)
+Rectf FollowablePath::getBounds() const
 {
-    *minX = numeric_limits<float>::max();
-    *minY = numeric_limits<float>::max();
-    *maxX = numeric_limits<float>::min();
-    *maxY = numeric_limits<float>::min();
+    float minX = numeric_limits<float>::max();
+    float minY = numeric_limits<float>::max();
+    float maxX = numeric_limits<float>::min();
+    float maxY = numeric_limits<float>::min();
     
     for (int i = 0; i < size; i++)
     {
         float xx = x[i];
         float yy = y[i];
         
-        if (xx < *minX) *minX = xx;
-        if (yy < *minY) *minY = yy;
+        if (xx < minX) minX = xx;
+        if (yy < minY) minY = yy;
         
-        if (xx > *maxX) *maxX = xx;
-        if (yy > *maxY) *maxY = yy;
+        if (xx > maxX) maxX = xx;
+        if (yy > maxY) maxY = yy;
     }
+    
+    return Rectf(minX, minY, maxX, maxY);
 }
