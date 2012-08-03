@@ -64,6 +64,11 @@ int CinderSketch::getWindowHeight()
     return ((CinderRenderDelegate*)context).height;
 }
 
+Vec2f CinderSketch::getWindowSize()
+{
+    return Vec2f(((CinderRenderDelegate*)context).width, ((CinderRenderDelegate*)context).height);
+}
+
 float CinderSketch::getContentScale()
 {
     return ((CinderRenderDelegate*)context).contentScale;
