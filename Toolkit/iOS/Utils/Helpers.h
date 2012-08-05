@@ -9,6 +9,7 @@
 
 + (BOOL) isStringValid:(NSString*)string;
 + (BOOL) isStringEmpty:(NSString*)string;
++ (NSString*) safeString:(NSString*)string;
 
 + (NSString*) md5ForData:(NSData*)data;
 

@@ -24,6 +24,16 @@
 	return ([trimmed length] > 0);
 }
 
++ (NSString*) safeString:(NSString*)string
+{
+    if (string && (string.length > 0))
+    {
+        return [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    }
+    
+    return @"";
+}
+
 + (NSString*) md5ForData:(NSData*)data
 {
     unsigned char result[CC_MD5_DIGEST_LENGTH];
