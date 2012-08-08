@@ -1,6 +1,7 @@
 #include "Emitter.h"
 #include "TextureHelper.h"
 #include "Constants.h"
+#include "Utils.h"
 
 using namespace std;
 using namespace ci;
@@ -12,6 +13,10 @@ namespace chronotext
     random(Rand()),
     clock(Clock(masterClock)),
     params(params),
+    controller(NULL),
+    controllerIsOwned(false),
+    data(NULL),
+    dataIsOwned(false),
     position(Vec2f::zero()),
     finished(false),
     spawnFinished(false),
@@ -19,11 +24,44 @@ namespace chronotext
     total(0)
     {
         clock.setTime(0);
+        clock.start();
     }
     
+    Emitter::~Emitter()
+    {
+        if (controller && controllerIsOwned)
+        {
+            delete controller;
+        }
+        
+        if (data && dataIsOwned)
+        {
+            delete data;
+        }
+        
+        DLOG("Emitter DELETED");
+    }
+    
+    void Emitter::setController(EmitterController *controller, bool controllerIsOwned)
+    {
+        this->controller = controller;
+        this->controllerIsOwned = controllerIsOwned;
+    }
+    
+    void Emitter::setData(EmitterData *data, bool dataIsOwned)
+    {
+        this->data = data;
+        this->dataIsOwned = dataIsOwned;
+    }
+
     void Emitter::update(float dt)
     {
         double now = clock.getTime();
+        
+        if (controller)
+        {
+            controller->emitterWillUpdate(this, dt, now);
+        }
         
         if (!finished)
         {
@@ -31,6 +69,11 @@ namespace chronotext
             {
                 finished = true;
                 particles.clear();
+                
+                if (controller)
+                {
+                    controller->emitterIsFinished(this);
+                }
             }
             else
             {

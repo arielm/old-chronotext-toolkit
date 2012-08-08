@@ -2,6 +2,7 @@
 
 #include "Particle.h"
 #include "MasterClock.h"
+#include "EmitterController.h"
 
 #include "cinder/Rand.h"
 #include "cinder/Easing.h"
@@ -169,6 +170,12 @@ namespace chronotext
         {}
     };
     
+    class EmitterData
+    {
+    public:
+        virtual ~EmitterData() {}
+    };
+    
     class Emitter
     {
     public:
@@ -176,6 +183,12 @@ namespace chronotext
         ci::Rand random;
         
         EmitterParams params;
+        
+        EmitterController *controller;
+        bool controllerIsOwned;
+
+        EmitterData *data;
+        bool dataIsOwned;
         
         ci::Vec2f position;
         std::vector<Sprite*> sprites;
@@ -188,7 +201,11 @@ namespace chronotext
         int total;
         
         Emitter(MasterClock *masterClock, const EmitterParams &params);
-        
+        ~Emitter();
+
+        void setController(EmitterController *controller, bool controllerIsOwned);
+        void setData(EmitterData *data, bool dataIsOwned);
+
         virtual void update(float dt);
         virtual void draw(const ci::Vec2f &scale);
         
@@ -198,6 +215,11 @@ namespace chronotext
         virtual void accumulateForces();
         virtual void integrate(float dt);
         virtual void satisfyConstraints();
+        
+        static bool shouldBeRemoved(Emitter *emitter)
+        {
+            return emitter->finished;
+        }
     };
 }
 
