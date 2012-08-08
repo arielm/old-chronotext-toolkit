@@ -215,11 +215,6 @@ namespace chronotext
         virtual void accumulateForces();
         virtual void integrate(float dt);
         virtual void satisfyConstraints();
-        
-        static bool shouldBeRemoved(Emitter *emitter)
-        {
-            return emitter->finished;
-        }
     };
 }
 
