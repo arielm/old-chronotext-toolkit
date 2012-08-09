@@ -200,7 +200,7 @@ namespace chronotext
         float accum;
         int total;
         
-        Emitter(MasterClock *masterClock, const EmitterParams &params);
+        Emitter(MasterClock *masterClock, const EmitterParams &params, uint32_t seed = 214);
         ~Emitter();
 
         void setController(EmitterController *controller, bool controllerIsOwned);

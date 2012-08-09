@@ -8,9 +8,9 @@ using namespace ci;
 
 namespace chronotext
 {
-    Emitter::Emitter(MasterClock *masterClock, const EmitterParams &params)
+    Emitter::Emitter(MasterClock *masterClock, const EmitterParams &params, uint32_t seed)
     :
-    random(Rand()),
+    random(Rand(seed)),
     clock(Clock(masterClock)),
     params(params),
     controller(NULL),
