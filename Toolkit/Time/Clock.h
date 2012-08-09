@@ -20,6 +20,8 @@ namespace chronotext
         TimeBase *timeBase;
         bool timeBaseIsOwned;
         
+        MasterClock *master;
+        
     public:
         enum
         {

@@ -7,18 +7,20 @@ namespace chronotext
 {
     Clock::Clock()
     :
+    timeBaseIsOwned(true),
+    master(NULL),
     mst(0),
     rate(1),
     state(STOPPED)
     {
         timeBase = new DefaultTimeBase();
-        timeBaseIsOwned = true;
     }
     
     Clock::Clock(TimeBase *timeBase)
     :
     timeBase(timeBase),
     timeBaseIsOwned(false),
+    master(NULL),
     mst(0),
     rate(1),
     state(STOPPED)
@@ -26,12 +28,13 @@ namespace chronotext
     
     Clock::Clock(MasterClock *masterClock)
     :
+    timeBase(masterClock->timeBase),
     timeBaseIsOwned(false),
+    master(masterClock),
     mst(0),
     rate(1),
     state(STOPPED)
     {
-        timeBase = masterClock->timeBase;
         masterClock->add(this);
     }
     
@@ -40,6 +43,11 @@ namespace chronotext
         if (timeBaseIsOwned)
         {
             delete timeBase;
+        }
+        
+        if (master)
+        {
+            master->remove(this);
         }
     }
     
