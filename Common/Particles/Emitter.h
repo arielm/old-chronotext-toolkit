@@ -101,9 +101,6 @@ namespace chronotext
     class Emitter
     {
     protected:
-        Clock clock;
-        ci::Rand random;
-        
         EmitterParams params;
         
         EmitterController *controller;
@@ -122,6 +119,9 @@ namespace chronotext
         int total;
         
     public:
+        Clock clock;
+        ci::Rand random;
+
         ci::Vec2f position;
 
         Emitter(MasterClock *masterClock, const EmitterParams &params, uint32_t seed = 214);
