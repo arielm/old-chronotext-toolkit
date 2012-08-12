@@ -96,6 +96,8 @@ namespace chronotext
         virtual ~EmitterData() {}
     };
     
+    typedef boost::shared_ptr<class Emitter> EmitterRef;
+
     class Emitter
     {
     protected:
@@ -140,6 +142,11 @@ namespace chronotext
         virtual void accumulateForces();
         virtual void integrate(float dt);
         virtual void satisfyConstraints();
+        
+        static bool emitterShouldBeRemoved(EmitterRef emitter)
+        {
+            return emitter->isFinished();
+        }
     };
 }
 
