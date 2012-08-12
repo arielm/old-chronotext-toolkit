@@ -154,9 +154,9 @@ namespace chronotext
         for (list<Particle>::const_iterator it = particles.begin(); it != particles.end(); ++it)
         {
             glPushMatrix();
-            gl::translate(it->position);
-            gl::scale(scale * it->scale);
+            gl::translate(position + it->position);
             glRotatef(it->angle, 0, 0, 1);
+            glScalef(scale.x, scale.y, 1);
             
             glColor4f(1, 1, 1, it->alpha);
             it->sprite->drawFromCenter();
@@ -199,7 +199,7 @@ namespace chronotext
         
         // ---
         
-        particles.push_back(Particle(sprite, position, velocity, now, lifetime, mass, angle, angularVelocity, scale, params.scaleFunction, alpha, params.alphaFunction));
+        particles.push_back(Particle(sprite, Vec2f::zero(), velocity, now, lifetime, mass, angle, angularVelocity, scale, params.scaleFunction, alpha, params.alphaFunction));
     }
     
 #pragma mark ---------------------------------------- VERLET ----------------------------------------
