@@ -53,6 +53,16 @@ namespace chronotext
         this->data = data;
         this->dataIsOwned = dataIsOwned;
     }
+    
+    EmitterData* Emitter::getData()
+    {
+        return data;
+    }
+    
+    bool Emitter::isFinished()
+    {
+        return finished;
+    }
 
     void Emitter::update(float dt)
     {

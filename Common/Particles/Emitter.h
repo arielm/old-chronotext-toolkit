@@ -98,7 +98,7 @@ namespace chronotext
     
     class Emitter
     {
-    public:
+    protected:
         Clock clock;
         ci::Rand random;
         
@@ -106,11 +106,10 @@ namespace chronotext
         
         EmitterController *controller;
         bool controllerIsOwned;
-
+        
         EmitterData *data;
         bool dataIsOwned;
         
-        ci::Vec2f position;
         std::vector<Sprite*> sprites;
         std::list<Particle> particles;
         
@@ -120,11 +119,17 @@ namespace chronotext
         float accum;
         int total;
         
+    public:
+        ci::Vec2f position;
+
         Emitter(MasterClock *masterClock, const EmitterParams &params, uint32_t seed = 214);
         ~Emitter();
 
-        void setController(EmitterController *controller, bool controllerIsOwned);
-        void setData(EmitterData *data, bool dataIsOwned);
+        virtual void setController(EmitterController *controller, bool controllerIsOwned);
+        virtual void setData(EmitterData *data, bool dataIsOwned);
+        
+        virtual EmitterData* getData();
+        virtual bool isFinished();
 
         virtual void update(float dt);
         virtual void draw(const ci::Vec2f &scale);
