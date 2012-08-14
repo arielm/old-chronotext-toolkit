@@ -6,11 +6,16 @@ namespace chronotext
 {
     struct Curves
     {
-        static float null(float t)
+        static float zero(float t)
+        {
+            return 0;
+        }
+        
+        static float one(float t)
         {
             return 1;
         }
-        
+
         static float linear(float t)
         {
             return t;

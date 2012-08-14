@@ -157,10 +157,9 @@ namespace chronotext
             gl::translate(position + it->position);
             glRotatef(it->angle, 0, 0, 1);
             glScalef(it->scale * scale.x, it->scale * scale.y, 1);
-            
+
             glColor4f(1, 1, 1, it->alpha);
             it->sprite->drawFromCenter();
-            
             glPopMatrix();
         }
     }
