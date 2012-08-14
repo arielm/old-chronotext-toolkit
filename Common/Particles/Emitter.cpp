@@ -8,7 +8,7 @@ using namespace ci;
 
 namespace chronotext
 {
-    Emitter::Emitter(MasterClock *masterClock, const EmitterParams &params, uint32_t seed)
+    Emitter::Emitter(MasterClock *masterClock, TextureAtlas *atlas, const EmitterParams &params, uint32_t seed)
     :
     random(Rand(seed)),
     clock(Clock(masterClock)),
@@ -25,6 +25,11 @@ namespace chronotext
     {
         clock.setTime(0);
         clock.start();
+        
+        for (vector<string>::const_iterator it = params.spritePaths.begin(); it != params.spritePaths.end(); ++it)
+        {
+            sprites.push_back(atlas->getSprite(*it));
+        }
     }
     
     Emitter::~Emitter()
@@ -115,7 +120,7 @@ namespace chronotext
                         
                         for (int i = 0; i < quantity; i++)
                         {
-                            addParticle(now);
+                            spawnParticle(now);
                         }
                     }
                 }
@@ -164,12 +169,7 @@ namespace chronotext
         }
     }
     
-    void Emitter::addSprite(Sprite *sprite)
-    {
-        sprites.push_back(sprite);
-    }
-    
-    void Emitter::addParticle(double now)
+    void Emitter::spawnParticle(double now)
     {
         Sprite *sprite = sprites[random.nextInt(sprites.size())];
         
