@@ -18,8 +18,8 @@ namespace chronotext
     data(NULL),
     dataIsOwned(false),
     position(Vec2f::zero()),
-    finished(false),
-    spawnFinished(false),
+    ended(false),
+    spawnEnded(false),
     accum(0),
     total(0)
     {
@@ -59,9 +59,9 @@ namespace chronotext
         return data;
     }
     
-    bool Emitter::isFinished()
+    bool Emitter::hasEnded()
     {
-        return finished;
+        return ended;
     }
 
     void Emitter::update(float dt)
@@ -73,16 +73,16 @@ namespace chronotext
             controller->emitterWillUpdate(this, dt, now);
         }
         
-        if (!finished)
+        if (!ended)
         {
             if (now > params.duration)
             {
-                finished = true;
+                ended = true;
                 particles.clear();
                 
                 if (controller)
                 {
-                    controller->emitterIsFinished(this);
+                    controller->emitterHasEnded(this);
                 }
             }
             else
@@ -95,7 +95,7 @@ namespace chronotext
                     
                     if (t > 1)
                     {
-                        spawnFinished = true;
+                        spawnEnded = true;
                     }
                     else
                     {
@@ -103,7 +103,7 @@ namespace chronotext
                     }
                 }
                 
-                if (!spawnFinished)
+                if (!spawnEnded)
                 {
                     accum += random.nextFloat(spawnRate * dt * 2);
                     

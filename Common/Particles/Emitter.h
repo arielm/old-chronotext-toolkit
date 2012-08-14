@@ -127,8 +127,8 @@ namespace chronotext
         std::vector<Sprite*> sprites;
         std::list<Particle> particles;
         
-        bool finished;
-        bool spawnFinished;
+        bool ended;
+        bool spawnEnded;
         
         float accum;
         int total;
@@ -146,7 +146,7 @@ namespace chronotext
         virtual void setData(EmitterData *data, bool dataIsOwned);
         
         virtual EmitterData* getData();
-        virtual bool isFinished();
+        virtual bool hasEnded();
 
         virtual void update(float dt);
         virtual void draw(const ci::Vec2f &scale);
@@ -160,7 +160,7 @@ namespace chronotext
         
         static bool emitterShouldBeRemoved(EmitterRef emitter)
         {
-            return emitter->isFinished();
+            return emitter->hasEnded();
         }
     };
 }

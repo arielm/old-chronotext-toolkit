@@ -10,7 +10,7 @@ namespace chronotext
         virtual ~EmitterController() {}
 
         virtual void emitterWillUpdate(Emitter *emitter, float dt, double now) {}
-        virtual void emitterIsFinished(Emitter *emitter) {}
+        virtual void emitterHasEnded(Emitter *emitter) {}
     };
 }    
 
