@@ -2,8 +2,23 @@
 
 #include "Particle.h"
 #include "MasterClock.h"
-#include "EmitterFunctions.h"
 #include "EmitterController.h"
+#include "Curves.h"
+
+#include "cinder/Rand.h"
+
+/*
+ * THE FOLLOWING IS NECESSARY IN ORDER TO
+ * KEEP-ON COMPILING OBJECTIVE-C++ WITH GCC
+ */
+
+#ifndef Nil
+#define Nil __DARWIN_NULL
+#endif
+
+#ifndef nil
+#define nil __DARWIN_NULL
+#endif
 
 namespace chronotext
 {
@@ -66,7 +81,7 @@ namespace chronotext
         duration(std::numeric_limits<double>::max()),
         spawnDuration(std::numeric_limits<double>::max()),
         spawnRate(1),
-        spawnFunction(EmitterFunctions::null),
+        spawnFunction(Curves::null),
         direction0(0),
         direction1(360),
         speed0(1),
@@ -79,10 +94,10 @@ namespace chronotext
         angularVelocity1(0),
         scale0(1),
         scale1(1),
-        scaleFunction(EmitterFunctions::null),
+        scaleFunction(Curves::null),
         alpha0(1),
         alpha1(1),
-        alphaFunction(EmitterFunctions::null),
+        alphaFunction(Curves::null),
         mass0(0),
         mass1(0),
         massRelativeToScale(false),
