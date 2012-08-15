@@ -176,7 +176,7 @@ namespace chronotext
         // ---
         
         Vec2f position;
-        float radius = random.nextFloat(params.radius0, params.radius1);
+        float radius = random.nextFloat(params.radius.first, params.radius.second);
         
         if (radius > 0)
         {
@@ -191,11 +191,11 @@ namespace chronotext
         // ---
 
         Vec2f velocity;
-        float speed = random.nextFloat(params.speed0, params.speed1);
+        float speed = random.nextFloat(params.speed.first, params.speed.second);
             
         if (speed > 0)
         {
-            float direction = random.nextFloat(params.direction0, params.direction1);
+            float direction = random.nextFloat(params.direction.first, params.direction.second);
             velocity = Vec2f(math<float>::cos(direction * D2R) * speed, math<float>::sin(direction * D2R) * speed);
         }
         else
@@ -205,11 +205,11 @@ namespace chronotext
         
         // ---
         
-        float lifetime = random.nextFloat(params.lifetime0, params.lifetime1);
-        float angle = random.nextFloat(params.angle0, params.angle1);
-        float angularVelocity = random.nextFloat(params.angularVelocity0, params.angularVelocity1);
-        float scale = random.nextFloat(params.scale0, params.scale1);
-        float alpha = random.nextFloat(params.alpha0, params.alpha1);
+        float lifetime = random.nextFloat(params.lifetime.first, params.lifetime.second);
+        float angle = random.nextFloat(params.angle.first, params.angle.second);
+        float angularVelocity = random.nextFloat(params.angularVelocity.first, params.angularVelocity.second);
+        float scale = random.nextFloat(params.scale.first, params.scale.second);
+        float alpha = random.nextFloat(params.alpha.first, params.alpha.second);
         
         // ---
         
@@ -221,7 +221,7 @@ namespace chronotext
         }
         else
         {
-            mass = random.nextFloat(params.mass0, params.mass1);
+            mass = random.nextFloat(params.mass.first, params.mass.second);
         }
         
         // ---

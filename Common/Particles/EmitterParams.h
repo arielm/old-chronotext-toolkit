@@ -8,6 +8,8 @@
 
 namespace chronotext
 {
+    typedef std::pair<float, float> RandomRange;
+    
     struct EmitterParams
     {
         ci::Vec2f gravity;
@@ -19,47 +21,20 @@ namespace chronotext
         float spawnRate; // NEW PARTICLES PER SECOND - BASED ON DT
         float (*spawnFunction)(float t);
         
-        float radius0;
-        float radius1;
+        RandomRange radius;
+        RandomRange direction; // IN DEGREES
+        RandomRange speed; // IN PIXELS PER SECOND
+        RandomRange lifetime;
+        RandomRange angle; // IN DEGREES
+        RandomRange angularVelocity; // IN DEGREES PER SECOND
         
-        /*
-         * IN DEGREES
-         */
-        float direction0;
-        float direction1;
-        
-        /*
-         * IN PIXELS PER SECOND
-         */
-        float speed0;
-        float speed1;
-        
-        double lifetime0;
-        double lifetime1;
-        
-        /*
-         * IN DEGREES
-         */
-        float angle0;
-        float angle1;
-        
-        /*
-         * IN DEGREES PER SECOND
-         */
-        float angularVelocity0;
-        float angularVelocity1;
-        
-        float scale0;
-        float scale1;
+        RandomRange scale;
         float (*scaleFunction)(float t);
         
-        float alpha0;
-        float alpha1;
+        RandomRange alpha;
         float (*alphaFunction)(float t);
         
-        float mass0;
-        float mass1;
-        
+        RandomRange mass;
         bool massRelativeToScale;
         float massFactor;
         
@@ -73,26 +48,17 @@ namespace chronotext
         spawnDuration(std::numeric_limits<double>::max()),
         spawnRate(1),
         spawnFunction(Curves::one),
-        radius0(0),
-        radius1(1),
-        direction0(0),
-        direction1(360),
-        speed0(0),
-        speed1(0),
-        lifetime0(1),
-        lifetime1(1),
-        angle0(0),
-        angle1(0),
-        angularVelocity0(0),
-        angularVelocity1(0),
-        scale0(1),
-        scale1(1),
+        radius(std::make_pair(0, 0)),
+        direction(std::make_pair(0, 360)),
+        speed(std::make_pair(0, 0)),
+        lifetime(std::make_pair(1, 1)),
+        angle(std::make_pair(0, 0)),
+        angularVelocity(std::make_pair(0, 0)),
+        scale(std::make_pair(1, 1)),
         scaleFunction(Curves::one),
-        alpha0(1),
-        alpha1(1),
+        alpha(std::make_pair(1, 1)),
         alphaFunction(Curves::one),
-        mass0(0),
-        mass1(0),
+        mass(std::make_pair(0, 0)),
         massRelativeToScale(false),
         massFactor(0)
         {}
