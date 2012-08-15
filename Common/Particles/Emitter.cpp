@@ -172,10 +172,38 @@ namespace chronotext
     void Emitter::spawnParticle(double now)
     {
         Sprite *sprite = sprites[random.nextInt(sprites.size())];
+
+        // ---
         
-        float direction = random.nextFloat(params.direction0, params.direction1);
+        Vec2f position;
+        float radius = random.nextFloat(params.radius0, params.radius1);
+        
+        if (radius > 0)
+        {
+            float direction = random.nextFloat(0, 360);
+            position = Vec2f(math<float>::cos(direction * D2R) * radius, math<float>::sin(direction * D2R) * radius);
+        }
+        else
+        {
+            position = Vec2f::zero();
+        }
+        
+        // ---
+
+        Vec2f velocity;
         float speed = random.nextFloat(params.speed0, params.speed1);
-        Vec2f velocity = Vec2f(math<float>::cos(direction * D2R) * speed, math<float>::sin(direction * D2R) * speed);
+            
+        if (speed > 0)
+        {
+            float direction = random.nextFloat(params.direction0, params.direction1);
+            velocity = Vec2f(math<float>::cos(direction * D2R) * speed, math<float>::sin(direction * D2R) * speed);
+        }
+        else
+        {
+            velocity = Vec2f::zero();
+        }
+        
+        // ---
         
         float lifetime = random.nextFloat(params.lifetime0, params.lifetime1);
         float angle = random.nextFloat(params.angle0, params.angle1);
@@ -198,7 +226,7 @@ namespace chronotext
         
         // ---
         
-        particles.push_back(Particle(sprite, Vec2f::zero(), velocity, now, lifetime, mass, angle, angularVelocity, scale, params.scaleFunction, alpha, params.alphaFunction));
+        particles.push_back(Particle(sprite, position, velocity, now, lifetime, mass, angle, angularVelocity, scale, params.scaleFunction, alpha, params.alphaFunction));
     }
     
 #pragma mark ---------------------------------------- VERLET ----------------------------------------

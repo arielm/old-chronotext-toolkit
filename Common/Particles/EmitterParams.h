@@ -15,6 +15,9 @@ namespace chronotext
         float spawnRate; // NEW PARTICLES PER SECOND - BASED ON DT
         float (*spawnFunction)(float t);
         
+        float radius0;
+        float radius1;
+        
         /*
          * IN DEGREES
          */
@@ -66,10 +69,12 @@ namespace chronotext
         spawnDuration(std::numeric_limits<double>::max()),
         spawnRate(1),
         spawnFunction(Curves::one),
+        radius0(0),
+        radius1(1),
         direction0(0),
         direction1(360),
-        speed0(1),
-        speed1(1),
+        speed0(0),
+        speed1(0),
         lifetime0(1),
         lifetime1(1),
         angle0(0),
