@@ -1,76 +1,105 @@
 #pragma once
 
 #include "cinder/Easing.h"
+#include "cinder/Function.h"
 
 namespace chronotext
 {
-    struct Curves
+    typedef std::function< float(float) > Curve;
+    
+    // ---
+    
+    struct CurveOne
     {
-        static float zero(float t)
-        {
-            return 0;
-        }
-        
-        static float one(float t)
+        float operator() (float t) const
         {
             return 1;
         }
-
-        static float linear(float t)
-        {
-            return t;
-        }
+    };
+    
+    struct CurveLinear
+    {
+        float from;
+        float to;
         
-        static float inverseLinear(float t)
-        {
-            return 1 - linear(t);
-        }
+        CurveLinear(float from, float to) : from(from), to(to) {}
         
-        static float easeInQuad(float t)
+        float operator() (float t) const
         {
-            return ci::easeInQuad(t);
+            return from + (to - from) * t;
         }
+    };
+    
+    struct CurveEaseInQuad
+    {
+        float from;
+        float to;
         
-        static float inverseEaseInQuad(float t)
+        CurveEaseInQuad(float from, float to) : from(from), to(to) {}
+        
+        float operator() (float t) const
         {
-            return 1 - easeInQuad(t);
+            return from + (to - from) * ci::easeInQuad(t);
         }
+    };
+    
+    struct CurveEaseOutQuad
+    {
+        float from;
+        float to;
         
-        static float easeOutQuad(float t)
+        CurveEaseOutQuad(float from, float to) : from(from), to(to) {}
+        
+        float operator() (float t) const
         {
-            return ci::easeOutQuad(t);
+            return from + (to - from) * ci::easeOutQuad(t);
         }
+    };
+    
+    // ---
+    
+    inline float sineBell(float t)
+    {
+        return ci::math<float>::sin(t * M_PI);
+    }
+    
+    struct CurveSineBell
+    {
+        float from;
+        float to;
         
-        static float inverseEaseOutQuad(float t)
+        CurveSineBell(float from, float to) : from(from), to(to) {}
+        
+        float operator() (float t) const
         {
-            return 1 - easeOutQuad(t);
+            return from + (to - from) * sineBell(t);
         }
-        
-        static float sineBell(float t)
+    };
+    
+    // ---
+    
+    inline float expoBell(float t)
+    {
+        if (t < 0.5)
         {
-            return ci::math<float>::sin(t * M_PI);
+            return ci::easeOutExpo(t * 2);
         }
-        
-        static float inverseSineBell(float t)
+        else
         {
-            return 1 - sineBell(t);
+            return 1 - ci::easeInExpo(t * 2 - 1);
         }
+    }
+    
+    struct CurveExpoBell
+    {
+        float from;
+        float to;
         
-        static float expoBell(float t)
-        {
-            if (t < 0.5)
-            {
-                return ci::easeOutExpo(t * 2);
-            }
-            else
-            {
-                return 1 - ci::easeInExpo(t * 2 - 1);
-            }
-        }
+        CurveExpoBell(float from, float to) : from(from), to(to) {}
         
-        static float inverseExpoBell(float t)
+        float operator() (float t) const
         {
-            return 1 - expoBell(t);
+            return from + (to - from) * expoBell(t);
         }
     };
 }

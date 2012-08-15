@@ -1,7 +1,3 @@
-/*
- * TODO: USE std::function
- */
-
 #pragma once
 
 #include "Curves.h"
@@ -18,8 +14,8 @@ namespace chronotext
         double duration;
         double spawnDuration;
         
-        float spawnRate; // NEW PARTICLES PER SECOND - BASED ON DT
-        float (*spawnFunction)(float t);
+        float spawnRate; // NEW PARTICLES PER SECOND, BASED ON DT
+        chr::Curve spawnCurve;
         
         RandomRange radius;
         RandomRange direction; // IN DEGREES
@@ -29,10 +25,10 @@ namespace chronotext
         RandomRange angularVelocity; // IN DEGREES PER SECOND
         
         RandomRange scale;
-        float (*scaleFunction)(float t);
+        chr::Curve scaleCurve;
         
         RandomRange alpha;
-        float (*alphaFunction)(float t);
+        chr::Curve alphaCurve;
         
         RandomRange mass;
         bool massRelativeToScale;
@@ -47,7 +43,7 @@ namespace chronotext
         duration(std::numeric_limits<double>::max()),
         spawnDuration(std::numeric_limits<double>::max()),
         spawnRate(1),
-        spawnFunction(Curves::one),
+        spawnCurve(chr::CurveOne()),
         radius(std::make_pair(0, 0)),
         direction(std::make_pair(0, 360)),
         speed(std::make_pair(0, 0)),
@@ -55,9 +51,9 @@ namespace chronotext
         angle(std::make_pair(0, 0)),
         angularVelocity(std::make_pair(0, 0)),
         scale(std::make_pair(1, 1)),
-        scaleFunction(Curves::one),
+        scaleCurve(chr::CurveOne()),
         alpha(std::make_pair(1, 1)),
-        alphaFunction(Curves::one),
+        alphaCurve(chr::CurveOne()),
         mass(std::make_pair(0, 0)),
         massRelativeToScale(false),
         massFactor(0)

@@ -104,7 +104,7 @@ namespace chronotext
                     }
                     else
                     {
-                        spawnRate *= params.spawnFunction(t);
+                        spawnRate *= params.spawnCurve(t);
                     }
                 }
                 
@@ -136,8 +136,8 @@ namespace chronotext
                     }
                     else
                     {
-                        it->scale = it->scale0 * it->scaleFunction(t);
-                        it->alpha = it->alpha0 * it->alphaFunction(t);
+                        it->scale = it->scale0 * it->scaleCurve(t);
+                        it->alpha = it->alpha0 * it->alphaCurve(t);
                         
                         it->angle = math<float>::fmod(it->angle0 + it->angularVelocity * elapsed, 360);
                     }
@@ -226,7 +226,7 @@ namespace chronotext
         
         // ---
         
-        particles.push_back(Particle(sprite, position, velocity, now, lifetime, mass, angle, angularVelocity, scale, params.scaleFunction, alpha, params.alphaFunction));
+        particles.push_back(Particle(sprite, position, velocity, now, lifetime, mass, angle, angularVelocity, scale, params.scaleCurve, alpha, params.scaleCurve));
     }
     
 #pragma mark ---------------------------------------- VERLET ----------------------------------------

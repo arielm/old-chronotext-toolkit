@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Sprite.h"
+#include "Curves.h"
 
 namespace chronotext
 {
@@ -17,21 +18,22 @@ namespace chronotext
         
         float mass;
         
-        float angle; // IN DEGREES
         float angle0; // IN DEGREES
         float angularVelocity; // IN DEGREES PER SECOND
-        
-        float scale;
+
         float scale0;
-        float (*scaleFunction)(float t);
+        chr::Curve scaleCurve;
         
-        float alpha;
         float alpha0;
-        float (*alphaFunction)(float t);
+        chr::Curve alphaCurve;
+        
+        float angle;
+        float scale;
+        float alpha;
         
         bool remove;
         
-        Particle(Sprite *sprite, const ci::Vec2f &position, const ci::Vec2f &velocity, double creationTime, double lifetime, float mass, float angle0, float angularVelocity, float scale0, float (*scaleFunction)(float t), float alpha0, float (*alphaFunction)(float t))
+        Particle(Sprite *sprite, const ci::Vec2f &position, const ci::Vec2f &velocity, double creationTime, double lifetime, float mass, float angle0, float angularVelocity, float scale0, chr::Curve scaleCurve, float alpha0, chr::Curve alphaCurve)
         :
         sprite(sprite),
         position(position),
@@ -42,9 +44,9 @@ namespace chronotext
         angle0(angle0),
         angularVelocity(angularVelocity),
         scale0(scale0),
-        scaleFunction(scaleFunction),
+        scaleCurve(scaleCurve),
         alpha0(alpha0),
-        alphaFunction(alphaFunction),
+        alphaCurve(alphaCurve),
         remove(false)
         {}
         
