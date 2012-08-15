@@ -1,3 +1,7 @@
+/*
+ * TODO: USE std::function
+ */
+
 #pragma once
 
 #include "Curves.h"
