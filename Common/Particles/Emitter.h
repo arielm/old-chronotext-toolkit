@@ -47,6 +47,7 @@ namespace chronotext
         
         bool ended;
         bool spawnEnded;
+        bool spawnEnabled;
         
         float accum;
         int total;
@@ -69,6 +70,7 @@ namespace chronotext
         virtual void update(float dt);
         virtual void draw(const ci::Vec2f &scale);
 
+        void setSpawnEnabled(bool b);
         virtual void spawnParticle(double now);
         
         virtual void accumulateForces();

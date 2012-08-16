@@ -16,11 +16,11 @@ namespace chronotext
         
         float spawnRate; // NEW PARTICLES PER SECOND, BASED ON DT
         chr::Curve spawnCurve;
-        
+
+        RandomRange lifetime;
         RandomRange radius;
         RandomRange direction; // IN DEGREES
         RandomRange speed; // IN PIXELS PER SECOND
-        RandomRange lifetime;
         RandomRange angle; // IN DEGREES
         RandomRange angularVelocity; // IN DEGREES PER SECOND
         

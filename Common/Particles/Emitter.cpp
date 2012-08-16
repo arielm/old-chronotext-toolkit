@@ -20,6 +20,7 @@ namespace chronotext
     position(Vec2f::zero()),
     ended(false),
     spawnEnded(false),
+    spawnEnabled(true),
     accum(0),
     total(0)
     {
@@ -94,7 +95,7 @@ namespace chronotext
             {
                 float spawnRate = params.spawnRate;
                 
-                if (params.spawnDuration != std::numeric_limits<double>::max())
+                if (spawnEnabled && params.spawnDuration != std::numeric_limits<double>::max())
                 {
                     double t = now / params.spawnDuration;
                     
@@ -167,6 +168,11 @@ namespace chronotext
             it->sprite->drawFromCenter();
             glPopMatrix();
         }
+    }
+    
+    void Emitter::setSpawnEnabled(bool b)
+    {
+        spawnEnabled = b;
     }
     
     void Emitter::spawnParticle(double now)
