@@ -10,7 +10,8 @@ namespace chronotext
     {
         ci::Vec2f gravity;
         float friction;
-        
+        bool positionLocked;
+
         double duration;
         double spawnDuration;
         
@@ -40,6 +41,7 @@ namespace chronotext
         :
         gravity(ci::Vec2f::zero()),
         friction(0),
+        positionLocked(true),
         duration(std::numeric_limits<double>::max()),
         spawnDuration(std::numeric_limits<double>::max()),
         spawnRate(1),

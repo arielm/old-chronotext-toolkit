@@ -160,7 +160,13 @@ namespace chronotext
         for (list<Particle>::const_iterator it = particles.begin(); it != particles.end(); ++it)
         {
             glPushMatrix();
-            gl::translate(position + it->position);
+            gl::translate(it->position);
+            
+            if (params.positionLocked)
+            {
+                gl::translate(position);
+            }
+            
             glRotatef(it->angle, 0, 0, 1);
             glScalef(it->scale * scale.x, it->scale * scale.y, 1);
 
@@ -181,32 +187,37 @@ namespace chronotext
 
         // ---
         
-        Vec2f position;
+        Vec2f particlePosition;
         float radius = random.nextFloat(params.radius.first, params.radius.second);
         
         if (radius > 0)
         {
             float direction = random.nextFloat(0, 360);
-            position = Vec2f(math<float>::cos(direction * D2R) * radius, math<float>::sin(direction * D2R) * radius);
+            particlePosition = Vec2f(math<float>::cos(direction * D2R) * radius, math<float>::sin(direction * D2R) * radius);
         }
         else
         {
-            position = Vec2f::zero();
+            particlePosition = Vec2f::zero();
+        }
+        
+        if (!params.positionLocked)
+        {
+            particlePosition += position;
         }
         
         // ---
 
-        Vec2f velocity;
+        Vec2f particleVelocity;
         float speed = random.nextFloat(params.speed.first, params.speed.second);
             
         if (speed > 0)
         {
             float direction = random.nextFloat(params.direction.first, params.direction.second);
-            velocity = Vec2f(math<float>::cos(direction * D2R) * speed, math<float>::sin(direction * D2R) * speed);
+            particleVelocity = Vec2f(math<float>::cos(direction * D2R) * speed, math<float>::sin(direction * D2R) * speed);
         }
         else
         {
-            velocity = Vec2f::zero();
+            particleVelocity = Vec2f::zero();
         }
         
         // ---
@@ -232,7 +243,7 @@ namespace chronotext
         
         // ---
         
-        particles.push_back(Particle(sprite, position, velocity, now, lifetime, mass, angle, angularVelocity, scale, params.scaleCurve, alpha, params.scaleCurve));
+        particles.push_back(Particle(sprite, particlePosition, particleVelocity, now, lifetime, mass, angle, angularVelocity, scale, params.scaleCurve, alpha, params.scaleCurve));
     }
     
 #pragma mark ---------------------------------------- VERLET ----------------------------------------
@@ -247,12 +258,12 @@ namespace chronotext
     
     void Emitter::integrate(float dt)
     {
+        float f1 = 1 - params.friction;
+        float f2 = 2 - params.friction;
+        float dt2 = dt * dt;
+
         for (list<Particle>::iterator it = particles.begin(); it != particles.end(); ++it)
         {
-            float f1 = 1 - params.friction;
-            float f2 = 2 - params.friction;
-            float dt2 = dt * dt;
-            
             const Vec2f tmp = it->position;
             it->position = f2 * it->position - f1 * it->previousPosition + it->acceleration * dt2;
             it->previousPosition = tmp;
