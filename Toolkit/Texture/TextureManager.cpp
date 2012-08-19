@@ -19,7 +19,7 @@ gl::Texture* TextureManager::getTexture(int mswID, const string &mswType, bool u
     oss << mswID << mswType << useMipmap << forceToAlpha << wrapS << wrapT;
     
     string key = oss.str();
-    uint64_t id = MurmurHash64B((void*)key.data(), key.size(), 0);
+    uint64_t id = chr::hash(key);
     
     if (hasTexture(id))
     {
@@ -40,7 +40,7 @@ gl::Texture* TextureManager::getTexture(const string &macPath, bool useMipmap, b
     oss << macPath << useMipmap << forceToAlpha << wrapS << wrapT;
     
     string key = oss.str();
-    uint64_t id = MurmurHash64B((void*)key.data(), key.size(), 0);
+    uint64_t id = chr::hash(key);
     
     if (hasTexture(id))
     {

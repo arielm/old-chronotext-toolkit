@@ -24,7 +24,7 @@ XFont* FontManager::getFont(const string &macPath, bool useMipmap, bool useAniso
     oss << macPath << useMipmap << useAnisotropy << maxDimensions << charactersPerSlot;
     
     string key = oss.str();
-    uint64_t id = MurmurHash64B((void*)key.data(), key.size(), 0);
+    uint64_t id = chr::hash(key);
     
     if (hasFont(id))
     {
@@ -45,7 +45,7 @@ XFont* FontManager::getFont(int mswID, const string &mswType, bool useMipmap, bo
     oss << mswID << mswType << useMipmap << useAnisotropy << maxDimensions << charactersPerSlot;
     
     string key = oss.str();
-    uint64_t id = MurmurHash64B((void*)key.data(), key.size(), 0);
+    uint64_t id = chr::hash(key);
     
     if (hasFont(id))
     {
