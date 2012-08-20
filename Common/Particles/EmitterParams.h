@@ -12,10 +12,19 @@ namespace chronotext
         float friction;
         bool positionLocked;
 
+        /*
+         * IF EQUAL TO std::numeric_limits<double>::max(), THE SYSTEM WILL NEVER END
+         */
         double duration;
+        
+        /*
+         * - IF EQUAL TO std::numeric_limits<double>::max(), spawnRate PARTICLES-PER-SECOND WILL BE EMITTED UNTIL THE SYSTEM ENDS
+         * - IF EQUAL TO std::numeric_limits<double>::min(), spawnRate PARTICLES WILL BE EMITTED IN ONE SHOT
+         * - IN BOTH CASES, spawnCurve WILL BE IGNORED
+         */
         double spawnDuration;
         
-        float spawnRate; // NEW PARTICLES PER SECOND, BASED ON DT
+        float spawnRate; // NEW PARTICLES PER SECOND
         chr::Curve spawnCurve;
 
         RandomRange lifetime;

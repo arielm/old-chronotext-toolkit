@@ -93,35 +93,53 @@ namespace chronotext
             }
             else
             {
-                float spawnRate = params.spawnRate;
-                
-                if (spawnEnabled && params.spawnDuration != std::numeric_limits<double>::max())
+                if (spawnEnabled && !spawnEnded)
                 {
-                    double t = now / params.spawnDuration;
-                    
-                    if (t > 1)
+                    if (params.spawnDuration == std::numeric_limits<double>::min())
                     {
-                        spawnEnded = true;
-                    }
-                    else
-                    {
-                        spawnRate *= params.spawnCurve(t);
-                    }
-                }
-                
-                if (!spawnEnded)
-                {
-                    accum += random.nextFloat(spawnRate * dt * 2);
-                    
-                    if (accum >= 1)
-                    {
-                        int quantity = math<float>::floor(accum);
-                        accum -= quantity;
-                        total += quantity;
+                        int quantity = params.spawnRate;
+                        total = quantity;
                         
                         for (int i = 0; i < quantity; i++)
                         {
                             spawnParticle(now);
+                        }
+                        
+                        spawnEnded = true;
+                    }
+                    else
+                    {
+                        float spawnRate = params.spawnRate;
+                        
+                        if (params.spawnDuration != std::numeric_limits<double>::max())
+                        {
+                            double t = now / params.spawnDuration;
+                            
+                            if (t > 1)
+                            {
+                                spawnEnded = true;
+                            }
+                            else
+                            {
+                                spawnRate *= params.spawnCurve(t);
+                            }
+                        }
+                        
+                        if (!spawnEnded)
+                        {
+                            accum += random.nextFloat(spawnRate * dt * 2);
+                            
+                            if (accum >= 1)
+                            {
+                                int quantity = math<float>::floor(accum);
+                                accum -= quantity;
+                                total += quantity;
+                                
+                                for (int i = 0; i < quantity; i++)
+                                {
+                                    spawnParticle(now);
+                                }
+                            }
                         }
                     }
                 }
