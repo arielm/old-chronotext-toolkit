@@ -203,15 +203,21 @@ namespace chronotext
     {
         Sprite *sprite = sprites[random.nextInt(sprites.size())];
 
+        float direction = random.nextFloat(params.direction.first, params.direction.second);
+        float lifetime = random.nextFloat(params.lifetime.first, params.lifetime.second);
+        float angle = random.nextFloat(params.angle.first, params.angle.second);
+        float angularVelocity = random.nextFloat(params.angularVelocity.first, params.angularVelocity.second);
+        float scale = random.nextFloat(params.scale.first, params.scale.second);
+        float alpha = random.nextFloat(params.alpha.first, params.alpha.second);
+
         // ---
         
         Vec2f particlePosition;
-        float radius = random.nextFloat(params.radius.first, params.radius.second);
+        float distance = random.nextFloat(params.distance.first, params.distance.second);
         
-        if (radius > 0)
+        if (distance > 0)
         {
-            float direction = random.nextFloat(0, 360);
-            particlePosition = Vec2f(math<float>::cos(direction * D2R) * radius, math<float>::sin(direction * D2R) * radius);
+            particlePosition = Vec2f(math<float>::cos(direction * D2R) * distance, math<float>::sin(direction * D2R) * distance);
         }
         else
         {
@@ -230,22 +236,13 @@ namespace chronotext
             
         if (speed > 0)
         {
-            float direction = random.nextFloat(params.direction.first, params.direction.second);
             particleVelocity = Vec2f(math<float>::cos(direction * D2R) * speed, math<float>::sin(direction * D2R) * speed);
         }
         else
         {
             particleVelocity = Vec2f::zero();
         }
-        
-        // ---
-        
-        float lifetime = random.nextFloat(params.lifetime.first, params.lifetime.second);
-        float angle = random.nextFloat(params.angle.first, params.angle.second);
-        float angularVelocity = random.nextFloat(params.angularVelocity.first, params.angularVelocity.second);
-        float scale = random.nextFloat(params.scale.first, params.scale.second);
-        float alpha = random.nextFloat(params.alpha.first, params.alpha.second);
-        
+
         // ---
         
         float mass;
