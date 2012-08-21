@@ -8,7 +8,7 @@
 class StrokeHelper
 {
 public:
-    static void stroke(FollowablePath *path, float width, TexturedTriangleStrip &strip)
+    static void stroke(FollowablePath *path, TexturedTriangleStrip &strip, float width, float ratio = 1)
     {
         int size = path->size;
         
@@ -18,6 +18,8 @@ public:
         strip.count = size * 2;
         strip.vertices = vertices;
         strip.coords = coords;
+        
+        float ufreq = ratio * 0.5 / width;
         
         for (int i = 0; i < size; i++)
         {
@@ -44,15 +46,16 @@ public:
             *vertices++ = path->x[i] - width * dy;
             *vertices++ = path->y[i] + width * dx;
             
-            float t = path->len[i] / (2 * width);
-            *coords++ = t;
+            float textureU = path->len[i] * ufreq;
+
+            *coords++ = textureU;
             *coords++ = 0;
-            *coords++ = t;
+            *coords++ = textureU;
             *coords++ = 1;
         }
     }
 
-    static void stroke(const std::vector<ci::Vec2f> &points, float width, TexturedTriangleStrip &strip)
+    static void stroke(const std::vector<ci::Vec2f> &points, TexturedTriangleStrip &strip, float width, float ratio = 1)
     {
         int size = points.size();
         strip.count = 0;
@@ -72,7 +75,7 @@ public:
             float d;
             
             float textureU = 0;
-            float ufreq = 0.5 / width;
+            float ufreq = ratio * 0.5 / width;
             
             // ---
             
