@@ -86,7 +86,7 @@ FlashShape* FlashTesselator::calculate(const Path2d &path, float approximationSc
     
     // ---
     
-    StrokeHelper::stroke(subdivided, 2, flashShape->strip);
+    StrokeHelper::stroke(subdivided, flashShape->strip, 2);
     
     return flashShape;
 }
