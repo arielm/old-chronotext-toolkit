@@ -88,13 +88,3 @@ wstring utf8ToWstring(const string &s)
     return wstring(reinterpret_cast<const wchar_t*>(buffer));
 #endif
 }
-
-fs::path getCachesDirectory()
-{
-#if defined( CINDER_COCOA_TOUCH )
-	NSString *cachesPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-	return string([cachesPath cStringUsingEncoding:NSUTF8StringEncoding]) + "/";
-#else
-	return ci::getTemporaryDirectory();
-#endif
-}

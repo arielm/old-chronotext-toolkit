@@ -59,7 +59,3 @@ static void logToConsole()
 
 std::string wstringToUtf8(const std::wstring &s);
 std::wstring utf8ToWstring(const std::string &s);
-
-// ---
-
-ci::fs::path getCachesDirectory();
