@@ -19,10 +19,12 @@ void ScreenManager::resize(ResizeEvent event)
 {
     size = event.getSize();
     
-    for (list<CinderSketch*>::const_iterator it = screens.begin(); it != screens.end(); ++it)
+    if (currentScreen)
     {
-        CinderSketch *screen = *it;
-        screen->resize(event);
+        if (size != Vec2i(0, 0))
+        {
+            currentScreen->resize(ResizeEvent(size));
+        }
     }
 }
 
@@ -138,6 +140,11 @@ void ScreenManager::setCurrentScreen(CinderSketch *screen)
     focused[screen] = true;
 
     screen->start(CinderSketch::FLAG_SCREEN_ENTER);
+    
+    if (size != Vec2i(0, 0))
+    {
+        screen->resize(ResizeEvent(size));
+    }
     
     currentScreen = screen;
 }
