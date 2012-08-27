@@ -46,6 +46,8 @@ namespace chronotext
         armedIndex(-1)
         {}
         
+        virtual ~Touchable() {}
+        
         virtual bool hitTest(const ci::Vec2f &point, float *distance) = 0;
         
         void changeState(int state);
