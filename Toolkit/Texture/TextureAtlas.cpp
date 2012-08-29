@@ -59,7 +59,7 @@ TextureAtlas::~TextureAtlas()
     }
 }
 
-void TextureAtlas::clear()
+void TextureAtlas::unload()
 {
     if (texture)
     {
@@ -70,8 +70,10 @@ void TextureAtlas::clear()
 
 void TextureAtlas::reload()
 {
-    clear();
-    texture = TextureHelper::loadTexture(loadResource(texturePath));
+    if (!texture)
+    {
+        texture = TextureHelper::loadTexture(loadResource(texturePath));
+    }
 }
 
 Sprite* TextureAtlas::getSprite(const string &path)

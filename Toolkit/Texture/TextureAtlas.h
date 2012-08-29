@@ -26,7 +26,7 @@ public:
     TextureAtlas(ci::DataSourceRef dataSource, bool useMipmap = false, bool forceToAlpha = false);
     ~TextureAtlas();
     
-    void clear();
+    void unload();
     void reload();
 
     Sprite* getSprite(const std::string &path);
