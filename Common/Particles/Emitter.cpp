@@ -258,7 +258,7 @@ namespace chronotext
         
         // ---
         
-        particles.push_back(Particle(sprite, particlePosition, particleVelocity, now, lifetime, mass, angle, angularVelocity, scale, params.scaleCurve, alpha, params.scaleCurve));
+        particles.push_back(Particle(sprite, particlePosition, particleVelocity, now, lifetime, mass, angle, angularVelocity, scale, params.scaleCurve, alpha, params.alphaCurve));
     }
     
 #pragma mark ---------------------------------------- VERLET ----------------------------------------
