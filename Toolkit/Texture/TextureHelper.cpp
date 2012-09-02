@@ -12,7 +12,12 @@ gl::Texture* TextureHelper::loadTexture(const string &resourceName, bool useMipm
 {
     if (resourceName.rfind(".pvr.gz") != string::npos)
     {
-        Buffer buffer = PVRHelper::loadCompressedPVR(App::getResourcePath(resourceName));
+        Buffer buffer = PVRHelper::decompressPVRGZ(App::getResourcePath(resourceName));
+        return PVRHelper::getPVRTexture(buffer, useMipmap, wrapS, wrapT);
+    }
+    else if (resourceName.rfind(".pvr.ccz") != string::npos)
+    {
+        Buffer buffer = PVRHelper::decompressPVRCCZ(loadResource(resourceName));
         return PVRHelper::getPVRTexture(buffer, useMipmap, wrapS, wrapT);
     }
     else if (resourceName.rfind(".pvr") != string::npos)
@@ -31,7 +36,7 @@ gl::Texture* TextureHelper::loadTexture(const string &resourceName, bool useMipm
             format.setMinFilter(GL_LINEAR_MIPMAP_LINEAR);
         }
         
-        return new gl::Texture(loadImage(App::getResourcePath(resourceName)), format);
+        return new gl::Texture(loadImage(loadResource(resourceName)), format);
     }
 }
 
