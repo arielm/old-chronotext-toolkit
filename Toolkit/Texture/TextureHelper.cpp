@@ -1,9 +1,39 @@
 #include "TextureHelper.h"
+#include "PVRHelper.h"
 
+#include "cinder/app/App.h"
 #include "cinder/ImageIo.h"
 
 using namespace std;
 using namespace ci;
+using namespace ci::app;
+
+gl::Texture* TextureHelper::loadTexture(const string &resourceName, bool useMipmap, GLenum wrapS, GLenum wrapT)
+{
+    if (resourceName.rfind(".pvr.gz") != string::npos)
+    {
+        Buffer buffer = PVRHelper::loadCompressedPVR(App::getResourcePath(resourceName));
+        return PVRHelper::getPVRTexture(buffer, useMipmap, wrapS, wrapT);
+    }
+    else if (resourceName.rfind(".pvr") != string::npos)
+    {
+        Buffer buffer = loadResource(resourceName)->getBuffer();
+        return PVRHelper::getPVRTexture(buffer, useMipmap, wrapS, wrapT);
+    }
+    else
+    {
+        gl::Texture::Format format;
+        format.setWrap(wrapS, wrapT);
+        
+        if (useMipmap)
+        {
+            format.enableMipmapping(true);
+            format.setMinFilter(GL_LINEAR_MIPMAP_LINEAR);
+        }
+        
+        return new gl::Texture(loadImage(App::getResourcePath(resourceName)), format);
+    }
+}
 
 gl::Texture* TextureHelper::loadTexture(DataSourceRef dataSource, bool useMipmap, bool forceToAlpha, GLenum wrapS, GLenum wrapT)
 {

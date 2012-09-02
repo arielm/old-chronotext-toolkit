@@ -13,7 +13,7 @@
 
 class TextureAtlas
 {
-    std::string texturePath;
+    std::string resourceName;
     bool useMipmap;
     
     float width;

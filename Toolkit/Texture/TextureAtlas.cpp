@@ -4,19 +4,18 @@
 #include "cinder/Xml.h"
 
 using namespace ci;
-using namespace ci::app;
 using namespace std;
 
 TextureAtlas::TextureAtlas(DataSourceRef dataSource, bool useMipmap)
 {
     XmlTree doc(dataSource);
     
-    texturePath = doc.getChild("TextureAtlas").getAttributeValue<string>("imagePath");
+    resourceName = doc.getChild("TextureAtlas").getAttributeValue<string>("imagePath");
     this->useMipmap = useMipmap;
 
     // ---
 
-    texture = TextureHelper::loadTexture(loadResource(texturePath), useMipmap);
+    texture = TextureHelper::loadTexture(resourceName, useMipmap);
     
     width = texture->getWidth();
     height = texture->getHeight();
@@ -72,7 +71,7 @@ void TextureAtlas::reload()
 {
     if (!texture)
     {
-        texture = TextureHelper::loadTexture(loadResource(texturePath), useMipmap);
+        texture = TextureHelper::loadTexture(resourceName, useMipmap);
     }
 }
 
