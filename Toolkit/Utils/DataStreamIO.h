@@ -30,7 +30,7 @@ struct WriteStreamBuffer : public std::streambuf
     {
         char *data = (char*)buffer.getData();
         size_t size = buffer.getDataSize();
-
+        
         setp(data, data + size);
     }
 };
@@ -57,9 +57,9 @@ public:
             return ci::Buffer(tmp, size);
         }
     }
-
+    
     // ---
-
+    
     template<typename T>
     static T readLittle(std::istream &in)
     {
@@ -80,10 +80,10 @@ public:
         in.read((char*)&t, sizeof(T));
         
 #ifndef BOOST_BIG_ENDIAN
-    t = ci::swapEndian(t);
+        t = ci::swapEndian(t);
 #endif
-
-    return t;
+        
+        return t;
     }
     
     // ---
@@ -92,79 +92,79 @@ public:
     static void writeLittle(std::ostream &out, T t)
     {
 #if BOOST_BIG_ENDIAN
-    t = ci::swapEndian(t);
+        t = ci::swapEndian(t);
 #endif
-    
-    out.write((char*)&t, sizeof(T));
+        
+        out.write((char*)&t, sizeof(T));
     }
     
     template<typename T>
     static void writeBig(std::ostream &out, T t)
     {
 #ifndef BOOST_BIG_ENDIAN
-    t = ci::swapEndian(t);
+        t = ci::swapEndian(t);
 #endif
-    
-    out.write((char*)&t, sizeof(T));
+        
+        out.write((char*)&t, sizeof(T));
     }
     
     // ---
     
     static void writeStringLittle(std::ostream &out, const std::string &s)
     {
-    uint16_t len = s.length();
-    writeLittle(out, len);
-    
-    if (len > 0)
-    {
-        out.write(s.data(), len);
-    }
+        uint16_t len = s.length();
+        writeLittle(out, len);
+        
+        if (len > 0)
+        {
+            out.write(s.data(), len);
+        }
     }
     
     static void writeStringBig(std::ostream &out, const std::string &s)
     {
-    uint16_t len = s.length();
-    writeBig(out, len);
-    
-    if (len > 0)
-    {
-        out.write(s.data(), len);
-    }
+        uint16_t len = s.length();
+        writeBig(out, len);
+        
+        if (len > 0)
+        {
+            out.write(s.data(), len);
+        }
     }
     
     // ---
-
+    
     static std::string readStringLittle(std::istream &in)
     {
-    std::string s;
-    
-    uint16_t len = readLittle<uint16_t>(in);
-    if (len > 0)
-    {
-        char *data = new char[len];
-        in.read(data, len);
+        std::string s;
         
-        s.assign(data, len);
-        delete[] data;
-    }
-    
-    return s;
+        uint16_t len = readLittle<uint16_t>(in);
+        if (len > 0)
+        {
+            char *data = new char[len];
+            in.read(data, len);
+            
+            s.assign(data, len);
+            delete[] data;
+        }
+        
+        return s;
     }
     
     static std::string readStringBig(std::istream &in)
     {
-    std::string s;
-    
-    uint16_t len = readBig<uint16_t>(in);
-    if (len > 0)
-    {
-        char *data = new char[len];
-        in.read(data, len);
+        std::string s;
         
-        s.assign(data, len);
-        delete[] data;
-    }
-    
-    return s;
+        uint16_t len = readBig<uint16_t>(in);
+        if (len > 0)
+        {
+            char *data = new char[len];
+            in.read(data, len);
+            
+            s.assign(data, len);
+            delete[] data;
+        }
+        
+        return s;
     }
 };
