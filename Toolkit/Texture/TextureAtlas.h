@@ -14,6 +14,7 @@
 class TextureAtlas
 {
     std::string texturePath;
+    bool useMipmap;
     
     float width;
     float height;
@@ -23,7 +24,7 @@ class TextureAtlas
 public:
     ci::gl::Texture *texture;
 
-    TextureAtlas(ci::DataSourceRef dataSource, bool useMipmap = false, bool forceToAlpha = false);
+    TextureAtlas(ci::DataSourceRef dataSource, bool useMipmap = false);
     ~TextureAtlas();
     
     void unload();

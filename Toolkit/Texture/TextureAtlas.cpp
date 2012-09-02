@@ -7,16 +7,16 @@ using namespace ci;
 using namespace ci::app;
 using namespace std;
 
-TextureAtlas::TextureAtlas(DataSourceRef dataSource, bool useMipmap, bool forceToAlpha)
+TextureAtlas::TextureAtlas(DataSourceRef dataSource, bool useMipmap)
 {
     XmlTree doc(dataSource);
     
-    const XmlTree textureAtlasElement = doc.getChild("TextureAtlas");
-    texturePath = textureAtlasElement.getAttributeValue<string>("imagePath");
+    texturePath = doc.getChild("TextureAtlas").getAttributeValue<string>("imagePath");
+    this->useMipmap = useMipmap;
 
     // ---
 
-    texture = TextureHelper::loadTexture(loadResource(texturePath), useMipmap, forceToAlpha);
+    texture = TextureHelper::loadTexture(loadResource(texturePath), useMipmap);
     
     width = texture->getWidth();
     height = texture->getHeight();
@@ -72,7 +72,7 @@ void TextureAtlas::reload()
 {
     if (!texture)
     {
-        texture = TextureHelper::loadTexture(loadResource(texturePath));
+        texture = TextureHelper::loadTexture(loadResource(texturePath), useMipmap);
     }
 }
 

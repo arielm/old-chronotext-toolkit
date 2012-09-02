@@ -137,7 +137,6 @@ gl::Texture* PVRHelper::getPVRTexture(const Buffer &buffer, bool useMipmap, GLen
             type = GL_UNSIGNED_BYTE;
             break;
             
-            
         case kPVRTexturePixelTypeA_8:
             internalFormat = GL_ALPHA;
             format = GL_ALPHA;
