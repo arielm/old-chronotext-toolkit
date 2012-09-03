@@ -24,8 +24,7 @@ namespace chronotext
     accum(0),
     total(0)
     {
-        clock.setTime(0);
-        clock.start();
+        clock.restart();
         
         for (vector<string>::const_iterator it = params.spritePaths.begin(); it != params.spritePaths.end(); ++it)
         {

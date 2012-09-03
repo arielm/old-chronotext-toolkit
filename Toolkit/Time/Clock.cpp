@@ -57,6 +57,12 @@ namespace chronotext
         state = STARTED;
     }
     
+    void Clock::restart()
+    {
+        mst = 0;
+        start();
+    }
+    
     void Clock::stop()
     {
         if (state != STOPPED)

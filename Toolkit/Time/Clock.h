@@ -36,6 +36,7 @@ namespace chronotext
         ~Clock();
         
         void start();
+        void restart();
         void stop();
         double getTime();
         void setTime(int now);
