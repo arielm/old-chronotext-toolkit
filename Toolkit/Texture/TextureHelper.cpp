@@ -8,40 +8,38 @@ using namespace std;
 using namespace ci;
 using namespace ci::app;
 
-gl::Texture* TextureHelper::loadTexture(const string &resourceName, bool useMipmap, GLenum wrapS, GLenum wrapT)
+gl::Texture* TextureHelper::loadTexture(const string &resourceName, bool useMipmap, int filter, GLenum wrapS, GLenum wrapT)
 {
-    if (resourceName.rfind(".pvr.gz") != string::npos)
-    {
-        Buffer buffer = PVRHelper::decompressPVRGZ(App::getResourcePath(resourceName));
-        return PVRHelper::getPVRTexture(buffer, useMipmap, wrapS, wrapT);
-    }
-    else if (resourceName.rfind(".pvr.ccz") != string::npos)
-    {
-        Buffer buffer = PVRHelper::decompressPVRCCZ(loadResource(resourceName));
-        return PVRHelper::getPVRTexture(buffer, useMipmap, wrapS, wrapT);
-    }
-    else if (resourceName.rfind(".pvr") != string::npos)
-    {
-        Buffer buffer = loadResource(resourceName)->getBuffer();
-        return PVRHelper::getPVRTexture(buffer, useMipmap, wrapS, wrapT);
-    }
-    else
-    {
-        gl::Texture::Format format;
-        format.setWrap(wrapS, wrapT);
-        
-        if (useMipmap)
-        {
-            format.enableMipmapping(true);
-            format.setMinFilter(GL_LINEAR_MIPMAP_LINEAR);
-        }
-        
-        return new gl::Texture(loadImage(loadResource(resourceName)), format);
-    }
+    return loadTexture(InputSource::getResource(resourceName), useMipmap, filter, wrapS, wrapT);
 }
 
-gl::Texture* TextureHelper::loadTexture(DataSourceRef dataSource, bool useMipmap, bool forceToAlpha, GLenum wrapS, GLenum wrapT)
+gl::Texture* TextureHelper::loadTexture(InputSourceRef inputSource, bool useMipmap, int filter, GLenum wrapS, GLenum wrapT)
 {
+    if (inputSource->getFilePathHint().rfind(".pvr.gz") != string::npos)
+    {
+        if (inputSource->isFile())
+        {
+            Buffer buffer = PVRHelper::decompressPVRGZ(inputSource->getFilePath());
+            return PVRHelper::getPVRTexture(buffer, useMipmap, wrapS, wrapT);
+        }
+        else
+        {
+            throw runtime_error("PVR.GZ TEXTURES CAN ONLY BE LOADED FROM FILES");
+        }
+    }
+    else if (inputSource->getFilePathHint().rfind(".pvr.ccz") != string::npos)
+    {
+        Buffer buffer = PVRHelper::decompressPVRCCZ(inputSource->loadDataSource());
+        return PVRHelper::getPVRTexture(buffer, useMipmap, wrapS, wrapT);
+    }
+    else if (inputSource->getFilePathHint().rfind(".pvr") != string::npos)
+    {
+        Buffer buffer = inputSource->loadDataSource()->getBuffer();
+        return PVRHelper::getPVRTexture(buffer, useMipmap, wrapS, wrapT);
+    }
+    
+    // ---
+    
     gl::Texture::Format format;
     format.setWrap(wrapS, wrapT);
     
@@ -50,41 +48,44 @@ gl::Texture* TextureHelper::loadTexture(DataSourceRef dataSource, bool useMipmap
         format.enableMipmapping(true);
         format.setMinFilter(GL_LINEAR_MIPMAP_LINEAR);
     }
-    
-    if (forceToAlpha)
+
+    switch (filter)
     {
-        Surface surface(loadImage(dataSource));
-        Channel8u channel = surface.getChannel(0);
-        
-        GLenum dataFormat = GL_ALPHA;
-        format.setInternalFormat(GL_ALPHA);
-        
-        // if the data is not already contiguous, we'll need to create a block of memory that is
-        if ( ( channel.getIncrement() != 1 ) || ( channel.getRowBytes() != channel.getWidth() * sizeof(uint8_t) ) )
+        case FILTER_TRANSLUCENT:
         {
-            boost::shared_ptr<uint8_t> data( new uint8_t[channel.getWidth() * channel.getHeight()], checked_array_deleter<uint8_t>() );
-            uint8_t *dest = data.get();
-            const int8_t inc = channel.getIncrement();
-            const int32_t width = channel.getWidth();
-            for ( int y = 0; y < channel.getHeight(); ++y )
-            {
-                const uint8_t *src = channel.getData( 0, y );
-                for ( int x = 0; x < width; ++x )
-                {
-                    *dest++ = *src;
-                    src += inc;
-                }
-            }
+            Surface surface(loadImage(inputSource->loadDataSource()));
+            Channel8u channel = surface.getChannel(0);
             
-            return new gl::Texture(data.get(), dataFormat, channel.getWidth(), channel.getHeight(), format);
-        }
-        else
-        {
-            return new gl::Texture(channel.getData(), dataFormat, channel.getWidth(), channel.getHeight(), format);
+            GLenum dataFormat = GL_ALPHA;
+            format.setInternalFormat(GL_ALPHA);
+            
+            // if the data is not already contiguous, we'll need to create a block of memory that is
+            if ( ( channel.getIncrement() != 1 ) || ( channel.getRowBytes() != channel.getWidth() * sizeof(uint8_t) ) )
+            {
+                boost::shared_ptr<uint8_t> data( new uint8_t[channel.getWidth() * channel.getHeight()], checked_array_deleter<uint8_t>() );
+                uint8_t *dest = data.get();
+                const int8_t inc = channel.getIncrement();
+                const int32_t width = channel.getWidth();
+                for ( int y = 0; y < channel.getHeight(); ++y )
+                {
+                    const uint8_t *src = channel.getData( 0, y );
+                    for ( int x = 0; x < width; ++x )
+                    {
+                        *dest++ = *src;
+                        src += inc;
+                    }
+                }
+                
+                return new gl::Texture(data.get(), dataFormat, channel.getWidth(), channel.getHeight(), format);
+            }
+            else
+            {
+                return new gl::Texture(channel.getData(), dataFormat, channel.getWidth(), channel.getHeight(), format);
+            }
         }
     }
     
-    return new gl::Texture(loadImage(dataSource), format);
+    return new gl::Texture(loadImage(inputSource->loadDataSource()), format);
 }
 
 void TextureHelper::bindTexture(gl::Texture *texture)
@@ -94,11 +95,14 @@ void TextureHelper::bindTexture(gl::Texture *texture)
 
 void TextureHelper::drawTextureFromCenter(gl::Texture *texture)
 {
-    float x1 = -texture->getWidth() * 0.5;
-    float y1 = -texture->getHeight() * 0.5;
+    float width = texture->getWidth();
+    float height = texture->getHeight();
     
-    float x2 = x1 + texture->getWidth();
-    float y2 = y1 + texture->getHeight();
+    float x1 = -width / 2;
+    float y1 = -height / 2;
+    
+    float x2 = x1 + width;
+    float y2 = y1 + height;
     
     const GLfloat vertices[] =
     {

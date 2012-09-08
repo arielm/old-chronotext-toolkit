@@ -13,7 +13,7 @@
 
 class TextureAtlas
 {
-    std::string resourceName;
+    InputSourceRef inputSource;
     bool useMipmap;
     
     float width;

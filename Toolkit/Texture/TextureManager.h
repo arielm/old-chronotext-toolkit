@@ -2,9 +2,7 @@
 
 #include "Hasher.h"
 #include "TextureHelper.h"
-
-#include "cinder/DataSource.h"
-#include "cinder/app/AppBasic.h"
+#include "InputSource.h"
 
 #include <map>
 
@@ -30,13 +28,9 @@ class TextureManager
 public:
     ~TextureManager();
 
-#if defined( CINDER_MSW )
-    ci::gl::Texture* getTexture(int mswID, const std::string &mswType, bool useMipmap = false, bool forceToAlpha = false, GLenum wrapS = GL_CLAMP_TO_EDGE, GLenum wrapT = GL_CLAMP_TO_EDGE);
-#else
-    ci::gl::Texture* getTexture(const std::string &macPath, bool useMipmap = false, bool forceToAlpha = false, GLenum wrapS = GL_CLAMP_TO_EDGE, GLenum wrapT = GL_CLAMP_TO_EDGE);
-#endif
+    ci::gl::Texture* getTexture(const std::string &resourceName, bool useMipmap = false, int filter = TextureHelper::FILTER_NONE, GLenum wrapS = GL_CLAMP_TO_EDGE, GLenum wrapT = GL_CLAMP_TO_EDGE);
+    ci::gl::Texture* getTexture(InputSourceRef inputSource, bool useMipmap = false, int filter = TextureHelper::FILTER_NONE, GLenum wrapS = GL_CLAMP_TO_EDGE, GLenum wrapT = GL_CLAMP_TO_EDGE);
     
     bool removeTexture(ci::gl::Texture *texture);
-    
     void clear();
 };

@@ -3,20 +3,27 @@
 
 #include <sstream>
 
+using namespace std;
 using namespace ci;
 using namespace app;
-using namespace std;
 
 TextureManager::~TextureManager()
 {
-    clear();
+    for (map<uint64_t, gl::Texture*>::const_iterator it = cache.begin(); it != cache.end(); ++it)
+    {
+        delete it->second;
+    }
 }
 
-#if defined( CINDER_MSW )
-gl::Texture* TextureManager::getTexture(int mswID, const string &mswType, bool useMipmap, bool forceToAlpha, GLenum wrapS, GLenum wrapT)
+gl::Texture* TextureManager::getTexture(const string &resourceName, bool useMipmap, int filter, GLenum wrapS, GLenum wrapT)
+{
+    return getTexture(InputSource::getResource(resourceName), useMipmap, filter, wrapS, wrapT);
+}
+
+gl::Texture* TextureManager::getTexture(InputSourceRef inputSource, bool useMipmap, int filter, GLenum wrapS, GLenum wrapT)
 {
     stringstream oss;
-    oss << mswID << mswType << useMipmap << forceToAlpha << wrapS << wrapT;
+    oss << inputSource->getUniqueName() << useMipmap << filter << wrapS << wrapT;
     
     string key = oss.str();
     uint64_t id = chr::hash(key);
@@ -25,36 +32,14 @@ gl::Texture* TextureManager::getTexture(int mswID, const string &mswType, bool u
     {
         return getTexture(id);
     }
-    
-    DataSourceRef resource = loadResource(mswID, mswType);
-    
-    gl::Texture *texture = TextureHelper::loadTexture(resource, useMipmap, forceToAlpha, wrapS, wrapT);
-    putTexture(id, texture);
-    
-    return texture;
-}
-#else
-gl::Texture* TextureManager::getTexture(const string &macPath, bool useMipmap, bool forceToAlpha, GLenum wrapS, GLenum wrapT)
-{
-    stringstream oss;
-    oss << macPath << useMipmap << forceToAlpha << wrapS << wrapT;
-    
-    string key = oss.str();
-    uint64_t id = chr::hash(key);
-    
-    if (hasTexture(id))
+    else
     {
-        return getTexture(id);
+        gl::Texture *texture = TextureHelper::loadTexture(inputSource, useMipmap, filter, wrapS, wrapT);
+        putTexture(id, texture);
+        
+        return texture;
     }
-    
-    DataSourceRef resource = loadResource(macPath);
-    
-    gl::Texture *texture = TextureHelper::loadTexture(resource, useMipmap, forceToAlpha, wrapS, wrapT);
-    putTexture(id, texture);
-    
-    return texture;
 }
-#endif
 
 bool TextureManager::removeTexture(gl::Texture *texture)
 {

@@ -10,12 +10,14 @@ TextureAtlas::TextureAtlas(DataSourceRef dataSource, bool useMipmap)
 {
     XmlTree doc(dataSource);
     
-    resourceName = doc.getChild("TextureAtlas").getAttributeValue<string>("imagePath");
-    this->useMipmap = useMipmap;
+    string resourceName = doc.getChild("TextureAtlas").getAttributeValue<string>("imagePath");
+    inputSource = InputSource::getResource(resourceName);
 
+    this->useMipmap = useMipmap;
+    
     // ---
 
-    texture = TextureHelper::loadTexture(resourceName, useMipmap);
+    texture = TextureHelper::loadTexture(inputSource, useMipmap);
     
     width = texture->getWidth();
     height = texture->getHeight();
@@ -71,7 +73,7 @@ void TextureAtlas::reload()
 {
     if (!texture)
     {
-        texture = TextureHelper::loadTexture(resourceName, useMipmap);
+        texture = TextureHelper::loadTexture(inputSource, useMipmap);
     }
 }
 
