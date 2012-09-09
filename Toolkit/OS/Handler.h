@@ -9,8 +9,8 @@ class Handler
     Looper *looper;
     
 public:
-    void setLooper(Looper *looper);
-    bool sendMessage(const Message &message);
+    Handler(Looper *looper) : looper(looper) {}
     
+    bool sendMessage(const Message &message);
     virtual void handleMessage(const Message &message) {}
 };

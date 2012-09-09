@@ -3,11 +3,6 @@
 #include "MessageQueue.h"
 #include "Looper.h"
 
-void Handler::setLooper(Looper *looper)
-{
-    this->looper = looper;
-}
-
 bool Handler::sendMessage(const Message &message)
 {
     if (looper)
