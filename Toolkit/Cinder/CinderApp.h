@@ -4,6 +4,9 @@
 
 class CinderApp : public ci::app::AppBasic
 {
+    int startCount;
+    int updateCount;
+
 public:
     void setup();
     void shutdown();

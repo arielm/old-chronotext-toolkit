@@ -6,8 +6,10 @@ using namespace std;
 
 void CinderApp::setup()
 {
+    startCount = 0;
+    updateCount = 0;
+
     sketch->setup();
-    sketch->start(CinderSketch::FLAG_FOCUS_GAIN);
 }
 
 void CinderApp::shutdown()
@@ -20,15 +22,27 @@ void CinderApp::shutdown()
 void CinderApp::resize(ResizeEvent event)
 {
     sketch->resize(event);
+
+    if (startCount == 0)
+    {
+        sketch->start(CinderSketch::FLAG_FOCUS_GAIN);
+        startCount++;
+    }
 }
 
 void CinderApp::update()
 {
     sketch->update();
+    updateCount++;
 }
 
 void CinderApp::draw()
 {
+    if (updateCount == 0)
+    {
+        update();
+    }
+
     sketch->draw();
 }
 
