@@ -108,11 +108,20 @@ NSString* kEAGLViewControllerPropertyInterfaceOrientation = @"kEAGLViewControlle
     if (!started)
     {
         ticks = 0;
-        
-        [glView startAnimation];
+
+        /*
+         * NECESSARY IN ORDER TO AVOID "GHOSTING"
+         */
+        if (stopped)
+        {
+            [glView drawView:nil];
+        }
+
         [renderDelegate startWithReason:reason];
+        [glView startAnimation];
         
         started = YES;
+        stopped = NO;
     }
 }
 
@@ -126,6 +135,7 @@ NSString* kEAGLViewControllerPropertyInterfaceOrientation = @"kEAGLViewControlle
         [renderDelegate stopWithReason:reason];
         
         started = NO;
+        stopped = YES;
     }
 }
 

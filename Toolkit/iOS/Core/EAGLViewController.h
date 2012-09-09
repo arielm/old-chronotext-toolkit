@@ -13,6 +13,7 @@ OBJC_EXPORT NSString* kEAGLViewControllerPropertyInterfaceOrientation;
 	RenderDelegate *renderDelegate;
 	
 	BOOL started;
+    BOOL stopped;
 
 	int ticks;
 	NSTimeInterval t0;
