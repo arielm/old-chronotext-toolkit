@@ -112,7 +112,7 @@ NSString* kEAGLViewControllerPropertyInterfaceOrientation = @"kEAGLViewControlle
         /*
          * NECESSARY IN ORDER TO AVOID "GHOSTING"
          */
-        if (stopped)
+        if ((reason == REASON_VIEW_WILL_APPEAR) && stopped)
         {
             [glView drawView:nil];
         }
