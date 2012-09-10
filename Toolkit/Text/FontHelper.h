@@ -96,6 +96,25 @@ public:
         }
     }
 
+    static void drawTextFromCenter(XFont *font, const std::wstring &text)
+    {
+        int len = text.size();
+        float x = -font->getStringWidth(text) / 2;
+        float y = -font->getStrikethroughOffset();
+        
+        font->beginSequence(NULL, 2);
+        
+        for (int i = 0; i < len; i++)
+        {
+            wchar_t ch = text.at(i);
+            font->addSequenceCharacter(ch, x, y);
+            
+            x += font->getCharWidth(ch);
+        }
+        
+        font->endSequence();
+    }
+    
     static float drawTextOnPath(XFont *font, const std::wstring &text, FollowablePath *path, float offset)
     {
         float res[3];
