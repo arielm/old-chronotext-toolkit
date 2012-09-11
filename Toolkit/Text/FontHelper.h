@@ -6,6 +6,21 @@
 class FontHelper
 {
 public:
+    enum
+    {
+        ALIGN_LEFT,
+        ALIGN_RIGHT,
+        ALIGN_TOP,
+        ALIGN_BOTTOM,
+        ALIGN_MIDDLE
+    };
+    
+    static void drawText(XFont *font, XFontSequence *sequence, const std::wstring &text, float x = 0, float y = 0, int alignX = ALIGN_MIDDLE, int alignY = ALIGN_MIDDLE);
+
+    /*
+     * TODO: ADAPT THE FOLLOWING LEGACY FUNCTIONS
+     */
+
     static void drawText(XFont *font, const std::wstring &text, float x, float y, bool snap = false)
     {
         int len = text.size();
@@ -94,25 +109,6 @@ public:
         {
             return font->getStringWidth(text);
         }
-    }
-
-    static void drawTextFromCenter(XFont *font, const std::wstring &text)
-    {
-        int len = text.size();
-        float x = -font->getStringWidth(text) / 2;
-        float y = -font->getStrikethroughOffset();
-        
-        font->beginSequence(NULL, 2);
-        
-        for (int i = 0; i < len; i++)
-        {
-            wchar_t ch = text.at(i);
-            font->addSequenceCharacter(ch, x, y);
-            
-            x += font->getCharWidth(ch);
-        }
-        
-        font->endSequence();
     }
     
     static float drawTextOnPath(XFont *font, const std::wstring &text, FollowablePath *path, float offset)

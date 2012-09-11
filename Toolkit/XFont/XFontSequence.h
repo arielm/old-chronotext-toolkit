@@ -2,13 +2,13 @@
 
 #include "cinder/gl/gl.h"
 
-typedef struct Slot
+struct Slot
 {
     int count;
     GLfloat *vertice;
     GLfloat *coords;
-    struct Slot *next;
-} Slot;
+    Slot *next;
+};
 
 class XFont;
 
