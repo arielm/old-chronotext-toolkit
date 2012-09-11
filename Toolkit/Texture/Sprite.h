@@ -9,6 +9,8 @@
 class Sprite
 {
 public:
+    ci::gl::Texture *texture;
+
     float w;
     float h;
     float ox;
@@ -24,8 +26,9 @@ public:
     
     Sprite() {}
 
-    Sprite(float w, float h, float ox, float oy, float ow, float oh, bool rotated, float tx1, float ty1, float tx2, float ty2)
+    Sprite(ci::gl::Texture *texture, float w, float h, float ox, float oy, float ow, float oh, bool rotated, float tx1, float ty1, float tx2, float ty2)
     :
+    texture(texture),
     w(w),
     h(h),
     ox(ox),

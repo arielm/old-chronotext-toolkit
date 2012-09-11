@@ -19,6 +19,7 @@ public:
 
     static void drawText(XFont *font, XFontSequence *sequence, const std::wstring &text, float x = 0, float y = 0, bool snap = false);
     static void drawAlignedText(XFont *font, XFontSequence *sequence, const std::wstring &text, float x = 0, float y = 0, int alignX = ALIGN_MIDDLE, int alignY = ALIGN_MIDDLE, bool snap = false);
+    static void drawTextInRect(XFont *font, XFontSequence *sequence, const std::wstring &text, const ci::Rectf &rect, bool snap = false);
     static void drawTextInRect(XFont *font, XFontSequence *sequence, const std::wstring &text, float x1, float y1, float x2, float y2, bool snap = false);
     static void drawStrikethroughInRect(XFont *font, const std::wstring &text, float x1, float y1, float x2, float y2, bool snap = false);
     

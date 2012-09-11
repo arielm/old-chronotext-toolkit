@@ -46,7 +46,7 @@ TextureAtlas::TextureAtlas(DataSourceRef dataSource, bool useMipmap)
         float tx2 = (x + w) / width;
         float ty2 = (y + h) / height;
         
-        sprites[spritePath] = new Sprite(w, h, ox, oy, ow, oh, rotated, tx1, ty1, tx2, ty2);
+        sprites[spritePath] = new Sprite(texture, w, h, ox, oy, ow, oh, rotated, tx1, ty1, tx2, ty2);
     }
 }
 

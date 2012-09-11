@@ -75,6 +75,11 @@ void FontHelper::drawAlignedText(XFont *font, XFontSequence *sequence, const wst
     drawText(font, sequence, text, x, y, snap);
 }
 
+void FontHelper::drawTextInRect(XFont *font, XFontSequence *sequence, const std::wstring &text, const Rectf &rect, bool snap)
+{
+    drawTextInRect(font, sequence, text, rect.x1, rect.y1, rect.x2, rect.y2, snap);
+}
+
 void FontHelper::drawTextInRect(XFont *font, XFontSequence *sequence, const wstring &text, float x1, float y1, float x2, float y2, bool snap)
 {
     float w = x2 - x1;
