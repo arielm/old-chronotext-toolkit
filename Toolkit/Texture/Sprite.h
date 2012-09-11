@@ -9,8 +9,8 @@
 class Sprite
 {
 public:
-    float width;
-    float height;
+    float w;
+    float h;
     float ox;
     float oy;
     float ow;
@@ -24,10 +24,10 @@ public:
     
     Sprite() {}
 
-    Sprite(float width, float height, float ox, float oy, float ow, float oh, bool rotated, float tx1, float ty1, float tx2, float ty2)
+    Sprite(float w, float h, float ox, float oy, float ow, float oh, bool rotated, float tx1, float ty1, float tx2, float ty2)
     :
-    width(width),
-    height(height),
+    w(w),
+    h(h),
     ox(ox),
     oy(oy),
     ow(ow),
@@ -38,6 +38,10 @@ public:
     tx2(tx2),
     ty2(ty2)
     {}
+    
+    ci::Vec2f getSize() const;
+    float getWidth() const;
+    float getHeight() const;
     
     void drawFromCenter();
     void draw(float rx = 0, float ry = 0);

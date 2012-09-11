@@ -30,23 +30,23 @@ TextureAtlas::TextureAtlas(DataSourceRef dataSource, bool useMipmap)
 
         float x = spriteElement->getAttributeValue<float>("x");
         float y = spriteElement->getAttributeValue<float>("y");
-        float spriteWidth = spriteElement->getAttributeValue<float>("w");
-        float spriteHeight = spriteElement->getAttributeValue<float>("h");
+        float w = spriteElement->getAttributeValue<float>("w");
+        float h = spriteElement->getAttributeValue<float>("h");
         
         float ox = spriteElement->getAttributeValue<float>("oX", 0);
         float oy = spriteElement->getAttributeValue<float>("oY", 0);
-        float ow = spriteElement->getAttributeValue<float>("oW", spriteWidth);
-        float oh = spriteElement->getAttributeValue<float>("oH", spriteHeight);
+        float ow = spriteElement->getAttributeValue<float>("oW", w);
+        float oh = spriteElement->getAttributeValue<float>("oH", h);
         
         bool rotated = spriteElement->hasAttribute("r");
         
         float tx1 = x / width;
         float ty1 = y / height;
         
-        float tx2 = (x + spriteWidth) / width;
-        float ty2 = (y + spriteHeight) / height;
+        float tx2 = (x + w) / width;
+        float ty2 = (y + h) / height;
         
-        sprites[spritePath] = new Sprite(spriteWidth, spriteHeight, ox, oy, ow, oh, rotated, tx1, ty1, tx2, ty2);
+        sprites[spritePath] = new Sprite(w, h, ox, oy, ow, oh, rotated, tx1, ty1, tx2, ty2);
     }
 }
 

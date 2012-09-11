@@ -1,5 +1,23 @@
 #include "Sprite.h"
 
+using namespace std;
+using namespace ci;
+
+Vec2f Sprite::getSize() const
+{
+    return Vec2f(ow - ox, oh - oy);
+}
+
+float Sprite::getWidth() const
+{
+    return ow - ox;
+}
+
+float Sprite::getHeight() const
+{
+    return oh - oy;
+}
+
 void Sprite::drawFromCenter()
 {
     draw(ow * 0.5, oh * 0.5);
@@ -21,8 +39,8 @@ void Sprite::draw(float rx, float ry)
         y1 = -ry + oy;
     }
     
-    float x2 = x1 + width;
-    float y2 = y1 + height;
+    float x2 = x1 + w;
+    float y2 = y1 + h;
     
     GLfloat vertices[4][2];
     GLfloat coords[4][2];
