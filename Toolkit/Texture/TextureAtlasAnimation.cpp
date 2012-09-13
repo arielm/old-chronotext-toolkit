@@ -3,12 +3,24 @@
 
 using namespace std;
 
-TextureAtlasAnimation::TextureAtlasAnimation(TextureAtlas *atlas, const string &path, float fps, bool looping)
+TextureAtlasAnimation::TextureAtlasAnimation(TextureAtlas *atlas, const string &path, float fps, bool looping, bool reverse)
 :
 fps(fps),
 looping(looping)
 {
-    sprites = atlas->getAnimationSprites(path);
+    if (reverse)
+    {
+        vector<Sprite*> tmp = atlas->getAnimationSprites(path);
+        
+        for (int i = tmp.size() - 1; i >= 0; i--)
+        {
+            sprites.push_back(tmp[i]);
+        }
+    }
+    else
+    {
+        sprites = atlas->getAnimationSprites(path);
+    }
 }
 
 TextureAtlasAnimation::TextureAtlasAnimation(TextureAtlas *atlas, const string &path, float fps, bool looping, int firstFrameIndex, int lastFrameIndex)
@@ -18,7 +30,7 @@ looping(looping)
 {
     vector<Sprite*> tmp = atlas->getAnimationSprites(path);
     
-    if (((firstFrameIndex < 0) || (firstFrameIndex >= tmp.size()) || ((lastFrameIndex <0) || (lastFrameIndex >= tmp.size()))))
+    if (((firstFrameIndex < 0) || (firstFrameIndex >= tmp.size()) || ((lastFrameIndex < 0) || (lastFrameIndex >= tmp.size()))))
     {
         throw std::runtime_error("OUT-OF-RANGE ANIMATION FRAMES");
     }
