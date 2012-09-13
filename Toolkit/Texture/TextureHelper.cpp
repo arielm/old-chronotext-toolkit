@@ -93,16 +93,34 @@ void TextureHelper::bindTexture(gl::Texture *texture)
     glBindTexture(GL_TEXTURE_2D, texture->getId());
 }
 
+void TextureHelper::beginTexture(gl::Texture *texture)
+{
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+    glEnable(GL_TEXTURE_2D);
+    
+    glBindTexture(GL_TEXTURE_2D, texture->getId());
+}
+
+void TextureHelper::endTexture(gl::Texture *texture)
+{
+    glDisable(GL_TEXTURE_2D);
+    glDisableClientState(GL_VERTEX_ARRAY);
+    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+}
+
 void TextureHelper::drawTextureFromCenter(gl::Texture *texture)
 {
-    float width = texture->getWidth();
-    float height = texture->getHeight();
+    drawTexture(texture, texture->getWidth() * 0.5, texture->getHeight() * 0.5);
+}
+
+void TextureHelper::drawTexture(gl::Texture *texture, float rx, float ry)
+{
+    float x1 = -rx;
+    float y1 = -ry;
     
-    float x1 = -width / 2;
-    float y1 = -height / 2;
-    
-    float x2 = x1 + width;
-    float y2 = y1 + height;
+    float x2 = x1 + texture->getWidth();
+    float y2 = y1 + texture->getHeight();
     
     const GLfloat vertices[] =
     {
