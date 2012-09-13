@@ -21,7 +21,7 @@ public:
     static void bindTexture(ci::gl::Texture *texture);
     
     static void beginTexture(ci::gl::Texture *texture);
-    static void endTexture(ci::gl::Texture *texture);
+    static void endTexture();
     
     static void drawTextureFromCenter(ci::gl::Texture *texture);
     static void drawTexture(ci::gl::Texture *texture, float rx = 0, float ry = 0);

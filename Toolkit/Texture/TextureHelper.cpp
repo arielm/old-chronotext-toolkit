@@ -102,7 +102,7 @@ void TextureHelper::beginTexture(gl::Texture *texture)
     glBindTexture(GL_TEXTURE_2D, texture->getId());
 }
 
-void TextureHelper::endTexture(gl::Texture *texture)
+void TextureHelper::endTexture()
 {
     glDisable(GL_TEXTURE_2D);
     glDisableClientState(GL_VERTEX_ARRAY);
