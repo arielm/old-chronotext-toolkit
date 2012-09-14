@@ -33,6 +33,9 @@ public:
     Sprite* getSprite(const std::string &path);
     std::vector<Sprite*> getAnimationSprites(const std::string &path) const;
 
+    void beginTexture();
+    void endTexture();
+
     void drawSprite(const std::string &path, float rx = 0, float ry = 0);
     void drawSpriteFromCenter(const std::string &path);
 };

@@ -6,6 +6,7 @@
 
 class TextureAtlasAnimation
 {
+    TextureAtlas *atlas;
     std::vector<Sprite*> sprites;
 
 public:
@@ -17,6 +18,9 @@ public:
     
     int getFrameCount();
     float getDuration();
+    
+    void beginTexture();
+    void endTexture();
 
     void drawFromCenter(int frameIndex);
     void drawFromCenter(float t);

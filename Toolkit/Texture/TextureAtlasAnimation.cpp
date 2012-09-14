@@ -5,6 +5,7 @@ using namespace std;
 
 TextureAtlasAnimation::TextureAtlasAnimation(TextureAtlas *atlas, const string &path, float fps, bool looping, bool reverse)
 :
+atlas(atlas),
 fps(fps),
 looping(looping)
 {
@@ -25,6 +26,7 @@ looping(looping)
 
 TextureAtlasAnimation::TextureAtlasAnimation(TextureAtlas *atlas, const string &path, float fps, bool looping, int firstFrameIndex, int lastFrameIndex)
 :
+atlas(atlas),
 fps(fps),
 looping(looping)
 {
@@ -61,6 +63,16 @@ float TextureAtlasAnimation::getDuration()
     return sprites.size() / fps;
 }
 
+void TextureAtlasAnimation::beginTexture()
+{
+    atlas->beginTexture();
+}
+
+void TextureAtlasAnimation::endTexture()
+{
+    atlas->endTexture();
+}
+
 void TextureAtlasAnimation::drawFromCenter(int frameIndex)
 {
     Sprite *sprite = sprites[looping ? (frameIndex % sprites.size()) : min<int>(frameIndex, sprites.size() - 1)];
@@ -88,7 +100,7 @@ void TextureAtlasAnimation::draw(int frameIndex, float rx, float ry)
 void TextureAtlasAnimation::draw(float t, float rx, float ry)
 {
     int frameIndex = t * sprites.size();
-    draw(frameIndex);
+    draw(frameIndex, rx, ry);
 }
 
 void TextureAtlasAnimation::play(double now, float rx, float ry)

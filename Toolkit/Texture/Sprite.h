@@ -1,10 +1,10 @@
 /*
- * WORKS WITH TextureAtlas
+ * PRODUCED BY TextureAtlas
  */
 
 #pragma once
 
-#include "cinder/gl/gl.h"
+#include "cinder/gl/Texture.h"
 
 class Sprite
 {
@@ -45,6 +45,9 @@ public:
     ci::Vec2f getSize() const;
     float getWidth() const;
     float getHeight() const;
+    
+    void beginTexture();
+    void endTexture();
     
     void drawFromCenter();
     void draw(float rx = 0, float ry = 0);

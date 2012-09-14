@@ -18,6 +18,22 @@ float Sprite::getHeight() const
     return oh - oy;
 }
 
+void Sprite::beginTexture()
+{
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+    glEnable(GL_TEXTURE_2D);
+    
+    glBindTexture(GL_TEXTURE_2D, texture->getId());
+}
+
+void Sprite::endTexture()
+{
+    glDisable(GL_TEXTURE_2D);
+    glDisableClientState(GL_VERTEX_ARRAY);
+    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+}
+
 void Sprite::drawFromCenter()
 {
     draw(ow * 0.5, oh * 0.5);
