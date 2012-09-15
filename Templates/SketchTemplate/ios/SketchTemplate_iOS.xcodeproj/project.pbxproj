@@ -17,6 +17,12 @@
 		A82CFC86153A35FF0085FDA3 /* Looper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A82CFC7D153A35FF0085FDA3 /* Looper.cpp */; };
 		A82CFC87153A35FF0085FDA3 /* MessageQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A82CFC80153A35FF0085FDA3 /* MessageQueue.cpp */; };
 		A82CFC88153A35FF0085FDA3 /* AudioLoop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A82CFC83153A35FF0085FDA3 /* AudioLoop.cpp */; };
+		A8468D491604B93500CE0E21 /* InputSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8468D471604B93500CE0E21 /* InputSource.cpp */; };
+		A8468D4F1604B96600CE0E21 /* TextureHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8468D4C1604B96600CE0E21 /* TextureHelper.cpp */; };
+		A8468D501604B96600CE0E21 /* PVRHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8468D4D1604B96600CE0E21 /* PVRHelper.cpp */; };
+		A8468D541604B9A000CE0E21 /* FontHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8468D511604B9A000CE0E21 /* FontHelper.cpp */; };
+		A8468D551604B9A000CE0E21 /* WordWrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8468D521604B9A000CE0E21 /* WordWrapper.cpp */; };
+		A8468D6C1604BA8F00CE0E21 /* ScreenManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8468D6A1604BA8F00CE0E21 /* ScreenManager.cpp */; };
 		A8641F1915A5D4070054E5EC /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8641F0915A5D4070054E5EC /* Sprite.cpp */; };
 		A8641F1A15A5D4070054E5EC /* TextureAtlas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8641F0B15A5D4070054E5EC /* TextureAtlas.cpp */; };
 		A8641F1B15A5D4070054E5EC /* TextureAtlasAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8641F0D15A5D4070054E5EC /* TextureAtlasAnimation.cpp */; };
@@ -68,6 +74,19 @@
 		A82CFC81153A35FF0085FDA3 /* MessageQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageQueue.h; sourceTree = "<group>"; };
 		A82CFC83153A35FF0085FDA3 /* AudioLoop.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioLoop.cpp; sourceTree = "<group>"; };
 		A82CFC84153A35FF0085FDA3 /* AudioLoop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioLoop.h; sourceTree = "<group>"; };
+		A8468D461604B93500CE0E21 /* DataStreamIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataStreamIO.h; sourceTree = "<group>"; };
+		A8468D471604B93500CE0E21 /* InputSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InputSource.cpp; sourceTree = "<group>"; };
+		A8468D481604B93500CE0E21 /* InputSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputSource.h; sourceTree = "<group>"; };
+		A8468D4A1604B94D00CE0E21 /* Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Random.h; sourceTree = "<group>"; };
+		A8468D4B1604B94D00CE0E21 /* Curves.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Curves.h; sourceTree = "<group>"; };
+		A8468D4C1604B96600CE0E21 /* TextureHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureHelper.cpp; sourceTree = "<group>"; };
+		A8468D4D1604B96600CE0E21 /* PVRHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PVRHelper.cpp; sourceTree = "<group>"; };
+		A8468D4E1604B96600CE0E21 /* PVRHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PVRHelper.h; sourceTree = "<group>"; };
+		A8468D511604B9A000CE0E21 /* FontHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FontHelper.cpp; sourceTree = "<group>"; };
+		A8468D521604B9A000CE0E21 /* WordWrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WordWrapper.cpp; sourceTree = "<group>"; };
+		A8468D531604B9A000CE0E21 /* WordWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordWrapper.h; sourceTree = "<group>"; };
+		A8468D6A1604BA8F00CE0E21 /* ScreenManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScreenManager.cpp; sourceTree = "<group>"; };
+		A8468D6B1604BA8F00CE0E21 /* ScreenManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenManager.h; sourceTree = "<group>"; };
 		A856A59C15384BF1006976B2 /* StrokeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrokeHelper.h; sourceTree = "<group>"; };
 		A856A59D15384BF1006976B2 /* TexturedTriangleStrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TexturedTriangleStrip.h; sourceTree = "<group>"; };
 		A8641F0915A5D4070054E5EC /* Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
@@ -105,7 +124,6 @@
 		A8CF25291516263900BD643A /* SplinePath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SplinePath.cpp; sourceTree = "<group>"; };
 		A8CF252A1516263900BD643A /* SplinePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplinePath.h; sourceTree = "<group>"; };
 		A8CF25371516263900BD643A /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
-		A8CF25381516263900BD643A /* DataStreamIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataStreamIO.h; sourceTree = "<group>"; };
 		A8CF25391516263900BD643A /* GraphicHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphicHelper.h; sourceTree = "<group>"; };
 		A8CF253D1516263900BD643A /* Utils.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = Utils.h; sourceTree = "<group>"; };
 		A8CF253E1516263900BD643A /* Utils.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = Utils.cpp; sourceTree = "<group>"; };
@@ -251,18 +269,42 @@
 			path = "../../../../chronotext-public/Toolkit/Sound";
 			sourceTree = "<group>";
 		};
+		A8468D451604B93500CE0E21 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				A8468D481604B93500CE0E21 /* InputSource.h */,
+				A8468D471604B93500CE0E21 /* InputSource.cpp */,
+				A8468D461604B93500CE0E21 /* DataStreamIO.h */,
+			);
+			name = Data;
+			path = "../../../../chronotext-public/Toolkit/Data";
+			sourceTree = "<group>";
+		};
+		A8468D691604BA8F00CE0E21 /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				A8468D6B1604BA8F00CE0E21 /* ScreenManager.h */,
+				A8468D6A1604BA8F00CE0E21 /* ScreenManager.cpp */,
+			);
+			name = Screen;
+			path = "../../../../chronotext-public/Toolkit/Screen";
+			sourceTree = "<group>";
+		};
 		A8641F0815A5D4070054E5EC /* Texture */ = {
 			isa = PBXGroup;
 			children = (
-				A8641F0915A5D4070054E5EC /* Sprite.cpp */,
 				A8641F0A15A5D4070054E5EC /* Sprite.h */,
-				A8641F0B15A5D4070054E5EC /* TextureAtlas.cpp */,
+				A8641F0915A5D4070054E5EC /* Sprite.cpp */,
 				A8641F0C15A5D4070054E5EC /* TextureAtlas.h */,
-				A8641F0D15A5D4070054E5EC /* TextureAtlasAnimation.cpp */,
+				A8641F0B15A5D4070054E5EC /* TextureAtlas.cpp */,
 				A8641F0E15A5D4070054E5EC /* TextureAtlasAnimation.h */,
+				A8641F0D15A5D4070054E5EC /* TextureAtlasAnimation.cpp */,
 				A8641F0F15A5D4070054E5EC /* TextureHelper.h */,
-				A8641F1015A5D4070054E5EC /* TextureManager.cpp */,
+				A8468D4C1604B96600CE0E21 /* TextureHelper.cpp */,
 				A8641F1115A5D4070054E5EC /* TextureManager.h */,
+				A8641F1015A5D4070054E5EC /* TextureManager.cpp */,
+				A8468D4E1604B96600CE0E21 /* PVRHelper.h */,
+				A8468D4D1604B96600CE0E21 /* PVRHelper.cpp */,
 			);
 			name = Texture;
 			path = "../../../../chronotext-public/Toolkit/Texture";
@@ -285,6 +327,8 @@
 		A8641F1F15A5D4120054E5EC /* Maths */ = {
 			isa = PBXGroup;
 			children = (
+				A8468D4A1604B94D00CE0E21 /* Random.h */,
+				A8468D4B1604B94D00CE0E21 /* Curves.h */,
 				A8641F2015A5D4120054E5EC /* Matrix2D.cpp */,
 				A8641F2115A5D4120054E5EC /* Matrix2D.h */,
 			);
@@ -331,7 +375,9 @@
 				A8641F1215A5D4070054E5EC /* Time */,
 				A8CF25241516263900BD643A /* FollowablePath */,
 				A8CF25361516263900BD643A /* Utils */,
+				A8468D451604B93500CE0E21 /* Data */,
 				A8641F1F15A5D4120054E5EC /* Maths */,
+				A8468D691604BA8F00CE0E21 /* Screen */,
 				A82CFC7A153A35FF0085FDA3 /* OS */,
 				A82CFC82153A35FF0085FDA3 /* Sound */,
 			);
@@ -353,8 +399,11 @@
 			isa = PBXGroup;
 			children = (
 				A8AB668315826FAD00B93CD7 /* FontHelper.h */,
-				A8AB668415826FAD00B93CD7 /* FontManager.cpp */,
+				A8468D511604B9A000CE0E21 /* FontHelper.cpp */,
 				A8AB668515826FAD00B93CD7 /* FontManager.h */,
+				A8AB668415826FAD00B93CD7 /* FontManager.cpp */,
+				A8468D531604B9A000CE0E21 /* WordWrapper.h */,
+				A8468D521604B9A000CE0E21 /* WordWrapper.cpp */,
 			);
 			name = Text;
 			path = "../../../../chronotext-public/Toolkit/Text";
@@ -379,7 +428,6 @@
 			children = (
 				A82CFC75153A35ED0085FDA3 /* md5 */,
 				A8CF25371516263900BD643A /* Constants.h */,
-				A8CF25381516263900BD643A /* DataStreamIO.h */,
 				A8CF253D1516263900BD643A /* Utils.h */,
 				A8CF253E1516263900BD643A /* Utils.cpp */,
 				A8CF25391516263900BD643A /* GraphicHelper.h */,
@@ -510,6 +558,12 @@
 				A8FFCADB15AC1BFB00512417 /* EAGLViewController.m in Sources */,
 				A8FFCADC15AC1BFB00512417 /* ES1Renderer.m in Sources */,
 				A8FFCADD15AC1BFB00512417 /* RenderDelegate.m in Sources */,
+				A8468D491604B93500CE0E21 /* InputSource.cpp in Sources */,
+				A8468D4F1604B96600CE0E21 /* TextureHelper.cpp in Sources */,
+				A8468D501604B96600CE0E21 /* PVRHelper.cpp in Sources */,
+				A8468D541604B9A000CE0E21 /* FontHelper.cpp in Sources */,
+				A8468D551604B9A000CE0E21 /* WordWrapper.cpp in Sources */,
+				A8468D6C1604BA8F00CE0E21 /* ScreenManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
