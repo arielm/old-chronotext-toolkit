@@ -64,22 +64,28 @@ NSString* kEAGLViewControllerPropertyInterfaceOrientation = @"kEAGLViewControlle
 
 - (void) viewWillAppear:(BOOL)animated
 {
-    NSLog(@"EAGLViewController - viewWillAppear");
-	[self startWithReason:REASON_VIEW_WILL_APPEAR];
-	
-	NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
-	[center addObserver:self selector:@selector(applicationDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
-	[center addObserver:self selector:@selector(applicationWillResignActive) name:UIApplicationWillResignActiveNotification object:nil];
+    if (glView.viewController == self)
+    {
+        NSLog(@"EAGLViewController - viewWillAppear");
+        [self startWithReason:REASON_VIEW_WILL_APPEAR];
+        
+        NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
+        [center addObserver:self selector:@selector(applicationDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
+        [center addObserver:self selector:@selector(applicationWillResignActive) name:UIApplicationWillResignActiveNotification object:nil];
+    }
 }
 
 - (void) viewWillDisappear:(BOOL)animated
 {
-    NSLog(@"EAGLViewController - viewWillDisappear");
-	[self stopWithReason:REASON_VIEW_WILL_DISAPEAR];
-	
-	NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
-	[center removeObserver:self name:UIApplicationDidBecomeActiveNotification object:nil];
-	[center removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
+    if (glView.viewController == self)
+    {
+        NSLog(@"EAGLViewController - viewWillDisappear");
+        [self stopWithReason:REASON_VIEW_WILL_DISAPEAR];
+        
+        NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
+        [center removeObserver:self name:UIApplicationDidBecomeActiveNotification object:nil];
+        [center removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
+    }
 }
 
 - (void) draw
@@ -153,14 +159,20 @@ NSString* kEAGLViewControllerPropertyInterfaceOrientation = @"kEAGLViewControlle
 
 - (void) applicationDidBecomeActive
 {
-	NSLog(@"EAGLViewController - applicationDidBecomeActive");
-	[self startWithReason:REASON_APPLICATION_DID_BECOME_ACTIVE];
+    if (glView.viewController == self)
+    {
+        NSLog(@"EAGLViewController - applicationDidBecomeActive");
+        [self startWithReason:REASON_APPLICATION_DID_BECOME_ACTIVE];
+    }
 }
 
 - (void) applicationWillResignActive
 {
-	NSLog(@"EAGLViewController - applicationWillResignActive");
-    [self stopWithReason:REASON_APPLICATION_WILL_RESIGN_ACTIVE];
+    if (glView.viewController == self)
+    {
+        NSLog(@"EAGLViewController - applicationWillResignActive");
+        [self stopWithReason:REASON_APPLICATION_WILL_RESIGN_ACTIVE];
+    }
 }
 
 @end
