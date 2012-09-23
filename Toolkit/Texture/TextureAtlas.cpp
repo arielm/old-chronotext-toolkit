@@ -11,16 +11,10 @@ TextureAtlas::TextureAtlas(DataSourceRef dataSource, bool useMipmap)
     XmlTree doc(dataSource);
     
     string resourceName = doc.getChild("TextureAtlas").getAttributeValue<string>("imagePath");
-    inputSource = InputSource::getResource(resourceName);
-
-    this->useMipmap = useMipmap;
+    texture = new Texture(InputSource::getResource(resourceName), useMipmap);
     
-    // ---
-
-    texture = TextureHelper::loadTexture(inputSource, useMipmap);
-    
-    width = texture->getWidth();
-    height = texture->getHeight();
+    float width = texture->getWidth();
+    float height = texture->getHeight();
     
     // ---
     
@@ -62,19 +56,12 @@ TextureAtlas::~TextureAtlas()
 
 void TextureAtlas::unload()
 {
-    if (texture)
-    {
-        TextureHelper::deleteTexture(texture);
-        texture = NULL;
-    }
+    texture->unload();
 }
 
 void TextureAtlas::reload()
 {
-    if (!texture)
-    {
-        texture = TextureHelper::loadTexture(inputSource, useMipmap);
-    }
+    texture->reload();
 }
 
 Sprite* TextureAtlas::getSprite(const string &path)
@@ -110,18 +97,12 @@ vector<Sprite*> TextureAtlas::getAnimationSprites(const string &path) const
 
 void TextureAtlas::beginTexture()
 {
-    glEnableClientState(GL_VERTEX_ARRAY);
-    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-    glEnable(GL_TEXTURE_2D);
-    
-    glBindTexture(GL_TEXTURE_2D, texture->getId());
+    texture->begin();
 }
 
 void TextureAtlas::endTexture()
 {
-    glDisable(GL_TEXTURE_2D);
-    glDisableClientState(GL_VERTEX_ARRAY);
-    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+    texture->end();
 }
 
 void TextureAtlas::drawSprite(const string &path, float rx, float ry)

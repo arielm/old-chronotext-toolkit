@@ -4,7 +4,6 @@
 
 #pragma once
 
-#include "TextureHelper.h"
 #include "Sprite.h"
 
 #include "cinder/DataSource.h"
@@ -13,16 +12,10 @@
 
 class TextureAtlas
 {
-    InputSourceRef inputSource;
-    bool useMipmap;
-    
-    float width;
-    float height;
-
     std::map<std::string, Sprite*> sprites;
 
 public:
-    ci::gl::Texture *texture;
+    Texture *texture;
 
     TextureAtlas(ci::DataSourceRef dataSource, bool useMipmap = false);
     ~TextureAtlas();

@@ -49,6 +49,11 @@ void Texture::reload()
     }
 }
 
+int Texture::getId()
+{
+    return name;
+}
+
 void Texture::bind()
 {
     glBindTexture(GL_TEXTURE_2D, name);
@@ -102,4 +107,19 @@ void Texture::draw(float rx, float ry)
     glTexCoordPointer(2, GL_FLOAT, 0, coords);
     glVertexPointer(2, GL_FLOAT, 0, vertices);
     glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+}
+
+int Texture::getWidth()
+{
+    return width;
+}
+
+int Texture::getHeight()
+{
+    return height;
+}
+
+Vec2f Texture::getSize() const
+{
+    return Vec2f(width, height);
 }

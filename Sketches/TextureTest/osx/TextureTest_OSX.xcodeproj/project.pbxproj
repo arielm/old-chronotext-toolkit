@@ -248,20 +248,20 @@
 		A8641EE815A5D2E10054E5EC /* Texture */ = {
 			isa = PBXGroup;
 			children = (
+				A8641EEF15A5D2E10054E5EC /* TextureHelper.h */,
+				A8A277AE15FA329000F00D42 /* TextureHelper.cpp */,
+				A8A277B215FA329700F00D42 /* PVRHelper.h */,
+				A8A277B115FA329700F00D42 /* PVRHelper.cpp */,
+				A8ECC0E4160F887D00D1258F /* Texture.h */,
+				A8ECC0E3160F887D00D1258F /* Texture.cpp */,
+				A8641EF115A5D2E10054E5EC /* TextureManager.h */,
+				A8641EF015A5D2E10054E5EC /* TextureManager.cpp */,
 				A8641EEA15A5D2E10054E5EC /* Sprite.h */,
 				A8641EE915A5D2E10054E5EC /* Sprite.cpp */,
 				A8641EEC15A5D2E10054E5EC /* TextureAtlas.h */,
 				A8641EEB15A5D2E10054E5EC /* TextureAtlas.cpp */,
 				A8641EEE15A5D2E10054E5EC /* TextureAtlasAnimation.h */,
 				A8641EED15A5D2E10054E5EC /* TextureAtlasAnimation.cpp */,
-				A8641EEF15A5D2E10054E5EC /* TextureHelper.h */,
-				A8A277AE15FA329000F00D42 /* TextureHelper.cpp */,
-				A8641EF115A5D2E10054E5EC /* TextureManager.h */,
-				A8641EF015A5D2E10054E5EC /* TextureManager.cpp */,
-				A8A277B215FA329700F00D42 /* PVRHelper.h */,
-				A8A277B115FA329700F00D42 /* PVRHelper.cpp */,
-				A8ECC0E4160F887D00D1258F /* Texture.h */,
-				A8ECC0E3160F887D00D1258F /* Texture.cpp */,
 			);
 			name = Texture;
 			path = "../../../../chronotext-public/Toolkit/Texture";

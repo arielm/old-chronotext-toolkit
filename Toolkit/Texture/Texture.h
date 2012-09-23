@@ -24,7 +24,8 @@ public:
     
     void unload();
     void reload();
-    
+
+    int getId();
     void bind();
     
     void begin();
@@ -32,4 +33,8 @@ public:
     
     void drawFromCenter();
     void draw(float rx = 0, float ry = 0);
+    
+    int getWidth();
+    int getHeight();
+    ci::Vec2f getSize() const;
 };

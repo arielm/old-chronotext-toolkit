@@ -4,12 +4,12 @@
 
 #pragma once
 
-#include "cinder/gl/Texture.h"
+#include "Texture.h"
 
 class Sprite
 {
 public:
-    ci::gl::Texture *texture;
+    Texture *texture;
 
     float w;
     float h;
@@ -26,7 +26,7 @@ public:
     
     Sprite() {}
 
-    Sprite(ci::gl::Texture *texture, float w, float h, float ox, float oy, float ow, float oh, bool rotated, float tx1, float ty1, float tx2, float ty2)
+    Sprite(Texture *texture, float w, float h, float ox, float oy, float ow, float oh, bool rotated, float tx1, float ty1, float tx2, float ty2)
     :
     texture(texture),
     w(w),

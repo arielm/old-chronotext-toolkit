@@ -20,18 +20,12 @@ float Sprite::getHeight() const
 
 void Sprite::beginTexture()
 {
-    glEnableClientState(GL_VERTEX_ARRAY);
-    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-    glEnable(GL_TEXTURE_2D);
-    
-    glBindTexture(GL_TEXTURE_2D, texture->getId());
+    texture->begin();
 }
 
 void Sprite::endTexture()
 {
-    glDisable(GL_TEXTURE_2D);
-    glDisableClientState(GL_VERTEX_ARRAY);
-    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+    texture->end();
 }
 
 void Sprite::drawFromCenter()
