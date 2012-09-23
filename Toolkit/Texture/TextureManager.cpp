@@ -2,7 +2,6 @@
 
 using namespace std;
 using namespace ci;
-using namespace app;
 
 TextureManager::~TextureManager()
 {

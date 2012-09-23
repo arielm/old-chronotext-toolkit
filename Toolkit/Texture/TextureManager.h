@@ -2,7 +2,6 @@
 
 #include "TextureHelper.h"
 #include "Texture.h"
-#include "Utils.h"
 
 #include <list>
 

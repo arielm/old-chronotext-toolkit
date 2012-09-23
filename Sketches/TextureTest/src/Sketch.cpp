@@ -11,6 +11,13 @@ void Sketch::setup()
     texture2 = textureManager.getTexture(InputSource::getResource(RES_B));
     texture3 = textureManager.getTexture(InputSource::getFileInDocuments("Atlas-2_IPAD1.pvr.gz")); // XXX: BE SURE TO HAVE SUCH A FILE IN THE DOCUMENTS FOLDER
     
+    textureManager.remove(texture2);
+    texture1 = textureManager.getTexture(InputSource::getResource("hatch.png"), true, TextureHelper::FILTER_TRANSLUCENT);
+    texture2 = textureManager.getTexture(InputSource::getResource(RES_B));
+    
+    textureManager.unload();
+    textureManager.reload();
+    
     // ---
     
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
