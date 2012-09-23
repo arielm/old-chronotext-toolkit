@@ -42,5 +42,7 @@ public:
     
     bool removeTexture(ci::gl::Texture *texture);
     void clear();
+    
+    void unload();
     void reload();
 };

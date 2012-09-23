@@ -16,7 +16,7 @@ gl::Texture* TextureManager::getTextureFromCache(InputSourceRef inputSource, boo
 {
     for (list<TextureEntry>::const_iterator it = cache.begin(); it != cache.end(); ++it)
     {
-        if ((it->inputSource == inputSource) && (it->useMipmap == useMipmap) && (it->filter == filter) && (it->wrapS == wrapS) && (it->wrapT == wrapT))
+        if ((it->inputSource->getUniqueName() == inputSource->getUniqueName()) && (it->useMipmap == useMipmap) && (it->filter == filter) && (it->wrapS == wrapS) && (it->wrapT == wrapT))
         {
             return it->texture;
         }
@@ -74,15 +74,22 @@ void TextureManager::clear()
     cache.clear();
 }
 
-void TextureManager::reload()
+void TextureManager::unload()
 {
-    for (list<TextureEntry>::const_iterator it = cache.begin(); it != cache.end(); ++it)
-    {
-        TextureHelper::deleteTexture(it->texture);
-    }
-    
     for (list<TextureEntry>::iterator it = cache.begin(); it != cache.end(); ++it)
     {
-        it->texture = TextureHelper::loadTexture(it->inputSource, it->useMipmap, it->filter, it->wrapS, it->wrapT);
+        TextureHelper::deleteTexture(it->texture);
+        it->texture = NULL;
+    }
+}
+
+void TextureManager::reload()
+{
+    for (list<TextureEntry>::iterator it = cache.begin(); it != cache.end(); ++it)
+    {
+        if (!it->texture)
+        {
+            it->texture = TextureHelper::loadTexture(it->inputSource, it->useMipmap, it->filter, it->wrapS, it->wrapT);
+        }
     }
 }

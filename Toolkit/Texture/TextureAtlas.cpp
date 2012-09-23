@@ -60,11 +60,19 @@ TextureAtlas::~TextureAtlas()
     }
 }
 
-void TextureAtlas::reload()
+void TextureAtlas::unload()
 {
     if (texture)
     {
         TextureHelper::deleteTexture(texture);
+        texture = NULL;
+    }
+}
+
+void TextureAtlas::reload()
+{
+    if (!texture)
+    {
         texture = TextureHelper::loadTexture(inputSource, useMipmap);
     }
 }
