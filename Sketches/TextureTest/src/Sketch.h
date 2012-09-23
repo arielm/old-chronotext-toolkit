@@ -6,6 +6,7 @@
 
 #include "CinderSketch.h"
 #include "TextureManager.h"
+#include "Texture.h"
 
 class Sketch : public CinderSketch
 {

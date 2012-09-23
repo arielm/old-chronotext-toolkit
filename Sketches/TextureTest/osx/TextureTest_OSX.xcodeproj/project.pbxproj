@@ -42,6 +42,7 @@
 		A8CF2512151623C100BD643A /* ASPC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8CF250C151623C100BD643A /* ASPC.cpp */; };
 		A8CF2513151623C100BD643A /* FollowablePath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8CF250E151623C100BD643A /* FollowablePath.cpp */; };
 		A8CF2514151623C100BD643A /* SplinePath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8CF2510151623C100BD643A /* SplinePath.cpp */; };
+		A8ECC0E5160F887D00D1258F /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8ECC0E3160F887D00D1258F /* Texture.cpp */; };
 		A8EF74071539D1BE005DBEC2 /* md5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8EF74051539D1BE005DBEC2 /* md5.cpp */; };
 		A8EF74141539D1E0005DBEC2 /* Handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8EF740A1539D1E0005DBEC2 /* Handler.cpp */; };
 		A8EF74151539D1E0005DBEC2 /* Looper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8EF740C1539D1E0005DBEC2 /* Looper.cpp */; };
@@ -123,6 +124,8 @@
 		A8CF250F151623C100BD643A /* FollowablePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowablePath.h; sourceTree = "<group>"; };
 		A8CF2510151623C100BD643A /* SplinePath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SplinePath.cpp; sourceTree = "<group>"; };
 		A8CF2511151623C100BD643A /* SplinePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplinePath.h; sourceTree = "<group>"; };
+		A8ECC0E3160F887D00D1258F /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
+		A8ECC0E4160F887D00D1258F /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
 		A8EF74051539D1BE005DBEC2 /* md5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = md5.cpp; sourceTree = "<group>"; };
 		A8EF74061539D1BE005DBEC2 /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md5.h; sourceTree = "<group>"; };
 		A8EF740A1539D1E0005DBEC2 /* Handler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Handler.cpp; sourceTree = "<group>"; };
@@ -257,6 +260,8 @@
 				A8641EF015A5D2E10054E5EC /* TextureManager.cpp */,
 				A8A277B215FA329700F00D42 /* PVRHelper.h */,
 				A8A277B115FA329700F00D42 /* PVRHelper.cpp */,
+				A8ECC0E4160F887D00D1258F /* Texture.h */,
+				A8ECC0E3160F887D00D1258F /* Texture.cpp */,
 			);
 			name = Texture;
 			path = "../../../../chronotext-public/Toolkit/Texture";
@@ -535,6 +540,7 @@
 				A8A277AF15FA329000F00D42 /* TextureHelper.cpp in Sources */,
 				A8A277B315FA329700F00D42 /* PVRHelper.cpp in Sources */,
 				A8A277BA15FA374800F00D42 /* InputSource.cpp in Sources */,
+				A8ECC0E5160F887D00D1258F /* Texture.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
