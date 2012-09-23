@@ -8,17 +8,17 @@ class Texture
     int width;
     int height;
     
-    InputSourceRef inputSource;
-    bool useMipmap;
-    int filter;
-    GLenum wrapS;
-    GLenum wrapT;
-    
     ci::gl::Texture *texture;
     
     void init(ci::gl::Texture *texture);
 
 public:
+    InputSourceRef inputSource;
+    bool useMipmap;
+    int filter;
+    GLenum wrapS;
+    GLenum wrapT;
+
     Texture(InputSourceRef inputSource, bool useMipmap = false, int filter = TextureHelper::FILTER_NONE, GLenum wrapS = GL_CLAMP_TO_EDGE, GLenum wrapT = GL_CLAMP_TO_EDGE);
     ~Texture();
     

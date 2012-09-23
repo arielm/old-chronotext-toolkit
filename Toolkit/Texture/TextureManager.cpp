@@ -6,55 +6,57 @@ using namespace app;
 
 TextureManager::~TextureManager()
 {
-    for (list<TextureEntry>::const_iterator it = cache.begin(); it != cache.end(); ++it)
+    for (list<Texture*>::iterator it = cache.begin(); it != cache.end(); ++it)
     {
-        TextureHelper::deleteTexture(it->texture);
+        delete *it;
     }
 }
 
-gl::Texture* TextureManager::getTextureFromCache(InputSourceRef inputSource, bool useMipmap, int filter, GLenum wrapS, GLenum wrapT)
+Texture* TextureManager::getTextureFromCache(InputSourceRef inputSource, bool useMipmap, int filter, GLenum wrapS, GLenum wrapT)
 {
-    for (list<TextureEntry>::const_iterator it = cache.begin(); it != cache.end(); ++it)
+    for (list<Texture*>::const_iterator it = cache.begin(); it != cache.end(); ++it)
     {
-        if ((it->inputSource->getUniqueName() == inputSource->getUniqueName()) && (it->useMipmap == useMipmap) && (it->filter == filter) && (it->wrapS == wrapS) && (it->wrapT == wrapT))
+        Texture *texture = *it;
+
+        if ((texture->inputSource->getUniqueName() == inputSource->getUniqueName()) && (texture->useMipmap == useMipmap) && (texture->filter == filter) && (texture->wrapS == wrapS) && (texture->wrapT == wrapT))
         {
-            return it->texture;
+            return texture;
         }
     }
     
     return NULL;
 }
 
-void TextureManager::putTextureInCache(InputSourceRef inputSource, bool useMipmap, int filter, GLenum wrapS, GLenum wrapT, gl::Texture *texture)
+void TextureManager::putTextureInCache(Texture *texture)
 {
-    cache.push_back(TextureEntry(inputSource, useMipmap, filter, wrapS, wrapT, texture));
+    cache.push_back(texture);
 }
 
-gl::Texture* TextureManager::getTexture(const string &resourceName, bool useMipmap, int filter, GLenum wrapS, GLenum wrapT)
+Texture* TextureManager::getTexture(const string &resourceName, bool useMipmap, int filter, GLenum wrapS, GLenum wrapT)
 {
     return getTexture(InputSource::getResource(resourceName), useMipmap, filter, wrapS, wrapT);
 }
 
-gl::Texture* TextureManager::getTexture(InputSourceRef inputSource, bool useMipmap, int filter, GLenum wrapS, GLenum wrapT)
+Texture* TextureManager::getTexture(InputSourceRef inputSource, bool useMipmap, int filter, GLenum wrapS, GLenum wrapT)
 {
-    gl::Texture *texture = getTextureFromCache(inputSource, useMipmap, filter, wrapS, wrapT);
+    Texture *texture = getTextureFromCache(inputSource, useMipmap, filter, wrapS, wrapT);
     
     if (!texture)
     {
-        texture = TextureHelper::loadTexture(inputSource, useMipmap, filter, wrapS, wrapT);
-        putTextureInCache(inputSource, useMipmap, filter, wrapS, wrapT, texture);
+        texture = new Texture(inputSource, useMipmap, filter, wrapS, wrapT);
+        putTextureInCache(texture);
     }
     
     return texture;
 }
 
-bool TextureManager::removeTexture(gl::Texture *texture)
+bool TextureManager::remove(Texture *texture)
 {
-    for (list<TextureEntry>::iterator it = cache.begin(); it != cache.end(); ++it)
+    for (list<Texture*>::iterator it = cache.begin(); it != cache.end(); ++it)
     {
-        if (texture == it->texture)
+        if (texture == *it)
         {
-            TextureHelper::deleteTexture(it->texture);
+            delete *it;
             cache.erase(it);
 
             return true;
@@ -66,9 +68,9 @@ bool TextureManager::removeTexture(gl::Texture *texture)
 
 void TextureManager::clear()
 {
-    for (list<TextureEntry>::const_iterator it = cache.begin(); it != cache.end(); ++it)
+    for (list<Texture*>::iterator it = cache.begin(); it != cache.end(); ++it)
     {
-        TextureHelper::deleteTexture(it->texture);
+        delete *it;
     }
 
     cache.clear();
@@ -76,20 +78,16 @@ void TextureManager::clear()
 
 void TextureManager::unload()
 {
-    for (list<TextureEntry>::iterator it = cache.begin(); it != cache.end(); ++it)
+    for (list<Texture*>::iterator it = cache.begin(); it != cache.end(); ++it)
     {
-        TextureHelper::deleteTexture(it->texture);
-        it->texture = NULL;
+        (*it)->unload();
     }
 }
 
 void TextureManager::reload()
 {
-    for (list<TextureEntry>::iterator it = cache.begin(); it != cache.end(); ++it)
+    for (list<Texture*>::iterator it = cache.begin(); it != cache.end(); ++it)
     {
-        if (!it->texture)
-        {
-            it->texture = TextureHelper::loadTexture(it->inputSource, it->useMipmap, it->filter, it->wrapS, it->wrapT);
-        }
+        (*it)->reload();
     }
 }

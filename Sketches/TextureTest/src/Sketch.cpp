@@ -7,9 +7,9 @@ using namespace ci::app;
 
 void Sketch::setup()
 {
-    texture1 = new Texture(InputSource::getResource("hatch.png"), true, TextureHelper::FILTER_TRANSLUCENT);
-    texture2 = new Texture(InputSource::getResource(RES_B));
-    texture3 = new Texture(InputSource::getFileInDocuments("Atlas-2_IPAD1.pvr.gz")); // XXX: BE SURE TO HAVE SUCH A FILE IN THE DOCUMENTS FOLDER
+    texture1 = textureManager.getTexture(InputSource::getResource("hatch.png"), true, TextureHelper::FILTER_TRANSLUCENT);
+    texture2 = textureManager.getTexture(InputSource::getResource(RES_B));
+    texture3 = textureManager.getTexture(InputSource::getFileInDocuments("Atlas-2_IPAD1.pvr.gz")); // XXX: BE SURE TO HAVE SUCH A FILE IN THE DOCUMENTS FOLDER
     
     // ---
     
