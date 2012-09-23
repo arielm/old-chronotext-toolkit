@@ -474,7 +474,7 @@
 				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = chronotext.com;
 			};
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "InputSource_OSX" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "InputSourceTest_OSX" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -639,7 +639,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "InputSource_OSX" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "InputSourceTest_OSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
