@@ -7,10 +7,10 @@ using namespace ci::app;
 
 void Sketch::setup()
 {
-    texture1 = textureManager.getTexture(InputSource::getResource("hatch.png"), true, TextureHelper::FILTER_TRANSLUCENT);
-    texture2 = textureManager.getTexture(InputSource::getResource(RES_B));
-    texture3 = textureManager.getTexture(InputSource::getFileInDocuments("Atlas-2_IPAD1.pvr.gz")); // XXX: BE SURE TO HAVE SUCH A FILE IN THE DOCUMENTS FOLDER
-
+    texture1 = new Texture(InputSource::getResource("hatch.png"), true, TextureHelper::FILTER_TRANSLUCENT);
+    texture2 = new Texture(InputSource::getResource(RES_B));
+    texture3 = new Texture(InputSource::getFileInDocuments("Atlas-2_IPAD1.pvr.gz")); // XXX: BE SURE TO HAVE SUCH A FILE IN THE DOCUMENTS FOLDER
+    
     // ---
     
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -46,14 +46,14 @@ void Sketch::draw()
     glEnableClientState(GL_TEXTURE_COORD_ARRAY);
     glEnable(GL_TEXTURE_2D);
     
-    TextureHelper::bindTexture(texture3);
-    TextureHelper::drawTextureFromCenter(texture3);
+    texture3->bind();
+    texture3->drawFromCenter();
     
-    TextureHelper::bindTexture(texture2);
-    TextureHelper::drawTextureFromCenter(texture2);
+    texture2->bind();
+    texture2->drawFromCenter();
     
-    TextureHelper::bindTexture(texture1);
-    TextureHelper::drawTextureFromCenter(texture1);
+    texture1->bind();
+    texture1->drawFromCenter();
     
     glDisable(GL_TEXTURE_2D);
     glDisableClientState(GL_VERTEX_ARRAY);

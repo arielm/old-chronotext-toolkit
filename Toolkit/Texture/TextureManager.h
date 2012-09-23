@@ -1,7 +1,7 @@
 #pragma once
 
 #include "TextureHelper.h"
-#include "InputSource.h"
+#include "Texture.h"
 #include "Utils.h"
 
 #include <list>
