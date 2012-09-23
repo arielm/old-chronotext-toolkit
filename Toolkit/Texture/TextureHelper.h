@@ -18,6 +18,7 @@ public:
     static ci::gl::Texture* loadTexture(const std::string &resourceName, bool useMipmap = false, int filter = FILTER_NONE, GLenum wrapS = GL_CLAMP_TO_EDGE, GLenum wrapT = GL_CLAMP_TO_EDGE);
     static ci::gl::Texture* loadTexture(InputSourceRef inputSource, bool useMipmap = false, int filter = FILTER_NONE, GLenum wrapS = GL_CLAMP_TO_EDGE, GLenum wrapT = GL_CLAMP_TO_EDGE);
 
+    static void deleteTexture(ci::gl::Texture *texture);
     static void bindTexture(ci::gl::Texture *texture);
     
     static void beginTexture(ci::gl::Texture *texture);

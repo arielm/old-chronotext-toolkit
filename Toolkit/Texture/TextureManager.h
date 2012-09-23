@@ -1,29 +1,38 @@
 #pragma once
 
-#include "Hasher.h"
 #include "TextureHelper.h"
 #include "InputSource.h"
+#include "Utils.h"
 
-#include <map>
+#include <list>
+
+struct TextureEntry
+{
+    InputSourceRef inputSource;
+    bool useMipmap;
+    int filter;
+    GLenum wrapS;
+    GLenum wrapT;
+    
+    ci::gl::Texture *texture;
+    
+    TextureEntry(InputSourceRef inputSource, bool useMipmap, int filter, GLenum wrapS, GLenum wrapT, ci::gl::Texture *texture)
+    :
+    inputSource(inputSource),
+    useMipmap(useMipmap),
+    filter(filter),
+    wrapS(wrapS),
+    wrapT(wrapT),
+    texture(texture)
+    {}
+};
 
 class TextureManager
 {
-    std::map<uint64_t, ci::gl::Texture*> cache;
+    std::list<TextureEntry> cache;
     
-    bool hasTexture(uint64_t id)
-    {
-        return (cache.count(id) > 0);
-    }
-
-    ci::gl::Texture* getTexture(uint64_t id)
-    {
-        return cache[id];
-    }
-    
-    void putTexture(uint64_t id, ci::gl::Texture *texture)
-    {
-        cache[id] = texture;
-    }
+    ci::gl::Texture* getTextureFromCache(InputSourceRef inputSource, bool useMipmap, int filter, GLenum wrapS, GLenum wrapT);
+    void putTextureInCache(InputSourceRef inputSource, bool useMipmap, int filter, GLenum wrapS, GLenum wrapT, ci::gl::Texture *texture);
     
 public:
     ~TextureManager();
@@ -33,4 +42,5 @@ public:
     
     bool removeTexture(ci::gl::Texture *texture);
     void clear();
+    void reload();
 };
