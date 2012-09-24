@@ -1,8 +1,7 @@
 #pragma once
 
 #include "TexturedTriangleStrip.h"
-
-#include "cinder/gl/Texture.h"
+#include "Texture.h"
 
 typedef boost::shared_ptr<class FlashShape> FlashShapeRef;
 
@@ -17,5 +16,5 @@ public:
     void appendVertices(const ci::Vec2f *vertices, size_t num);
     void appendIndices(uint32_t *indices, size_t num);
     
-    void draw(ci::gl::Texture *strokeTexture);
+    void draw(Texture *strokeTexture);
 };

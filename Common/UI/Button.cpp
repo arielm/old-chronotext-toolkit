@@ -73,16 +73,9 @@ namespace chronotext
             glTranslatef(x1 + (x2 - x1) * 0.5, y1 + (y2 - y1) * 0.5, 0);
             glScalef(icon->scale, icon->scale, 1);
             
-            glEnableClientState(GL_VERTEX_ARRAY);
-            glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-            glEnable(GL_TEXTURE_2D);
-            
-            TextureHelper::bindTexture(icon->texture);
-            TextureHelper::drawTextureFromCenter(icon->texture);
-            
-            glDisable(GL_TEXTURE_2D);
-            glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-            glDisableClientState(GL_VERTEX_ARRAY);
+            icon->texture->begin();
+            icon->texture->drawFromCenter();
+            icon->texture->end();
             
             glPopMatrix();
         }

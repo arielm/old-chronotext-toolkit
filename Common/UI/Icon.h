@@ -1,6 +1,6 @@
 #pragma once
 
-#include "TextureHelper.h"
+#include "Texture.h"
 #include "Utils.h"
 
 namespace chronotext
@@ -13,10 +13,10 @@ namespace chronotext
         float height;
 
     public:
-        ci::gl::Texture *texture;
+        Texture *texture;
         float scale;
         
-        Icon(ci::gl::Texture *texture, float scale = 1, float width = -1, float height = -1);
+        Icon(Texture *texture, float scale = 1, float width = -1, float height = -1);
         
         ~Icon()
         {
