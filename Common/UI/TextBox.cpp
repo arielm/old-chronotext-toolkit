@@ -154,7 +154,7 @@ namespace chronotext
         offsetY = y;
     }
     
-    void TextBox::setTextColor(const ColorAT<float> &textColor)
+    void TextBox::setTextColor(const ColorAf &textColor)
     {
         this->textColor = textColor;
     }

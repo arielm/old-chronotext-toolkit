@@ -20,7 +20,7 @@ namespace chronotext
         int textAlignX;
         int textAlignY;
         
-        ci::ColorAT<float> textColor;
+        ci::ColorAf textColor;
 
         TextBoxStyle()
         :
