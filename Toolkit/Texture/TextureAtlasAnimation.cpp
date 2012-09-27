@@ -22,6 +22,11 @@ looping(looping)
     {
         sprites = atlas->getAnimationSprites(path);
     }
+    
+    if (sprites.size() == 0)
+    {
+        throw std::runtime_error("INVALID ANIMATION");
+    }
 }
 
 TextureAtlasAnimation::TextureAtlasAnimation(TextureAtlas *atlas, const string &path, float fps, bool looping, int firstFrameIndex, int lastFrameIndex)
@@ -50,6 +55,11 @@ looping(looping)
         {
             sprites.push_back(tmp[i]);
         }
+    }
+    
+    if (sprites.size() == 0)
+    {
+        throw std::runtime_error("INVALID ANIMATION");
     }
 }
 
