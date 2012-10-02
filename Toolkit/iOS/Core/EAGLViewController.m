@@ -155,7 +155,7 @@ NSString* kEAGLViewControllerPropertyInterfaceOrientation = @"kEAGLViewControlle
 	return (toInterfaceOrientation == interfaceOrientation);
 }
 
-- (BOOL) supportedInterfaceOrientations
+- (NSUInteger) supportedInterfaceOrientations
 {
     return interfaceOrientation;
 }
