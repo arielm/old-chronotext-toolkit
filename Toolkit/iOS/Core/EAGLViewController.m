@@ -145,14 +145,24 @@ NSString* kEAGLViewControllerPropertyInterfaceOrientation = @"kEAGLViewControlle
     }
 }
 
+- (double) averageFPS
+{
+    return ticks / elapsed;
+}
+
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
 	return (toInterfaceOrientation == interfaceOrientation);
 }
 
-- (double) averageFPS
+- (BOOL) supportedInterfaceOrientations
 {
-    return ticks / elapsed;
+    return interfaceOrientation;
+}
+
+- (BOOL) shouldAutorotate
+{
+    return NO;
 }
 
 // ============================================ NOTIFICATIONS ============================================
