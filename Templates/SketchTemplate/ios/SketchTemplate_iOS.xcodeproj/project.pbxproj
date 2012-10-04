@@ -30,6 +30,7 @@
 		A8641F1D15A5D4070054E5EC /* Clock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8641F1315A5D4070054E5EC /* Clock.cpp */; };
 		A8641F1E15A5D4070054E5EC /* MasterClock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8641F1615A5D4070054E5EC /* MasterClock.cpp */; };
 		A8641F2215A5D4120054E5EC /* Matrix2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8641F2015A5D4120054E5EC /* Matrix2D.cpp */; };
+		A8737CA6161D961100BE7CDF /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8737CA4161D961100BE7CDF /* Texture.cpp */; };
 		A87A04531580D4C800BB603B /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = A87A04501580D4C800BB603B /* AppDelegate.mm */; };
 		A87A04541580D4C800BB603B /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A87A04521580D4C800BB603B /* Icon.png */; };
 		A89CA4EB14D0BE9700C6B5AE /* CinderRenderDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = A89CA4E714D0BE9700C6B5AE /* CinderRenderDelegate.mm */; };
@@ -106,6 +107,8 @@
 		A8641F1815A5D4070054E5EC /* TimeBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeBase.h; sourceTree = "<group>"; };
 		A8641F2015A5D4120054E5EC /* Matrix2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix2D.cpp; sourceTree = "<group>"; };
 		A8641F2115A5D4120054E5EC /* Matrix2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix2D.h; sourceTree = "<group>"; };
+		A8737CA4161D961100BE7CDF /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
+		A8737CA5161D961100BE7CDF /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
 		A87A044F1580D4C800BB603B /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A87A04501580D4C800BB603B /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
 		A87A04521580D4C800BB603B /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
@@ -303,6 +306,8 @@
 				A8468D4C1604B96600CE0E21 /* TextureHelper.cpp */,
 				A8641F1115A5D4070054E5EC /* TextureManager.h */,
 				A8641F1015A5D4070054E5EC /* TextureManager.cpp */,
+				A8737CA5161D961100BE7CDF /* Texture.h */,
+				A8737CA4161D961100BE7CDF /* Texture.cpp */,
 				A8468D4E1604B96600CE0E21 /* PVRHelper.h */,
 				A8468D4D1604B96600CE0E21 /* PVRHelper.cpp */,
 			);
@@ -564,6 +569,7 @@
 				A8468D541604B9A000CE0E21 /* FontHelper.cpp in Sources */,
 				A8468D551604B9A000CE0E21 /* WordWrapper.cpp in Sources */,
 				A8468D6C1604BA8F00CE0E21 /* ScreenManager.cpp in Sources */,
+				A8737CA6161D961100BE7CDF /* Texture.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -599,6 +605,7 @@
 				);
 				PRODUCT_NAME = SketchTemplate_iOS;
 				TARGETED_DEVICE_FAMILY = "1,2";
+                VALID_ARCHS = armv7;
 			};
 			name = Debug;
 		};
@@ -630,6 +637,7 @@
 				);
 				PRODUCT_NAME = SketchTemplate_iOS;
 				TARGETED_DEVICE_FAMILY = "1,2";
+                VALID_ARCHS = armv7;
 			};
 			name = Release;
 		};
@@ -649,6 +657,7 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" include";
+                VALID_ARCHS = armv7;
 			};
 			name = Debug;
 		};
@@ -667,6 +676,7 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" include";
+                VALID_ARCHS = armv7;
 			};
 			name = Release;
 		};
