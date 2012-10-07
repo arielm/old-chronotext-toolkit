@@ -21,7 +21,7 @@
 + (BOOL) isStringEmpty:(NSString*)string
 {
 	NSString *trimmed = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-	return ([trimmed length] > 0);
+	return ([trimmed length] == 0);
 }
 
 + (NSString*) safeString:(NSString*)string
