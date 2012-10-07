@@ -13,5 +13,6 @@
 @property (nonatomic) CGFloat bottom;
 @property (nonatomic) CGFloat width;
 @property (nonatomic) CGFloat height;
+@property (nonatomic) CGSize size;
 
 @end
