@@ -5,10 +5,13 @@ xcuserdata
 # OSX
 .DS_Store
 
-# Windows
+# Visual Studio
+*.user
 *.suo
 *.ncb
 *.sdf
+*.opensdf
 Debug/
 Release/
 ipch/
+
