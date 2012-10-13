@@ -59,8 +59,10 @@ DataSourceRef InputSource::loadDataSource()
 {
     switch (type)
     {
+#if !defined(CINDER_MSW)
         case TYPE_RESOURCE:
             return loadResource(resourceName);
+#endif
 
         case TYPE_RESOURCE_MSW:
             return loadResource(resourceName, mswID, mswType);
@@ -91,8 +93,10 @@ string InputSource::getUniqueName()
 {
     switch (type)
     {
+#if !defined(CINDER_MSW)
         case TYPE_RESOURCE:
             return "RESOURCE:" + resourceName;
+#endif
 
         case TYPE_RESOURCE_MSW:
             return "RESOURCE_MSW:" + boost::lexical_cast<string>(mswID) + ":" + mswType;
