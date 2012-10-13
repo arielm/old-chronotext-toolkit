@@ -4,3 +4,11 @@ xcuserdata
 
 # OSX
 .DS_Store
+
+# Windows
+*.suo
+*.ncb
+*.sdf
+Debug/
+Release/
+ipch/
