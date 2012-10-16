@@ -6,7 +6,6 @@ xcuserdata
 .DS_Store
 
 # Visual Studio
-*.user
 *.suo
 *.ncb
 *.sdf
@@ -14,4 +13,3 @@ xcuserdata
 Debug/
 Release/
 ipch/
-
