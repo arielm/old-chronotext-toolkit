@@ -1,6 +1,6 @@
 #pragma once
 
-class Message;
+#include "Message.h"
 
 #include <boost/thread/mutex.hpp>
 

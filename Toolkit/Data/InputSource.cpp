@@ -11,7 +11,7 @@ InputSourceRef InputSource::getResource(const std::string &resourceName)
 {
     InputSource *source = new InputSource(TYPE_RESOURCE);
     source->resourceName = source->filePathHint = resourceName;
-    
+
 #if defined(CINDER_COCOA)
     source->filePath = App::getResourcePath(resourceName);
 #endif
@@ -59,9 +59,11 @@ DataSourceRef InputSource::loadDataSource()
 {
     switch (type)
     {
-#if !defined(CINDER_MSW)
         case TYPE_RESOURCE:
-            return loadResource(resourceName);
+#if defined(CINDER_MSW)
+			return DataSourcePath::create(resourceName);
+#else
+			return loadResource(resourceName);
 #endif
 
         case TYPE_RESOURCE_MSW:
@@ -93,12 +95,10 @@ string InputSource::getUniqueName()
 {
     switch (type)
     {
-#if !defined(CINDER_MSW)
         case TYPE_RESOURCE:
             return "RESOURCE:" + resourceName;
-#endif
 
-        case TYPE_RESOURCE_MSW:
+		case TYPE_RESOURCE_MSW:
             return "RESOURCE_MSW:" + boost::lexical_cast<string>(mswID) + ":" + mswType;
             
         case TYPE_FILE:

@@ -1,6 +1,7 @@
 #include "WordWrapper.h"
 
 using namespace std;
+using namespace ci;
 
 float WordWrapper::wrap(XFont *font, wstring *text)
 {
@@ -29,7 +30,7 @@ float WordWrapper::wrap(XFont *font, wstring *text)
             }
             else
             {
-                max = fmaxf(max, x);
+                max = math<float>::max(max, x);
                 addLine(text, lineIndex, lineLength);
                 lineIndex = i + 1;
                 lineLength = 0;
@@ -45,7 +46,7 @@ float WordWrapper::wrap(XFont *font, wstring *text)
     
     if (lineLength > 0)
     {
-        max = fmaxf(max, x);
+        max = math<float>::max(max, x);
         addLine(text, lineIndex, lineLength);
     }
     

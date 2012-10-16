@@ -13,7 +13,7 @@ float FontHelper::getStringWidth(XFont *font, const wstring &text, bool snap)
         for (int i = 0; i < len; i++)
         {
             wchar_t ch = text.at(i);
-            w += rintf(font->getCharWidth(ch));
+            w += math<float>::floor(font->getCharWidth(ch));
         }
         
         return w;
@@ -30,8 +30,8 @@ void FontHelper::drawText(XFont *font, XFontSequence *sequence, const wstring &t
     
     if (snap)
     {
-        x = floorf(x);
-        y = floorf(y);
+        x = math<float>::floor(x);
+        y = math<float>::floor(y);
     }
     
     font->beginSequence(sequence, 2);
@@ -42,7 +42,7 @@ void FontHelper::drawText(XFont *font, XFontSequence *sequence, const wstring &t
         font->addSequenceCharacter(ch, x, y);
         
         float ww = font->getCharWidth(ch);
-        x += snap ? rintf(ww) : ww;
+        x += snap ? math<float>::floor(ww) : ww;
     }
     
     font->endSequence();

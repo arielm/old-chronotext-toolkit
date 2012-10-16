@@ -73,7 +73,7 @@ static bool isPOT(int n)
  */
 Buffer PVRHelper::decompressPVRGZ(const fs::path &filePath)
 {
-    gzFile file = gzopen(filePath.c_str(), "rb");
+    gzFile file = gzopen(filePath.string().c_str(), "rb"); // THE CONVERSION TO string IS NECESSARY ON WINDOWS
     if (!file)
     {
         throw runtime_error("PVR.GZ: CAN'T OPEN FILE");
