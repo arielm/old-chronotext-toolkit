@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{74202EDD-91D2-4D2A-B0B6-355CEB16E6BE}</ProjectGuid>
+    <RootNamespace>SimpleSketchApp</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\include;..\..\..\..\..\include;..\..\..\..\..\boost;..\..\..\..\..\include\msw\zlib;..\..\..\..\..\blocks\chronotext-cinder\src</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>..\..\..\..\..\include;..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>cinder_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\..\..\..\lib;..\..\..\..\..\lib\msw;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+      <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\include;..\..\..\..\..\include;..\..\..\..\..\boost;..\..\..\..\..\include\msw\zlib;..\..\..\..\..\blocks\chronotext-cinder\src</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>..\..\..\..\..\include;..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>cinder.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\..\..\..\lib;..\..\..\..\..\lib\msw;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <GenerateMapFile>true</GenerateMapFile>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>
+      </EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\chronotext\cinder\simple\CinderApp.cpp" />
+    <ClCompile Include="..\..\..\src\chronotext\font\FontMatrix.cpp" />
+    <ClCompile Include="..\..\..\src\chronotext\font\XFont.cpp" />
+    <ClCompile Include="..\..\..\src\chronotext\font\XFontSequence.cpp" />
+    <ClCompile Include="..\..\..\src\chronotext\InputSource.cpp" />
+    <ClCompile Include="..\..\..\src\chronotext\maths\Matrix2D.cpp" />
+    <ClCompile Include="..\..\..\src\chronotext\os\Handler.cpp" />
+    <ClCompile Include="..\..\..\src\chronotext\os\Looper.cpp" />
+    <ClCompile Include="..\..\..\src\chronotext\os\MessageQueue.cpp" />
+    <ClCompile Include="..\..\..\src\chronotext\path\ASPC.cpp" />
+    <ClCompile Include="..\..\..\src\chronotext\path\FollowablePath.cpp" />
+    <ClCompile Include="..\..\..\src\chronotext\path\SplinePath.cpp" />
+    <ClCompile Include="..\..\..\src\chronotext\ScreenManager.cpp" />
+    <ClCompile Include="..\..\..\src\chronotext\texture\PVRHelper.cpp" />
+    <ClCompile Include="..\..\..\src\chronotext\texture\Sprite.cpp" />
+    <ClCompile Include="..\..\..\src\chronotext\texture\Texture.cpp" />
+    <ClCompile Include="..\..\..\src\chronotext\texture\TextureAtlas.cpp" />
+    <ClCompile Include="..\..\..\src\chronotext\texture\TextureAtlasAnimation.cpp" />
+    <ClCompile Include="..\..\..\src\chronotext\texture\TextureHelper.cpp" />
+    <ClCompile Include="..\..\..\src\chronotext\texture\TextureManager.cpp" />
+    <ClCompile Include="..\..\..\src\chronotext\text\FontHelper.cpp" />
+    <ClCompile Include="..\..\..\src\chronotext\text\FontManager.cpp" />
+    <ClCompile Include="..\..\..\src\chronotext\text\WordWrapper.cpp" />
+    <ClCompile Include="..\..\..\src\chronotext\time\Clock.cpp" />
+    <ClCompile Include="..\..\..\src\chronotext\time\MasterClock.cpp" />
+    <ClCompile Include="..\..\..\src\chronotext\utils\md5\md5.cpp" />
+    <ClCompile Include="..\..\..\src\chronotext\utils\Utils.cpp" />
+    <ClCompile Include="..\..\..\src\chronotext\utils\y64\cdecode.c" />
+    <ClCompile Include="..\..\..\src\chronotext\utils\y64\cencode.c" />
+    <ClCompile Include="..\..\..\src\chronotext\utils\y64\Y64.cpp" />
+    <ClCompile Include="..\src\SimpleSketchApp.cpp" />
+    <ClCompile Include="..\src\Sketch.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\src\chronotext\ChronotextResources.h" />
+    <ClInclude Include="..\..\..\src\chronotext\cinder\CinderSketch.h" />
+    <ClInclude Include="..\..\..\src\chronotext\cinder\simple\CinderApp.h" />
+    <ClInclude Include="..\..\..\src\chronotext\cinder\simple\CinderSketchSimple.h" />
+    <ClInclude Include="..\..\..\src\chronotext\font\FontMatrix.h" />
+    <ClInclude Include="..\..\..\src\chronotext\font\XFont.h" />
+    <ClInclude Include="..\..\..\src\chronotext\font\XFontSequence.h" />
+    <ClInclude Include="..\..\..\src\chronotext\InputSource.h" />
+    <ClInclude Include="..\..\..\src\chronotext\maths\Curves.h" />
+    <ClInclude Include="..\..\..\src\chronotext\maths\Matrix2D.h" />
+    <ClInclude Include="..\..\..\src\chronotext\maths\Random.h" />
+    <ClInclude Include="..\..\..\src\chronotext\os\Handler.h" />
+    <ClInclude Include="..\..\..\src\chronotext\os\Looper.h" />
+    <ClInclude Include="..\..\..\src\chronotext\os\Message.h" />
+    <ClInclude Include="..\..\..\src\chronotext\os\MessageQueue.h" />
+    <ClInclude Include="..\..\..\src\chronotext\path\ASPC.h" />
+    <ClInclude Include="..\..\..\src\chronotext\path\FollowablePath.h" />
+    <ClInclude Include="..\..\..\src\chronotext\path\SplinePath.h" />
+    <ClInclude Include="..\..\..\src\chronotext\ScreenManager.h" />
+    <ClInclude Include="..\..\..\src\chronotext\texture\PVRHelper.h" />
+    <ClInclude Include="..\..\..\src\chronotext\texture\Sprite.h" />
+    <ClInclude Include="..\..\..\src\chronotext\texture\Texture.h" />
+    <ClInclude Include="..\..\..\src\chronotext\texture\TextureAtlas.h" />
+    <ClInclude Include="..\..\..\src\chronotext\texture\TextureAtlasAnimation.h" />
+    <ClInclude Include="..\..\..\src\chronotext\texture\TextureHelper.h" />
+    <ClInclude Include="..\..\..\src\chronotext\texture\TextureManager.h" />
+    <ClInclude Include="..\..\..\src\chronotext\text\FontHelper.h" />
+    <ClInclude Include="..\..\..\src\chronotext\text\FontManager.h" />
+    <ClInclude Include="..\..\..\src\chronotext\text\LinkExtractor.h" />
+    <ClInclude Include="..\..\..\src\chronotext\text\WordWrapper.h" />
+    <ClInclude Include="..\..\..\src\chronotext\time\Clock.h" />
+    <ClInclude Include="..\..\..\src\chronotext\time\DefaultTimeBase.h" />
+    <ClInclude Include="..\..\..\src\chronotext\time\MasterClock.h" />
+    <ClInclude Include="..\..\..\src\chronotext\time\TimeBase.h" />
+    <ClInclude Include="..\..\..\src\chronotext\utils\Constants.h" />
+    <ClInclude Include="..\..\..\src\chronotext\utils\DataStreamIO.h" />
+    <ClInclude Include="..\..\..\src\chronotext\utils\GraphicHelper.h" />
+    <ClInclude Include="..\..\..\src\chronotext\utils\Hasher.h" />
+    <ClInclude Include="..\..\..\src\chronotext\utils\md5\md5.h" />
+    <ClInclude Include="..\..\..\src\chronotext\utils\StrokeHelper.h" />
+    <ClInclude Include="..\..\..\src\chronotext\utils\TexturedTriangleStrip.h" />
+    <ClInclude Include="..\..\..\src\chronotext\utils\Utils.h" />
+    <ClInclude Include="..\..\..\src\chronotext\utils\y64\cdecode.h" />
+    <ClInclude Include="..\..\..\src\chronotext\utils\y64\cencode.h" />
+    <ClInclude Include="..\..\..\src\chronotext\utils\y64\Y64.h" />
+    <ClInclude Include="..\include\Resources.h" />
+    <ClInclude Include="..\src\Sketch.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resources.rc">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\..\..\blocks\chronotext-cinder\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\..\..\blocks\chronotext-cinder\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

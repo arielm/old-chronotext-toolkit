@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Source Files\chronotext">
+      <UniqueIdentifier>{115acc90-b04b-41fe-b829-7d1242276699}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\chronotext\cinder">
+      <UniqueIdentifier>{86978dd6-eacc-4daf-96b6-df634e50ba0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\chronotext\font">
+      <UniqueIdentifier>{396bbc6d-833e-4fd8-921f-995fac198ea4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\chronotext\maths">
+      <UniqueIdentifier>{aaf9bfa8-5413-4b28-b356-1b6e457d2dd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\chronotext\os">
+      <UniqueIdentifier>{63de7c65-f0b4-470d-9835-d87012f4fc58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\chronotext\path">
+      <UniqueIdentifier>{147286f5-54b9-4c6a-a75d-792bc6fa7ca2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\chronotext\text">
+      <UniqueIdentifier>{00f55d2f-6dfb-498c-893a-b5a91c71d67f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\chronotext\texture">
+      <UniqueIdentifier>{c5ee0d74-6de0-4292-b876-019e4849481e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\chronotext\time">
+      <UniqueIdentifier>{fe900fb7-7fb8-4136-9ad1-3318294bfe8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\chronotext\utils">
+      <UniqueIdentifier>{cb9de122-af0a-4a95-b612-8b5370ed592b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\chronotext\utils\md5">
+      <UniqueIdentifier>{4ff0161f-8877-496f-af4f-1f9e9cf0d612}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\chronotext\utils\y64">
+      <UniqueIdentifier>{e83cf060-f66d-4e5f-a59e-310fa843f7a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\chronotext\cinder\simple">
+      <UniqueIdentifier>{0afe5bb5-a720-4968-9474-5c9d65eddcd3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\SimpleSketchApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Sketch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\chronotext\InputSource.cpp">
+      <Filter>Source Files\chronotext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\chronotext\ScreenManager.cpp">
+      <Filter>Source Files\chronotext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\chronotext\font\FontMatrix.cpp">
+      <Filter>Source Files\chronotext\font</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\chronotext\font\XFont.cpp">
+      <Filter>Source Files\chronotext\font</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\chronotext\font\XFontSequence.cpp">
+      <Filter>Source Files\chronotext\font</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\chronotext\maths\Matrix2D.cpp">
+      <Filter>Source Files\chronotext\maths</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\chronotext\os\Handler.cpp">
+      <Filter>Source Files\chronotext\os</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\chronotext\os\Looper.cpp">
+      <Filter>Source Files\chronotext\os</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\chronotext\os\MessageQueue.cpp">
+      <Filter>Source Files\chronotext\os</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\chronotext\path\ASPC.cpp">
+      <Filter>Source Files\chronotext\path</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\chronotext\path\FollowablePath.cpp">
+      <Filter>Source Files\chronotext\path</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\chronotext\path\SplinePath.cpp">
+      <Filter>Source Files\chronotext\path</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\chronotext\text\FontHelper.cpp">
+      <Filter>Source Files\chronotext\text</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\chronotext\text\FontManager.cpp">
+      <Filter>Source Files\chronotext\text</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\chronotext\text\WordWrapper.cpp">
+      <Filter>Source Files\chronotext\text</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\chronotext\texture\PVRHelper.cpp">
+      <Filter>Source Files\chronotext\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\chronotext\texture\Sprite.cpp">
+      <Filter>Source Files\chronotext\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\chronotext\texture\Texture.cpp">
+      <Filter>Source Files\chronotext\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\chronotext\texture\TextureAtlas.cpp">
+      <Filter>Source Files\chronotext\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\chronotext\texture\TextureAtlasAnimation.cpp">
+      <Filter>Source Files\chronotext\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\chronotext\texture\TextureHelper.cpp">
+      <Filter>Source Files\chronotext\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\chronotext\texture\TextureManager.cpp">
+      <Filter>Source Files\chronotext\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\chronotext\time\Clock.cpp">
+      <Filter>Source Files\chronotext\time</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\chronotext\time\MasterClock.cpp">
+      <Filter>Source Files\chronotext\time</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\chronotext\utils\Utils.cpp">
+      <Filter>Source Files\chronotext\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\chronotext\utils\y64\cdecode.c">
+      <Filter>Source Files\chronotext\utils\y64</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\chronotext\utils\y64\cencode.c">
+      <Filter>Source Files\chronotext\utils\y64</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\chronotext\utils\y64\Y64.cpp">
+      <Filter>Source Files\chronotext\utils\y64</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\chronotext\utils\md5\md5.cpp">
+      <Filter>Source Files\chronotext\utils\md5</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\chronotext\cinder\simple\CinderApp.cpp">
+      <Filter>Source Files\chronotext\cinder\simple</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\Resources.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Sketch.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\cinder\CinderSketch.h">
+      <Filter>Source Files\chronotext\cinder</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\ChronotextResources.h">
+      <Filter>Source Files\chronotext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\InputSource.h">
+      <Filter>Source Files\chronotext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\ScreenManager.h">
+      <Filter>Source Files\chronotext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\font\FontMatrix.h">
+      <Filter>Source Files\chronotext\font</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\font\XFont.h">
+      <Filter>Source Files\chronotext\font</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\font\XFontSequence.h">
+      <Filter>Source Files\chronotext\font</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\maths\Curves.h">
+      <Filter>Source Files\chronotext\maths</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\maths\Matrix2D.h">
+      <Filter>Source Files\chronotext\maths</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\maths\Random.h">
+      <Filter>Source Files\chronotext\maths</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\os\Handler.h">
+      <Filter>Source Files\chronotext\os</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\os\Looper.h">
+      <Filter>Source Files\chronotext\os</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\os\Message.h">
+      <Filter>Source Files\chronotext\os</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\os\MessageQueue.h">
+      <Filter>Source Files\chronotext\os</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\path\ASPC.h">
+      <Filter>Source Files\chronotext\path</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\path\FollowablePath.h">
+      <Filter>Source Files\chronotext\path</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\path\SplinePath.h">
+      <Filter>Source Files\chronotext\path</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\text\FontHelper.h">
+      <Filter>Source Files\chronotext\text</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\text\FontManager.h">
+      <Filter>Source Files\chronotext\text</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\text\LinkExtractor.h">
+      <Filter>Source Files\chronotext\text</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\text\WordWrapper.h">
+      <Filter>Source Files\chronotext\text</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\texture\PVRHelper.h">
+      <Filter>Source Files\chronotext\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\texture\Sprite.h">
+      <Filter>Source Files\chronotext\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\texture\Texture.h">
+      <Filter>Source Files\chronotext\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\texture\TextureAtlas.h">
+      <Filter>Source Files\chronotext\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\texture\TextureAtlasAnimation.h">
+      <Filter>Source Files\chronotext\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\texture\TextureHelper.h">
+      <Filter>Source Files\chronotext\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\texture\TextureManager.h">
+      <Filter>Source Files\chronotext\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\time\Clock.h">
+      <Filter>Source Files\chronotext\time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\time\DefaultTimeBase.h">
+      <Filter>Source Files\chronotext\time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\time\MasterClock.h">
+      <Filter>Source Files\chronotext\time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\time\TimeBase.h">
+      <Filter>Source Files\chronotext\time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\utils\Constants.h">
+      <Filter>Source Files\chronotext\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\utils\DataStreamIO.h">
+      <Filter>Source Files\chronotext\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\utils\GraphicHelper.h">
+      <Filter>Source Files\chronotext\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\utils\Hasher.h">
+      <Filter>Source Files\chronotext\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\utils\StrokeHelper.h">
+      <Filter>Source Files\chronotext\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\utils\TexturedTriangleStrip.h">
+      <Filter>Source Files\chronotext\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\utils\Utils.h">
+      <Filter>Source Files\chronotext\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\utils\y64\cdecode.h">
+      <Filter>Source Files\chronotext\utils\y64</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\utils\y64\cencode.h">
+      <Filter>Source Files\chronotext\utils\y64</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\utils\y64\Y64.h">
+      <Filter>Source Files\chronotext\utils\y64</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\utils\md5\md5.h">
+      <Filter>Source Files\chronotext\utils\md5</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\cinder\simple\CinderApp.h">
+      <Filter>Source Files\chronotext\cinder\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\cinder\simple\CinderSketchSimple.h">
+      <Filter>Source Files\chronotext\cinder\simple</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resources.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
