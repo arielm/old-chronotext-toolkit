@@ -10,13 +10,6 @@ void CinderApp::setup()
     updateCount = 0;
 
     sketch->setup();
-    
-#if defined(CINDER_ANDROID)
-    /*
-     * FIXING A BUG IN THE CURRENT ANDROID IMPLEMENTATION
-     */
-    sketch->resize(ResizeEvent(getWindowSize()));
-#endif
 }
 
 void CinderApp::shutdown()
