@@ -4,12 +4,17 @@
 
 #include "chronotext/utils/Utils.h"
 
+#if defined (CINDER_ANDROID)
+#include "utf8.h"
+using namespace utf8;
+#endif
+
 using namespace std;
 using namespace ci;
 
 string wstringToUtf8(const wstring &s)
 {
-#if defined( CINDER_MSW )
+#if defined(CINDER_MSW)
 	int utf8Size = ::WideCharToMultiByte( CP_UTF8, 0, s.c_str(), -1, NULL, 0, NULL, NULL );
 	if( utf8Size == 0 )
 	{
@@ -26,6 +31,10 @@ string wstringToUtf8(const wstring &s)
 	}
 	
 	return string( &resultString[0] );
+#elif defined (CINDER_ANDROID)
+    vector<char> tmp;
+    unchecked::utf32to8(s.data(), s.data() + s.size(), back_inserter(tmp));
+    return string(&tmp[0], tmp.size());
 #else
     /*
      * AUTORELEASED VERSION
@@ -50,7 +59,7 @@ string wstringToUtf8(const wstring &s)
 
 wstring utf8ToWstring(const string &s)
 {
-#if defined( CINDER_MSW )
+#if defined(CINDER_MSW)
 	int wideSize = ::MultiByteToWideChar( CP_UTF8, 0, s.c_str(), -1, NULL, 0 );
 	if( wideSize == ERROR_NO_UNICODE_TRANSLATION )
 	{
@@ -69,6 +78,10 @@ wstring utf8ToWstring(const string &s)
 	}
 	
 	return wstring( &resultString[0] );
+#elif defined (CINDER_ANDROID)
+    vector<wchar_t> tmp;
+    unchecked::utf8to32(s.data(), s.data() + s.size(), back_inserter(tmp));
+    return wstring(&tmp[0], tmp.size());
 #else
     /*
      * AUTORELEASED VERSION

@@ -1,6 +1,8 @@
 #include "chronotext/text/FontManager.h"
 #include "chronotext/utils/Utils.h"
 
+#include "cinder/DataSource.h"
+
 #include <sstream>
 
 using namespace ci;
@@ -17,28 +19,7 @@ FontManager::~FontManager()
     DLOG(cache.size() << " FONTS DELETED");
 }
 
-#if defined( CINDER_COCOA )
-XFont* FontManager::getFont(const string &macPath, bool useMipmap, bool useAnisotropy, int maxDimensions, int charactersPerSlot)
-{
-    stringstream oss;
-    oss << macPath << useMipmap << useAnisotropy << maxDimensions << charactersPerSlot;
-    
-    string key = oss.str();
-    uint64_t id = chr::hash(key);
-    
-    if (hasFont(id))
-    {
-        return getFont(id);
-    }
-    
-    DataSourceRef resource = loadResource(macPath);
-
-    XFont *font = new XFont(resource, useMipmap, useAnisotropy, maxDimensions, charactersPerSlot);
-    putFont(id, font);
-    
-    return font;
-}
-#else
+#if defined(CINDER_MSW)
 XFont* FontManager::getFont(int mswID, const string &mswType, bool useMipmap, bool useAnisotropy, int maxDimensions, int charactersPerSlot)
 {
     stringstream oss;
@@ -53,7 +34,28 @@ XFont* FontManager::getFont(int mswID, const string &mswType, bool useMipmap, bo
     }
     
     DataSourceRef resource = loadResource(mswID, mswType);
-
+    
+    XFont *font = new XFont(resource, useMipmap, useAnisotropy, maxDimensions, charactersPerSlot);
+    putFont(id, font);
+    
+    return font;
+}
+#else
+XFont* FontManager::getFont(const string &macPath, bool useMipmap, bool useAnisotropy, int maxDimensions, int charactersPerSlot)
+{
+    stringstream oss;
+    oss << macPath << useMipmap << useAnisotropy << maxDimensions << charactersPerSlot;
+    
+    string key = oss.str();
+    uint64_t id = chr::hash(key);
+    
+    if (hasFont(id))
+    {
+        return getFont(id);
+    }
+    
+    DataSourceRef resource = loadResource(macPath);
+    
     XFont *font = new XFont(resource, useMipmap, useAnisotropy, maxDimensions, charactersPerSlot);
     putFont(id, font);
     

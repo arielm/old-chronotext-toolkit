@@ -12,7 +12,9 @@ InputSourceRef InputSource::getResource(const std::string &resourceName)
     InputSource *source = new InputSource(TYPE_RESOURCE);
     source->resourceName = source->filePathHint = resourceName;
 
-#if defined(CINDER_COCOA)
+#if defined(CINDER_MSW)
+    source->filePath = fs::path(resourceName);
+#elif defined(CINDER_COCOA)
     source->filePath = App::getResourcePath(resourceName);
 #endif
 
@@ -32,9 +34,7 @@ InputSourceRef InputSource::getResource(const string &resourceName, int mswID, c
 #if defined(CINDER_MSW)
     source->mswID = mswID;
     source->mswType = mswType;
-#endif
-    
-#if defined(CINDER_COCOA)
+#elif defined(CINDER_COCOA)
     source->filePath = App::getResourcePath(resourceName);
 #endif
     
@@ -61,7 +61,7 @@ DataSourceRef InputSource::loadDataSource()
     {
         case TYPE_RESOURCE:
 #if defined(CINDER_MSW)
-			return DataSourcePath::create(resourceName);
+			return DataSourcePath::create(filePath);
 #else
 			return loadResource(resourceName);
 #endif

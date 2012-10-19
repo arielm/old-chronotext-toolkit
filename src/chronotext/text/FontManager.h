@@ -3,9 +3,6 @@
 #include "chronotext/utils/Hasher.h"
 #include "chronotext/font/XFont.h"
 
-#include "cinder/DataSource.h"
-#include "cinder/app/AppBasic.h"
-
 #include <map>
 
 /*
@@ -38,10 +35,10 @@ class FontManager
 public:
     ~FontManager();
     
-#if defined( CINDER_COCOA )
-    XFont* getFont(const std::string &macPath, bool useMipmap, bool useAnisotropy, int maxDimensions, int charactersPerSlot);
-#else
+#if defined(CINDER_MSW)
     XFont* getFont(int mswID, const std::string &mswType, bool useMipmap, bool useAnisotropy, int maxDimensions, int charactersPerSlot);
+#else
+    XFont* getFont(const std::string &macPath, bool useMipmap, bool useAnisotropy, int maxDimensions, int charactersPerSlot);
 #endif
     
     bool removeFont(XFont *font);
