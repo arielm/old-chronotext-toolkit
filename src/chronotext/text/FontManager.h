@@ -8,9 +8,15 @@
 /*
  * TODO:
  *
- * A BETTER VERSION SHOULD RETURN A "DERIVED" FONT WHENEVER POSSIBLE
+ * 1) UNLOAD / RELOAD MECHANISM, SIMILAR TO THE ONE IN TextureManager
+ *    "DERIVED FONTS" SHOULD BE PROPERLY HANDLED
  *
- * E.G. WHEN ASKING FOR A FONT-ALREADY DEFINED, BUT WITH DIFFERENT PARAMETERS (useAnisotropy, maxDimensions OR charactersPerSlot)
+ * 2) WE SHOULD RETURN A "DERIVED FONT" WHENEVER POSSIBLE
+ *    E.G. WHEN ASKING FOR A FONT-ALREADY DEFINED,
+ *    BUT WITH DIFFERENT PARAMETERS (useAnisotropy, maxDimensions OR charactersPerSlot)
+ *
+ * 3) THE CACHE COULD BE SIMILAR TO THE ONE IN TextureManager
+ *
  */
 
 class FontManager
@@ -35,11 +41,8 @@ class FontManager
 public:
     ~FontManager();
     
-#if defined(CINDER_MSW)
-    XFont* getFont(int mswID, const std::string &mswType, bool useMipmap, bool useAnisotropy, int maxDimensions, int charactersPerSlot);
-#else
-    XFont* getFont(const std::string &macPath, bool useMipmap, bool useAnisotropy, int maxDimensions, int charactersPerSlot);
-#endif
+    XFont* getFont(const std::string &resourceName, bool useMipmap, bool useAnisotropy, int maxDimensions, int charactersPerSlot);
+    XFont* getFont(InputSourceRef inputSource, bool useMipmap, bool useAnisotropy, int maxDimensions, int charactersPerSlot);
     
     bool removeFont(XFont *font);
 };

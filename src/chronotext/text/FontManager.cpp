@@ -1,8 +1,6 @@
 #include "chronotext/text/FontManager.h"
 #include "chronotext/utils/Utils.h"
 
-#include "cinder/DataSource.h"
-
 #include <sstream>
 
 using namespace ci;
@@ -19,11 +17,15 @@ FontManager::~FontManager()
     DLOG(cache.size() << " FONTS DELETED");
 }
 
-#if defined(CINDER_MSW)
-XFont* FontManager::getFont(int mswID, const string &mswType, bool useMipmap, bool useAnisotropy, int maxDimensions, int charactersPerSlot)
+XFont* FontManager::getFont(const string &resourceName, bool useMipmap, bool useAnisotropy, int maxDimensions, int charactersPerSlot)
+{
+    return getFont(InputSource::getResource(resourceName), useMipmap, useAnisotropy, maxDimensions, charactersPerSlot);
+}
+
+XFont* FontManager::getFont(InputSourceRef inputSource, bool useMipmap, bool useAnisotropy, int maxDimensions, int charactersPerSlot)
 {
     stringstream oss;
-    oss << mswID << mswType << useMipmap << useAnisotropy << maxDimensions << charactersPerSlot;
+    oss << inputSource->getUniqueName() << useMipmap << useAnisotropy << maxDimensions << charactersPerSlot;
     
     string key = oss.str();
     uint64_t id = chr::hash(key);
@@ -33,35 +35,11 @@ XFont* FontManager::getFont(int mswID, const string &mswType, bool useMipmap, bo
         return getFont(id);
     }
     
-    DataSourceRef resource = loadResource(mswID, mswType);
-    
-    XFont *font = new XFont(resource, useMipmap, useAnisotropy, maxDimensions, charactersPerSlot);
+    XFont *font = new XFont(inputSource, useMipmap, useAnisotropy, maxDimensions, charactersPerSlot);
     putFont(id, font);
     
     return font;
 }
-#else
-XFont* FontManager::getFont(const string &macPath, bool useMipmap, bool useAnisotropy, int maxDimensions, int charactersPerSlot)
-{
-    stringstream oss;
-    oss << macPath << useMipmap << useAnisotropy << maxDimensions << charactersPerSlot;
-    
-    string key = oss.str();
-    uint64_t id = chr::hash(key);
-    
-    if (hasFont(id))
-    {
-        return getFont(id);
-    }
-    
-    DataSourceRef resource = loadResource(macPath);
-    
-    XFont *font = new XFont(resource, useMipmap, useAnisotropy, maxDimensions, charactersPerSlot);
-    putFont(id, font);
-    
-    return font;
-}
-#endif
 
 bool FontManager::removeFont(XFont *font)
 {

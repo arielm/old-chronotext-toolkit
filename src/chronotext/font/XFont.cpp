@@ -1,6 +1,10 @@
 #include "chronotext/font/XFont.h"
 #include "chronotext/utils/DataStreamIO.h"
 
+#include "chronotext/utils/Utils.h"
+
+#include "cinder/DataSource.h"
+
 using namespace std;
 using namespace cinder;
 
@@ -9,13 +13,23 @@ inline bool isSpace(wchar_t c)
     return ((c == 0x20) || (c == 0xa0));
 }
 
-XFont::XFont(DataSourceRef dataSource, bool useMipmap, bool useAnisotropy, int maxDimensions, int charactersPerSlot) : useMipmap(useMipmap), useAnisotropy(useAnisotropy), maxDimensions(maxDimensions), charactersPerSlot(charactersPerSlot)
+XFont::XFont(InputSourceRef inputSource, bool useMipmap, bool useAnisotropy, int maxDimensions, int charactersPerSlot)
+:
+useMipmap(useMipmap),
+useAnisotropy(useAnisotropy),
+maxDimensions(maxDimensions),
+charactersPerSlot(charactersPerSlot),
+derived(false)
 {
-    derived = false;
-    read(dataSource);
+    read(inputSource);
 }
 
-XFont::XFont(XFont *source, bool useAnisotropy, int maxDimensions, int charactersPerSlot) : useAnisotropy(useAnisotropy), maxDimensions(maxDimensions), charactersPerSlot(charactersPerSlot)
+XFont::XFont(XFont *source, bool useAnisotropy, int maxDimensions, int charactersPerSlot)
+:
+useAnisotropy(useAnisotropy),
+maxDimensions(maxDimensions),
+charactersPerSlot(charactersPerSlot),
+derived(true)
 {
     numChars = source->numChars;
     w = source->w;
@@ -45,10 +59,8 @@ XFont::XFont(XFont *source, bool useAnisotropy, int maxDimensions, int character
     
     anisotropyAvailable = source->anisotropyAvailable;
     maxAnisotropy = source->maxAnisotropy;
-    
     name = source->name;
 
-    derived = true;
     init();
 }
 
@@ -81,17 +93,20 @@ XFont::~XFont()
     delete[] indices;
 }
 
-void XFont::read(DataSourceRef dataSource)
+void XFont::read(InputSourceRef inputSource)
 {
-    if (dataSource->isFilePath())
+    if (inputSource->isFile())
     {
-        ifstream in(dataSource->getFilePath().c_str(), ifstream::binary);
+        ifstream in(inputSource->getFilePath().c_str(), ifstream::binary);
         readFromStream(in);
         in.close();
     }
     else
     {
-        ReadStreamBuffer tmp(dataSource->getBuffer());
+        DataSourceRef resource = inputSource->loadDataSource();
+        Buffer &buffer = resource->getBuffer();
+
+        ReadStreamBuffer tmp(buffer);
         istream in(&tmp);
         readFromStream(in);
     }

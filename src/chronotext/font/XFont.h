@@ -1,10 +1,10 @@
 #pragma once
 
+#include "chronotext/InputSource.h"
 #include "chronotext/font/FontMatrix.h"
 #include "chronotext/font/XFontSequence.h"
 
 #include "cinder/gl/gl.h"
-#include "cinder/DataSource.h"
 
 typedef boost::shared_ptr<class XFont> XFontRef;
 
@@ -69,14 +69,14 @@ private:
     int binarySearch(int value);
 
     void init();
-    void read(ci::DataSourceRef dataSource);
+    void read(InputSourceRef inputSource);
     void readFromStream(std::istream &in);
 
     void flush(int count);
     void flushIfRequired();
 
 public:
-    XFont(ci::DataSourceRef dataSource, bool useMipmap, bool useAnisotropy, int maxDimensions, int charactersPerSlot);
+    XFont(InputSourceRef inputSource, bool useMipmap, bool useAnisotropy, int maxDimensions, int charactersPerSlot);
     XFont(XFont *source, bool useAnisotropy, int maxDimensions, int charactersPerSlot); 
     ~XFont();
     
