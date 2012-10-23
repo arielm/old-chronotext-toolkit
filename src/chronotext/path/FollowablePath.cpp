@@ -4,7 +4,7 @@
 using namespace ci;
 using namespace std;
 
-#define CAPACITY_INCREMENT 0 /* 0 MEANS THAT CAPACITY IS MULTIPLIED BY 2 WHEN NECESSARY */
+#define CAPACITY_INCREMENT 0 // 0 MEANS THAT CAPACITY IS MULTIPLIED BY 2 WHEN NECESSARY
 
 static int search(float *array, float value, int min, int max)
 {
@@ -74,7 +74,7 @@ mode(mode)
     }
 }
 
-FollowablePath::FollowablePath(Buffer &buffer, int mode)
+FollowablePath::FollowablePath(const Buffer &buffer, int mode)
 :
 mode(mode)
 {

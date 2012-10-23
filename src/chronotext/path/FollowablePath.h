@@ -31,7 +31,7 @@ public:
     FollowablePath(int capacity = 256, int mode = MODE_TANGENT);
     FollowablePath(const std::vector<ci::Vec2f> &points, int mode = MODE_TANGENT);
     FollowablePath(InputSourceRef inputSource, int mode = MODE_TANGENT);
-    FollowablePath(ci::Buffer &buffer, int mode = MODE_TANGENT);
+    FollowablePath(const ci::Buffer &buffer, int mode = MODE_TANGENT);
 
     ~FollowablePath();
     

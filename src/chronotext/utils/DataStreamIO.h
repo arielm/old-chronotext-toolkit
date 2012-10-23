@@ -15,7 +15,7 @@
 
 struct ReadStreamBuffer : public std::streambuf
 {
-    ReadStreamBuffer(ci::Buffer &buffer)
+    ReadStreamBuffer(const ci::Buffer &buffer)
     {
         char *data = (char*)buffer.getData();
         size_t size = buffer.getDataSize();
@@ -26,7 +26,7 @@ struct ReadStreamBuffer : public std::streambuf
 
 struct WriteStreamBuffer : public std::streambuf
 {
-    WriteStreamBuffer(ci::Buffer &buffer)
+    WriteStreamBuffer(const ci::Buffer &buffer)
     {
         char *data = (char*)buffer.getData();
         size_t size = buffer.getDataSize();
