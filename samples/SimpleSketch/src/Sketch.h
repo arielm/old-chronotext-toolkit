@@ -14,7 +14,7 @@
 
 class Sketch : public CinderSketch
 {
-	ci::gl::Texture *texture;
+    ci::gl::Texture *texture;
 
 public:
     Sketch(void *context) : CinderSketch(context) {}

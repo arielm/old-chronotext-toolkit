@@ -7,9 +7,9 @@ using namespace std;
 
 void Sketch::setup()
 {
-	texture = TextureHelper::loadTexture("bulbo1.jpg"); // ON MSW, PLACE THE FILE IN A resources FOLDER ALONGSIDE THE EXECUTABLE
+    texture = TextureHelper::loadTexture("bulbo1.jpg"); // ON MSW, PLACE THE FILE IN A resources FOLDER ALONGSIDE THE EXECUTABLE
 
-	// ---
+    // ---
 
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
@@ -32,16 +32,16 @@ void Sketch::draw()
 {
     glClearColor(1, 0, 0, 1); 
     glClear(GL_COLOR_BUFFER_BIT); 
-	
+    
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
-	// ---
+    // ---
 
-	glColor4f(1, 1, 1, 1);
-	gl::translate(getWindowSize() / 2);
+    glColor4f(1, 1, 1, 1);
+    gl::translate(getWindowSize() / 2);
 
-	TextureHelper::beginTexture(texture);
-	TextureHelper::drawTextureFromCenter(texture);
-	TextureHelper::endTexture();
+    TextureHelper::beginTexture(texture);
+    TextureHelper::drawTextureFromCenter(texture);
+    TextureHelper::endTexture();
 }
