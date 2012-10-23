@@ -32,10 +32,12 @@ public:
      *
      * MSW:
      * - UPON DEPLOYMENT: THE FILE IS SUPPOSED TO BE PLACED INSIDE A resources FOLDER ALONGSIDE THE EXECUTABLE
-     * - DURING DEVELOPMENT: YOU WILL HAVE TO DEFINE <LocalDebuggerWorkingDirectory>$(ProjectDir)..</LocalDebuggerWorkingDirectory>
-     *   FOR BOTH "DEBUG" AND "RELEASE" MODES IN YOUR .vcxproj.user FILE (GITHUB MUST BE TOLD NOT TO IGNORE SUCH FILES)
+     * - DURING DEVELOPMENT: YOU WILL HAVE TO SET "Configuration Properties / Debugging / Working Directory" TO "$(ProjectDir).."
+     *   FOR BOTH "DEBUG" AND "RELEASE" MODES
+     *   NOTE THAT THIS IS PERSISTED IN YOUR PROJECT'S .vcxproj.user FILE (HENCE GITHUB MUST BE TOLD NOT TO IGNORE SUCH FILES)
      */
     static InputSourceRef getResource(const std::string &resourceName);
+    static ci::DataSourceRef loadResource(const std::string &resourceName);
     
     /*
      * FOR "STATIC" RESOURCES (I.E. EMBEDDED INSIDE THE EXECUTABLE ON MSW)
@@ -44,10 +46,11 @@ public:
      * ANDROID AND MSW: isFile() WILL RETURN false
      *
      * THE "CHR_RESOURCE" MACRO IS INTENDED TO BE USED HERE (SEE ChronotextResource.h):
-     * - WE CAN'T RELY ON THE "CINDER_RESOURCE" MACRO,  OTHERWISE getFilePathHint() WOULD NOT WORK
+     * - WE CAN'T USE THE "CINDER_RESOURCE" MACRO, OTHERWISE getFilePathHint() WOULD NOT WORK
      * - getFilePathHint() IS NECESSARY, E.G. IN ORDER TO BE ABLE TO DEFINE A FILE'S EXTENSION
      */
     static InputSourceRef getResource(const std::string &resourceName, int mswID, const std::string &mswType);
+    static ci::DataSourceRef loadResource(const std::string &resourceName, int mswID, const std::string &mswType);
     
     static InputSourceRef getFileInDocuments(const std::string &relativePath);
     static InputSourceRef getFile(const ci::fs::path &filePath);

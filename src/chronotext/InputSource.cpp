@@ -27,6 +27,11 @@ InputSourceRef InputSource::getResource(const std::string &resourceName)
     return InputSourceRef(source);
 }
 
+DataSourceRef InputSource::loadResource(const std::string &resourceName)
+{
+    return InputSource::getResource(resourceName)->loadDataSource();
+}
+
 InputSourceRef InputSource::getResource(const string &resourceName, int mswID, const std::string &mswType)
 {
 #if defined(CINDER_MSW)
@@ -45,6 +50,11 @@ InputSourceRef InputSource::getResource(const string &resourceName, int mswID, c
 #endif
     
     return InputSourceRef(source);
+}
+
+DataSourceRef InputSource::loadResource(const string &resourceName, int mswID, const std::string &mswType)
+{
+    return InputSource::getResource(resourceName, mswID, mswType)->loadDataSource();
 }
 
 InputSourceRef InputSource::getFileInDocuments(const std::string &relativePath)
@@ -69,11 +79,11 @@ DataSourceRef InputSource::loadDataSource()
 #if defined(CINDER_MSW)
             return DataSourcePath::create(filePath);
 #else
-            return loadResource(resourceName);
+            return app::loadResource(resourceName);
 #endif
 
         case TYPE_RESOURCE_MSW:
-            return loadResource(resourceName, mswID, mswType);
+            return app::loadResource(resourceName, mswID, mswType);
             
         case TYPE_FILE:
             return DataSourcePath::create(filePath);
