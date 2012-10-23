@@ -4,8 +4,7 @@
 using namespace ci;
 using namespace std;
 
-#define DEFAULT_CAPACITY 256
-#define CAPACITY_INCREMENT 0 // 0 MEANS THAT CAPACITY IS MULTIPLIED BY 2 WHEN NECESSARY
+#define CAPACITY_INCREMENT 0 /* 0 MEANS THAT CAPACITY IS MULTIPLIED BY 2 WHEN NECESSARY */
 
 static int search(float *array, float value, int min, int max)
 {
@@ -31,21 +30,11 @@ static int search(float *array, float value, int min, int max)
     return mid - 1;
 }
 
-FollowablePath::FollowablePath(int mode)
-{
-    capacity = DEFAULT_CAPACITY;
-    this->mode = mode;
-    
-    x = new float[capacity];
-    y = new float[capacity];
-    len = new float[capacity];
-}
-
 FollowablePath::FollowablePath(int capacity, int mode)
+:
+capacity(capacity),
+mode(mode)
 {
-    this->capacity = capacity;
-    this->mode = mode;
-    
     size = 0;
     x = new float[capacity];
     y = new float[capacity];
@@ -53,10 +42,10 @@ FollowablePath::FollowablePath(int capacity, int mode)
 }
 
 FollowablePath::FollowablePath(const std::vector<ci::Vec2f> &points, int mode)
+:
+capacity(points.size()),
+mode(mode)
 {
-    capacity = points.size();
-    this->mode = mode;
-    
     x = new float[capacity];
     y = new float[capacity];
     len = new float[capacity];
@@ -64,40 +53,34 @@ FollowablePath::FollowablePath(const std::vector<ci::Vec2f> &points, int mode)
     setPoints(points);
 }
 
-FollowablePath::FollowablePath(DataSourceRef dataSource, int mode)
+FollowablePath::FollowablePath(InputSourceRef inputSource, int mode)
+:
+mode(mode)
 {
-    if (dataSource->isFilePath())
+    if (inputSource->isFile())
     {
-        ifstream in(dataSource->getFilePath().c_str(), ifstream::binary);
+        ifstream in(inputSource->getFilePath().c_str(), ifstream::binary);
         readFromStream(in);
         in.close();
     }
     else
     {
-        ReadStreamBuffer tmp(dataSource->getBuffer());
+        DataSourceRef resource = inputSource->loadDataSource();
+        Buffer &buffer = resource->getBuffer();
+        
+        ReadStreamBuffer tmp(buffer);
         istream in(&tmp);
         readFromStream(in);
     }
-    
-    this->mode = mode;
-}
-
-FollowablePath::FollowablePath(const fs::path &path, int mode)
-{
-    ifstream in(path.c_str(), ifstream::binary);
-    readFromStream(in);
-    in.close();
-    
-    this->mode = mode;
 }
 
 FollowablePath::FollowablePath(Buffer &buffer, int mode)
+:
+mode(mode)
 {
     ReadStreamBuffer tmp(buffer);
     istream in(&tmp);
     readFromStream(in);
-    
-    this->mode = mode;
 }
 
 FollowablePath::~FollowablePath()

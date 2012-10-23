@@ -1,6 +1,5 @@
 #include "chronotext/font/XFont.h"
 #include "chronotext/utils/DataStreamIO.h"
-
 #include "chronotext/utils/Utils.h"
 
 #include "cinder/DataSource.h"

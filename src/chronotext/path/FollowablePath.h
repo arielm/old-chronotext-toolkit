@@ -1,8 +1,8 @@
 #pragma once
 
 #include "chronotext/utils/DataStreamIO.h"
+#include "chronotext/InputSource.h"
 
-#include "cinder/DataSource.h"
 #include "cinder/Rect.h"
 
 typedef boost::shared_ptr<class FollowablePath> FollowablePathRef;
@@ -28,11 +28,10 @@ public:
     float *len;
     
     FollowablePath(int mode);
-    FollowablePath(int capacity, int mode);
-    FollowablePath(const std::vector<ci::Vec2f> &points, int mode);
-    FollowablePath(ci::DataSourceRef dataSource, int mode);
-    FollowablePath(const ci::fs::path &path, int mode);
-    FollowablePath(ci::Buffer &buffer, int mode);
+    FollowablePath(int capacity = 256, int mode = MODE_TANGENT);
+    FollowablePath(const std::vector<ci::Vec2f> &points, int mode = MODE_TANGENT);
+    FollowablePath(InputSourceRef inputSource, int mode = MODE_TANGENT);
+    FollowablePath(ci::Buffer &buffer, int mode = MODE_TANGENT);
 
     ~FollowablePath();
     

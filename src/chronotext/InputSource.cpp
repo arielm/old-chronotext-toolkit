@@ -61,9 +61,9 @@ DataSourceRef InputSource::loadDataSource()
     {
         case TYPE_RESOURCE:
 #if defined(CINDER_MSW)
-			return DataSourcePath::create(filePath);
+            return DataSourcePath::create(filePath);
 #else
-			return loadResource(resourceName);
+            return loadResource(resourceName);
 #endif
 
         case TYPE_RESOURCE_MSW:
@@ -98,7 +98,7 @@ string InputSource::getUniqueName()
         case TYPE_RESOURCE:
             return "RESOURCE:" + resourceName;
 
-		case TYPE_RESOURCE_MSW:
+        case TYPE_RESOURCE_MSW:
             return "RESOURCE_MSW:" + boost::lexical_cast<string>(mswID) + ":" + mswType;
             
         case TYPE_FILE:

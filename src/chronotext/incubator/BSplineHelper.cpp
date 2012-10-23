@@ -1,27 +1,30 @@
 #include "chronotext/incubator/BSplineHelper.h"
 
-#define SPLINE_TOL 3.0
-
 using namespace ci;
 using namespace std;
 
-void BSplineHelper::readBSplinePath(FollowablePathRef path, DataSourceRef dataSource)
+#define SPLINE_TOL 3.0
+
+void BSplineHelper::readBSplinePath(FollowablePath *path, InputSourceRef inputSource)
 {
-    if (dataSource->isFilePath())
+    if (inputSource->isFile())
     {
-        ifstream in(dataSource->getFilePath().c_str(), ifstream::binary);
+        ifstream in(inputSource->getFilePath().c_str(), ifstream::binary);
         readBSplinePathFromStream(path, in);
         in.close();
     }
     else
     {
-        ReadStreamBuffer tmp(dataSource->getBuffer());
-        std::istream in(&tmp);
+        DataSourceRef resource = inputSource->loadDataSource();
+        Buffer &buffer = resource->getBuffer();
+        
+        ReadStreamBuffer tmp(buffer);
+        istream in(&tmp);
         readBSplinePathFromStream(path, in);
     }
 }
 
-void BSplineHelper::readBSplinePathFromStream(FollowablePathRef path, istream &in)
+void BSplineHelper::readBSplinePathFromStream(FollowablePath *path, istream &in)
 {
     int size = DataStreamIO::readLittle<int>(in);
     float *x = new float[size];
@@ -59,7 +62,7 @@ void BSplineHelper::readBSplinePathFromStream(FollowablePathRef path, istream &i
     }
     
     path->clear();
-    spline->compute(&*path);
+    spline->compute(path);
     
     // ---
     
