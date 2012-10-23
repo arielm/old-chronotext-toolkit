@@ -7,6 +7,10 @@ using namespace std;
 
 void Sketch::setup()
 {
+	texture = TextureHelper::loadTexture("bulbo1.jpg"); // ON MSW, PLACE THE FILE IN A resources FOLDER ALONGSIDE THE EXECUTABLE
+
+	// ---
+
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
 
@@ -46,6 +50,15 @@ void Sketch::draw()
 	
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+
+	// ---
+
+	glColor4f(1, 1, 1, 1);
+	gl::translate(getWindowSize() / 2);
+
+	TextureHelper::beginTexture(texture);
+	TextureHelper::drawTextureFromCenter(texture);
+	TextureHelper::endTexture();
 }
 
 #if defined(CINDER_COCOA_TOUCH) || defined(CINDER_ANDROID)

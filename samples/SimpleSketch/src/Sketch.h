@@ -7,9 +7,12 @@
 #pragma once
 
 #include "chronotext/cinder/CinderSketch.h"
+#include "chronotext/texture/TextureHelper.h"
 
 class Sketch : public CinderSketch
 {
+	ci::gl::Texture *texture;
+
 public:
     Sketch(void *context) : CinderSketch(context) {}
 
