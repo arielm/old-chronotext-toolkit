@@ -1,5 +1,6 @@
 #include "Resources.h"
 
-ID ICON "..\\resources\\cinder_app_icon.ico"
+ID ICON "Resources\\cinder_app_icon.ico"
 
-//RES_MY_RESOURCE
+// RES_SAND
+// RES_GEORGIA_PLAIN_57_WESTERN
