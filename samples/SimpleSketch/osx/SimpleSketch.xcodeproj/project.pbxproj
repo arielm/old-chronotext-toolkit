@@ -14,11 +14,12 @@
 		00B784B50FF439BC000DE1D7 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B10FF439BC000DE1D7 /* AudioUnit.framework */; };
 		00B784B60FF439BC000DE1D7 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B20FF439BC000DE1D7 /* CoreAudio.framework */; };
 		00BAE65A0E7ED9C10018A608 /* SimpleSketchApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00BAE6590E7ED9C10018A608 /* SimpleSketchApp.cpp */; };
-		00CCAF15116A9FEE008396D5 /* CinderApp.icns in Resources */ = {isa = PBXBuildFile; fileRef = 00CCAF14116A9FEE008396D5 /* CinderApp.icns */; };
 		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
 		5323E6B60EAFCA7E003A9687 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B50EAFCA7E003A9687 /* QTKit.framework */; };
 		53E3CDFC0E86099300238D2B /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53E3CDFB0E86099300238D2B /* Carbon.framework */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		A815C0DF1636DCB4006FC15E /* bulbo1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A815C0DE1636DCB4006FC15E /* bulbo1.jpg */; };
+		A815C0E41636DE16006FC15E /* CinderApp.icns in Resources */ = {isa = PBXBuildFile; fileRef = A815C0E31636DE16006FC15E /* CinderApp.icns */; };
 		A87A4EFF162EFDA80059878E /* Sketch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87A4EFD162EFDA80059878E /* Sketch.cpp */; };
 		A87A55FD162F65190059878E /* CinderApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87A555A162F65190059878E /* CinderApp.cpp */; };
 		A87A55FE162F65190059878E /* FontMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87A555E162F65190059878E /* FontMatrix.cpp */; };
@@ -61,7 +62,6 @@
 		00B784B10FF439BC000DE1D7 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		00B784B20FF439BC000DE1D7 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		00BAE6590E7ED9C10018A608 /* SimpleSketchApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SimpleSketchApp.cpp; path = ../src/SimpleSketchApp.cpp; sourceTree = SOURCE_ROOT; };
-		00CCAF14116A9FEE008396D5 /* CinderApp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = CinderApp.icns; path = ../resources/CinderApp.icns; sourceTree = SOURCE_ROOT; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
@@ -72,6 +72,8 @@
 		53E3CDFB0E86099300238D2B /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* SimpleSketch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleSketch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A815C0DE1636DCB4006FC15E /* bulbo1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = bulbo1.jpg; path = ../resources/bulbo1.jpg; sourceTree = "<group>"; };
+		A815C0E31636DE16006FC15E /* CinderApp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = CinderApp.icns; sourceTree = "<group>"; };
 		A87A4EFB162EFC680059878E /* Resources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Resources.h; path = ../include/Resources.h; sourceTree = "<group>"; };
 		A87A4EFD162EFDA80059878E /* Sketch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Sketch.cpp; path = ../src/Sketch.cpp; sourceTree = "<group>"; };
 		A87A4EFE162EFDA80059878E /* Sketch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sketch.h; path = ../src/Sketch.h; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				A87A5550162F65190059878E /* chronotext */,
 				080E96DDFE201D6D7F000001 /* Source */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				A815C0E11636DD02006FC15E /* OSX */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -237,7 +240,6 @@
 			isa = PBXGroup;
 			children = (
 				A87A4EFB162EFC680059878E /* Resources.h */,
-				32CA4F630368D1EE00C91783 /* SimpleSketch_Prefix.pch */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -245,8 +247,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				8D1107310486CEB800E47090 /* Info.plist */,
-				00CCAF14116A9FEE008396D5 /* CinderApp.icns */,
+				A815C0DE1636DCB4006FC15E /* bulbo1.jpg */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -258,6 +259,24 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A815C0E11636DD02006FC15E /* OSX */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107310486CEB800E47090 /* Info.plist */,
+				32CA4F630368D1EE00C91783 /* SimpleSketch_Prefix.pch */,
+				A815C0E21636DE16006FC15E /* Resources */,
+			);
+			name = OSX;
+			sourceTree = "<group>";
+		};
+		A815C0E21636DE16006FC15E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A815C0E31636DE16006FC15E /* CinderApp.icns */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		A87A5550162F65190059878E /* chronotext */ = {
@@ -496,7 +515,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00CCAF15116A9FEE008396D5 /* CinderApp.icns in Resources */,
+				A815C0DF1636DCB4006FC15E /* bulbo1.jpg in Resources */,
+				A815C0E41636DE16006FC15E /* CinderApp.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

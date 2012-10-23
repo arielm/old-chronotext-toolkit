@@ -1,7 +1,10 @@
 /*
- * BASIC CinderSketch
+ * SIMPLE CinderSketch
  *
  * BE SURE TO EVENTUALLY RUN IN "RELEASE" MODE!
+ *
+ * WARNING: THE "SIMPLE-SKETCH" SYSTEM IS NOT ADAPTED FOR IOS RETINA
+ * THE "COMPLEX-SKETCH" SYSTEM ON THE OTHER-HAND BEHAVES EQUALLY ON RETINA AND REGULAR DEVICES
  */
 
 #pragma once
@@ -18,15 +21,7 @@ public:
 
     void setup();
     void shutdown();
+
     void resize(ci::app::ResizeEvent event);
-
-    void start(int flags);
-    void stop(int flags);
-
-    void update();
     void draw();
-
-#if defined(CINDER_COCOA_TOUCH) || defined(CINDER_ANDROID)
-    void accelerated(ci::app::AccelEvent event);
-#endif
 };

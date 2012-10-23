@@ -19,29 +19,14 @@ void Sketch::setup()
 }
 
 void Sketch::shutdown()
-{}
-
-void Sketch::start(int flags)
 {
-#if defined(CINDER_COCOA_TOUCH) || defined(CINDER_ANDROID)
-    enableAccelerometer(30);
-#endif
-}
-
-void Sketch::stop(int flags)
-{
-#if defined(CINDER_COCOA_TOUCH) || defined(CINDER_ANDROID)
-    disableAccelerometer();
-#endif
+    delete texture;
 }
 
 void Sketch::resize(ResizeEvent event)
 {
     gl::setMatricesWindow(event.getSize(), true);
 }
-
-void Sketch::update()
-{}
 
 void Sketch::draw()
 {
@@ -60,10 +45,3 @@ void Sketch::draw()
 	TextureHelper::drawTextureFromCenter(texture);
 	TextureHelper::endTexture();
 }
-
-#if defined(CINDER_COCOA_TOUCH) || defined(CINDER_ANDROID)
-void Sketch::accelerated(AccelEvent event)
-{
-    console() <<  event << endl;
-}
-#endif
