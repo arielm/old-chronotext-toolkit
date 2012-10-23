@@ -24,8 +24,31 @@ public:
         TYPE_FILE
     };
     
+    /*
+     * FOR "DYNAMIC" RESOURCES
+     *
+     * OSX, IOS AND MSW: isFile() WILL RETURN true
+     * ANDROID: isFile() WILL RETURN false
+     *
+     * MSW:
+     * - UPON DEPLOYMENT: THE FILE IS SUPPOSED TO BE PLACED INSIDE A resources FOLDER ALONGSIDE THE EXECUTABLE
+     * - DURING DEVELOPMENT: YOU WILL HAVE TO DEFINE <LocalDebuggerWorkingDirectory>$(ProjectDir)..</LocalDebuggerWorkingDirectory>
+     *   FOR BOTH "DEBUG" AND "RELEASE" MODES IN YOUR .vcxproj.user FILE (GITHUB MUST BE TOLD NOT TO IGNORE SUCH FILES)
+     */
     static InputSourceRef getResource(const std::string &resourceName);
+    
+    /*
+     * FOR "STATIC" RESOURCES (I.E. EMBEDDED INSIDE THE EXECUTABLE ON MSW)
+     *
+     * OSX AND IOS: isFile() WILL RETURN true
+     * ANDROID AND MSW: isFile() WILL RETURN false
+     *
+     * THE "CHR_RESOURCE" MACRO IS INTENDED TO BE USED HERE (SEE ChronotextResource.h):
+     * - WE CAN'T RELY ON THE "CINDER_RESOURCE" MACRO,  OTHERWISE getFilePathHint() WOULD NOT WORK
+     * - getFilePathHint() IS NECESSARY, E.G. IN ORDER TO BE ABLE TO DEFINE A FILE'S EXTENSION
+     */
     static InputSourceRef getResource(const std::string &resourceName, int mswID, const std::string &mswType);
+    
     static InputSourceRef getFileInDocuments(const std::string &relativePath);
     static InputSourceRef getFile(const ci::fs::path &filePath);
     

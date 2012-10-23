@@ -10,14 +10,20 @@ using namespace app;
 InputSourceRef InputSource::getResource(const std::string &resourceName)
 {
     InputSource *source = new InputSource(TYPE_RESOURCE);
-    source->resourceName = source->filePathHint = resourceName;
+    source->resourceName = resourceName;
 
 #if defined(CINDER_MSW)
-    source->filePath = fs::path(resourceName);
+    source->filePath = fs::path("resources") / resourceName;
 #elif defined(CINDER_COCOA)
     source->filePath = App::getResourcePath(resourceName);
 #endif
-
+    
+#if defined(CINDER_MSW)
+    source->filePathHint = source->filePath.string();
+#else
+    source->filePathHint = resourceName;
+#endif
+    
     return InputSourceRef(source);
 }
 
@@ -50,7 +56,7 @@ InputSourceRef InputSource::getFile(const fs::path &filePath)
 {
     InputSource *source = new InputSource(TYPE_FILE);
     source->filePath = filePath;
-    source->filePathHint = filePath.filename().string();
+    source->filePathHint = filePath.string();
     
     return InputSourceRef(source);
 }
