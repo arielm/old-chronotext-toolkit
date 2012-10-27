@@ -8,7 +8,9 @@ using namespace std;
 void Sketch::setup()
 {
     texture = TextureHelper::loadTexture("bulbo1.jpg"); // UPON DEPLOYMENT ON MSW: PLACE THE FILE IN A resources FOLDER, ALONGSIDE THE EXECUTABLE
-
+    
+    position = getWindowSize() / 2;
+    
     // ---
 
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -39,9 +41,19 @@ void Sketch::draw()
     // ---
 
     glColor4f(1, 1, 1, 1);
-    gl::translate(getWindowSize() / 2);
+    gl::translate(position);
 
     TextureHelper::beginTexture(texture);
     TextureHelper::drawTextureFromCenter(texture);
     TextureHelper::endTexture();
+}
+
+void Sketch::addTouch(int index, float x, float y)
+{
+    dragOrigin = Vec2f(x, y) - position;
+}
+
+void Sketch::updateTouch(int index, float x, float y)
+{
+    position = Vec2f(x, y) - dragOrigin;
 }
