@@ -58,6 +58,30 @@ void CinderApp::mouseUp(MouseEvent event)
     sketch->removeTouch(0, event.getX(), event.getY());
 }
 
+void CinderApp::touchesBegan(TouchEvent event)
+{
+	for (vector<TouchEvent::Touch>::const_iterator touchIt = event.getTouches().begin(); touchIt != event.getTouches().end(); ++touchIt)
+    {
+        sketch->addTouch(touchIt->getId() - 1, touchIt->getPos().x, touchIt->getPos().y);
+	}
+}
+
+void CinderApp::touchesMoved(TouchEvent event)
+{
+	for (vector<TouchEvent::Touch>::const_iterator touchIt = event.getTouches().begin(); touchIt != event.getTouches().end(); ++touchIt)
+    {
+		sketch->updateTouch(touchIt->getId() - 1, touchIt->getPos().x, touchIt->getPos().y);
+    }
+}
+
+void CinderApp::touchesEnded(TouchEvent event)
+{
+	for (vector<TouchEvent::Touch>::const_iterator touchIt = event.getTouches().begin(); touchIt != event.getTouches().end(); ++touchIt)
+    {
+		sketch->removeTouch(touchIt->getId() - 1, touchIt->getPos().x, touchIt->getPos().y);
+	}
+}
+
 #if defined(CINDER_COCOA_TOUCH) || defined(CINDER_ANDROID)
 void CinderApp::accelerated(AccelEvent event)
 {

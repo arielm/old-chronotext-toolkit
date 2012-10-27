@@ -28,6 +28,10 @@ public:
     void mouseUp(ci::app::MouseEvent event);    
     void mouseDrag(ci::app::MouseEvent event);
     
+    void touchesBegan(ci::app::TouchEvent event);
+	void touchesMoved(ci::app::TouchEvent event);
+	void touchesEnded(ci::app::TouchEvent event);
+    
 #if defined(CINDER_COCOA_TOUCH) || defined(CINDER_ANDROID)
     void accelerated(ci::app::AccelEvent event);
 #endif
