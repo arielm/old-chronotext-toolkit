@@ -10,6 +10,12 @@ class CinderApp : public ci::app::AppNative
 
 public:
     CinderSketch *sketch;
+    
+    CinderApp()
+    :
+    startCount(0),
+    updateCount(0)
+    {}
 
     void setup();
     void shutdown();

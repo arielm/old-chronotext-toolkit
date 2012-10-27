@@ -6,9 +6,6 @@ using namespace std;
 
 void CinderApp::setup()
 {
-    startCount = 0;
-    updateCount = 0;
-
     sketch->setup();
 }
 

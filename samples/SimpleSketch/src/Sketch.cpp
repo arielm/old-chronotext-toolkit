@@ -7,7 +7,7 @@ using namespace std;
 
 void Sketch::setup()
 {
-    texture = TextureHelper::loadTexture("bulbo1.jpg"); // ON MSW, PLACE THE FILE IN A resources FOLDER ALONGSIDE THE EXECUTABLE
+    texture = TextureHelper::loadTexture("bulbo1.jpg"); // UPON DEPLOYMENT ON MSW: PLACE THE FILE IN A resources FOLDER, ALONGSIDE THE EXECUTABLE
 
     // ---
 

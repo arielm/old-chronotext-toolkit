@@ -12,7 +12,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{74202EDD-91D2-4D2A-B0B6-355CEB16E6BE}</ProjectGuid>
-    <RootNamespace>SimpleSketchApp</RootNamespace>
+    <RootNamespace>Application</RootNamespace>
     <Keyword>Win32Proj</Keyword>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -134,7 +134,7 @@
     <ClCompile Include="..\..\..\src\chronotext\utils\y64\cdecode.c" />
     <ClCompile Include="..\..\..\src\chronotext\utils\y64\cencode.c" />
     <ClCompile Include="..\..\..\src\chronotext\utils\y64\Y64.cpp" />
-    <ClCompile Include="..\src\SimpleSketchApp.cpp" />
+    <ClCompile Include="..\src\Application.cpp" />
     <ClCompile Include="..\src\Sketch.cpp" />
   </ItemGroup>
   <ItemGroup>
