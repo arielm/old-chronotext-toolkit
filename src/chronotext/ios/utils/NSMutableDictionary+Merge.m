@@ -11,7 +11,12 @@
     
     for (NSString *key = firstKey; key != nil; key = va_arg(keys, NSString*))
     {
-        [dictionary setObject:[otherDictionary objectForKey:key] forKey:key];
+        id object = [otherDictionary objectForKey:key];
+        
+        if (object)
+        {
+            [dictionary setObject:object forKey:key];
+        }
     }
     
     va_end(keys);
