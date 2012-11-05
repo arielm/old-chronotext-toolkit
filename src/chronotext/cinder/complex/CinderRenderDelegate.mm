@@ -1,8 +1,8 @@
 #import <OpenGLES/ES1/gl.h>
 #import <OpenGLES/ES1/glext.h>
 
-#import "chronotext/cinder/complex/CinderRenderDelegate.h"
-#import "chronotext/ios/gl/EAGLViewController.h"
+#import "CinderRenderDelegate.h"
+#import "EAGLViewController.h"
 
 using namespace ci;
 using namespace app;

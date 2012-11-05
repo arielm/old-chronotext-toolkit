@@ -1,4 +1,4 @@
-#import "chronotext/ios/gl/RenderDelegate.h"
+#import "RenderDelegate.h"
 
 #include "chronotext/cinder/CinderSketch.h"
 

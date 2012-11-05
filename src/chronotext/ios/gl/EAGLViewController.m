@@ -1,4 +1,4 @@
-#import "chronotext/ios/gl/EAGLViewController.h"
+#import "EAGLViewController.h"
 
 NSString* kEAGLViewControllerPropertyInterfaceOrientation = @"kEAGLViewControllerPropertyInterfaceOrientation";
 

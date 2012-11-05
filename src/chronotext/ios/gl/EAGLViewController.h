@@ -1,7 +1,7 @@
 #import <UIKit/UIKit.h>
 
-#import "chronotext/ios/gl/EAGLView.h"
-#import "chronotext/ios/gl/RenderDelegate.h"
+#import "EAGLView.h"
+#import "RenderDelegate.h"
 
 OBJC_EXPORT NSString* kEAGLViewControllerPropertyInterfaceOrientation;
 
