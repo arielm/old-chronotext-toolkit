@@ -5,19 +5,22 @@
 #pragma once
 
 #include "chronotext/texture/Sprite.h"
-
-#include "cinder/DataSource.h"
+#include "chronotext/InputSource.h"
 
 #include <map>
 
 class TextureAtlas
 {
     std::map<std::string, Sprite*> sprites;
+    
+    void init(InputSourceRef inputSource, bool useMipmap);
 
 public:
     Texture *texture;
 
-    TextureAtlas(ci::DataSourceRef dataSource, bool useMipmap = false);
+    TextureAtlas(const std::string &resourceName, bool useMipmap = false);
+    TextureAtlas(InputSourceRef inputSource, bool useMipmap = false);
+
     ~TextureAtlas();
     
     void unload();

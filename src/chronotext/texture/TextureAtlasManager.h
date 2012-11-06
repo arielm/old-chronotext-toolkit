@@ -10,6 +10,8 @@ public:
     ~TextureAtlasManager();
     
     void setAtlas(const std::string &resourceName, int index, bool useMipmap = false);
+    void setAtlas(InputSourceRef inputSource, int index, bool useMipmap = false);
+
     TextureAtlas* getAtlas(int index);
 
     void beginTexture(int index);

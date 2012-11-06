@@ -14,7 +14,12 @@ TextureAtlasManager::~TextureAtlasManager()
 
 void TextureAtlasManager::setAtlas(const string &resourceName, int index, bool useMipmap)
 {
-    atlases[index] = new TextureAtlas(InputSource::loadResource(resourceName), useMipmap);
+    atlases[index] = new TextureAtlas(resourceName, useMipmap);
+}
+
+void TextureAtlasManager::setAtlas(InputSourceRef inputSource, int index, bool useMipmap)
+{
+    atlases[index] = new TextureAtlas(inputSource, useMipmap);
 }
 
 TextureAtlas* TextureAtlasManager::getAtlas(int index)

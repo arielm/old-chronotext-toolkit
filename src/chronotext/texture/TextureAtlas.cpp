@@ -5,9 +5,19 @@
 using namespace ci;
 using namespace std;
 
-TextureAtlas::TextureAtlas(DataSourceRef dataSource, bool useMipmap)
+TextureAtlas::TextureAtlas(const string &resourceName, bool useMipmap)
 {
-    XmlTree doc(dataSource);
+    init(InputSource::getResource(resourceName), useMipmap);    
+}
+
+TextureAtlas::TextureAtlas(InputSourceRef inputSource, bool useMipmap)
+{
+    init(inputSource, useMipmap);
+}
+
+void TextureAtlas::init(InputSourceRef inputSource, bool useMipmap)
+{
+    XmlTree doc(inputSource->loadDataSource());
     
     string resourceName = doc.getChild("TextureAtlas").getAttributeValue<string>("imagePath");
     texture = new Texture(InputSource::getResource(resourceName), useMipmap);
@@ -20,7 +30,7 @@ TextureAtlas::TextureAtlas(DataSourceRef dataSource, bool useMipmap)
     for (XmlTree::Iter spriteElement = doc.begin("TextureAtlas/sprite"); spriteElement != doc.end(); ++spriteElement)
     {
         string spritePath = spriteElement->getAttributeValue<string>("n");
-
+        
         float x = spriteElement->getAttributeValue<float>("x");
         float y = spriteElement->getAttributeValue<float>("y");
         float w = spriteElement->getAttributeValue<float>("w");
