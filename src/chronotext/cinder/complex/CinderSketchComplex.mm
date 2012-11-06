@@ -1,6 +1,6 @@
 #include "chronotext/cinder/complex/CinderSketchComplex.h"
 
-#import "chronotext/cinder/complex/CinderRenderDelegate.h"
+#import "CinderRenderDelegate.h"
 
 using namespace ci;
 using namespace app;

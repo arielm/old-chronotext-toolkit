@@ -1,4 +1,4 @@
-#import "chronotext/ios/gl/ES1Renderer.h"
+#import "ES1Renderer.h"
 
 NSString* kES1RendererPropertyUseDepthBuffer = @"kES1RendererPropertyUseDepthBuffer";
 

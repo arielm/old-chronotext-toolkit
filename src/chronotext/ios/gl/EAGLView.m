@@ -1,5 +1,5 @@
-#import "chronotext/ios/gl/EAGLView.h"
-#import "chronotext/ios/gl/EAGLViewController.h"
+#import "EAGLView.h"
+#import "EAGLViewController.h"
 
 NSString* kEAGLViewPropertyAnimationFrameInterval = @"kEAGLViewPropertyAnimationFrameInterval";
 NSString* kEAGLViewPropertyMultipleTouchEnabled = @"kEAGLViewPropertyMultipleTouchEnabled";

@@ -1,8 +1,8 @@
 #import <OpenGLES/ES1/gl.h>
 #import <OpenGLES/ES1/glext.h>
 
-#import "chronotext/ios/gl/RenderDelegate.h"
-#import "chronotext/ios/gl/EAGLView.h"
+#import "RenderDelegate.h"
+#import "EAGLView.h"
 
 @implementation RenderDelegate
 

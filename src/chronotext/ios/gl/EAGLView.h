@@ -1,7 +1,7 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
-#import "chronotext/ios/gl/ES1Renderer.h"
+#import "ES1Renderer.h"
 
 OBJC_EXPORT NSString* kEAGLViewPropertyAnimationFrameInterval;
 OBJC_EXPORT NSString* kEAGLViewPropertyMultipleTouchEnabled;
