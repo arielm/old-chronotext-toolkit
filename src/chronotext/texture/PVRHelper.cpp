@@ -48,19 +48,19 @@ enum
 
 struct CCZHeader
 {
-    uint8_t			sig[4];				// signature: should be 'CCZ!'
+    uint8_t		sig[4];			// signature: should be 'CCZ!'
     uint16_t		compression_type;	// should be CCZ_COMPRESSION_ZLIB
-    uint16_t		version;			// should be 2 (although 1 is also supported)
-    uint32_t		reserved;			// reserved for users
-    uint32_t		len;				// size of the uncompressed file
+    uint16_t		version;		// should be 2 (although 1 is also supported)
+    uint32_t		reserved;		// reserved for users
+    uint32_t		len;			// size of the uncompressed file
 };
 
 enum
 {
-    CCZ_COMPRESSION_ZLIB,				// zlib format.
-    CCZ_COMPRESSION_BZIP2,				// bzip2 format (not supported yet)
-    CCZ_COMPRESSION_GZIP,				// gzip format (not supported yet)
-    CCZ_COMPRESSION_NONE,				// plain (not supported yet)
+    CCZ_COMPRESSION_ZLIB,	// zlib format.
+    CCZ_COMPRESSION_BZIP2,	// bzip2 format (not supported yet)
+    CCZ_COMPRESSION_GZIP,	// gzip format (not supported yet)
+    CCZ_COMPRESSION_NONE,	// plain (not supported yet)
 };
 
 static bool isPOT(int n)
@@ -155,7 +155,7 @@ Buffer PVRHelper::decompressPVRCCZ(DataSourceRef dataSource)
     void *out = buffer.getData();
     if (!out)
     {
-        throw runtime_error("PVR.GZ: OUT-OF-MEMORY");
+        throw runtime_error("PVR.CCZ: OUT-OF-MEMORY");
     }
     
     uLongf destlen = len;
