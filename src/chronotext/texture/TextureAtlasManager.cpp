@@ -6,25 +6,25 @@ using namespace std;
 
 TextureAtlasManager::~TextureAtlasManager()
 {
-    for (vector<TextureAtlas*>::iterator it = atlases.begin(); it != atlases.end(); ++it)
+    for (map<int, TextureAtlas*>::iterator it = atlases.begin(); it != atlases.end(); ++it)
     {
-        delete *it;
+        delete it->second;
     }
 }
 
-void TextureAtlasManager::addAtlas(const string &resourceName, bool useMipmap)
+void TextureAtlasManager::setAtlas(const string &resourceName, int index, bool useMipmap)
 {
-    atlases.push_back(new TextureAtlas(InputSource::loadResource(resourceName), useMipmap));
+    atlases[index] = new TextureAtlas(InputSource::loadResource(resourceName), useMipmap);
 }
 
 TextureAtlas* TextureAtlasManager::getAtlas(int index)
 {
-    return atlases.at(index);
+    return atlases[index];
 }
 
 void TextureAtlasManager::beginTexture(int index)
 {
-    atlases.at(index)->beginTexture();
+    atlases[index]->beginTexture();
 }
 
 void TextureAtlasManager::endTexture()
@@ -36,16 +36,16 @@ void TextureAtlasManager::endTexture()
 
 void TextureAtlasManager::unload()
 {
-    for (vector<TextureAtlas*>::iterator it = atlases.begin(); it != atlases.end(); ++it)
+    for (map<int, TextureAtlas*>::iterator it = atlases.begin(); it != atlases.end(); ++it)
     {
-        (*it)->unload();
+        it->second->unload();
     }
 }
 
 void TextureAtlasManager::reload()
 {
-    for (vector<TextureAtlas*>::iterator it = atlases.begin(); it != atlases.end(); ++it)
+    for (map<int, TextureAtlas*>::iterator it = atlases.begin(); it != atlases.end(); ++it)
     {
-        (*it)->reload();
+        it->second->reload();
     }
 }

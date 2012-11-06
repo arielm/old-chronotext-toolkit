@@ -4,12 +4,12 @@
 
 class TextureAtlasManager
 {
-    std::vector<TextureAtlas*> atlases;
+    std::map<int, TextureAtlas*> atlases;
 
 public:
     ~TextureAtlasManager();
     
-    void addAtlas(const std::string &resourceName, bool useMipmap = false);
+    void setAtlas(const std::string &resourceName, int index, bool useMipmap = false);
     TextureAtlas* getAtlas(int index);
 
     void beginTexture(int index);
