@@ -20,6 +20,7 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		A815C0DF1636DCB4006FC15E /* bulbo1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A815C0DE1636DCB4006FC15E /* bulbo1.jpg */; };
 		A815C0E41636DE16006FC15E /* CinderApp.icns in Resources */ = {isa = PBXBuildFile; fileRef = A815C0E31636DE16006FC15E /* CinderApp.icns */; };
+		A84558441649D76500FBD4AD /* TextureAtlasManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A84558421649D76500FBD4AD /* TextureAtlasManager.cpp */; };
 		A87A4EFF162EFDA80059878E /* Sketch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87A4EFD162EFDA80059878E /* Sketch.cpp */; };
 		A87A55FD162F65190059878E /* CinderApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87A555A162F65190059878E /* CinderApp.cpp */; };
 		A87A55FE162F65190059878E /* FontMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87A555E162F65190059878E /* FontMatrix.cpp */; };
@@ -74,6 +75,8 @@
 		8D1107320486CEB800E47090 /* SimpleSketch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleSketch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A815C0DE1636DCB4006FC15E /* bulbo1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = bulbo1.jpg; path = ../resources/bulbo1.jpg; sourceTree = "<group>"; };
 		A815C0E31636DE16006FC15E /* CinderApp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = CinderApp.icns; sourceTree = "<group>"; };
+		A84558421649D76500FBD4AD /* TextureAtlasManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureAtlasManager.cpp; sourceTree = "<group>"; };
+		A84558431649D76500FBD4AD /* TextureAtlasManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureAtlasManager.h; sourceTree = "<group>"; };
 		A87A4EFB162EFC680059878E /* Resources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Resources.h; path = ../include/Resources.h; sourceTree = "<group>"; };
 		A87A4EFD162EFDA80059878E /* Sketch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Sketch.cpp; path = ../src/Sketch.cpp; sourceTree = "<group>"; };
 		A87A4EFE162EFDA80059878E /* Sketch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sketch.h; path = ../src/Sketch.h; sourceTree = "<group>"; };
@@ -406,6 +409,8 @@
 				A87A55D8162F65190059878E /* Texture.h */,
 				A87A55D9162F65190059878E /* TextureAtlas.cpp */,
 				A87A55DA162F65190059878E /* TextureAtlas.h */,
+				A84558421649D76500FBD4AD /* TextureAtlasManager.cpp */,
+				A84558431649D76500FBD4AD /* TextureAtlasManager.h */,
 				A87A55DB162F65190059878E /* TextureAtlasAnimation.cpp */,
 				A87A55DC162F65190059878E /* TextureAtlasAnimation.h */,
 				A87A55DD162F65190059878E /* TextureHelper.cpp */,
@@ -560,6 +565,7 @@
 				A87A5636162F65190059878E /* cdecode.c in Sources */,
 				A87A5637162F65190059878E /* cencode.c in Sources */,
 				A87A5638162F65190059878E /* Y64.cpp in Sources */,
+				A84558441649D76500FBD4AD /* TextureAtlasManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

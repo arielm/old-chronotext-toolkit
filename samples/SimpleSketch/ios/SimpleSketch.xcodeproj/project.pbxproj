@@ -14,6 +14,7 @@
 		28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD15070DC6FC5B0079059D /* QuartzCore.framework */; };
 		A815C1131636DEC6006FC15E /* bulbo1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A815C1121636DEC6006FC15E /* bulbo1.jpg */; };
 		A815C1161636DEEF006FC15E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A815C1151636DEEF006FC15E /* Icon.png */; };
+		A84558081649D6FC00FBD4AD /* TextureAtlasManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A84558061649D6FC00FBD4AD /* TextureAtlasManager.cpp */; };
 		A87A4EF1162EF4C60059878E /* Sketch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87A4EEF162EF4C60059878E /* Sketch.cpp */; };
 		A87A550F162F63F90059878E /* CinderApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87A546C162F63F90059878E /* CinderApp.cpp */; };
 		A87A5510162F63F90059878E /* FontMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87A5470162F63F90059878E /* FontMatrix.cpp */; };
@@ -65,6 +66,8 @@
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		A815C1121636DEC6006FC15E /* bulbo1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = bulbo1.jpg; path = ../resources/bulbo1.jpg; sourceTree = "<group>"; };
 		A815C1151636DEEF006FC15E /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		A84558061649D6FC00FBD4AD /* TextureAtlasManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureAtlasManager.cpp; sourceTree = "<group>"; };
+		A84558071649D6FC00FBD4AD /* TextureAtlasManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureAtlasManager.h; sourceTree = "<group>"; };
 		A87A4EEF162EF4C60059878E /* Sketch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Sketch.cpp; path = ../src/Sketch.cpp; sourceTree = "<group>"; };
 		A87A4EF0162EF4C60059878E /* Sketch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sketch.h; path = ../src/Sketch.h; sourceTree = "<group>"; };
 		A87A4EF2162EF50D0059878E /* Resources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Resources.h; path = ../include/Resources.h; sourceTree = "<group>"; };
@@ -384,6 +387,8 @@
 				A87A54EA162F63F90059878E /* Texture.h */,
 				A87A54EB162F63F90059878E /* TextureAtlas.cpp */,
 				A87A54EC162F63F90059878E /* TextureAtlas.h */,
+				A84558061649D6FC00FBD4AD /* TextureAtlasManager.cpp */,
+				A84558071649D6FC00FBD4AD /* TextureAtlasManager.h */,
 				A87A54ED162F63F90059878E /* TextureAtlasAnimation.cpp */,
 				A87A54EE162F63F90059878E /* TextureAtlasAnimation.h */,
 				A87A54EF162F63F90059878E /* TextureHelper.cpp */,
@@ -537,6 +542,7 @@
 				A87A5549162F63F90059878E /* cencode.c in Sources */,
 				A87A554A162F63F90059878E /* Y64.cpp in Sources */,
 				A8F15C3F163C8B21001689AE /* Application.cpp in Sources */,
+				A84558081649D6FC00FBD4AD /* TextureAtlasManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,7 +561,7 @@
 				GCC_PREFIX_HEADER = Prefix.pch;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
-				INFOPLIST_FILE = "Info.plist";
+				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				"OTHER_LDFLAGS[sdk=iphoneos*][arch=*]" = (
 					"\"$(CINDER_PATH)/lib/libcinder-iphone_d.a\"",
@@ -579,7 +585,7 @@
 				GCC_PREFIX_HEADER = Prefix.pch;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
-				INFOPLIST_FILE = "Info.plist";
+				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				"OTHER_LDFLAGS[sdk=iphoneos*][arch=*]" = (
 					"\"$(CINDER_PATH)/lib/libcinder-iphone.a\"",
