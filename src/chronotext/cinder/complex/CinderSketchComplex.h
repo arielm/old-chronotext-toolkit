@@ -23,7 +23,7 @@ public:
     CinderSketchComplex(void *context) : context(context) {}
     virtual ~CinderSketchComplex() {};
 
-	virtual void setup() {}
+	virtual void setup(bool renewContext) {}
 	virtual void shutdown() {}
 	virtual void resize(ci::app::ResizeEvent event) {}
 	virtual void update() {}

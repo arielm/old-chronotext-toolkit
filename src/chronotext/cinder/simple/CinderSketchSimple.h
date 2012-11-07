@@ -25,7 +25,7 @@ public:
     
     virtual ~CinderSketchSimple() {};
 
-    virtual void setup() {}
+    virtual void setup(bool renewContext) {}
     virtual void shutdown() {}
     virtual void resize(ci::app::ResizeEvent event) {}
 

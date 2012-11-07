@@ -72,7 +72,7 @@ using namespace std;
     
     mContentScale = view.contentScaleFactor;
 
-	sketch->setup();
+	sketch->setup(false);
 	sketch->resize(ResizeEvent(Vec2i(mWidth, mHeight)));
 }
 

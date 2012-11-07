@@ -6,7 +6,7 @@ using namespace std;
 
 void CinderApp::setup()
 {
-    sketch->setup();
+    sketch->setup(false);
 }
 
 void CinderApp::shutdown()
@@ -92,11 +92,16 @@ void CinderApp::accelerated(AccelEvent event)
 #if defined(CINDER_ANDROID)
 void CinderApp::resume(bool renewContext)
 {
-    // TODO
+    if (renewContext)
+    {
+        sketch->setup(true);
+    }
+    
+    sketch->start(FLAG_APP_RESUME);
 }
 
 void CinderApp::pause()
 {
-    // TODO
+    sketch->stop(FLAG_APP_PAUSE);
 }
 #endif

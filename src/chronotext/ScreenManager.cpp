@@ -111,7 +111,7 @@ void ScreenManager::accelerated(AccelEvent event)
  */ 
 void ScreenManager::addScreen(CinderSketch *screen)
 {
-    screen->setup();
+    screen->setup(false);
     
     screens.push_back(screen);
     focused[screen] = false;
