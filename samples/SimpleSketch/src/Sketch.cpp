@@ -5,9 +5,13 @@ using namespace ci;
 using namespace ci::app;
 using namespace std;
 
-void Sketch::setup()
+void Sketch::setup(bool renew)
 {
-    texture = TextureHelper::loadTexture("bulbo1.jpg"); // UPON DEPLOYMENT ON MSW: PLACE THE FILE IN A resources FOLDER, ALONGSIDE THE EXECUTABLE
+    /*
+     * UPON DEPLOYMENT ON MSW: PLACE THE FILE IN A resources FOLDER, ALONGSIDE THE EXECUTABLE
+     * MORE DETAILS IN chronotext/InputSource.h
+     */
+    texture = TextureHelper::loadTexture("bulbo1.jpg"); // BULBO IS (C) XEITH FEINBERG, http://www.bulbo.com/
     
     position = getWindowSize() / 2;
     

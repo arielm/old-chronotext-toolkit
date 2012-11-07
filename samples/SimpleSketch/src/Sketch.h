@@ -1,7 +1,5 @@
 /*
- * SIMPLE CinderSketch
- *
- * BE SURE TO EVENTUALLY RUN IN "RELEASE" MODE!
+ * SIMPLE CinderSketch: LOADING A TEXTURE AND DRAG IT AROUND...
  *
  * WARNING: THE "SIMPLE-SKETCH" SYSTEM IS NOT ADAPTED FOR IOS RETINA
  * THE "COMPLEX-SKETCH" SYSTEM ON THE OTHER-HAND BEHAVES EQUALLY ON RETINA AND REGULAR DEVICES
@@ -22,7 +20,7 @@ class Sketch : public CinderSketch
 public:
     Sketch(void *context) : CinderSketch(context) {}
 
-    void setup();
+    void setup(bool renew);
     void shutdown();
 
     void resize(ci::app::ResizeEvent event);
