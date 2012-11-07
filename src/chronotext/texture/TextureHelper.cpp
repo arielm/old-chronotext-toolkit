@@ -2,12 +2,10 @@
 #include "chronotext/texture/PVRHelper.h"
 #include "chronotext/utils/Utils.h"
 
-#include "cinder/app/App.h"
 #include "cinder/ImageIo.h"
 
 using namespace std;
 using namespace ci;
-using namespace ci::app;
 
 gl::Texture* TextureHelper::loadTexture(const string &resourceName, bool useMipmap, int filter, GLenum wrapS, GLenum wrapT)
 {

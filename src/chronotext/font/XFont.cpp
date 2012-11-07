@@ -17,74 +17,30 @@ XFont::XFont(InputSourceRef inputSource, bool useMipmap, bool useAnisotropy, int
 useMipmap(useMipmap),
 useAnisotropy(useAnisotropy),
 maxDimensions(maxDimensions),
-charactersPerSlot(charactersPerSlot),
-derived(false)
+charactersPerSlot(charactersPerSlot)
 {
     read(inputSource);
 }
 
-XFont::XFont(XFont *source, bool useAnisotropy, int maxDimensions, int charactersPerSlot)
-:
-useAnisotropy(useAnisotropy),
-maxDimensions(maxDimensions),
-charactersPerSlot(charactersPerSlot),
-derived(true)
-{
-    numChars = source->numChars;
-    w = source->w;
-    h = source->h;
-    le = source->le;
-    te = source->te;
-    lw = source->lw;
-    
-    nativeFontSize = source->nativeFontSize;
-    spaceWidth = source->spaceWidth;
-    height = source->height;
-    maxAscent = source->maxAscent;
-    maxDescent = source->maxDescent;
-    strikethroughOffset = source->strikethroughOffset;
-    
-    lookup8bits = source->lookup8bits;
-    lookup16bits = source->lookup16bits;
-    ordered16bits = source->ordered16bits;
-    
-    lookup8Len = source->lookup8Len;
-    lookup16Len = source->lookup16Len;
-    
-    tx1 = source->tx1;
-    ty1 = source->ty1;
-    tx2 = source->tx2;
-    ty2 = source->ty2;
-    
-    anisotropyAvailable = source->anisotropyAvailable;
-    maxAnisotropy = source->maxAnisotropy;
-    name = source->name;
-
-    init();
-}
-
 XFont::~XFont()
 {
-    if (!derived)
-    {
-        delete[] w;
-        delete[] h;
-        delete[] le;
-        delete[] te;
-        delete[] lw;
-        
-        delete[] lookup8bits;
-        delete[] lookup16bits;
-        delete[] ordered16bits;
-        
-        delete[] tx1;
-        delete[] ty1;
-        delete[] tx2;
-        delete[] ty2;
-        
-        glDeleteTextures(1, &name);
-    }
-
+    delete[] w;
+    delete[] h;
+    delete[] le;
+    delete[] te;
+    delete[] lw;
+    
+    delete[] lookup8bits;
+    delete[] lookup16bits;
+    delete[] ordered16bits;
+    
+    delete[] tx1;
+    delete[] ty1;
+    delete[] tx2;
+    delete[] ty2;
+    
+    glDeleteTextures(1, &name);
+    
     // ---
     
     delete[] vertice;

@@ -41,7 +41,6 @@ protected:
     float maxAnisotropy;
     
     GLuint name;
-    bool derived;
 
 private:
     int atlasWidth, atlasHeight;
@@ -77,7 +76,6 @@ private:
 
 public:
     XFont(InputSourceRef inputSource, bool useMipmap, bool useAnisotropy, int maxDimensions, int charactersPerSlot);
-    XFont(XFont *source, bool useAnisotropy, int maxDimensions, int charactersPerSlot); 
     ~XFont();
     
     bool isValid(wchar_t c);
