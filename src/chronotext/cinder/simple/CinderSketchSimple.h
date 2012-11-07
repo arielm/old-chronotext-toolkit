@@ -22,6 +22,8 @@ public:
     {
         this->context = (ci::app::AppNative*)context;
     }
+    
+    virtual ~CinderSketchSimple() {};
 
     virtual void setup() {}
     virtual void shutdown() {}

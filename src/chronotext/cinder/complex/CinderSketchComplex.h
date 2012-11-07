@@ -21,6 +21,7 @@ public:
     };
 
     CinderSketchComplex(void *context) : context(context) {}
+    virtual ~CinderSketchComplex() {};
 
 	virtual void setup() {}
 	virtual void shutdown() {}
