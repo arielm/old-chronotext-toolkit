@@ -14,15 +14,22 @@ inline bool isSpace(wchar_t c)
 
 XFont::XFont(InputSourceRef inputSource, bool useMipmap, bool useAnisotropy, int maxDimensions, int charactersPerSlot)
 :
+inputSource(inputSource),
 useMipmap(useMipmap),
 useAnisotropy(useAnisotropy),
 maxDimensions(maxDimensions),
 charactersPerSlot(charactersPerSlot)
 {
-    read(inputSource);
+    reload();
+    setSize(1);
 }
 
 XFont::~XFont()
+{
+    unload();
+}
+
+void XFont::unload()
 {
     delete[] w;
     delete[] h;
@@ -46,6 +53,18 @@ XFont::~XFont()
     delete[] vertice;
     delete[] coords;
     delete[] indices;
+    
+    // ---
+    
+    DLOG("FONT DELETED: " << name);
+}
+
+void XFont::reload()
+{
+    read(inputSource);
+    init();
+    
+    DLOG("FONT LOADED: " << name << " (" << atlasWidth << "x" << atlasHeight << ")");
 }
 
 void XFont::read(InputSourceRef inputSource)
@@ -121,7 +140,7 @@ void XFont::readFromStream(istream &in)
     
     atlasWidth = DataStreamIO::readBig<uint16_t>(in);
     atlasHeight = DataStreamIO::readBig<uint16_t>(in);
-    atlasData = new char[atlasWidth * atlasHeight];
+    char *atlasData = new char[atlasWidth * atlasHeight];
     
     for (int i = 0; i < numChars; i++)
     {
@@ -132,13 +151,14 @@ void XFont::readFromStream(istream &in)
         size_t size = w[cc] * h[cc];
         char *data = new char[size];
         in.read(data, size);
-        atlasAddUnit(data, cc, left, top);
+        atlasAddUnit(data, atlasData, cc, left, top);
         delete[] data;
     }
 
     // ---
     
     anisotropyAvailable = strstr((char*)glGetString(GL_EXTENSIONS), "GL_EXT_texture_filter_anisotropic");
+    
     if (anisotropyAvailable)
     {
         glGetFloatv(GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT, &maxAnisotropy);
@@ -176,10 +196,6 @@ void XFont::readFromStream(istream &in)
     }
     
     delete[] atlasData;
-    
-    // ---
-    
-    init();
 }
 
 void XFont::init()
@@ -187,7 +203,6 @@ void XFont::init()
     matrix.setToIdentity();
     began = 0;
     sequence = NULL;
-    setSize(1);
     
     // --- BUFFER ALLOCATION
     
@@ -212,9 +227,8 @@ void XFont::init()
 
 // ---
 
-void XFont::atlasAddUnit(char *srcData, int cc, int left, int top)
+void XFont::atlasAddUnit(char *srcData, char *dstData, int cc, int left, int top)
 {
-    char *dstData = atlasData;
     int width = atlasWidth;
     int height = atlasHeight;
     

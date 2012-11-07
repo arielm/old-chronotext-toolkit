@@ -44,13 +44,7 @@ protected:
 
 private:
     int atlasWidth, atlasHeight;
-    char *atlasData;
 
-    bool useMipmap;
-    bool useAnisotropy;
-    int maxDimensions;
-    int charactersPerSlot;
-    
     float size;
     float sizeRatio;
     int began;
@@ -64,7 +58,7 @@ private:
     int sequenceDimensions;
     XFontSequence *sequence;
     
-    void atlasAddUnit(char *srcData, int cc, int left, int top);
+    void atlasAddUnit(char *srcData, char *dstData, int cc, int left, int top);
     int binarySearch(int value);
 
     void init();
@@ -75,8 +69,17 @@ private:
     void flushIfRequired();
 
 public:
+    InputSourceRef inputSource;
+    bool useMipmap;
+    bool useAnisotropy;
+    int maxDimensions;
+    int charactersPerSlot;
+
     XFont(InputSourceRef inputSource, bool useMipmap, bool useAnisotropy, int maxDimensions, int charactersPerSlot);
     ~XFont();
+    
+    void unload();
+    void reload();
     
     bool isValid(wchar_t c);
     int lookup(wchar_t c);

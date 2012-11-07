@@ -9,8 +9,8 @@ class TextureManager
 {
     std::list<Texture*> cache;
     
-    Texture* getTextureFromCache(InputSourceRef inputSource, bool useMipmap, int filter, GLenum wrapS, GLenum wrapT);
-    void putTextureInCache(Texture *texture);
+    Texture* getFromCache(InputSourceRef inputSource, bool useMipmap, int filter, GLenum wrapS, GLenum wrapT);
+    void putInCache(Texture *texture);
     
 public:
     ~TextureManager();

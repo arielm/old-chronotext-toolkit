@@ -11,7 +11,7 @@ TextureManager::~TextureManager()
     }
 }
 
-Texture* TextureManager::getTextureFromCache(InputSourceRef inputSource, bool useMipmap, int filter, GLenum wrapS, GLenum wrapT)
+Texture* TextureManager::getFromCache(InputSourceRef inputSource, bool useMipmap, int filter, GLenum wrapS, GLenum wrapT)
 {
     for (list<Texture*>::const_iterator it = cache.begin(); it != cache.end(); ++it)
     {
@@ -26,7 +26,7 @@ Texture* TextureManager::getTextureFromCache(InputSourceRef inputSource, bool us
     return NULL;
 }
 
-void TextureManager::putTextureInCache(Texture *texture)
+void TextureManager::putInCache(Texture *texture)
 {
     cache.push_back(texture);
 }
@@ -38,12 +38,12 @@ Texture* TextureManager::getTexture(const string &resourceName, bool useMipmap, 
 
 Texture* TextureManager::getTexture(InputSourceRef inputSource, bool useMipmap, int filter, GLenum wrapS, GLenum wrapT)
 {
-    Texture *texture = getTextureFromCache(inputSource, useMipmap, filter, wrapS, wrapT);
+    Texture *texture = getFromCache(inputSource, useMipmap, filter, wrapS, wrapT);
     
     if (!texture)
     {
         texture = new Texture(inputSource, useMipmap, filter, wrapS, wrapT);
-        putTextureInCache(texture);
+        putInCache(texture);
     }
     
     return texture;

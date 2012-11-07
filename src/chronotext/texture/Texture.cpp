@@ -1,5 +1,4 @@
 #include "chronotext/texture/Texture.h"
-#include "chronotext/utils/Utils.h"
 
 using namespace std;
 using namespace ci;
