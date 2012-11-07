@@ -116,6 +116,11 @@ NSString* kEAGLViewControllerPropertyInterfaceOrientation = @"kEAGLViewControlle
         ticks = 0;
 
         /*
+         * THIS *MUST* TAKE PLACE BEFORE DRAWING
+         */
+        [renderDelegate startWithReason:reason];
+        
+        /*
          * NECESSARY IN ORDER TO AVOID "GHOSTING"
          */
         if ((reason == REASON_VIEW_WILL_APPEAR) && stopped)
@@ -123,7 +128,6 @@ NSString* kEAGLViewControllerPropertyInterfaceOrientation = @"kEAGLViewControlle
             [glView drawView:nil];
         }
 
-        [renderDelegate startWithReason:reason];
         [glView startAnimation];
         
         started = YES;
