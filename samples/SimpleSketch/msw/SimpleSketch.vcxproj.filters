@@ -49,9 +49,6 @@
     <Filter Include="Source Files\chronotext\utils\y64">
       <UniqueIdentifier>{e83cf060-f66d-4e5f-a59e-310fa843f7a0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\chronotext\cinder\simple">
-      <UniqueIdentifier>{0afe5bb5-a720-4968-9474-5c9d65eddcd3}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Application.cpp">
@@ -147,11 +144,11 @@
     <ClCompile Include="..\..\..\src\chronotext\utils\md5\md5.cpp">
       <Filter>Source Files\chronotext\utils\md5</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\chronotext\cinder\simple\CinderApp.cpp">
-      <Filter>Source Files\chronotext\cinder\simple</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\chronotext\texture\TextureAtlasManager.cpp">
       <Filter>Source Files\chronotext\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\chronotext\cinder\CinderApp.cpp">
+      <Filter>Source Files\chronotext\cinder</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -160,9 +157,6 @@
     </ClInclude>
     <ClInclude Include="..\src\Sketch.h">
       <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\chronotext\cinder\CinderSketch.h">
-      <Filter>Source Files\chronotext\cinder</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\chronotext\ChronotextResources.h">
       <Filter>Source Files\chronotext</Filter>
@@ -290,14 +284,17 @@
     <ClInclude Include="..\..\..\src\chronotext\utils\md5\md5.h">
       <Filter>Source Files\chronotext\utils\md5</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\chronotext\cinder\simple\CinderApp.h">
-      <Filter>Source Files\chronotext\cinder\simple</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\chronotext\cinder\simple\CinderSketchSimple.h">
-      <Filter>Source Files\chronotext\cinder\simple</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src\chronotext\texture\TextureAtlasManager.h">
       <Filter>Source Files\chronotext\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\cinder\CinderApp.h">
+      <Filter>Source Files\chronotext\cinder</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\cinder\CinderSketch.h">
+      <Filter>Source Files\chronotext\cinder</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\chronotext\cinder\CinderSketchSimple.h">
+      <Filter>Source Files\chronotext\cinder</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

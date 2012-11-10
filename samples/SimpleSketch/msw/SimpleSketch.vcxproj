@@ -104,7 +104,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\src\chronotext\cinder\simple\CinderApp.cpp" />
+    <ClCompile Include="..\..\..\src\chronotext\cinder\CinderApp.cpp" />
     <ClCompile Include="..\..\..\src\chronotext\font\FontMatrix.cpp" />
     <ClCompile Include="..\..\..\src\chronotext\font\XFont.cpp" />
     <ClCompile Include="..\..\..\src\chronotext\font\XFontSequence.cpp" />
@@ -140,9 +140,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\chronotext\ChronotextResources.h" />
+    <ClInclude Include="..\..\..\src\chronotext\cinder\CinderApp.h" />
     <ClInclude Include="..\..\..\src\chronotext\cinder\CinderSketch.h" />
-    <ClInclude Include="..\..\..\src\chronotext\cinder\simple\CinderApp.h" />
-    <ClInclude Include="..\..\..\src\chronotext\cinder\simple\CinderSketchSimple.h" />
+    <ClInclude Include="..\..\..\src\chronotext\cinder\CinderSketchSimple.h" />
     <ClInclude Include="..\..\..\src\chronotext\font\FontMatrix.h" />
     <ClInclude Include="..\..\..\src\chronotext\font\XFont.h" />
     <ClInclude Include="..\..\..\src\chronotext\font\XFontSequence.h" />
