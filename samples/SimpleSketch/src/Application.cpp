@@ -1,4 +1,4 @@
-#include "chronotext/cinder/simple/CinderApp.h"
+#include "chronotext/cinder/CinderApp.h"
 
 #include "Sketch.h"
 

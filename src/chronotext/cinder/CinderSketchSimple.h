@@ -18,11 +18,7 @@ public:
         FLAG_SCREEN_LEAVE
     };
 
-    CinderSketchSimple(void *context)
-    {
-        this->context = (ci::app::AppNative*)context;
-    }
-    
+    CinderSketchSimple(void *context) : context((ci::app::AppNative*)context) {}
     virtual ~CinderSketchSimple() {};
 
     virtual void setup(bool renewContext) {}
@@ -49,6 +45,6 @@ public:
     virtual void accelerated(ci::app::AccelEvent event) {}
     
     void enableAccelerometer(float updateFrequency = 30.0f, float filterFactor = 0.1f) { context->enableAccelerometer(updateFrequency, filterFactor); }
-	void disableAccelerometer() {context->disableAccelerometer(); }
+	void disableAccelerometer() { context->disableAccelerometer(); }
 #endif
 };
