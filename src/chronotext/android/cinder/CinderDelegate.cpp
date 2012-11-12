@@ -1,15 +1,5 @@
 #include "chronotext/android/cinder/CinderDelegate.h"
 
-#include <jni.h>
-#include <assert.h>
-#include <android/log.h>
-
-#include <GLES/gl.h>
-#include <GLES/glext.h>
-
-#define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "JNI", __VA_ARGS__))
-#define LOGE(...) ((void)__android_log_print(ANDROID_LOG_ERROR, "JNI", __VA_ARGS__))
-
 using namespace ci;
 using namespace ci::app;
 using namespace std;
