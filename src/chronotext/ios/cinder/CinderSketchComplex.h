@@ -53,7 +53,7 @@ public:
     ci::Vec2f getWindowSize();
     float getWindowAspectRatio();
     ci::Area getWindowBounds() const;
-
     float getContentScale();
+
 	std::ostream& console() { return std::cout; }
 };

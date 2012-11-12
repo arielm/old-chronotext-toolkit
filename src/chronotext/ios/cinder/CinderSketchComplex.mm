@@ -1,6 +1,6 @@
 #include "chronotext/ios/cinder/CinderSketchComplex.h"
 
-#import "CinderRenderDelegate.h"
+#import "CinderDelegate.h"
 
 using namespace ci;
 using namespace app;
@@ -38,7 +38,7 @@ void CinderSketchComplex::touchesEnded(TouchEvent event)
 
 void CinderSketchComplex::enableAccelerometer(float updateFrequency, float filterFactor)
 {
-	[(CinderRenderDelegate*)context setAccelFilterFactor:filterFactor];
+	[(CinderDelegate*)context setAccelFilterFactor:filterFactor];
 	
 	if (updateFrequency <= 0)
 	{
@@ -46,7 +46,7 @@ void CinderSketchComplex::enableAccelerometer(float updateFrequency, float filte
 	}
 	
 	[[UIAccelerometer sharedAccelerometer] setUpdateInterval:(1 / updateFrequency)];
-	[[UIAccelerometer sharedAccelerometer] setDelegate:(CinderRenderDelegate*)context];
+	[[UIAccelerometer sharedAccelerometer] setDelegate:(CinderDelegate*)context];
 }
 
 void CinderSketchComplex::disableAccelerometer()
@@ -56,40 +56,40 @@ void CinderSketchComplex::disableAccelerometer()
 
 int CinderSketchComplex::getWindowWidth()
 {
-    return ((CinderRenderDelegate*)context).width;
+    return ((CinderDelegate*)context).width;
 }
 
 int CinderSketchComplex::getWindowHeight()
 {
-    return ((CinderRenderDelegate*)context).height;
+    return ((CinderDelegate*)context).height;
 }
 
 Vec2f CinderSketchComplex::getWindowSize()
 {
-    return Vec2f(((CinderRenderDelegate*)context).width, ((CinderRenderDelegate*)context).height);
+    return Vec2f(((CinderDelegate*)context).width, ((CinderDelegate*)context).height);
 }
 
 float CinderSketchComplex::getWindowAspectRatio()
 {
-    return ((CinderRenderDelegate*)context).width / (float)((CinderRenderDelegate*)context).height;
+    return ((CinderDelegate*)context).width / (float)((CinderDelegate*)context).height;
 }
 
 Area CinderSketchComplex::getWindowBounds() const
 {
-    return Area(0, 0, ((CinderRenderDelegate*)context).width, ((CinderRenderDelegate*)context).height);
+    return Area(0, 0, ((CinderDelegate*)context).width, ((CinderDelegate*)context).height);
 }
 
 double CinderSketchComplex::getElapsedSeconds()
 {
-    return ((CinderRenderDelegate*)context).elapsedSeconds;
+    return ((CinderDelegate*)context).elapsedSeconds;
 }
 
 uint32_t CinderSketchComplex::getElapsedFrames()
 {
-    return ((CinderRenderDelegate*)context).elapsedFrames;
+    return ((CinderDelegate*)context).elapsedFrames;
 }
 
 float CinderSketchComplex::getContentScale()
 {
-    return ((CinderRenderDelegate*)context).contentScale;
+    return ((CinderDelegate*)context).contentScale;
 }

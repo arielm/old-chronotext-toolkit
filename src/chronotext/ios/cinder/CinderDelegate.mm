@@ -1,14 +1,14 @@
 #import <OpenGLES/ES1/gl.h>
 #import <OpenGLES/ES1/glext.h>
 
-#import "CinderRenderDelegate.h"
+#import "CinderDelegate.h"
 #import "EAGLViewController.h"
 
 using namespace ci;
 using namespace app;
 using namespace std;
 
-@implementation CinderRenderDelegate
+@implementation CinderDelegate
 
 @synthesize sketch;
 @synthesize accelFilterFactor = mAccelFilterFactor;

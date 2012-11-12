@@ -4,7 +4,7 @@
 
 #include <map>
 
-@interface CinderRenderDelegate : RenderDelegate <UIAccelerometerDelegate>
+@interface CinderDelegate : RenderDelegate <UIAccelerometerDelegate>
 {
 	CinderSketch *sketch;
 	
