@@ -49,7 +49,7 @@ public:
     ci::Vec2f getWindowSize();
     float getWindowAspectRatio();
     ci::Area getWindowBounds() const;
-    
     float getContentScale() const { return 1; }
-    std::ostream& console() { return std::cout; }
+    
+    std::ostream& console();
 };

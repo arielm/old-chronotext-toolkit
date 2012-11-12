@@ -2,6 +2,8 @@
 
 #include "chronotext/cinder/CinderSketch.h"
 
+#include "cinder/android/LogStream.h"
+
 class CinderDelegate
 {
     int mWidth;
@@ -9,6 +11,8 @@ class CinderDelegate
 
 	ci::Timer mTimer;
 	uint32_t mFrameCount;
+
+    std::shared_ptr<ci::android::dostream> mOutputStream;
 
 public:
 	CinderSketch *sketch;
@@ -29,4 +33,6 @@ public:
     ci::Vec2f getWindowSize();
     float getWindowAspectRatio();
     ci::Area getWindowBounds() const;
+    
+    std::ostream& console();
 };

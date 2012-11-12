@@ -111,3 +111,13 @@ Area CinderDelegate::getWindowBounds() const
 {
     return Area(0, 0, mWidth, mHeight);
 }
+
+ostream& CinderDelegate::console()
+{
+    if (!mOutputStream)
+    {
+        mOutputStream = shared_ptr<cinder::android::dostream>(new android::dostream);
+    }
+    
+    return *mOutputStream;
+}

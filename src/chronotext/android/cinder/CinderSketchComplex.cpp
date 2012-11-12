@@ -49,3 +49,8 @@ Area CinderSketchComplex::getWindowBounds() const
 {
     return context->getWindowBounds();
 }
+
+ostream& CinderSketchComplex::console()
+{
+    return context->console();
+}
