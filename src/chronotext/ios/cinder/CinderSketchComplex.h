@@ -1,8 +1,6 @@
 #pragma once
 
 #include "cinder/app/AppCocoaTouch.h"
-#include "cinder/gl/gl.h"
-#include "cinder/Timer.h"
 
 class CinderSketchComplex
 {
