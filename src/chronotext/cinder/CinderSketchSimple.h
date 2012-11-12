@@ -34,17 +34,17 @@ public:
     virtual void addTouch(int index, float x, float y) {}
     virtual void updateTouch(int index, float x, float y) {}
     virtual void removeTouch(int index, float x, float y) {}
-    
-    float getContentScale() const { return 1; }
-    
-    double getElapsedSeconds() const { return context->getElapsedSeconds(); }
-    uint32_t getElapsedFrames() const { return context->getElapsedFrames(); }
-    std::ostream& console() { return context->console(); }
-    
+
 #if defined(CINDER_COCOA_TOUCH) || defined(CINDER_ANDROID)
     virtual void accelerated(ci::app::AccelEvent event) {}
     
     void enableAccelerometer(float updateFrequency = 30.0f, float filterFactor = 0.1f) { context->enableAccelerometer(updateFrequency, filterFactor); }
 	void disableAccelerometer() { context->disableAccelerometer(); }
 #endif
+    
+    double getElapsedSeconds() const { return context->getElapsedSeconds(); }
+    uint32_t getElapsedFrames() const { return context->getElapsedFrames(); }
+
+    float getContentScale() const { return 1; }
+    std::ostream& console() { return context->console(); }
 };

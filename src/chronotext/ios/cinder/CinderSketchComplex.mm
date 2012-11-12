@@ -69,11 +69,6 @@ Vec2f CinderSketchComplex::getWindowSize()
     return Vec2f(((CinderRenderDelegate*)context).width, ((CinderRenderDelegate*)context).height);
 }
 
-float CinderSketchComplex::getContentScale()
-{
-    return ((CinderRenderDelegate*)context).contentScale;
-}
-
 float CinderSketchComplex::getWindowAspectRatio()
 {
     return ((CinderRenderDelegate*)context).width / (float)((CinderRenderDelegate*)context).height;
@@ -92,4 +87,9 @@ double CinderSketchComplex::getElapsedSeconds()
 uint32_t CinderSketchComplex::getElapsedFrames()
 {
     return ((CinderRenderDelegate*)context).elapsedFrames;
+}
+
+float CinderSketchComplex::getContentScale()
+{
+    return ((CinderRenderDelegate*)context).contentScale;
 }
