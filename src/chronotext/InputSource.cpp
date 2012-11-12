@@ -78,6 +78,8 @@ DataSourceRef InputSource::loadDataSource()
         case TYPE_RESOURCE:
 #if defined(CINDER_MSW)
             return DataSourcePath::create(filePath);
+#elif defined(CHR_COMPLEX) && defined(CINDER_ANDROID)
+            return DataSourceAsset::create(gAssetManager, resourceName);
 #else
             return app::loadResource(resourceName);
 #endif
@@ -123,3 +125,15 @@ string InputSource::getUniqueName()
 
     return "";
 }
+
+#if defined(CHR_COMPLEX) && defined(CINDER_ANDROID)
+void InputSource::setAndroidAssetManager(AAssetManager *assetManager)
+{
+    gAssetManager = assetManager;
+}
+
+AAssetManager* InputSource::getAndroidAssetManager()
+{
+    return gAssetManager;
+}
+#endif
