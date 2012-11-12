@@ -79,6 +79,7 @@ DataSourceRef InputSource::loadDataSource()
 #if defined(CINDER_MSW)
             return DataSourcePath::create(filePath);
 #elif defined(CHR_COMPLEX) && defined(CINDER_ANDROID)
+            CI_LOGI("LOADING ASSET: %s", resourceName.c_str());
             return DataSourceAsset::create(gAssetManager, resourceName);
 #else
             return app::loadResource(resourceName);
