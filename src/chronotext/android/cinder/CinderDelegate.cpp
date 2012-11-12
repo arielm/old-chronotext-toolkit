@@ -28,24 +28,24 @@ void CinderDelegate::event(int id)
 	switch (id)
 	{
 		case EVENT_ATTACHED:
-			//	mFrameCount = 0;
-			//	mTimer.start();
+			mFrameCount = 0;
+			mTimer.start();
 			sketch->start(CinderSketch::FLAG_FOCUS_GAIN);
 			break;
 
 		case EVENT_RESUME:
-			//	mFrameCount = 0;
-			//	mTimer.start();
+			mFrameCount = 0;
+			mTimer.start();
 			sketch->start(CinderSketch::FLAG_APP_RESUME);
 			break;
 
 		case EVENT_DETACHED:
-			// mTimer.stop();
+			mTimer.stop();
 			sketch->stop(CinderSketch::FLAG_FOCUS_LOST);
 			break;
 
 		case EVENT_PAUSE:
-			// mTimer.stop();
+			mTimer.stop();
 			sketch->stop(CinderSketch::FLAG_APP_PAUSE);
 			break;
 
@@ -69,7 +69,7 @@ void CinderDelegate::draw()
 {
     sketch->update();
     sketch->draw();
-    // mFrameCount++;
+    mFrameCount++;
 }
 
 void CinderDelegate::addTouch(float x, float y)
@@ -85,4 +85,39 @@ void CinderDelegate::updateTouch(float x, float y)
 void CinderDelegate::removeTouch(float x, float y)
 {
 	sketch->removeTouch(0, x, y);
+}
+
+double CinderDelegate::getElapsedSeconds() const
+{
+    return mTimer.getSeconds();
+}
+
+uint32_t CinderDelegate::getElapsedFrames() const
+{
+    return mFrameCount;
+}
+
+int CinderDelegate::getWindowWidth()
+{
+    return mWidth;
+}
+
+int CinderDelegate::getWindowHeight()
+{
+    return mHeight;
+}
+
+Vec2f CinderDelegate::getWindowSize()
+{
+    return Vec2f(mWidth, mHeight);
+}
+
+float CinderDelegate::getWindowAspectRatio()
+{
+    return mWidth / (float)mHeight;
+}
+
+Area CinderDelegate::getWindowBounds() const
+{
+    return Area(0, 0, mWidth, mHeight);
 }

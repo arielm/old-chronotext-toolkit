@@ -15,37 +15,37 @@ void CinderSketchComplex::disableAccelerometer()
 	// TODO
 }
 
+double CinderSketchComplex::getElapsedSeconds() const
+{
+    return context->getElapsedSeconds();
+}
+
+uint32_t CinderSketchComplex::getElapsedFrames() const
+{
+    return context->getElapsedFrames();
+}
+
 int CinderSketchComplex::getWindowWidth()
 {
-    return ((CinderDelegate*)context)->mWidth;
+    return context->getWindowWidth();
 }
 
 int CinderSketchComplex::getWindowHeight()
 {
-    return ((CinderDelegate*)context)->mHeight;
+    return context->getWindowHeight();
 }
 
 Vec2f CinderSketchComplex::getWindowSize()
 {
-    return Vec2f(((CinderDelegate*)context)->mWidth, ((CinderDelegate*)context)->mHeight);
+    return context->getWindowSize();
 }
 
 float CinderSketchComplex::getWindowAspectRatio()
 {
-    return ((CinderDelegate*)context)->mWidth / (float)((CinderDelegate*)context)->mHeight;
+    return context->getWindowAspectRatio();
 }
 
 Area CinderSketchComplex::getWindowBounds() const
 {
-    return Area(0, 0, ((CinderDelegate*)context)->mWidth, ((CinderDelegate*)context)->mHeight);
-}
-
-double CinderSketchComplex::getElapsedSeconds()
-{
-    return 0;
-}
-
-uint32_t CinderSketchComplex::getElapsedFrames()
-{
-    return 0;
+    return context->getWindowBounds();
 }

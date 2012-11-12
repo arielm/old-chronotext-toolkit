@@ -2,10 +2,12 @@
 
 #include "cinder/app/AppAndroid.h"
 
+class CinderDelegate;
+
 class CinderSketchComplex
 {
 protected:
-	void *context;
+	CinderDelegate *context;
 
 public:
     enum
@@ -18,7 +20,7 @@ public:
         FLAG_SCREEN_LEAVE
     };
 
-	CinderSketchComplex(void *context) : context(context) {}
+	CinderSketchComplex(void *context) : context((CinderDelegate*)context) {}
 	virtual ~CinderSketchComplex() {}
 
 	virtual void setup(bool renewContext) {}
@@ -38,16 +40,16 @@ public:
     
 	void enableAccelerometer(float updateFrequency = 30, float filterFactor = 0.1f);
 	void disableAccelerometer();
+    
+    double getElapsedSeconds() const;
+    uint32_t getElapsedFrames() const;
 	
 	int getWindowWidth();
 	int getWindowHeight();
     ci::Vec2f getWindowSize();
-    float getContentScale() { return 1; }
     float getWindowAspectRatio();
     ci::Area getWindowBounds() const;
     
-	double getElapsedSeconds();
-	uint32_t getElapsedFrames();
-    
-	std::ostream& console() { return std::cout; }
+    float getContentScale() const { return 1; }
+    std::ostream& console() { return std::cout; }
 };
