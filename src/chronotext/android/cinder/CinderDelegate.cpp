@@ -26,6 +26,13 @@ void CinderDelegate::event(int id)
 		case EVENT_RESUME:
 			mFrameCount = 0;
 			mTimer.start();
+            
+            /*
+             * ASSERTION: THE GL CONTEXT HAS JUST BEEN RE-CREATED
+             */
+            sketch->setup(true);
+            sketch->resize(ResizeEvent(Vec2i(mWidth, mHeight)));
+            
 			sketch->start(CinderSketch::FLAG_APP_RESUME);
 			break;
 

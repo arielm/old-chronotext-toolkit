@@ -3,10 +3,9 @@ package chronotext.android.cinder;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import chronotext.android.gl.GLRenderer;
-
 import android.content.Context;
 import android.content.res.AssetManager;
+import chronotext.android.gl.GLRenderer;
 
 public class CinderRenderer extends GLRenderer
 {
@@ -23,9 +22,14 @@ public class CinderRenderer extends GLRenderer
     this.context = context;
   }
 
-  public void start()
+  public void init(GL10 gl, int width, int height)
   {
-    start(context.getAssets());
+    init(context.getAssets(), width, height);
+  }
+
+  public void draw(GL10 gl)
+  {
+    draw();
   }
 
   public void attached()
@@ -56,25 +60,13 @@ public class CinderRenderer extends GLRenderer
     event(EVENT_DESTROYED);
   }
 
-  public void init(GL10 gl, int width, int height)
-  {
-    init(width, height);
-  }
-
-  public void draw(GL10 gl)
-  {
-    draw();
-  }
-
   // ---------------------------------------- JNI ----------------------------------------
 
-  public native void start(AssetManager assets);
-
-  public native void event(int id);
-
-  public native void init(int width, int height);
+  public native void init(AssetManager assets, int width, int height);
 
   public native void draw();
+
+  public native void event(int id);
 
   public native void addTouch(float x, float y);
 

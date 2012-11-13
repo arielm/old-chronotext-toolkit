@@ -10,9 +10,8 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
 {
   int ticks;
   long t0;
-  long now, then;
+  long now;
   long elapsed;
-  float dt;
 
   protected boolean initialized;
   protected boolean attached;
@@ -25,9 +24,9 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
      * WE DON'T CALL init() FROM HERE BECAUSE WE WANT TO KNOW THE SURFACE-SIZE FIRST
      */
 
-    if (!initialized)
+    if (initialized)
     {
-      start();
+      resume();
     }
   }
 
@@ -53,16 +52,12 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
     if (ticks == 0)
     {
       t0 = now;
-      dt = 1f / 60; // DEFAULT VALUE
-    }
-    else
-    {
-      dt = (now - then) / 1000f;
     }
 
     ticks++;
     elapsed = now - t0;
-    then = now;
+
+    // ---
 
     draw(gl);
   }
@@ -82,9 +77,6 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
 
   public void onDetachedFromWindow()
   {
-    float fps = ticks / (elapsed / 1000f);
-    System.out.printf("AVERAGE FRAME-RATE: %f FRAMES PER SECOND\n", fps);
-
     if (!destroyed)
     {
       detached();
@@ -94,18 +86,23 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
 
   public void onResume()
   {
-    if (initialized)
-    {
-      resume();
-    }
+    ticks = 0;
+    
+    /*
+     * AT THIS STAGE, THE SURFACE HAS NOT BEEN RE-CREATED YET
+     * SO, WE DON'T CALL resume() HERE BUT IN onSurfaceCreated()
+     */
   }
 
   public void onPause()
   {
-    if (attached)
-    {
-      pause();
-    }
+    System.out.printf("AVERAGE FRAME-RATE: %f FRAMES PER SECOND\n", ticks / (elapsed / 1000f));
+
+    /*
+     * AT THIS STAGE, THE SURFACE HAS BEEN ALREADY DESTROYED,
+     * WHICH IS NOT SUPPOSED TO BE AN ISSUE...
+     */
+    pause();
   }
 
   public void onDestroy()
@@ -114,8 +111,6 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
   }
 
   // ---------------------------------------- ABSTRACT METHODS ----------------------------------------
-
-  public abstract void start();
 
   public abstract void init(GL10 gl, int width, int height);
 
