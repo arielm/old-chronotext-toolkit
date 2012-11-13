@@ -138,7 +138,7 @@ ostream& CinderDelegate::console()
     return *mOutputStream;
 }
 
-void CinderDelegate::sendMessage(int what, const string &body)
+void CinderDelegate::sendMessage2(int what, const string &body)
 {
 	JNIEnv* env = 0;
 	mJavaVM->GetEnv((void**)&env, JNI_VERSION_1_4);
@@ -152,6 +152,4 @@ void CinderDelegate::sendMessage(int what, const string &body)
 }
 
 void CinderDelegate::handleMessage(int what, const string &body)
-{
-	CI_LOGI("*** MESSAGE RECEIVED FROM JAVA: %d - %s ***", what, body.c_str());
-}
+{}
