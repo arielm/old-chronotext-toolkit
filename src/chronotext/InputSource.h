@@ -2,7 +2,7 @@
 
 #include "cinder/DataSource.h"
 
-#if defined(CHR_COMPLEX) && defined(CINDER_ANDROID)
+#if defined(CINDER_ANDROID)
 #include <android/asset_manager.h>
 static AAssetManager *gAssetManager;
 #endif
@@ -68,7 +68,7 @@ public:
     std::string getFilePathHint();
     std::string getUniqueName();
     
-#if defined(CHR_COMPLEX) && defined(CINDER_ANDROID)
+#if defined(CINDER_ANDROID)
     static void setAndroidAssetManager(AAssetManager *assetManager);
     static AAssetManager* getAndroidAssetManager();
 #endif

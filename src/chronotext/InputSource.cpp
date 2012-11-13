@@ -127,7 +127,7 @@ string InputSource::getUniqueName()
     return "";
 }
 
-#if defined(CHR_COMPLEX) && defined(CINDER_ANDROID)
+#if defined(CINDER_ANDROID)
 void InputSource::setAndroidAssetManager(AAssetManager *assetManager)
 {
     gAssetManager = assetManager;
