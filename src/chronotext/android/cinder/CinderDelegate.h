@@ -1,5 +1,8 @@
 #pragma once
 
+#include <jni.h>
+#include <android/asset_manager.h>
+
 #include "chronotext/cinder/CinderSketch.h"
 
 #include "cinder/android/LogStream.h"
@@ -15,11 +18,18 @@ class CinderDelegate
     std::shared_ptr<ci::android::dostream> mOutputStream;
 
 public:
-	CinderSketch *sketch;
+    JavaVM *mJavaVM;
+	jobject mJavaListener;
 
-	void event(int id);
+	CinderSketch *sketch;
+    
+    virtual ~CinderDelegate() {}
+
+    void launch(AAssetManager *assetManager, JavaVM *javaVM, jobject javaListener);
+
 	void init(int width, int height);
 	void draw();
+	void event(int id);
 
 	void addTouch(float x, float y);
 	void updateTouch(float x, float y);
@@ -35,4 +45,7 @@ public:
     ci::Area getWindowBounds() const;
     
     std::ostream& console();
+    
+    void sendMessage(int what, const std::string &body);
+	virtual void handleMessage(int what, const std::string &body);
 };

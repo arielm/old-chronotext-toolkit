@@ -28,6 +28,10 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
     {
       resume();
     }
+    else
+    {
+      launch();
+    }
   }
 
   public void onSurfaceChanged(GL10 gl, int w, int h)
@@ -87,7 +91,7 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
   public void onResume()
   {
     ticks = 0;
-    
+
     /*
      * AT THIS STAGE, THE SURFACE HAS NOT BEEN RE-CREATED YET
      * SO, WE DON'T CALL resume() HERE BUT IN onSurfaceCreated()
@@ -112,6 +116,8 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
 
   // ---------------------------------------- ABSTRACT METHODS ----------------------------------------
 
+  public abstract void launch();
+
   public abstract void init(GL10 gl, int width, int height);
 
   public abstract void draw(GL10 gl);
@@ -131,4 +137,6 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
   public abstract void updateTouch(float x, float y);
 
   public abstract void removeTouch(float x, float y);
+
+  public abstract void handleMessage(int what, String body);
 }

@@ -16,15 +16,22 @@ public class CinderRenderer extends GLRenderer
   public static final int EVENT_DESTROYED = 5;
 
   Context context;
+  Object listener;
 
-  public CinderRenderer(Context context)
+  public CinderRenderer(Context context, Object listener)
   {
     this.context = context;
+    this.listener = listener;
+  }
+
+  public void launch()
+  {
+    launch(context.getAssets(), listener);
   }
 
   public void init(GL10 gl, int width, int height)
   {
-    init(context.getAssets(), width, height);
+    init(width, height);
   }
 
   public void draw(GL10 gl)
@@ -62,7 +69,9 @@ public class CinderRenderer extends GLRenderer
 
   // ---------------------------------------- JNI ----------------------------------------
 
-  public native void init(AssetManager assets, int width, int height);
+  public native void launch(AssetManager assets, Object listener);
+
+  public native void init(int width, int height);
 
   public native void draw();
 
@@ -73,4 +82,6 @@ public class CinderRenderer extends GLRenderer
   public native void updateTouch(float x, float y);
 
   public native void removeTouch(float x, float y);
+
+  public native void handleMessage(int what, String body);
 }

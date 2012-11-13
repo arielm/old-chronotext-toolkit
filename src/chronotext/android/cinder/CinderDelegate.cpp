@@ -1,4 +1,5 @@
 #include "chronotext/android/cinder/CinderDelegate.h"
+#include "chronotext/InputSource.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -13,44 +14,12 @@ enum
 	EVENT_DESTROYED
 };
 
-void CinderDelegate::event(int id)
+void CinderDelegate::launch(AAssetManager *assetManager, JavaVM *javaVM, jobject javaListener)
 {
-	switch (id)
-	{
-		case EVENT_ATTACHED:
-			mFrameCount = 0;
-			mTimer.start();
-			sketch->start(CinderSketch::FLAG_FOCUS_GAIN);
-			break;
-
-		case EVENT_RESUME:
-			mFrameCount = 0;
-			mTimer.start();
-            
-            /*
-             * ASSERTION: THE GL CONTEXT HAS JUST BEEN RE-CREATED
-             */
-            sketch->setup(true);
-            sketch->resize(ResizeEvent(Vec2i(mWidth, mHeight)));
-            
-			sketch->start(CinderSketch::FLAG_APP_RESUME);
-			break;
-
-		case EVENT_DETACHED:
-			mTimer.stop();
-			sketch->stop(CinderSketch::FLAG_FOCUS_LOST);
-			break;
-
-		case EVENT_PAUSE:
-			mTimer.stop();
-			sketch->stop(CinderSketch::FLAG_APP_PAUSE);
-			break;
-
-		case EVENT_DESTROYED:
-			sketch->shutdown();
-			delete sketch;
-			break;
-	}
+	InputSource::setAndroidAssetManager(assetManager);
+    
+	mJavaVM = javaVM;
+	mJavaListener = javaListener;
 }
 
 void CinderDelegate::init(int width, int height)
@@ -67,6 +36,46 @@ void CinderDelegate::draw()
     sketch->update();
     sketch->draw();
     mFrameCount++;
+}
+
+void CinderDelegate::event(int id)
+{
+	switch (id)
+	{
+		case EVENT_ATTACHED:
+			mFrameCount = 0;
+			mTimer.start();
+			sketch->start(CinderSketch::FLAG_FOCUS_GAIN);
+			break;
+            
+		case EVENT_RESUME:
+			mFrameCount = 0;
+			mTimer.start();
+            
+            /*
+             * ASSERTION: THE GL CONTEXT HAS JUST BEEN RE-CREATED
+             */
+            sketch->setup(true);
+            sketch->resize(ResizeEvent(Vec2i(mWidth, mHeight)));
+            
+			sketch->start(CinderSketch::FLAG_APP_RESUME);
+			break;
+            
+		case EVENT_DETACHED:
+			mTimer.stop();
+			sketch->stop(CinderSketch::FLAG_FOCUS_LOST);
+			break;
+            
+		case EVENT_PAUSE:
+			mTimer.stop();
+			sketch->stop(CinderSketch::FLAG_APP_PAUSE);
+			break;
+            
+		case EVENT_DESTROYED:
+			sketch->shutdown();
+			delete sketch;
+			break;
+	}
 }
 
 void CinderDelegate::addTouch(float x, float y)
@@ -127,4 +136,22 @@ ostream& CinderDelegate::console()
     }
     
     return *mOutputStream;
+}
+
+void CinderDelegate::sendMessage(int what, const string &body)
+{
+	JNIEnv* env = 0;
+	mJavaVM->GetEnv((void**)&env, JNI_VERSION_1_4);
+    
+	jint _what = what;
+	jstring _body = env->NewStringUTF(body.c_str());
+    
+	jclass cls = env->GetObjectClass(mJavaListener);
+	jmethodID method = env->GetMethodID(cls, "handleMessage", "(ILjava/lang/String;)V");
+	env->CallVoidMethod(mJavaListener, method, _what, _body);
+}
+
+void CinderDelegate::handleMessage(int what, const string &body)
+{
+	CI_LOGI("*** MESSAGE RECEIVED FROM JAVA: %d - %s ***", what, body.c_str());
 }

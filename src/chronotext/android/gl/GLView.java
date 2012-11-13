@@ -133,4 +133,15 @@ public class GLView extends GLSurfaceView
 
     return true;
   }
+
+  public void sendMessage(final int what, final String body)
+  {
+    queueEvent(new Runnable()
+    {
+      public void run()
+      {
+        renderer.handleMessage(what, body);
+      }
+    });
+  }
 }
