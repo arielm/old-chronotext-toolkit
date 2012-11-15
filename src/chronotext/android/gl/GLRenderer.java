@@ -18,11 +18,6 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
   protected boolean attached;
   protected boolean resumed;
   protected boolean hidden;
-  protected boolean contextDestroyed;
-  protected boolean appDestroyed;
-
-  boolean resumeRequest;
-  boolean showRequest;
 
   public void onSurfaceCreated(GL10 gl, EGLConfig config)
   {
@@ -32,18 +27,7 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
 
     if (initialized)
     {
-      if (resumeRequest)
-      {
-        resumed();
-      }
-      else if (showRequest)
-      {
-        shown();
-      }
-
-      resumeRequest = false;
-      showRequest = false;
-      contextDestroyed = false;
+      resumed();
     }
     else
     {
@@ -56,13 +40,11 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
     if (!initialized)
     {
       init(gl, w, h);
-      initialized = true;
     }
 
     if (!attached)
     {
       attached();
-      attached = true;
     }
   }
 
@@ -92,16 +74,14 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
     if (initialized && !resumed)
     {
       attached();
-      attached = true;
     }
   }
 
   public void onDetachedFromWindow()
   {
-    if (!appDestroyed)
+    if (resumed && !hidden)
     {
       detached();
-      attached = false;
     }
   }
 
@@ -111,12 +91,7 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
     {
       case View.VISIBLE :
         ticks = 0;
-
-        /*
-         * AT THIS STAGE, THE SURFACE HAS NOT BEEN RE-CREATED YET
-         * SO, WE DON'T CALL shown() HERE BUT IN onSurfaceCreated()
-         */
-        showRequest = true;
+        shown();
         break;
 
       case View.GONE :
@@ -133,24 +108,28 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
      * AT THIS STAGE, THE SURFACE HAS NOT BEEN RE-CREATED YET
      * SO, WE DON'T CALL resumed() HERE BUT IN onSurfaceCreated()
      */
-    resumeRequest = true;
+  }
+
+  public void onPause()
+  {
+    if (attached && !hidden)
+    {
+      System.out.printf("AVERAGE FRAME-RATE: %f FRAMES PER SECOND\n", ticks / (elapsed / 1000f));
+
+      /*
+       * AT THIS STAGE, THE SURFACE HAS BEEN ALREADY DESTROYED,
+       * WHICH IS NOT SUPPOSED TO BE AN ISSUE...
+       */
+      paused();
+    }
   }
 
   /*
-   * AT THIS STAGE, THE SURFACE HAS BEEN ALREADY DESTROYED,
-   * WHICH IS NOT SUPPOSED TO BE AN ISSUE...
+   * THIS IS RELATED TO APPLICATION-DESTRUCTION (I.E. NOT SURFACE-DESTRUCTION)
    */
-  public void onPause()
-  {
-    System.out.printf("AVERAGE FRAME-RATE: %f FRAMES PER SECOND\n", ticks / (elapsed / 1000f));
-
-    contextDestroyed();
-    paused();
-  }
-
   public void onDestroy()
   {
-    appDestroyed();
+    destroyed();
   }
 
   // ---------------------------------------- ABSTRACT METHODS ----------------------------------------
@@ -169,9 +148,7 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
 
   public abstract void resumed();
 
-  public abstract void contextDestroyed();
-
-  public abstract void appDestroyed();
+  public abstract void destroyed();
 
   public abstract void shown();
 
