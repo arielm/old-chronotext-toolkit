@@ -9,8 +9,10 @@ enum
 {
 	EVENT_ATTACHED = 1,
 	EVENT_DETACHED,
-	EVENT_PAUSE,
-	EVENT_RESUME,
+	EVENT_PAUSED,
+	EVENT_RESUMED,
+    EVENT_SHOWN,
+    EVENT_HIDDEN,
 	EVENT_DESTROYED
 };
 
@@ -43,12 +45,13 @@ void CinderDelegate::event(int id)
 	switch (id)
 	{
 		case EVENT_ATTACHED:
+        case EVENT_SHOWN:
 			mFrameCount = 0;
 			mTimer.start();
 			sketch->start(CinderSketch::FLAG_FOCUS_GAIN);
 			break;
             
-		case EVENT_RESUME:
+		case EVENT_RESUMED:
 			mFrameCount = 0;
 			mTimer.start();
             
@@ -62,11 +65,12 @@ void CinderDelegate::event(int id)
 			break;
             
 		case EVENT_DETACHED:
+        case EVENT_HIDDEN:
 			mTimer.stop();
 			sketch->stop(CinderSketch::FLAG_FOCUS_LOST);
 			break;
             
-		case EVENT_PAUSE:
+		case EVENT_PAUSED:
 			mTimer.stop();
 			sketch->stop(CinderSketch::FLAG_APP_PAUSE);
 			break;
@@ -140,15 +144,12 @@ ostream& CinderDelegate::console()
 
 void CinderDelegate::sendMessage2(int what, const string &body)
 {
-	JNIEnv* env = 0;
+	JNIEnv *env;
 	mJavaVM->GetEnv((void**)&env, JNI_VERSION_1_4);
-    
-	jint _what = what;
-	jstring _body = env->NewStringUTF(body.c_str());
-    
+   
 	jclass cls = env->GetObjectClass(mJavaListener);
 	jmethodID method = env->GetMethodID(cls, "handleMessage", "(ILjava/lang/String;)V");
-	env->CallVoidMethod(mJavaListener, method, _what, _body);
+	env->CallVoidMethod(mJavaListener, method, what, env->NewStringUTF(body.c_str()));
 }
 
 void CinderDelegate::handleMessage(int what, const string &body)

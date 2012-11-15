@@ -8,14 +8,15 @@ import android.opengl.GLSurfaceView;
 
 public abstract class GLRenderer implements GLSurfaceView.Renderer
 {
-  int ticks;
-  long t0;
-  long now;
-  long elapsed;
+  protected int ticks;
+  protected long t0;
+  protected long now;
+  protected long elapsed;
 
   protected boolean initialized;
   protected boolean attached;
   protected boolean resumed;
+  protected boolean hidden;
   protected boolean destroyed;
 
   public void onSurfaceCreated(GL10 gl, EGLConfig config)
@@ -26,7 +27,7 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
 
     if (initialized)
     {
-      resume();
+      resumed();
     }
     else
     {
@@ -94,7 +95,7 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
 
     /*
      * AT THIS STAGE, THE SURFACE HAS NOT BEEN RE-CREATED YET
-     * SO, WE DON'T CALL resume() HERE BUT IN onSurfaceCreated()
+     * SO, WE DON'T CALL resumed() HERE BUT IN onSurfaceCreated()
      */
   }
 
@@ -106,9 +107,12 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
      * AT THIS STAGE, THE SURFACE HAS BEEN ALREADY DESTROYED,
      * WHICH IS NOT SUPPOSED TO BE AN ISSUE...
      */
-    pause();
+    paused();
   }
 
+  /*
+   * THIS IS RELATED TO APPLICATION-DESTROY (I.E. NOT SURFACE-DESTROY)
+   */
   public void onDestroy()
   {
     destroyed();
@@ -126,11 +130,15 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
 
   public abstract void detached();
 
-  public abstract void pause();
+  public abstract void paused();
 
-  public abstract void resume();
+  public abstract void resumed();
 
   public abstract void destroyed();
+
+  public abstract void shown();
+
+  public abstract void hidden();
 
   public abstract void addTouch(float x, float y);
 

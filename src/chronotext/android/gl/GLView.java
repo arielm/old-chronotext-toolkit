@@ -4,6 +4,7 @@ package chronotext.android.gl;
 import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.view.MotionEvent;
+import android.view.View;
 
 public class GLView extends GLSurfaceView
 {
@@ -41,8 +42,6 @@ public class GLView extends GLSurfaceView
   @Override
   protected void onDetachedFromWindow()
   {
-    super.onDetachedFromWindow();
-
     queueEvent(new Runnable()
     {
       public void run()
@@ -50,6 +49,8 @@ public class GLView extends GLSurfaceView
         renderer.onDetachedFromWindow();
       }
     });
+
+    super.onDetachedFromWindow();
   }
 
   @Override
@@ -78,6 +79,36 @@ public class GLView extends GLSurfaceView
         renderer.onPause();
       }
     });
+  }
+
+  @Override
+  public void onVisibilityChanged(View changedView, int visibility)
+  {
+    if (changedView == this)
+    {
+      switch (visibility)
+      {
+        case VISIBLE :
+          queueEvent(new Runnable()
+          {
+            public void run()
+            {
+              renderer.shown();
+            }
+          });
+          break;
+
+        case GONE :
+          queueEvent(new Runnable()
+          {
+            public void run()
+            {
+              renderer.hidden();
+            }
+          });
+          break;
+      }
+    }
   }
 
   public void onDestroy()

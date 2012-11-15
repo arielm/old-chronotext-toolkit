@@ -11,9 +11,11 @@ public class CinderRenderer extends GLRenderer
 {
   public static final int EVENT_ATTACHED = 1;
   public static final int EVENT_DETACHED = 2;
-  public static final int EVENT_PAUSE = 3;
-  public static final int EVENT_RESUME = 4;
-  public static final int EVENT_DESTROYED = 5;
+  public static final int EVENT_PAUSED = 3;
+  public static final int EVENT_RESUMED = 4;
+  public static final int EVENT_SHOWN = 5;
+  public static final int EVENT_HIDDEN = 6;
+  public static final int EVENT_DESTROYED = 7;
 
   Context context;
   Object listener;
@@ -49,22 +51,34 @@ public class CinderRenderer extends GLRenderer
     event(EVENT_DETACHED);
   }
 
-  public void pause()
+  public void paused()
   {
     resumed = false;
-    event(EVENT_PAUSE);
+    event(EVENT_PAUSED);
   }
 
-  public void resume()
+  public void resumed()
   {
     resumed = true;
-    event(EVENT_RESUME);
+    event(EVENT_RESUMED);
   }
 
   public void destroyed()
   {
     destroyed = true;
     event(EVENT_DESTROYED);
+  }
+
+  public void shown()
+  {
+    hidden = false;
+    event(EVENT_SHOWN);
+  }
+
+  public void hidden()
+  {
+    hidden = true;
+    event(EVENT_HIDDEN);
   }
 
   // ---------------------------------------- JNI ----------------------------------------
