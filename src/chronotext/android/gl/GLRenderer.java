@@ -5,6 +5,7 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 import android.opengl.GLSurfaceView;
+import android.view.View;
 
 public abstract class GLRenderer implements GLSurfaceView.Renderer
 {
@@ -17,7 +18,11 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
   protected boolean attached;
   protected boolean resumed;
   protected boolean hidden;
-  protected boolean destroyed;
+  protected boolean contextDestroyed;
+  protected boolean appDestroyed;
+
+  boolean resumeRequest;
+  boolean showRequest;
 
   public void onSurfaceCreated(GL10 gl, EGLConfig config)
   {
@@ -27,7 +32,18 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
 
     if (initialized)
     {
-      resumed();
+      if (resumeRequest)
+      {
+        resumed();
+      }
+      else if (showRequest)
+      {
+        shown();
+      }
+
+      resumeRequest = false;
+      showRequest = false;
+      contextDestroyed = false;
     }
     else
     {
@@ -82,10 +98,30 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
 
   public void onDetachedFromWindow()
   {
-    if (!destroyed)
+    if (!appDestroyed)
     {
       detached();
       attached = false;
+    }
+  }
+
+  public void onVisibilityChanged(int visibility)
+  {
+    switch (visibility)
+    {
+      case View.VISIBLE :
+        ticks = 0;
+
+        /*
+         * AT THIS STAGE, THE SURFACE HAS NOT BEEN RE-CREATED YET
+         * SO, WE DON'T CALL shown() HERE BUT IN onSurfaceCreated()
+         */
+        showRequest = true;
+        break;
+
+      case View.GONE :
+        hidden();
+        break;
     }
   }
 
@@ -97,25 +133,24 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
      * AT THIS STAGE, THE SURFACE HAS NOT BEEN RE-CREATED YET
      * SO, WE DON'T CALL resumed() HERE BUT IN onSurfaceCreated()
      */
+    resumeRequest = true;
   }
 
+  /*
+   * AT THIS STAGE, THE SURFACE HAS BEEN ALREADY DESTROYED,
+   * WHICH IS NOT SUPPOSED TO BE AN ISSUE...
+   */
   public void onPause()
   {
     System.out.printf("AVERAGE FRAME-RATE: %f FRAMES PER SECOND\n", ticks / (elapsed / 1000f));
 
-    /*
-     * AT THIS STAGE, THE SURFACE HAS BEEN ALREADY DESTROYED,
-     * WHICH IS NOT SUPPOSED TO BE AN ISSUE...
-     */
+    contextDestroyed();
     paused();
   }
 
-  /*
-   * THIS IS RELATED TO APPLICATION-DESTROY (I.E. NOT SURFACE-DESTROY)
-   */
   public void onDestroy()
   {
-    destroyed();
+    appDestroyed();
   }
 
   // ---------------------------------------- ABSTRACT METHODS ----------------------------------------
@@ -134,7 +169,9 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
 
   public abstract void resumed();
 
-  public abstract void destroyed();
+  public abstract void contextDestroyed();
+
+  public abstract void appDestroyed();
 
   public abstract void shown();
 

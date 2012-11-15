@@ -12,6 +12,8 @@ class CinderDelegate
     int mWidth;
 	int mHeight;
 
+	bool mContextHasBeenDestroyed;
+
 	ci::Timer mTimer;
 	uint32_t mFrameCount;
 
@@ -23,6 +25,7 @@ public:
 
 	CinderSketch *sketch;
     
+	CinderDelegate();
     virtual ~CinderDelegate() {}
 
     void launch(AAssetManager *assetManager, JavaVM *javaVM, jobject javaListener);

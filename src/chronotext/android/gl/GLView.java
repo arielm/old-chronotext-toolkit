@@ -82,32 +82,17 @@ public class GLView extends GLSurfaceView
   }
 
   @Override
-  public void onVisibilityChanged(View changedView, int visibility)
+  public void onVisibilityChanged(View changedView, final int visibility)
   {
     if (changedView == this)
     {
-      switch (visibility)
+      queueEvent(new Runnable()
       {
-        case VISIBLE :
-          queueEvent(new Runnable()
-          {
-            public void run()
-            {
-              renderer.shown();
-            }
-          });
-          break;
-
-        case GONE :
-          queueEvent(new Runnable()
-          {
-            public void run()
-            {
-              renderer.hidden();
-            }
-          });
-          break;
-      }
+        public void run()
+        {
+          renderer.onVisibilityChanged(visibility);
+        }
+      });
     }
   }
 

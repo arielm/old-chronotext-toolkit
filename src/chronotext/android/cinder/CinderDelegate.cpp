@@ -13,8 +13,14 @@ enum
 	EVENT_RESUMED,
     EVENT_SHOWN,
     EVENT_HIDDEN,
-	EVENT_DESTROYED
+    EVENT_CONTEXT_DESTROYED,
+	EVENT_APP_DESTROYED
 };
+
+CinderDelegate::CinderDelegate()
+:
+mContextHasBeenDestroyed(false)
+{}
 
 void CinderDelegate::launch(AAssetManager *assetManager, JavaVM *javaVM, jobject javaListener)
 {
@@ -48,6 +54,14 @@ void CinderDelegate::event(int id)
         case EVENT_SHOWN:
 			mFrameCount = 0;
 			mTimer.start();
+
+            if (mContextHasBeenDestroyed)
+            {
+            	sketch->setup(true);
+            	sketch->resize(ResizeEvent(Vec2i(mWidth, mHeight)));
+            	mContextHasBeenDestroyed = false;
+            }
+
 			sketch->start(CinderSketch::FLAG_FOCUS_GAIN);
 			break;
             
@@ -55,11 +69,12 @@ void CinderDelegate::event(int id)
 			mFrameCount = 0;
 			mTimer.start();
             
-            /*
-             * ASSERTION: THE GL CONTEXT HAS JUST BEEN RE-CREATED
-             */
-            sketch->setup(true);
-            sketch->resize(ResizeEvent(Vec2i(mWidth, mHeight)));
+            if (mContextHasBeenDestroyed)
+            {
+            	sketch->setup(true);
+            	sketch->resize(ResizeEvent(Vec2i(mWidth, mHeight)));
+            	mContextHasBeenDestroyed = false;
+            }
             
 			sketch->start(CinderSketch::FLAG_APP_RESUME);
 			break;
@@ -74,8 +89,12 @@ void CinderDelegate::event(int id)
 			mTimer.stop();
 			sketch->stop(CinderSketch::FLAG_APP_PAUSE);
 			break;
+
+		case EVENT_CONTEXT_DESTROYED:
+			mContextHasBeenDestroyed = true;
+			break;
             
-		case EVENT_DESTROYED:
+		case EVENT_APP_DESTROYED:
 			sketch->shutdown();
 			delete sketch;
 			break;

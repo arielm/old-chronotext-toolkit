@@ -15,7 +15,8 @@ public class CinderRenderer extends GLRenderer
   public static final int EVENT_RESUMED = 4;
   public static final int EVENT_SHOWN = 5;
   public static final int EVENT_HIDDEN = 6;
-  public static final int EVENT_DESTROYED = 7;
+  public static final int EVENT_CONTEXT_DESTROYED = 7;
+  public static final int EVENT_APP_DESTROYED = 8;
 
   Context context;
   Object listener;
@@ -63,10 +64,16 @@ public class CinderRenderer extends GLRenderer
     event(EVENT_RESUMED);
   }
 
-  public void destroyed()
+  public void contextDestroyed()
   {
-    destroyed = true;
-    event(EVENT_DESTROYED);
+    contextDestroyed = true;
+    event(EVENT_CONTEXT_DESTROYED);
+  }
+
+  public void appDestroyed()
+  {
+    appDestroyed = true;
+    event(EVENT_APP_DESTROYED);
   }
 
   public void shown()
