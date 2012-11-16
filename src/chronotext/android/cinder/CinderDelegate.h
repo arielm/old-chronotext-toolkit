@@ -47,6 +47,6 @@ public:
     
     std::ostream& console();
     
-    void sendMessage2(int what, const std::string &body);
+    void sendMessage(int what, const std::string &body);
 	virtual void handleMessage(int what, const std::string &body);
 };

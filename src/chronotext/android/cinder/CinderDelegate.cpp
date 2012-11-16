@@ -142,7 +142,7 @@ ostream& CinderDelegate::console()
     return *mOutputStream;
 }
 
-void CinderDelegate::sendMessage2(int what, const string &body)
+void CinderDelegate::sendMessage(int what, const string &body)
 {
 	JNIEnv *env;
 	mJavaVM->GetEnv((void**)&env, JNI_VERSION_1_4);
