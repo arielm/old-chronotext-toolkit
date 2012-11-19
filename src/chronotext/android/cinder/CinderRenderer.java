@@ -100,6 +100,8 @@ public class CinderRenderer extends GLRenderer
   public native void updateTouch(float x, float y);
 
   public native void removeTouch(float x, float y);
+  
+  public native void accelerated(float x, float y, float z);
 
   public native void handleMessage(int what, String body);
 }

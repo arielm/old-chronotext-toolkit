@@ -150,6 +150,17 @@ public class GLView extends GLSurfaceView
     return true;
   }
 
+  public void accelerated(final float x, final float y, final float z)
+  {
+    queueEvent(new Runnable()
+    {
+      public void run()
+      {
+        renderer.accelerated(x, y, z);
+      }
+    });
+  }
+
   public void sendMessage(final int what, final String body)
   {
     queueEvent(new Runnable()

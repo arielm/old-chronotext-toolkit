@@ -2,7 +2,6 @@
 
 #include <jni.h>
 #include <android/asset_manager.h>
-#include <android/sensor.h>
 
 #include "chronotext/cinder/CinderSketch.h"
 
@@ -10,8 +9,6 @@
 
 class CinderDelegate
 {
-    std::shared_ptr<ci::android::dostream> mOutputStream;
-
     int mWidth;
     int mHeight;
 
@@ -21,20 +18,7 @@ class CinderDelegate
 	float mAccelFilterFactor;
 	ci::Vec3f mLastAccel, mLastRawAccel;
 
-    ASensorManager *mSensorManager;
-    const ASensor *mAccelerometerSensor;
-    ASensorEventQueue *mSensorEventQueue;
-
-    static int sensorEventCallback(int fd, int events, void *data)
-    {
-    	CinderDelegate *instance = (CinderDelegate*)data;
-    	instance->processSensorEvents();
-
-    	return 1;
-    }
-
-    void processSensorEvents();
-    void accelerated(const ci::Vec3f &acceleration);
+	std::shared_ptr<ci::android::dostream> mOutputStream;
 
 public:
     JavaVM *mJavaVM;
@@ -60,6 +44,8 @@ public:
     void updateTouch(float x, float y);
     void removeTouch(float x, float y);
     
+    void accelerated(float x, float y, float z);
+
 	void enableAccelerometer( float updateFrequency = 30, float filterFactor = 0.1f);
 	void disableAccelerometer();
 

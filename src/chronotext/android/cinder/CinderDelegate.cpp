@@ -16,8 +16,6 @@ enum
     EVENT_DESTROYED
 };
 
-#define GRAVITY_EARTH 9.80665f
-
 /*
  * CALLED ON THE RENDERER'S THREAD FROM chronotext.android.gl.GLRenderer.onSurfaceCreated()
  */
@@ -26,49 +24,7 @@ void CinderDelegate::launch(AAssetManager *assetManager, JavaVM *javaVM, jobject
     mJavaVM = javaVM;
     mJavaListener = javaListener;
 
-    // ---
-
     InputSource::setAndroidAssetManager(assetManager);
-
-    // ---
-    
-    ALooper *looper = ALooper_forThread();
-
-    if (!looper)
-    {
-        looper = ALooper_prepare(ALOOPER_PREPARE_ALLOW_NON_CALLBACKS);
-    }
-
-    mSensorManager = ASensorManager_getInstance();
-    mAccelerometerSensor = ASensorManager_getDefaultSensor(mSensorManager, ASENSOR_TYPE_ACCELEROMETER);
-    mSensorEventQueue = ASensorManager_createEventQueue(mSensorManager, looper, 3, NULL, NULL/*sensorEventCallback, this*/); // IT WOULD BE BETTER TO USE A CALL-BACK, BUT WE COULDN'T MAKE IT WORK
-}
-
-void CinderDelegate::processSensorEvents()
-{
-    ASensorEvent event;
-
-    while (ASensorEventQueue_getEvents(mSensorEventQueue, &event, 1) > 0)
-    {
-      if (event.type == ASENSOR_TYPE_ACCELEROMETER)
-      {
-    	  // CI_LOGI("%f %f %f", event.acceleration.x, event.acceleration.y, event.acceleration.z);
-
-    	  Vec3f acceleration(-event.acceleration.x, +event.acceleration.y, +event.acceleration.z);
-    	  accelerated(acceleration / GRAVITY_EARTH);
-      }
-    }
-}
-
-void CinderDelegate::accelerated(const Vec3f &acceleration)
-{
-	Vec3f filtered = mLastAccel * (1 - mAccelFilterFactor) + acceleration * mAccelFilterFactor;
-
-	AccelEvent event(filtered, acceleration, mLastAccel, mLastRawAccel);
-	sketch->accelerated(event);
-
-	mLastAccel = filtered;
-	mLastRawAccel = acceleration;
 }
 
 void CinderDelegate::init(int width, int height)
@@ -82,11 +38,6 @@ void CinderDelegate::init(int width, int height)
 
 void CinderDelegate::draw()
 {
-	/*
-	 * IT WOULD BE BETTER TO USE A CALL-BACK, BUT WE COULDN'T MAKE IT WORK
-	 */
-	processSensorEvents();
-
     sketch->update();
     sketch->draw();
     mFrameCount++;
@@ -128,8 +79,6 @@ void CinderDelegate::event(int id)
             break;
 
         case EVENT_DESTROYED:
-        	ASensorManager_destroyEventQueue(mSensorManager, mSensorEventQueue);
-
             sketch->shutdown();
             delete sketch;
             break;
@@ -151,25 +100,43 @@ void CinderDelegate::removeTouch(float x, float y)
     sketch->removeTouch(0, x, y);
 }
 
+void CinderDelegate::accelerated(float x, float y, float z)
+{
+	Vec3f acceleration(x, y, z);
+	Vec3f filtered = mLastAccel * (1 - mAccelFilterFactor) + acceleration * mAccelFilterFactor;
+
+	AccelEvent event(filtered, acceleration, mLastAccel, mLastRawAccel);
+	sketch->accelerated(event);
+
+	mLastAccel = filtered;
+	mLastRawAccel = acceleration;
+}
+
 void CinderDelegate::enableAccelerometer(float updateFrequency, float filterFactor)
 {
 	mAccelFilterFactor = filterFactor;
 
-	int delay = 1000000 / updateFrequency;
-	int min = ASensor_getMinDelay(mAccelerometerSensor);
-
-	if (delay < min)
+	if (updateFrequency <= 0)
 	{
-		delay = min;
+		updateFrequency = 30;
 	}
 
-    ASensorEventQueue_enableSensor(mSensorEventQueue, mAccelerometerSensor);
-    ASensorEventQueue_setEventRate(mSensorEventQueue, mAccelerometerSensor, delay);
+    JNIEnv *env;
+    mJavaVM->GetEnv((void**)&env, JNI_VERSION_1_4);
+
+    jclass cls = env->GetObjectClass(mJavaListener);
+    jmethodID method = env->GetMethodID(cls, "enableAccelerometer", "(F)V");
+    env->CallVoidMethod(mJavaListener, method, updateFrequency);
 }
 
 void CinderDelegate::disableAccelerometer()
 {
-	ASensorEventQueue_disableSensor(mSensorEventQueue, mAccelerometerSensor);
+    JNIEnv *env;
+    mJavaVM->GetEnv((void**)&env, JNI_VERSION_1_4);
+
+    jclass cls = env->GetObjectClass(mJavaListener);
+    jmethodID method = env->GetMethodID(cls, "disableAccelerometer", "()V");
+    env->CallVoidMethod(mJavaListener, method);
 }
 
 double CinderDelegate::getElapsedSeconds() const
