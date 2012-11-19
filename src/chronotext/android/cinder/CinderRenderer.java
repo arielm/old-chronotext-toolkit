@@ -7,6 +7,11 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import chronotext.android.gl.GLRenderer;
 
+/*
+ * WARNING: BE SURE TO DEFINE android:screenOrientation IN THE MANIFEST
+ * BECAUSE THE CURRENT SYSTEM IS NOT HANDLING AUTO-ROTATION
+ */
+
 public class CinderRenderer extends GLRenderer
 {
   public static final int EVENT_ATTACHED = 1;

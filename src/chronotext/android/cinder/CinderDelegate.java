@@ -16,6 +16,11 @@ import android.view.View;
 import android.view.WindowManager;
 import chronotext.android.gl.GLView;
 
+/*
+ * WARNING: BE SURE TO DEFINE android:screenOrientation IN THE MANIFEST
+ * BECAUSE THE CURRENT SYSTEM IS NOT HANDLING AUTO-ROTATION
+ */
+
 public class CinderDelegate implements SensorEventListener
 {
   protected Activity mActivity;
@@ -86,9 +91,7 @@ public class CinderDelegate implements SensorEventListener
 
   @Override
   public void onAccuracyChanged(Sensor sensor, int accuracy)
-  {
-    System.out.println("********** onAccuracyChanged: " + sensor + " - " + accuracy + " **********");
-  }
+  {}
 
   @Override
   public void onSensorChanged(SensorEvent event)
@@ -120,7 +123,9 @@ public class CinderDelegate implements SensorEventListener
         y = -tmp;
       }
       
-      // ---
+      /*
+       * IN ORDER TO BE CONSISTENT WITH iOS
+       */
       
       x /= -SensorManager.GRAVITY_EARTH;
       y /= +SensorManager.GRAVITY_EARTH;
