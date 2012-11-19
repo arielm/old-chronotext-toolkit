@@ -7,12 +7,12 @@ using namespace std;
 
 void CinderSketchComplex::enableAccelerometer(float updateFrequency, float filterFactor)
 {
-	// TODO
+	context->enableAccelerometer(updateFrequency, filterFactor);
 }
 
 void CinderSketchComplex::disableAccelerometer()
 {
-	// TODO
+	context->disableAccelerometer();
 }
 
 double CinderSketchComplex::getElapsedSeconds() const

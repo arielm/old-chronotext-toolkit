@@ -16,12 +16,59 @@ enum
     EVENT_DESTROYED
 };
 
+#define GRAVITY_EARTH 9.80665f
+
+/*
+ * CALLED ON THE RENDERER'S THREAD FROM chronotext.android.gl.GLRenderer.onSurfaceCreated()
+ */
 void CinderDelegate::launch(AAssetManager *assetManager, JavaVM *javaVM, jobject javaListener)
 {
-    InputSource::setAndroidAssetManager(assetManager);
-    
     mJavaVM = javaVM;
     mJavaListener = javaListener;
+
+    // ---
+
+    InputSource::setAndroidAssetManager(assetManager);
+
+    // ---
+    
+    ALooper *looper = ALooper_forThread();
+
+    if (!looper)
+    {
+        looper = ALooper_prepare(ALOOPER_PREPARE_ALLOW_NON_CALLBACKS);
+    }
+
+    mSensorManager = ASensorManager_getInstance();
+    mAccelerometerSensor = ASensorManager_getDefaultSensor(mSensorManager, ASENSOR_TYPE_ACCELEROMETER);
+    mSensorEventQueue = ASensorManager_createEventQueue(mSensorManager, looper, 3, NULL, NULL/*sensorEventCallback, this*/); // IT WOULD BE BETTER TO USE A CALL-BACK, BUT WE COULDN'T MAKE IT WORK
+}
+
+void CinderDelegate::processSensorEvents()
+{
+    ASensorEvent event;
+
+    while (ASensorEventQueue_getEvents(mSensorEventQueue, &event, 1) > 0)
+    {
+      if (event.type == ASENSOR_TYPE_ACCELEROMETER)
+      {
+    	  // CI_LOGI("%f %f %f", event.acceleration.x, event.acceleration.y, event.acceleration.z);
+
+    	  Vec3f acceleration(-event.acceleration.x, +event.acceleration.y, +event.acceleration.z);
+    	  accelerated(acceleration / GRAVITY_EARTH);
+      }
+    }
+}
+
+void CinderDelegate::accelerated(const Vec3f &acceleration)
+{
+	Vec3f filtered = mLastAccel * (1 - mAccelFilterFactor) + acceleration * mAccelFilterFactor;
+
+	AccelEvent event(filtered, acceleration, mLastAccel, mLastRawAccel);
+	sketch->accelerated(event);
+
+	mLastAccel = filtered;
+	mLastRawAccel = acceleration;
 }
 
 void CinderDelegate::init(int width, int height)
@@ -35,6 +82,11 @@ void CinderDelegate::init(int width, int height)
 
 void CinderDelegate::draw()
 {
+	/*
+	 * IT WOULD BE BETTER TO USE A CALL-BACK, BUT WE COULDN'T MAKE IT WORK
+	 */
+	processSensorEvents();
+
     sketch->update();
     sketch->draw();
     mFrameCount++;
@@ -76,6 +128,8 @@ void CinderDelegate::event(int id)
             break;
 
         case EVENT_DESTROYED:
+        	ASensorManager_destroyEventQueue(mSensorManager, mSensorEventQueue);
+
             sketch->shutdown();
             delete sketch;
             break;
@@ -95,6 +149,27 @@ void CinderDelegate::updateTouch(float x, float y)
 void CinderDelegate::removeTouch(float x, float y)
 {
     sketch->removeTouch(0, x, y);
+}
+
+void CinderDelegate::enableAccelerometer(float updateFrequency, float filterFactor)
+{
+	mAccelFilterFactor = filterFactor;
+
+	int delay = 1000000 / updateFrequency;
+	int min = ASensor_getMinDelay(mAccelerometerSensor);
+
+	if (delay < min)
+	{
+		delay = min;
+	}
+
+    ASensorEventQueue_enableSensor(mSensorEventQueue, mAccelerometerSensor);
+    ASensorEventQueue_setEventRate(mSensorEventQueue, mAccelerometerSensor, delay);
+}
+
+void CinderDelegate::disableAccelerometer()
+{
+	ASensorEventQueue_disableSensor(mSensorEventQueue, mAccelerometerSensor);
 }
 
 double CinderDelegate::getElapsedSeconds() const
