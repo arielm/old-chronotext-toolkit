@@ -84,4 +84,29 @@ public:
     
     void sendMessage(int what, const std::string &body);
     virtual void handleMessage(int what, const std::string &body);
+
+    // ---------------------------------------- JNI ----------------------------------------
+
+    JNIEnv* getJNIEnv();
+
+    template <typename ... Ts>
+    void callVoidMethodOnJavaListener(const char *name, const char *sig, Ts ... ts);
+
+    template <typename ... Ts>
+    jboolean callBooleanMethodOnJavaListener(const char *name, const char *sig, Ts ... ts);
+
+    template <typename ... Ts>
+    jchar callCharMethodOnJavaListener(const char *name, const char *sig, Ts ... ts);
+
+    template <typename ... Ts>
+    jint callIntMethodOnJavaListener(const char *name, const char *sig, Ts ... ts);
+
+    template <typename ... Ts>
+    jlong callLongMethodOnJavaListener(const char *name, const char *sig, Ts ... ts);
+
+    template <typename ... Ts>
+    jfloat callFloatMethodOnJavaListener(const char *name, const char *sig, Ts ... ts);
+
+    template <typename ... Ts>
+    jdouble callDoubleMethodOnJavaListener(const char *name, const char *sig, Ts ... ts);
 };

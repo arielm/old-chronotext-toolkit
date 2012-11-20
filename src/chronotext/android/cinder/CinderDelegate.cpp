@@ -245,13 +245,105 @@ ostream& CinderDelegate::console()
 
 void CinderDelegate::sendMessage(int what, const string &body)
 {
-    JNIEnv *env;
-    mJavaVM->GetEnv((void**)&env, JNI_VERSION_1_4);
-   
-    jclass cls = env->GetObjectClass(mJavaListener);
-    jmethodID method = env->GetMethodID(cls, "handleMessage", "(ILjava/lang/String;)V");
-    env->CallVoidMethod(mJavaListener, method, what, env->NewStringUTF(body.c_str()));
+    callVoidMethodOnJavaListener("handleMessage", "(ILjava/lang/String;)V", what, getJNIEnv()->NewStringUTF(body.c_str()));
 }
 
 void CinderDelegate::handleMessage(int what, const string &body)
 {}
+
+// ---------------------------------------- JNI ----------------------------------------
+
+JNIEnv* CinderDelegate::getJNIEnv()
+{
+    JNIEnv *env = NULL;
+
+    int err = mJavaVM->GetEnv((void**) &env, JNI_VERSION_1_4);
+
+    if (err == JNI_EDETACHED)
+    {
+        CI_LOGE("getJNIEnv error: current thread not attached to Java VM");
+    }
+    else if (err == JNI_EVERSION)
+    {
+        CI_LOGE("getJNIEnv error: VM doesn't support requested JNI version");
+    }
+
+    return env;
+}
+
+template <typename ... Ts>
+void CinderDelegate::callVoidMethodOnJavaListener(const char *name, const char *sig, Ts ... ts)
+{
+    JNIEnv *env;
+    mJavaVM->GetEnv((void**)&env, JNI_VERSION_1_4);
+
+    jclass cls = env->GetObjectClass(mJavaListener);
+    jmethodID method = env->GetMethodID(cls, name, sig);
+    env->CallVoidMethod(mJavaListener, method, ts...);
+}
+
+template <typename ... Ts>
+jboolean CinderDelegate::callBooleanMethodOnJavaListener(const char *name, const char *sig, Ts ... ts)
+{
+    JNIEnv *env;
+    mJavaVM->GetEnv((void**)&env, JNI_VERSION_1_4);
+
+    jclass cls = env->GetObjectClass(mJavaListener);
+    jmethodID method = env->GetMethodID(cls, name, sig);
+    env->CallBooleanMethod(mJavaListener, method, ts...);
+}
+
+template <typename ... Ts>
+jchar CinderDelegate::callCharMethodOnJavaListener(const char *name, const char *sig, Ts ... ts)
+{
+    JNIEnv *env;
+    mJavaVM->GetEnv((void**)&env, JNI_VERSION_1_4);
+
+    jclass cls = env->GetObjectClass(mJavaListener);
+    jmethodID method = env->GetMethodID(cls, name, sig);
+    env->CallCharMethod(mJavaListener, method, ts...);
+}
+
+template <typename ... Ts>
+jint CinderDelegate::callIntMethodOnJavaListener(const char *name, const char *sig, Ts ... ts)
+{
+    JNIEnv *env;
+    mJavaVM->GetEnv((void**)&env, JNI_VERSION_1_4);
+
+    jclass cls = env->GetObjectClass(mJavaListener);
+    jmethodID method = env->GetMethodID(cls, name, sig);
+    return env->CallIntMethod(mJavaListener, method, ts...);
+}
+
+template <typename ... Ts>
+jlong CinderDelegate::callLongMethodOnJavaListener(const char *name, const char *sig, Ts ... ts)
+{
+    JNIEnv *env;
+    mJavaVM->GetEnv((void**)&env, JNI_VERSION_1_4);
+
+    jclass cls = env->GetObjectClass(mJavaListener);
+    jmethodID method = env->GetMethodID(cls, name, sig);
+    env->CallLongMethod(mJavaListener, method, ts...);
+}
+
+template <typename ... Ts>
+jfloat CinderDelegate::callFloatMethodOnJavaListener(const char *name, const char *sig, Ts ... ts)
+{
+    JNIEnv *env;
+    mJavaVM->GetEnv((void**)&env, JNI_VERSION_1_4);
+
+    jclass cls = env->GetObjectClass(mJavaListener);
+    jmethodID method = env->GetMethodID(cls, name, sig);
+    env->CallFloatMethod(mJavaListener, method, ts...);
+}
+
+template <typename ... Ts>
+jdouble CinderDelegate::callDoubleMethodOnJavaListener(const char *name, const char *sig, Ts ... ts)
+{
+    JNIEnv *env;
+    mJavaVM->GetEnv((void**)&env, JNI_VERSION_1_4);
+
+    jclass cls = env->GetObjectClass(mJavaListener);
+    jmethodID method = env->GetMethodID(cls, name, sig);
+    env->CallDoubleMethod(mJavaListener, method, ts...);
+}
