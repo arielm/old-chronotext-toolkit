@@ -89,24 +89,11 @@ public:
 
     JNIEnv* getJNIEnv();
 
-    template <typename ... Ts>
-    void callVoidMethodOnJavaListener(const char *name, const char *sig, Ts ... ts);
-
-    template <typename ... Ts>
-    jboolean callBooleanMethodOnJavaListener(const char *name, const char *sig, Ts ... ts);
-
-    template <typename ... Ts>
-    jchar callCharMethodOnJavaListener(const char *name, const char *sig, Ts ... ts);
-
-    template <typename ... Ts>
-    jint callIntMethodOnJavaListener(const char *name, const char *sig, Ts ... ts);
-
-    template <typename ... Ts>
-    jlong callLongMethodOnJavaListener(const char *name, const char *sig, Ts ... ts);
-
-    template <typename ... Ts>
-    jfloat callFloatMethodOnJavaListener(const char *name, const char *sig, Ts ... ts);
-
-    template <typename ... Ts>
-    jdouble callDoubleMethodOnJavaListener(const char *name, const char *sig, Ts ... ts);
+    void callVoidMethodOnJavaListener(const char *name, const char *sig, ...);
+    jboolean callBooleanMethodOnJavaListener(const char *name, const char *sig, ...);
+    jchar callCharMethodOnJavaListener(const char *name, const char *sig, ...);
+    jint callIntMethodOnJavaListener(const char *name, const char *sig, ...);
+    jlong callLongMethodOnJavaListener(const char *name, const char *sig, ...);
+    jfloat callFloatMethodOnJavaListener(const char *name, const char *sig, ...);
+    jdouble callDoubleMethodOnJavaListener(const char *name, const char *sig, ...);
 };

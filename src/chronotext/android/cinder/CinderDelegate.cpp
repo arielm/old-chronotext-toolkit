@@ -271,79 +271,112 @@ JNIEnv* CinderDelegate::getJNIEnv()
     return env;
 }
 
-template <typename ... Ts>
-void CinderDelegate::callVoidMethodOnJavaListener(const char *name, const char *sig, Ts ... ts)
+void CinderDelegate::callVoidMethodOnJavaListener(const char *name, const char *sig, ...)
 {
     JNIEnv *env;
     mJavaVM->GetEnv((void**)&env, JNI_VERSION_1_4);
 
     jclass cls = env->GetObjectClass(mJavaListener);
     jmethodID method = env->GetMethodID(cls, name, sig);
-    env->CallVoidMethod(mJavaListener, method, ts...);
+
+    va_list args;
+    va_start(args, sig);
+    env->CallVoidMethodV(mJavaListener, method, args);
+    va_end(args);
 }
 
-template <typename ... Ts>
-jboolean CinderDelegate::callBooleanMethodOnJavaListener(const char *name, const char *sig, Ts ... ts)
+jboolean CinderDelegate::callBooleanMethodOnJavaListener(const char *name, const char *sig, ...)
 {
     JNIEnv *env;
     mJavaVM->GetEnv((void**)&env, JNI_VERSION_1_4);
 
     jclass cls = env->GetObjectClass(mJavaListener);
     jmethodID method = env->GetMethodID(cls, name, sig);
-    env->CallBooleanMethod(mJavaListener, method, ts...);
+
+    va_list args;
+    va_start(args, sig);
+    jboolean ret = env->CallBooleanMethodV(mJavaListener, method, args);
+    va_end(args);
+
+    return ret;
 }
 
-template <typename ... Ts>
-jchar CinderDelegate::callCharMethodOnJavaListener(const char *name, const char *sig, Ts ... ts)
+jchar CinderDelegate::callCharMethodOnJavaListener(const char *name, const char *sig, ...)
 {
     JNIEnv *env;
     mJavaVM->GetEnv((void**)&env, JNI_VERSION_1_4);
 
     jclass cls = env->GetObjectClass(mJavaListener);
     jmethodID method = env->GetMethodID(cls, name, sig);
-    env->CallCharMethod(mJavaListener, method, ts...);
+
+    va_list args;
+    va_start(args, sig);
+    jchar ret = env->CallCharMethodV(mJavaListener, method, args);
+    va_end(args);
+
+    return ret;
 }
 
-template <typename ... Ts>
-jint CinderDelegate::callIntMethodOnJavaListener(const char *name, const char *sig, Ts ... ts)
+jint CinderDelegate::callIntMethodOnJavaListener(const char *name, const char *sig, ...)
 {
     JNIEnv *env;
     mJavaVM->GetEnv((void**)&env, JNI_VERSION_1_4);
 
     jclass cls = env->GetObjectClass(mJavaListener);
     jmethodID method = env->GetMethodID(cls, name, sig);
-    return env->CallIntMethod(mJavaListener, method, ts...);
+
+    va_list args;
+    va_start(args, sig);
+    jint ret = env->CallIntMethodV(mJavaListener, method, args);
+    va_end(args);
+
+    return ret;
 }
 
-template <typename ... Ts>
-jlong CinderDelegate::callLongMethodOnJavaListener(const char *name, const char *sig, Ts ... ts)
+jlong CinderDelegate::callLongMethodOnJavaListener(const char *name, const char *sig, ...)
 {
     JNIEnv *env;
     mJavaVM->GetEnv((void**)&env, JNI_VERSION_1_4);
 
     jclass cls = env->GetObjectClass(mJavaListener);
     jmethodID method = env->GetMethodID(cls, name, sig);
-    env->CallLongMethod(mJavaListener, method, ts...);
+
+    va_list args;
+    va_start(args, sig);
+    jlong ret = env->CallLongMethodV(mJavaListener, method, args);
+    va_end(args);
+
+    return ret;
 }
 
-template <typename ... Ts>
-jfloat CinderDelegate::callFloatMethodOnJavaListener(const char *name, const char *sig, Ts ... ts)
+jfloat CinderDelegate::callFloatMethodOnJavaListener(const char *name, const char *sig, ...)
 {
     JNIEnv *env;
     mJavaVM->GetEnv((void**)&env, JNI_VERSION_1_4);
 
     jclass cls = env->GetObjectClass(mJavaListener);
     jmethodID method = env->GetMethodID(cls, name, sig);
-    env->CallFloatMethod(mJavaListener, method, ts...);
+
+    va_list args;
+    va_start(args, sig);
+    jfloat ret = env->CallFloatMethodV(mJavaListener, method, args);
+    va_end(args);
+
+    return ret;
 }
 
-template <typename ... Ts>
-jdouble CinderDelegate::callDoubleMethodOnJavaListener(const char *name, const char *sig, Ts ... ts)
+jdouble CinderDelegate::callDoubleMethodOnJavaListener(const char *name, const char *sig, ...)
 {
     JNIEnv *env;
     mJavaVM->GetEnv((void**)&env, JNI_VERSION_1_4);
 
     jclass cls = env->GetObjectClass(mJavaListener);
     jmethodID method = env->GetMethodID(cls, name, sig);
-    env->CallDoubleMethod(mJavaListener, method, ts...);
+
+    va_list args;
+    va_start(args, sig);
+    jdouble ret = env->CallDoubleMethod(mJavaListener, method, args);
+    va_end(args);
+
+    return ret;
 }
