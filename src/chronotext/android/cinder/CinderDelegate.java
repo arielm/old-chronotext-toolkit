@@ -23,6 +23,10 @@ import chronotext.android.gl.GLView;
 
 public class CinderDelegate implements SensorEventListener
 {
+  public static final int ACCELEROMETER_ORIENTATION_DEFAULT = 0;
+  public static final int ACCELEROMETER_ORIENTATION_PORTRAIT = 1;
+  public static final int ACCELEROMETER_ORIENTATION_LANDSCAPE = 2;
+
   protected Activity mActivity;
   protected Handler mHandler;
 
@@ -30,23 +34,17 @@ public class CinderDelegate implements SensorEventListener
 
   protected SensorManager mSensorManager;
   protected Sensor mAccelerometerSensor;
-  protected int mNaturalOrientation;
+  protected int mAccelerometerOrientation;
 
   public CinderDelegate(Activity activity, Handler handler)
   {
     mActivity = activity;
     mHandler = handler;
 
+    initAccelerometer();
+
     mView = new GLView(activity);
     mView.setRenderer(new CinderRenderer(activity, this)); // WILL START THE RENDERER'S THREAD
-
-    // ---
-
-    mSensorManager = (SensorManager) activity.getSystemService(Context.SENSOR_SERVICE);
-    mAccelerometerSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-
-    Display display = ((WindowManager) activity.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
-    mNaturalOrientation = display.getOrientation();
   }
 
   public GLView getView()
@@ -103,34 +101,28 @@ public class CinderDelegate implements SensorEventListener
       float z = event.values[2];
 
       /*
-       * THE FOLLOWING IS FROM Cocos2dxAccelerometer.java
-       * Copyright (c) 2010-2011 cocos2d-x.org 
-       * http://www.cocos2d-x.org
+       * APPLYING THE EVENTUAL ORIENTATION FIX
        */
-      
-      int orientation = mActivity.getResources().getConfiguration().orientation;
-
-      if ((orientation == Configuration.ORIENTATION_LANDSCAPE) && (mNaturalOrientation != Surface.ROTATION_0))
+      if (mAccelerometerOrientation == ACCELEROMETER_ORIENTATION_LANDSCAPE)
       {
         float tmp = x;
         x = -y;
-        y = tmp;
+        y = +tmp;
       }
-      else if ((orientation == Configuration.ORIENTATION_PORTRAIT) && (mNaturalOrientation != Surface.ROTATION_0))
+      else if (mAccelerometerOrientation == ACCELEROMETER_ORIENTATION_PORTRAIT)
       {
         float tmp = x;
-        x = y;
+        x = +y;
         y = -tmp;
       }
-      
+
       /*
-       * IN ORDER TO BE CONSISTENT WITH iOS
+       * FOR CONSISTENCY WITH iOS
        */
-      
       x /= -SensorManager.GRAVITY_EARTH;
       y /= +SensorManager.GRAVITY_EARTH;
       z /= +SensorManager.GRAVITY_EARTH;
-      
+
       mView.accelerated(x, y, z);
     }
   }
@@ -139,7 +131,7 @@ public class CinderDelegate implements SensorEventListener
   {
     if (android.os.Build.VERSION.SDK_INT < 11)
     {
-      mSensorManager.registerListener(this, mAccelerometerSensor, SensorManager.SENSOR_DELAY_GAME); // CORRESPONDS TO AN updateFrequency OF 50
+      mSensorManager.registerListener(this, mAccelerometerSensor, SensorManager.SENSOR_DELAY_GAME); // SOME SAY IT CORRESPONDS TO AN updateFrequency OF 50
     }
     else
     {
@@ -150,6 +142,36 @@ public class CinderDelegate implements SensorEventListener
   public void disableAccelerometer()
   {
     mSensorManager.unregisterListener(this);
+  }
+
+  protected void initAccelerometer()
+  {
+    mSensorManager = (SensorManager) mActivity.getSystemService(Context.SENSOR_SERVICE);
+    mAccelerometerSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+
+    /*
+     * THE FOLLOWING IS BASED ON CODE FROM Cocos2dxAccelerometer.java
+     * Copyright (c) 2010-2011 cocos2d-x.org 
+     * http://www.cocos2d-x.org
+     */
+
+    int orientation = mActivity.getResources().getConfiguration().orientation;
+
+    Display display = ((WindowManager) mActivity.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+    int naturalOrientation = display.getOrientation();
+
+    if ((orientation == Configuration.ORIENTATION_LANDSCAPE) && (naturalOrientation != Surface.ROTATION_0))
+    {
+      mAccelerometerOrientation = ACCELEROMETER_ORIENTATION_LANDSCAPE;
+    }
+    else if ((orientation == Configuration.ORIENTATION_PORTRAIT) && (naturalOrientation != Surface.ROTATION_0))
+    {
+      mAccelerometerOrientation = ACCELEROMETER_ORIENTATION_PORTRAIT;
+    }
+    else
+    {
+      mAccelerometerOrientation = ACCELEROMETER_ORIENTATION_DEFAULT;
+    }
   }
 
   // ---------------------------------------- MESSAGING SYSTEM ----------------------------------------
