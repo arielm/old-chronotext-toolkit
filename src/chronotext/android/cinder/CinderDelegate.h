@@ -2,6 +2,7 @@
 
 #include <jni.h>
 #include <android/asset_manager.h>
+#include <android/sensor.h>
 
 #include "chronotext/cinder/CinderSketch.h"
 
@@ -9,8 +10,11 @@
 
 class CinderDelegate
 {
+    std::shared_ptr<ci::android::dostream> mOutputStream;
+
     int mWidth;
     int mHeight;
+    int mAccelerometerRotation;
 
     ci::Timer mTimer;
     uint32_t mFrameCount;
@@ -18,7 +22,27 @@ class CinderDelegate
 	float mAccelFilterFactor;
 	ci::Vec3f mLastAccel, mLastRawAccel;
 
-	std::shared_ptr<ci::android::dostream> mOutputStream;
+	ASensorManager *mSensorManager;
+	const ASensor *mAccelerometerSensor;
+	ASensorEventQueue *mSensorEventQueue;
+
+	static int sensorEventCallback(int fd, int events, void *data)
+    {
+	    CinderDelegate *instance = (CinderDelegate*)data;
+	    instance->processSensorEvents();
+
+	    return 1;
+    }
+
+	void processSensorEvents();
+    void accelerated(float x, float y, float z);
+
+    enum
+    {
+        ACCELEROMETER_ROTATION_DEFAULT = 0,
+        ACCELEROMETER_ROTATION_PORTRAIT,
+        ACCELEROMETER_ROTATION_LANDSCAPE
+    };
 
 public:
     JavaVM *mJavaVM;
@@ -36,7 +60,7 @@ public:
 
     void launch(AAssetManager *assetManager, JavaVM *javaVM, jobject javaListener);
 
-    void init(int width, int height);
+    void init(int width, int height, int accelerometerRotation);
     void draw();
     void event(int id);
 
@@ -44,8 +68,6 @@ public:
     void updateTouch(float x, float y);
     void removeTouch(float x, float y);
     
-    void accelerated(float x, float y, float z);
-
 	void enableAccelerometer( float updateFrequency = 30, float filterFactor = 0.1f);
 	void disableAccelerometer();
 
