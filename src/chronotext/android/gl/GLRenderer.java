@@ -18,6 +18,8 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
   protected boolean attached;
   protected boolean resumed;
   protected boolean hidden;
+  
+  protected boolean showRequest;
 
   public void onSurfaceCreated(GL10 gl, EGLConfig config)
   {
@@ -61,6 +63,14 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
     elapsed = now - t0;
 
     // ---
+    
+    if (showRequest)
+    {
+      shown();
+      showRequest = false;
+    }
+    
+    // ---
 
     draw(gl);
   }
@@ -90,13 +100,22 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
     switch (visibility)
     {
       case View.VISIBLE :
+      {
         ticks = 0;
-        shown();
+        
+        /*
+         * AT THIS STAGE (IN CASE THE APP WAS PREVIOUSLY IN THE BACKGROUND), THE SURFACE IS "NOT READY" YET
+         * SO, WE DON'T CALL shown() HERE BUT IN onDraw()
+         */
+        showRequest = true;
         break;
+      }
 
       case View.GONE :
+      {
         hidden();
         break;
+      }
     }
   }
 
@@ -130,7 +149,7 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
 
         /*
          * AT THIS STAGE, THE SURFACE HAS BEEN ALREADY DESTROYED,
-         * WHICH IS NOT SUPPOSED TO BE AN ISSUE...
+         * I.E. UNLOADING TEXTURES WILL BE A NO-OP...
          */
         paused();
       }
