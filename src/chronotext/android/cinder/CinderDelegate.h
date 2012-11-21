@@ -44,6 +44,19 @@ class CinderDelegate
         ACCELEROMETER_ROTATION_LANDSCAPE
     };
 
+    enum
+    {
+        EVENT_ATTACHED = 1,
+        EVENT_DETACHED,
+        EVENT_PAUSED,
+        EVENT_RESUMED,
+        EVENT_SHOWN,
+        EVENT_HIDDEN,
+    	EVENT_BACKGROUND,
+    	EVENT_FOREGROUND,
+        EVENT_DESTROYED
+    };
+
 public:
     JavaVM *mJavaVM;
     jobject mJavaListener;

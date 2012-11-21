@@ -25,7 +25,9 @@ public class CinderRenderer extends GLRenderer
   public static final int EVENT_RESUMED = 4;
   public static final int EVENT_SHOWN = 5;
   public static final int EVENT_HIDDEN = 6;
-  public static final int EVENT_DESTROYED = 7;
+  public static final int EVENT_BACKGROUND = 7;
+  public static final int EVENT_FOREGROUND = 8;
+  public static final int EVENT_DESTROYED = 9;
 
   public static final int ACCELEROMETER_ROTATION_DEFAULT = 0;
   public static final int ACCELEROMETER_ROTATION_PORTRAIT = 1;
@@ -104,6 +106,16 @@ public class CinderRenderer extends GLRenderer
     event(EVENT_RESUMED);
     resumed = true;
     hidden = false;
+  }
+
+  public void background()
+  {
+    event(EVENT_BACKGROUND);
+  }
+
+  public void foreground()
+  {
+    event(EVENT_FOREGROUND);
   }
 
   public void destroyed()

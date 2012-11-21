@@ -102,25 +102,42 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
 
   public void onResume()
   {
-    ticks = 0;
+    if (attached)
+    {
+      ticks = 0;
 
-    /*
-     * AT THIS STAGE, THE SURFACE HAS NOT BEEN RE-CREATED YET
-     * SO, WE DON'T CALL resumed() HERE BUT IN onSurfaceCreated()
-     */
+      if (hidden)
+      {
+        foreground();
+      }
+      else
+      {
+        /*
+         * AT THIS STAGE, THE SURFACE HAS NOT BEEN RE-CREATED YET
+         * SO, WE DON'T CALL resumed() HERE BUT IN onSurfaceCreated()
+         */
+      }
+    }
   }
 
   public void onPause()
   {
-    if (attached && !hidden)
+    if (attached)
     {
-      System.out.printf("AVERAGE FRAME-RATE: %f FRAMES PER SECOND\n", ticks / (elapsed / 1000f));
+      if (!hidden)
+      {
+        System.out.printf("AVERAGE FRAME-RATE: %f FRAMES PER SECOND\n", ticks / (elapsed / 1000f));
 
-      /*
-       * AT THIS STAGE, THE SURFACE HAS BEEN ALREADY DESTROYED,
-       * WHICH IS NOT SUPPOSED TO BE AN ISSUE...
-       */
-      paused();
+        /*
+         * AT THIS STAGE, THE SURFACE HAS BEEN ALREADY DESTROYED,
+         * WHICH IS NOT SUPPOSED TO BE AN ISSUE...
+         */
+        paused();
+      }
+      else
+      {
+        background();
+      }
     }
   }
 
@@ -148,6 +165,10 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
 
   public abstract void resumed();
 
+  public abstract void background();
+
+  public abstract void foreground();
+
   public abstract void destroyed();
 
   public abstract void shown();
@@ -159,6 +180,6 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
   public abstract void updateTouch(float x, float y);
 
   public abstract void removeTouch(float x, float y);
-  
+
   public abstract void handleMessage(int what, String body);
 }

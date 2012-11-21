@@ -5,17 +5,6 @@ using namespace ci;
 using namespace ci::app;
 using namespace std;
 
-enum
-{
-    EVENT_ATTACHED = 1,
-    EVENT_DETACHED,
-    EVENT_PAUSED,
-    EVENT_RESUMED,
-    EVENT_SHOWN,
-    EVENT_HIDDEN,
-    EVENT_DESTROYED
-};
-
 #define GRAVITY_EARTH 9.80665f
 
 /*
@@ -152,6 +141,14 @@ void CinderDelegate::event(int id)
             mTimer.stop();
             sketch->stop(CinderSketch::FLAG_APP_PAUSE);
             break;
+
+        case EVENT_BACKGROUND:
+        	sketch->event(CinderSketch::EVENT_BACKGROUND);
+        	break;
+
+        case EVENT_FOREGROUND:
+        	sketch->event(CinderSketch::EVENT_FOREGROUND);
+        	break;
 
         case EVENT_DESTROYED:
             ASensorManager_destroyEventQueue(mSensorManager, mSensorEventQueue);
