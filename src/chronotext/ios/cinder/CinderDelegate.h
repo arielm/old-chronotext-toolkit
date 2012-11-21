@@ -19,6 +19,9 @@
     
 	ci::Timer mTimer;
 	uint32_t mFrameCount;
+    
+    BOOL mInitialized;
+    BOOL mActive;
 }
 
 @property (nonatomic, assign) CinderSketch *sketch;
@@ -28,6 +31,8 @@
 @property (nonatomic, readonly) float contentScale;
 @property (nonatomic, readonly) double elapsedSeconds;
 @property (nonatomic, readonly) uint32_t elapsedFrames;
+@property (nonatomic, readonly) BOOL initialized;
+@property (nonatomic, readonly) BOOL active;
 
 - (uint32_t) addTouchToMap:(UITouch*)touch;
 - (void) removeTouchFromMap:(UITouch*)touch;

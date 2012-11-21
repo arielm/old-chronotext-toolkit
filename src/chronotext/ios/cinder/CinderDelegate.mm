@@ -15,12 +15,17 @@ using namespace std;
 @synthesize width = mWidth;
 @synthesize height = mHeight;
 @synthesize contentScale = mContentScale;
+@synthesize initialized = mInitialized;
+@synthesize active = mActive;
 
 - (id) init
 {
 	if (self = [super init])
 	{
 		mLastAccel = mLastRawAccel = Vec3f::zero();
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActive) name:UIApplicationWillResignActiveNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
 	}
 	
 	return self;
@@ -28,6 +33,7 @@ using namespace std;
 
 - (void) dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 	[super dealloc];
 }
 
@@ -35,13 +41,31 @@ using namespace std;
 {
 	mFrameCount = 0;
 	mTimer.start();
-	sketch->start(reason == REASON_VIEW_WILL_APPEAR ? CinderSketch::FLAG_FOCUS_GAIN : CinderSketch::FLAG_APP_RESUME);
+    
+    if (reason == REASON_VIEW_WILL_APPEAR)
+    {
+        sketch->start(CinderSketch::FLAG_FOCUS_GAIN);
+        mActive = YES;
+    }
+    else
+    {
+        sketch->start(CinderSketch::FLAG_APP_RESUME);
+    }
 }
 
 - (void) stopWithReason:(int)reason
 {
 	mTimer.stop();
-	sketch->stop(reason == REASON_VIEW_WILL_DISAPEAR ? CinderSketch::FLAG_FOCUS_LOST : CinderSketch::FLAG_APP_PAUSE);
+
+    if (reason == REASON_VIEW_WILL_DISAPEAR)
+    {
+        sketch->stop(CinderSketch::FLAG_FOCUS_LOST);
+        mActive = NO;
+    }
+    else
+    {
+        sketch->stop(CinderSketch::FLAG_APP_PAUSE);
+    }
 }
 
 - (void) setup
@@ -74,6 +98,7 @@ using namespace std;
 
 	sketch->setup(false);
 	sketch->resize(ResizeEvent(Vec2i(mWidth, mHeight)));
+    mInitialized = YES;
 }
 
 - (void) draw
@@ -93,7 +118,7 @@ using namespace std;
     return mFrameCount;
 }
 
-// ======================================== ACCELEROMETER ========================================
+#pragma mark ---------------------------------------- ACCELEROMETER ----------------------------------------
 
 - (void) accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration
 {
@@ -107,7 +132,7 @@ using namespace std;
 	mLastRawAccel = direction;
 }
 
-// ======================================== TOUCH ========================================
+#pragma mark ---------------------------------------- TOUCH ----------------------------------------
 
 - (uint32_t) addTouchToMap:(UITouch*)touch
 {
@@ -171,8 +196,6 @@ using namespace std;
 	}
 }
 
-// ---
-
 - (void) touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event
 {
 	static float contentScale = 1;
@@ -234,6 +257,24 @@ using namespace std;
 - (void) touchesCancelled:(NSSet*)touches withEvent:(UIEvent*)event
 {
 	[self touchesEnded:touches withEvent:event];
+}
+
+#pragma mark ---------------------------------------- BACKGROUND / FOREGROUND ----------------------------------------
+
+- (void) applicationWillResignActive
+{
+    if (mInitialized && !mActive)
+    {
+        sketch->event(CinderSketch::EVENT_BACKGROUND);
+    }
+}
+
+- (void) applicationDidBecomeActive
+{
+    if (mInitialized && !mActive)
+    {
+        sketch->event(CinderSketch::EVENT_FOREGROUND);
+    }
 }
 
 @end
