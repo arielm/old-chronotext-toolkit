@@ -17,6 +17,13 @@ public:
         FLAG_SCREEN_ENTER,
         FLAG_SCREEN_LEAVE
     };
+    
+    enum
+    {
+    	EVENT_FOREGROUND,
+    	EVENT_BACKGROUND,
+    	EVENT_KEY_BACK
+    };
 
     CinderSketchComplex(void *context) : context(context) {}
     virtual ~CinderSketchComplex() {};
@@ -29,6 +36,7 @@ public:
 	
 	virtual void start(int flags) {}
 	virtual void stop(int flags) {}
+    virtual void event(int id) {}
 	
 	void touchesBegan(ci::app::TouchEvent event);
 	void touchesMoved(ci::app::TouchEvent event);

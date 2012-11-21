@@ -17,6 +17,13 @@ public:
         FLAG_SCREEN_ENTER,
         FLAG_SCREEN_LEAVE
     };
+    
+    enum
+    {
+    	EVENT_FOREGROUND,
+    	EVENT_BACKGROUND,
+    	EVENT_KEY_BACK
+    };
 
     CinderSketchSimple(void *context) : context((ci::app::AppNative*)context) {}
     virtual ~CinderSketchSimple() {};
@@ -30,6 +37,7 @@ public:
     
     virtual void start(int flags) {}
     virtual void stop(int flags) {}
+    virtual void event(int id) {}
     
     virtual void addTouch(int index, float x, float y) {}
     virtual void updateTouch(int index, float x, float y) {}
