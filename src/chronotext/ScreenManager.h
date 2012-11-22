@@ -36,7 +36,7 @@ public:
     void updateTouch(int index, float x, float y);
     void removeTouch(int index, float x, float y);
 
-#if defined( CINDER_COCOA_TOUCH )
+#if defined(CINDER_COCOA_TOUCH) || defined(CINDER_ANDROID)
     void accelerated(ci::app::AccelEvent event);
 #endif
 

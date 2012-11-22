@@ -106,7 +106,7 @@ void ScreenManager::removeTouch(int index, float x, float y)
     if (currentScreen) currentScreen->removeTouch(index, x, y);
 }
 
-#if defined( CINDER_COCOA_TOUCH )
+#if defined(CINDER_COCOA_TOUCH) || defined(CINDER_ANDROID)
 void ScreenManager::accelerated(AccelEvent event)
 {
     if (currentScreen) currentScreen->accelerated(event);
@@ -143,12 +143,12 @@ void ScreenManager::setCurrentScreen(CinderSketch *screen)
          */
         focused[screen] = true;
         
-        screen->start(CinderSketch::FLAG_SCREEN_ENTER);
-        
         if (size != Vec2i(0, 0))
         {
             screen->resize(ResizeEvent(size));
         }
+
+        screen->start(CinderSketch::FLAG_SCREEN_ENTER);
     }
     
     currentScreen = screen;
