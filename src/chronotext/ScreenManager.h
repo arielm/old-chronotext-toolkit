@@ -30,6 +30,7 @@ public:
     
     void start(int flags);
     void stop(int flags);
+    void event(int id);
     
     void addTouch(int index, float x, float y);
     void updateTouch(int index, float x, float y);

@@ -83,6 +83,14 @@ void ScreenManager::stop(int flags)
     }
 }
 
+void ScreenManager::event(int id)
+{
+    if (currentScreen)
+    {
+        currentScreen->event(id);
+    }
+}
+
 void ScreenManager::addTouch(int index, float x, float y)
 {
     if (currentScreen) currentScreen->addTouch(index, x, y);
@@ -132,18 +140,21 @@ void ScreenManager::setCurrentScreen(CinderSketch *screen)
     {
         currentScreen->stop(CinderSketch::FLAG_SCREEN_LEAVE);
     }
-
-    /*
-     * REQUIRED IN ORDER TO AVOID SITUATIONS WHERE A "SCREEN_ENTER"
-     * IS FOLLOWED BY SOME UN-NECESSARY "FOCUS_GAIN"
-     */
-    focused[screen] = true;
-
-    screen->start(CinderSketch::FLAG_SCREEN_ENTER);
     
-    if (size != Vec2i(0, 0))
+    if (screen)
     {
-        screen->resize(ResizeEvent(size));
+        /*
+         * REQUIRED IN ORDER TO AVOID SITUATIONS WHERE A "SCREEN_ENTER"
+         * IS FOLLOWED BY SOME UN-NECESSARY "FOCUS_GAIN"
+         */
+        focused[screen] = true;
+        
+        screen->start(CinderSketch::FLAG_SCREEN_ENTER);
+        
+        if (size != Vec2i(0, 0))
+        {
+            screen->resize(ResizeEvent(size));
+        }
     }
     
     currentScreen = screen;
