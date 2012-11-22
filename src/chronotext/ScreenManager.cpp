@@ -113,14 +113,8 @@ void ScreenManager::accelerated(AccelEvent event)
 }
 #endif
 
-/*
- * WARNING: A VALID GL CONTEXT IS REQUIRED
- * I.E. THIS SHOULD BE CALLED FROM E.G. Sketch.setup()
- */ 
 void ScreenManager::addScreen(CinderSketch *screen)
 {
-    screen->setup(false);
-    
     screens.push_back(screen);
     focused[screen] = false;
 }
