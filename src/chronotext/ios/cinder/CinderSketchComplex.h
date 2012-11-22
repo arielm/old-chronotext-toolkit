@@ -2,7 +2,9 @@
 
 #include "cinder/app/AppCocoaTouch.h"
 
-class CinderSketchComplex
+#include "chronotext/os/Handler.h"
+
+class CinderSketchComplex : public Handler, public Looper
 {
 protected:
     void *context;
@@ -25,7 +27,12 @@ public:
     	EVENT_KEY_BACK
     };
 
-    CinderSketchComplex(void *context) : context(context) {}
+    CinderSketchComplex(void *context)
+    :
+    Handler(this),
+    context(context)
+    {}
+    
     virtual ~CinderSketchComplex() {};
 
 	virtual void setup(bool renewContext) {}

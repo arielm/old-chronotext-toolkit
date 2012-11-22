@@ -1,3 +1,7 @@
+/*
+ * INSPIRED BY android.os.MessageQueue
+ */
+
 #pragma once
 
 #include "chronotext/os/Message.h"

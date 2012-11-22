@@ -32,6 +32,7 @@ void ScreenManager::update()
 {
     if (currentScreen)
     {
+        currentScreen->run(); // NECESSARY FOR THE "MESSAGE-PUMP"
         currentScreen->update();
     }
 }

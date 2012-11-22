@@ -29,6 +29,7 @@ void CinderApp::resize(ResizeEvent event)
 
 void CinderApp::update()
 {
+    sketch->run(); // NECESSARY FOR THE "MESSAGE-PUMP"
     sketch->update();
     updateCount++;
 }

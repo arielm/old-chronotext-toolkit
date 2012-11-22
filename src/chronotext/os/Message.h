@@ -1,3 +1,7 @@
+/*
+ * INSPIRED BY android.os.Message
+ */
+
 #pragma once
 
 #include <boost/shared_ptr.hpp>

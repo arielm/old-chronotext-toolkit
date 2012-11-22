@@ -1,3 +1,7 @@
+/*
+ * INSPIRED BY android.os.Handler
+ */
+
 #pragma once
 
 #include "chronotext/os/Message.h"
@@ -10,6 +14,7 @@ class Handler
     
 public:
     Handler(Looper *looper) : looper(looper) {}
+    ~Handler() {}
     
     bool sendMessage(const Message &message);
     virtual void handleMessage(const Message &message) {}

@@ -2,7 +2,9 @@
 
 #include "cinder/app/AppNative.h"
 
-class CinderSketchSimple
+#include "chronotext/os/Handler.h"
+
+class CinderSketchSimple : public Handler, public Looper
 {
 protected:
     ci::app::AppNative *context;
@@ -25,7 +27,12 @@ public:
     	EVENT_KEY_BACK
     };
 
-    CinderSketchSimple(void *context) : context((ci::app::AppNative*)context) {}
+    CinderSketchSimple(void *context)
+    :
+    Handler(this),
+    context(static_cast<ci::app::AppNative*>(context))
+    {}
+    
     virtual ~CinderSketchSimple() {};
 
     virtual void setup(bool renewContext) {}
@@ -46,7 +53,7 @@ public:
 #if defined(CINDER_COCOA_TOUCH) || defined(CINDER_ANDROID)
     virtual void accelerated(ci::app::AccelEvent event) {}
     
-    void enableAccelerometer(float updateFrequency = 30.0f, float filterFactor = 0.1f) { context->enableAccelerometer(updateFrequency, filterFactor); }
+    void enableAccelerometer(float updateFrequency = 30, float filterFactor = 0.1f) { context->enableAccelerometer(updateFrequency, filterFactor); }
 	void disableAccelerometer() { context->disableAccelerometer(); }
 #endif
     

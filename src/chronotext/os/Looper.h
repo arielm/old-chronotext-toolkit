@@ -1,3 +1,7 @@
+/*
+ * INSPIRED BY android.os.Looper
+ */
+
 #pragma once
 
 #include "chronotext/os/MessageQueue.h"
