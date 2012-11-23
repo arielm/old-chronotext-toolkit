@@ -3,7 +3,7 @@
 #include "chronotext/cinder/CinderSketch.h"
 #include "cinder/app/AppNative.h"
 
-class CinderApp : public ci::app::AppNative
+class CinderApp : public ci::app::AppNative, public CinderSketchDelegate
 {
     int startCount;
     int updateCount;
@@ -40,4 +40,7 @@ public:
     void pause();
     void resume(bool renewContext);
 #endif
+    
+    void receiveStringFromSketch(int what, const std::string &body);
+    void sendStringToSketch(int what, const std::string &body);
 };

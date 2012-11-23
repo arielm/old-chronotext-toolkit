@@ -1,4 +1,5 @@
 #include "chronotext/cinder/CinderApp.h"
+#include "chronotext/utils/Utils.h"
 
 using namespace ci;
 using namespace app;
@@ -106,3 +107,13 @@ void CinderApp::pause()
     sketch->stop(CinderSketch::FLAG_APP_PAUSE);
 }
 #endif
+
+void CinderApp::receiveStringFromSketch(int what, const string &body)
+{
+    DLOG(what << " " << body);
+}
+
+void CinderApp::sendStringToSketch(int what, const string &body)
+{
+    sketch->sendMessage(Message(what, boost::shared_ptr<string>(new string(body))));
+}
