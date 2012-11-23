@@ -39,4 +39,7 @@
 - (uint32_t) findTouchInMap:(UITouch*)touch;
 - (void) updateActiveTouches;
 
+- (void) receiveStringFromSketch:(int)what body:(NSString*)body;
+- (void) sendStringToSketch:(int)what body:(NSString*)body;
+
 @end

@@ -2,14 +2,15 @@
 
 #include "cinder/app/AppNative.h"
 
-#include "chronotext/cinder/CinderSketchDelegate.h"
 #include "chronotext/os/Handler.h"
+
+class CinderApp;
 
 class CinderSketchSimple : public Handler, public Looper
 {
 protected:
     ci::app::AppNative *context;
-    CinderSketchDelegate *delegate;
+    CinderApp *delegate;
 
 public:
     enum
@@ -29,11 +30,11 @@ public:
     	EVENT_KEY_BACK
     };
 
-    CinderSketchSimple(void *context, CinderSketchDelegate *delegate = NULL)
+    CinderSketchSimple(void *context, void *delegate = NULL)
     :
     Handler(this),
     context(static_cast<ci::app::AppNative*>(context)),
-    delegate(delegate)
+    delegate(static_cast<CinderApp*>(delegate))
     {}
     
     virtual ~CinderSketchSimple() {};
@@ -66,11 +67,5 @@ public:
     float getContentScale() const { return 1; }
     std::ostream& console() { return context->console(); }
     
-    void sendStringToDelegate(int what, const std::string &body)
-    {
-        if (delegate)
-        {
-            delegate->receiveStringFromSketch(what, body);
-        }
-    }
+    void sendStringToDelegate(int what, const std::string &body);
 };

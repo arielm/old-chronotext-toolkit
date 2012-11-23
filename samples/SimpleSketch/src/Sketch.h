@@ -18,7 +18,7 @@ class Sketch : public CinderSketch
     ci::Vec2f position;
 
 public:
-    Sketch(void *context, CinderSketchDelegate *delegate = NULL)
+    Sketch(void *context, void *delegate = NULL)
     :
     CinderSketch(context, delegate)
     {}

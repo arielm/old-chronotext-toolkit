@@ -1,9 +1,9 @@
 #pragma once
 
-#include "chronotext/cinder/CinderSketch.h"
 #include "cinder/app/AppNative.h"
+#include "chronotext/cinder/CinderSketch.h"
 
-class CinderApp : public ci::app::AppNative, public CinderSketchDelegate
+class CinderApp : public ci::app::AppNative
 {
     int startCount;
     int updateCount;

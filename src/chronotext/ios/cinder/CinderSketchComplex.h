@@ -8,6 +8,7 @@ class CinderSketchComplex : public Handler, public Looper
 {
 protected:
     void *context;
+    void *delegate;
 
 public:
     enum
@@ -27,10 +28,11 @@ public:
     	EVENT_KEY_BACK
     };
 
-    CinderSketchComplex(void *context)
+    CinderSketchComplex(void *context, void *delegate = NULL)
     :
     Handler(this),
-    context(context)
+    context(context),
+    delegate(delegate)
     {}
     
     virtual ~CinderSketchComplex() {};
@@ -69,4 +71,6 @@ public:
     float getContentScale();
 
 	std::ostream& console() { return std::cout; }
+    
+    void sendStringToDelegate(int what, const std::string &body);
 };

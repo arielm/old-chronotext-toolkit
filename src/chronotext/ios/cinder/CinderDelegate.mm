@@ -119,6 +119,14 @@ using namespace std;
     return mFrameCount;
 }
 
+- (void) receiveStringFromSketch:(int)what body:(NSString*)body
+{}
+
+- (void) sendStringToSketch:(int)what body:(NSString*)body
+{
+    sketch->sendMessage(Message(what, boost::shared_ptr<string>(new string([body UTF8String]))));
+}
+
 #pragma mark ---------------------------------------- ACCELEROMETER ----------------------------------------
 
 - (void) accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration

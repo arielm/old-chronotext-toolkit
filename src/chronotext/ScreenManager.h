@@ -16,7 +16,7 @@ class ScreenManager : public CinderSketch
 public:
     CinderSketch *currentScreen;
 
-    ScreenManager(void *context, CinderSketchDelegate *delegate)
+    ScreenManager(void *context, void *delegate)
     :
     CinderSketch(context, delegate),
     currentScreen(NULL)

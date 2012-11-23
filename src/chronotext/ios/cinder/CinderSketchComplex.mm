@@ -93,3 +93,21 @@ float CinderSketchComplex::getContentScale()
 {
     return ((CinderDelegate*)context).contentScale;
 }
+
+/*
+ * TODO: WOULDN'T IT BE BETTER TO QUEUE THE MESSAGE ON THE MAIN-THREAD?
+ */
+void CinderSketchComplex::sendStringToDelegate(int what, const string &body)
+{
+    if (delegate)
+    {
+        if (body.size() > 0)
+        {
+            [(CinderDelegate*)context receiveStringFromSketch:what body:[NSString stringWithUTF8String:body.c_str()]];
+        }
+        else
+        {
+            [(CinderDelegate*)context receiveStringFromSketch:what body:nil];
+        }
+    }
+}
