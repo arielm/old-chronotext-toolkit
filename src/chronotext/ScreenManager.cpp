@@ -94,25 +94,45 @@ void ScreenManager::event(int id)
 
 void ScreenManager::addTouch(int index, float x, float y)
 {
-    if (currentScreen) currentScreen->addTouch(index, x, y);
+    if (currentScreen)
+    {
+        currentScreen->addTouch(index, x, y);
+    }
 }
 
 void ScreenManager::updateTouch(int index, float x, float y)
 {
-    if (currentScreen) currentScreen->updateTouch(index, x, y);
+    if (currentScreen)
+    {
+        currentScreen->updateTouch(index, x, y);
+    }
 }
 
 void ScreenManager::removeTouch(int index, float x, float y)
 {
-    if (currentScreen) currentScreen->removeTouch(index, x, y);
+    if (currentScreen)
+    {
+        currentScreen->removeTouch(index, x, y);
+    }
 }
 
 #if defined(CINDER_COCOA_TOUCH) || defined(CINDER_ANDROID)
 void ScreenManager::accelerated(AccelEvent event)
 {
-    if (currentScreen) currentScreen->accelerated(event);
+    if (currentScreen)
+    {
+        currentScreen->accelerated(event);
+    }
 }
 #endif
+
+void ScreenManager::handleMessage(const Message &message)
+{
+    if (currentScreen)
+    {
+        currentScreen->handleMessage(message);
+    }
+}
 
 void ScreenManager::addScreen(CinderSketch *screen)
 {

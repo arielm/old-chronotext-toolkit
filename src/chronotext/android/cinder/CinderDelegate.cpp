@@ -102,6 +102,7 @@ void CinderDelegate::draw()
      */
     processSensorEvents();
 
+    sketch->run(); // NECESSARY FOR THE "MESSAGE-PUMP"
     sketch->update();
     sketch->draw();
     mFrameCount++;

@@ -40,6 +40,8 @@ public:
     void accelerated(ci::app::AccelEvent event);
 #endif
 
+    void handleMessage(const Message &message);
+
     void addScreen(CinderSketch *screen);
     void removeScreen(CinderSketch *screen);
     

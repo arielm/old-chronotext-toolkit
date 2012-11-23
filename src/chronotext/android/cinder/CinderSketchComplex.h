@@ -2,9 +2,11 @@
 
 #include "cinder/app/AppAndroid.h"
 
+#include "chronotext/os/Handler.h"
+
 class CinderDelegate;
 
-class CinderSketchComplex
+class CinderSketchComplex : public Handler, public Looper
 {
 protected:
 	CinderDelegate *context;
@@ -27,7 +29,12 @@ public:
     	EVENT_KEY_BACK
     };
 
-    CinderSketchComplex(void *context) : context((CinderDelegate*)context) {}
+    CinderSketchComplex(void *context)
+    :
+    Handler(this),
+    context((CinderDelegate*)context)
+    {}
+
     virtual ~CinderSketchComplex() {}
 
     virtual void setup(bool renewContext) {}
