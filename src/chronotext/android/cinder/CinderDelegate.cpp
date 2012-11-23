@@ -241,13 +241,15 @@ ostream& CinderDelegate::console()
     return *mOutputStream;
 }
 
-void CinderDelegate::sendMessage(int what, const string &body)
+void CinderDelegate::receiveStringFromSketch(int what, const string &body)
 {
     callVoidMethodOnJavaListener("handleMessage", "(ILjava/lang/String;)V", what, getJNIEnv()->NewStringUTF(body.c_str()));
 }
 
-void CinderDelegate::handleMessage(int what, const string &body)
-{}
+void CinderDelegate::sendStringToSketch(int what, const string &body)
+{
+    sketch->sendMessage(Message(what, boost::shared_ptr<string>(new string(body))));
+}
 
 // ---------------------------------------- JNI ----------------------------------------
 

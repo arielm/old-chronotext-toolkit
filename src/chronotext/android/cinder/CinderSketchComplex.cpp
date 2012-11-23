@@ -54,3 +54,11 @@ ostream& CinderSketchComplex::console()
 {
     return context->console();
 }
+
+void CinderSketchComplex::sendStringToDelegate(int what, const string &body)
+{
+    if (delegate)
+    {
+        delegate->sendStringToSketch(what, body);
+    }
+}
