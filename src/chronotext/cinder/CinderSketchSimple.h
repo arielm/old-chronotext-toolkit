@@ -29,7 +29,7 @@ public:
     	EVENT_KEY_BACK
     };
 
-    CinderSketchSimple(void *context, CinderSketchDelegate *delegate)
+    CinderSketchSimple(void *context, CinderSketchDelegate *delegate = NULL)
     :
     Handler(this),
     context(static_cast<ci::app::AppNative*>(context)),
