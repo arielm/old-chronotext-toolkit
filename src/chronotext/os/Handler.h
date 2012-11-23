@@ -14,7 +14,7 @@ class Handler
     
 public:
     Handler(Looper *looper) : looper(looper) {}
-    ~Handler() {}
+    virtual ~Handler() {}
     
     bool sendMessage(const Message &message);
     virtual void handleMessage(const Message &message) {}
