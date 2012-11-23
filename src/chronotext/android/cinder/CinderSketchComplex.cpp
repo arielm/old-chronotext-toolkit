@@ -59,6 +59,6 @@ void CinderSketchComplex::sendStringToDelegate(int what, const string &body)
 {
     if (delegate)
     {
-        delegate->sendStringToSketch(what, body);
+        delegate->receiveStringFromSketch(what, body);
     }
 }
