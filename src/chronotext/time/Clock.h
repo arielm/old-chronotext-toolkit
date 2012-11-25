@@ -9,6 +9,9 @@
 namespace chronotext
 {
     class MasterClock;
+    
+    typedef std::shared_ptr<class Clock> ClockRef;
+    typedef std::shared_ptr<class MasterClock> MasterClockRef;
 
     class Clock : public TimeBase
     {
@@ -20,7 +23,7 @@ namespace chronotext
         TimeBase *timeBase;
         bool timeBaseIsOwned;
         
-        MasterClock *master;
+        MasterClockRef master;
         
     public:
         enum
@@ -31,7 +34,7 @@ namespace chronotext
 
         Clock();
         Clock(TimeBase *timeBase);
-        Clock(MasterClock *masterClock);
+        Clock(MasterClockRef master);
         
         ~Clock();
         

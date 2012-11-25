@@ -1,5 +1,6 @@
 #include "chronotext/time/Clock.h"
 #include "chronotext/time/MasterClock.h"
+#include "chronotext/utils/Utils.h"
 
 using namespace std;
 
@@ -8,7 +9,6 @@ namespace chronotext
     Clock::Clock()
     :
     timeBaseIsOwned(true),
-    master(NULL),
     mst(0),
     rate(1),
     state(STOPPED)
@@ -20,26 +20,27 @@ namespace chronotext
     :
     timeBase(timeBase),
     timeBaseIsOwned(false),
-    master(NULL),
     mst(0),
     rate(1),
     state(STOPPED)
     {}
     
-    Clock::Clock(MasterClock *masterClock)
+    Clock::Clock(MasterClockRef master)
     :
-    timeBase(masterClock->timeBase),
+    timeBase(master->timeBase),
     timeBaseIsOwned(false),
-    master(masterClock),
+    master(master),
     mst(0),
     rate(1),
     state(STOPPED)
     {
-        masterClock->add(this);
+        master->add(this);
     }
     
     Clock::~Clock()
     {
+        DLOG("Clock DELETED");
+        
         if (timeBaseIsOwned)
         {
             delete timeBase;
