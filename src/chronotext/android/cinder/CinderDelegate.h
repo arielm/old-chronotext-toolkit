@@ -68,7 +68,10 @@ public:
     mLastRawAccel(ci::Vec3f::zero())
     {}
 
-    virtual ~CinderDelegate() {}
+    virtual ~CinderDelegate()
+    {
+        CI_LOGD("CinderDelegate DELETED");
+    }
 
     void launch(AAssetManager *assetManager, JavaVM *javaVM, jobject javaListener);
 

@@ -244,11 +244,13 @@ ostream& CinderDelegate::console()
 
 void CinderDelegate::receiveMessageFromSketch(int what, const string &body)
 {
+    CI_LOGD("MESSAGE SENT TO JAVA: %d %s", what, body.c_str());
     callVoidMethodOnJavaListener("receiveMessageFromSketch", "(ILjava/lang/String;)V", what, getJNIEnv()->NewStringUTF(body.c_str()));
 }
 
 void CinderDelegate::sendMessageToSketch(int what, const string &body)
 {
+    CI_LOGD("MESSAGE RECEIVED FROM JAVA: %d %s", what, body.c_str());
     sketch->sendMessage(Message(what, boost::shared_ptr<string>(new string(body))));
 }
 
