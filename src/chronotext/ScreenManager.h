@@ -22,6 +22,7 @@ public:
     currentScreen(NULL)
     {}
 
+    void setup(bool renewContext);
     void shutdown();
     void resize(ci::app::ResizeEvent event);
     

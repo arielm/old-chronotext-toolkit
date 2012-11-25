@@ -4,6 +4,14 @@ using namespace ci;
 using namespace app;
 using namespace std;
 
+void ScreenManager::setup(bool renewContext)
+{
+    if (currentScreen && renewContext)
+    {
+        currentScreen->setup(true);
+    }
+}
+
 void ScreenManager::shutdown()
 {
     for (list<CinderSketch*>::const_iterator it = screens.begin(); it != screens.end(); ++it)
