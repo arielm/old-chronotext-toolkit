@@ -85,7 +85,7 @@ void CinderDelegate::accelerated(float x, float y, float z)
     mLastRawAccel = acceleration;
 }
 
-void CinderDelegate::init(int width, int height, int accelerometerRotation)
+void CinderDelegate::setup(int width, int height, int accelerometerRotation)
 {
     mWidth = width;
     mHeight = height;
@@ -93,6 +93,14 @@ void CinderDelegate::init(int width, int height, int accelerometerRotation)
 
     sketch->setup(false);
     sketch->resize(ResizeEvent(Vec2i(mWidth, mHeight)));
+}
+
+void CinderDelegate::shutdown()
+{
+    ASensorManager_destroyEventQueue(mSensorManager, mSensorEventQueue);
+
+    sketch->shutdown();
+    delete sketch;
 }
 
 void CinderDelegate::draw()
@@ -150,13 +158,6 @@ void CinderDelegate::event(int id)
         case EVENT_FOREGROUND:
         	sketch->event(CinderSketch::EVENT_FOREGROUND);
         	break;
-
-        case EVENT_DESTROYED:
-            ASensorManager_destroyEventQueue(mSensorManager, mSensorEventQueue);
-
-            sketch->shutdown();
-            delete sketch;
-            break;
     }
 }
 

@@ -53,8 +53,7 @@ class CinderDelegate
         EVENT_SHOWN,
         EVENT_HIDDEN,
     	EVENT_BACKGROUND,
-    	EVENT_FOREGROUND,
-        EVENT_DESTROYED
+    	EVENT_FOREGROUND
     };
 
 public:
@@ -73,7 +72,9 @@ public:
 
     void launch(AAssetManager *assetManager, JavaVM *javaVM, jobject javaListener);
 
-    void init(int width, int height, int accelerometerRotation);
+    void setup(int width, int height, int accelerometerRotation);
+    void shutdown();
+
     void draw();
     void event(int id);
 

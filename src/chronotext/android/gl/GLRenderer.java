@@ -24,7 +24,7 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
   public void onSurfaceCreated(GL10 gl, EGLConfig config)
   {
     /*
-     * WE DON'T CALL init() FROM HERE BECAUSE WE WANT TO KNOW THE SURFACE-SIZE FIRST
+     * WE DON'T CALL setup() FROM HERE BECAUSE WE WANT TO KNOW THE SURFACE-SIZE FIRST
      */
 
     if (initialized)
@@ -41,7 +41,7 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
   {
     if (!initialized)
     {
-      init(gl, w, h);
+      setup(gl, w, h);
     }
 
     if (!attached)
@@ -165,14 +165,16 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
    */
   public void onDestroy()
   {
-    destroyed();
+    shutdown();
   }
 
   // ---------------------------------------- ABSTRACT METHODS ----------------------------------------
 
   public abstract void launch();
 
-  public abstract void init(GL10 gl, int width, int height);
+  public abstract void setup(GL10 gl, int width, int height);
+
+  public abstract void shutdown();
 
   public abstract void draw(GL10 gl);
 
@@ -187,8 +189,6 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
   public abstract void background();
 
   public abstract void foreground();
-
-  public abstract void destroyed();
 
   public abstract void shown();
 

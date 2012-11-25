@@ -27,7 +27,6 @@ public class CinderRenderer extends GLRenderer
   public static final int EVENT_HIDDEN = 6;
   public static final int EVENT_BACKGROUND = 7;
   public static final int EVENT_FOREGROUND = 8;
-  public static final int EVENT_DESTROYED = 9;
 
   public static final int ACCELEROMETER_ROTATION_DEFAULT = 0;
   public static final int ACCELEROMETER_ROTATION_PORTRAIT = 1;
@@ -40,6 +39,8 @@ public class CinderRenderer extends GLRenderer
   {
     mContext = context;
     mListener = listener;
+    
+    prelaunch();
   }
 
   /*
@@ -66,14 +67,16 @@ public class CinderRenderer extends GLRenderer
     return ACCELEROMETER_ROTATION_DEFAULT;
   }
 
+  // ---------------------------------------- CALL-BACKS TAKING PLACE ON THE RENDERER'S THREAD ----------------------------------------
+  
   public void launch()
   {
     launch(mContext.getAssets(), mListener);
   }
 
-  public void init(GL10 gl, int width, int height)
+  public void setup(GL10 gl, int width, int height)
   {
-    init(width, height, getAccelerometerRotation());
+    setup(width, height, getAccelerometerRotation());
     initialized = true;
   }
 
@@ -118,11 +121,6 @@ public class CinderRenderer extends GLRenderer
     event(EVENT_FOREGROUND);
   }
 
-  public void destroyed()
-  {
-    event(EVENT_DESTROYED);
-  }
-
   public void shown()
   {
     event(EVENT_SHOWN);
@@ -137,9 +135,13 @@ public class CinderRenderer extends GLRenderer
 
   // ---------------------------------------- JNI ----------------------------------------
 
+  public native void prelaunch();
+  
   public native void launch(AssetManager assets, Object listener);
 
-  public native void init(int width, int height, int accelerometerRotation);
+  public native void setup(int width, int height, int accelerometerRotation);
+  
+  public native void shutdown();
 
   public native void draw();
 
