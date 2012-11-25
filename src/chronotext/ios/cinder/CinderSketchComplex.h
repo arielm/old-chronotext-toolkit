@@ -72,5 +72,5 @@ public:
 
 	std::ostream& console() { return std::cout; }
     
-    void sendStringToDelegate(int what, const std::string &body);
+    void sendMessageToDelegate(int what, const std::string &body = "");
 };

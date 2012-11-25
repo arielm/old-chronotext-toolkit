@@ -119,10 +119,10 @@ using namespace std;
     return mFrameCount;
 }
 
-- (void) receiveStringFromSketch:(int)what body:(NSString*)body
+- (void) receiveMessageFromSketch:(int)what body:(NSString*)body
 {}
 
-- (void) sendStringToSketch:(int)what body:(NSString*)body
+- (void) sendMessageToSketch:(int)what body:(NSString*)body
 {
     sketch->sendMessage(Message(what, boost::shared_ptr<string>(new string([body UTF8String]))));
 }

@@ -108,12 +108,12 @@ void CinderApp::pause()
 }
 #endif
 
-void CinderApp::receiveStringFromSketch(int what, const string &body)
+void CinderApp::receiveMessageFromSketch(int what, const string &body)
 {
     DLOG(what << " " << body);
 }
 
-void CinderApp::sendStringToSketch(int what, const string &body)
+void CinderApp::sendMessageToSketch(int what, const string &body)
 {
     sketch->sendMessage(Message(what, boost::shared_ptr<string>(new string(body))));
 }

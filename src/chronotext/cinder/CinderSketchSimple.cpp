@@ -5,10 +5,10 @@ using namespace std;
 using namespace ci;
 using namespace app;
 
-void CinderSketchSimple::sendStringToDelegate(int what, const string &body)
+void CinderSketchSimple::sendMessageToDelegate(int what, const string &body)
 {
     if (delegate)
     {
-        delegate->receiveStringFromSketch(what, body);
+        delegate->receiveMessageFromSketch(what, body);
     }
 }

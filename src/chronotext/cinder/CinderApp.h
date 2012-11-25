@@ -41,6 +41,6 @@ public:
     void resume(bool renewContext);
 #endif
     
-    void receiveStringFromSketch(int what, const std::string &body);
-    void sendStringToSketch(int what, const std::string &body);
+    void receiveMessageFromSketch(int what, const std::string &body);
+    void sendMessageToSketch(int what, const std::string &body);
 };

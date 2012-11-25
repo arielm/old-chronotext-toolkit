@@ -67,5 +67,5 @@ public:
     float getContentScale() const { return 1; }
     std::ostream& console() { return context->console(); }
     
-    void sendStringToDelegate(int what, const std::string &body);
+    void sendMessageToDelegate(int what, const std::string &body = "");
 };
