@@ -5,8 +5,10 @@
 class TextureAtlasManager
 {
     std::map<int, TextureAtlas*> atlases;
+    bool unloaded;
 
 public:
+    TextureAtlasManager() : unloaded(false) {}
     ~TextureAtlasManager();
     
     void setAtlas(const std::string &resourceName, int index, bool useMipmap = false);

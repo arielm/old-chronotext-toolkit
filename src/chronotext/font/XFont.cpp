@@ -18,7 +18,8 @@ inputSource(inputSource),
 useMipmap(useMipmap),
 useAnisotropy(useAnisotropy),
 maxDimensions(maxDimensions),
-charactersPerSlot(charactersPerSlot)
+charactersPerSlot(charactersPerSlot),
+unloaded(true)
 {
     reload();
     setSize(1);
@@ -31,40 +32,48 @@ XFont::~XFont()
 
 void XFont::unload()
 {
-    delete[] w;
-    delete[] h;
-    delete[] le;
-    delete[] te;
-    delete[] lw;
-    
-    delete[] lookup8bits;
-    delete[] lookup16bits;
-    delete[] ordered16bits;
-    
-    delete[] tx1;
-    delete[] ty1;
-    delete[] tx2;
-    delete[] ty2;
-    
-    glDeleteTextures(1, &name);
-    
-    // ---
-    
-    delete[] vertice;
-    delete[] coords;
-    delete[] indices;
-    
-    // ---
-    
-    DLOG("FONT DELETED: " << name);
+    if (!unloaded)
+    {
+        delete[] w;
+        delete[] h;
+        delete[] le;
+        delete[] te;
+        delete[] lw;
+        
+        delete[] lookup8bits;
+        delete[] lookup16bits;
+        delete[] ordered16bits;
+        
+        delete[] tx1;
+        delete[] ty1;
+        delete[] tx2;
+        delete[] ty2;
+        
+        glDeleteTextures(1, &name);
+        
+        // ---
+        
+        delete[] vertice;
+        delete[] coords;
+        delete[] indices;
+        
+        // ---
+
+        unloaded = true;
+        DLOG("FONT DELETED: " << name);
+    }
 }
 
 void XFont::reload()
 {
-    read(inputSource);
-    init();
-    
-    DLOG("FONT LOADED: " << name << " (" << atlasWidth << "x" << atlasHeight << ")");
+    if (unloaded)
+    {
+        read(inputSource);
+        init();
+        
+        unloaded = false;
+        DLOG("FONT LOADED: " << name << " (" << atlasWidth << "x" << atlasHeight << ")");
+    }
 }
 
 void XFont::read(InputSourceRef inputSource)

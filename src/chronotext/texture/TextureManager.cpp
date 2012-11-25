@@ -77,16 +77,26 @@ void TextureManager::clear()
 
 void TextureManager::unload()
 {
-    for (list<Texture*>::iterator it = cache.begin(); it != cache.end(); ++it)
+    if (!unloaded)
     {
-        (*it)->unload();
+        unloaded = true;
+        
+        for (list<Texture*>::iterator it = cache.begin(); it != cache.end(); ++it)
+        {
+            (*it)->unload();
+        }
     }
 }
 
 void TextureManager::reload()
 {
-    for (list<Texture*>::iterator it = cache.begin(); it != cache.end(); ++it)
+    if (unloaded)
     {
-        (*it)->reload();
+        unloaded = false;
+        
+        for (list<Texture*>::iterator it = cache.begin(); it != cache.end(); ++it)
+        {
+            (*it)->reload();
+        }
     }
 }

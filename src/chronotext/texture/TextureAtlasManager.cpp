@@ -41,16 +41,26 @@ void TextureAtlasManager::endTexture()
 
 void TextureAtlasManager::unload()
 {
-    for (map<int, TextureAtlas*>::iterator it = atlases.begin(); it != atlases.end(); ++it)
+    if (!unloaded)
     {
-        it->second->unload();
+        unloaded = true;
+        
+        for (map<int, TextureAtlas*>::iterator it = atlases.begin(); it != atlases.end(); ++it)
+        {
+            it->second->unload();
+        }
     }
 }
 
 void TextureAtlasManager::reload()
 {
-    for (map<int, TextureAtlas*>::iterator it = atlases.begin(); it != atlases.end(); ++it)
+    if (unloaded)
     {
-        it->second->reload();
+        unloaded = false;
+        
+        for (map<int, TextureAtlas*>::iterator it = atlases.begin(); it != atlases.end(); ++it)
+        {
+            it->second->reload();
+        }
     }
 }

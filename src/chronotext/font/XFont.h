@@ -43,7 +43,10 @@ protected:
     GLuint name;
 
 private:
-    int atlasWidth, atlasHeight;
+    bool unloaded;
+    
+    int atlasWidth;
+    int atlasHeight;
 
     float size;
     float sizeRatio;
