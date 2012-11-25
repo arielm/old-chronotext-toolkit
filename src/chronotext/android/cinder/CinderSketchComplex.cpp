@@ -55,10 +55,10 @@ ostream& CinderSketchComplex::console()
     return context->console();
 }
 
-void CinderSketchComplex::sendStringToDelegate(int what, const string &body)
+void CinderSketchComplex::sendMessageToDelegate(int what, const string &body)
 {
     if (delegate)
     {
-        delegate->receiveStringFromSketch(what, body);
+        delegate->receiveMessageFromSketch(what, body);
     }
 }

@@ -95,8 +95,8 @@ public:
     
     std::ostream& console();
     
-    virtual void receiveStringFromSketch(int what, const std::string &body);
-    virtual void sendStringToSketch(int what, const std::string &body);
+    virtual void receiveMessageFromSketch(int what, const std::string &body);
+    virtual void sendMessageToSketch(int what, const std::string &body);
 
     // ---------------------------------------- JNI ----------------------------------------
 
