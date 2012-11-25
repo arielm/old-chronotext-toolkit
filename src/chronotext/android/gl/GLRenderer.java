@@ -200,5 +200,5 @@ public abstract class GLRenderer implements GLSurfaceView.Renderer
 
   public abstract void removeTouch(float x, float y);
 
-  public abstract void handleMessage(int what, String body);
+  public abstract void sendMessage(int what, String body);
 }

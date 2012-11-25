@@ -151,5 +151,5 @@ public class CinderRenderer extends GLRenderer
 
   public native void removeTouch(float x, float y);
 
-  public native void handleMessage(int what, String body);
+  public native void sendMessage(int what, String body);
 }

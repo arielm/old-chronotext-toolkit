@@ -243,7 +243,7 @@ ostream& CinderDelegate::console()
 
 void CinderDelegate::receiveMessageFromSketch(int what, const string &body)
 {
-    callVoidMethodOnJavaListener("handleMessage", "(ILjava/lang/String;)V", what, getJNIEnv()->NewStringUTF(body.c_str()));
+    callVoidMethodOnJavaListener("receiveMessageFromSketch", "(ILjava/lang/String;)V", what, getJNIEnv()->NewStringUTF(body.c_str()));
 }
 
 void CinderDelegate::sendMessageToSketch(int what, const string &body)

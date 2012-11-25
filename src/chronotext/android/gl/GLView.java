@@ -156,7 +156,7 @@ public class GLView extends GLSurfaceView
     {
       public void run()
       {
-        renderer.handleMessage(what, body);
+        renderer.sendMessage(what, body);
       }
     });
   }

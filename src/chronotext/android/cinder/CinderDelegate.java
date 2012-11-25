@@ -72,7 +72,7 @@ public class CinderDelegate
   /*
    * THIS WILL BE SENT ON THE RENDERER'S THREAD
    */
-  public void sendMessage(int what, String body)
+  public void sendMessageToSketch(int what, String body)
   {
     mView.sendMessage(what, body);
   }
@@ -80,7 +80,7 @@ public class CinderDelegate
   /*
    * THIS IS RECEIVED ON THE RENDERER'S THREAD
    */
-  public void handleMessage(int what, String body)
+  public void receiveMessageFromSketch(int what, String body)
   {
     mHandler.sendMessage(Message.obtain(mHandler, what, body));
   }
