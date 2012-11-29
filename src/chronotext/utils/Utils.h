@@ -7,15 +7,6 @@
 #include <fstream>
 #include <iostream>
 
-#if defined(CINDER_COCOA)
-#include "cinder/cocoa/CinderCocoa.h"
-#define SAFE_AUTORELEASE ci::cocoa::SafeNsAutoreleasePool autorelease
-#else
-#define SAFE_AUTORELEASE
-#endif
-
-// ---
-
 #if defined(DEBUG) || defined(FORCE_LOG) || defined(LOG_TO_FILE)
 #define DLOG(x) std::cout << x << std::endl
 #else
