@@ -25,29 +25,33 @@
 // ---
 
 /*
- * cout REDIRECTION
+ * cout REDIRECTION, FOR COCOA ONLY
  * AS DESCRIBED IN http://www.cplusplus.com/reference/iostream/ios/rdbuf/
  */
 
-static std::streambuf *gCoutBackup;
+static std::streambuf *gCoutBackup = NULL;
 static std::ofstream gCoutFilestr;
 
-static void logToFile(const std::string &filePath)
+static void logToFile(const ci::fs::path &filePath)
 {
-    gCoutFilestr.open(filePath.c_str());
-    gCoutBackup = std::cout.rdbuf();
-    
-    std::streambuf *psbuf = gCoutFilestr.rdbuf();
-    std::cout.rdbuf(psbuf);
+    if (!gCoutBackup)
+    {
+        gCoutFilestr.open(filePath.c_str());
+        gCoutBackup = std::cout.rdbuf();
+        
+        std::streambuf *psbuf = gCoutFilestr.rdbuf();
+        std::cout.rdbuf(psbuf);
+    }
 }
 
-/*
- * ASSERTION: logToFile() WAS PREVIOUSLY CALLED
- */
 static void logToConsole()
 {
-    std::cout.rdbuf(gCoutBackup);
-    gCoutFilestr.close();
+    if (gCoutBackup)
+    {
+        std::cout.rdbuf(gCoutBackup);
+        gCoutFilestr.close();
+        gCoutBackup = NULL;
+    }
 }
 
 // ---
