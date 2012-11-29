@@ -7,7 +7,7 @@
 #include <fstream>
 #include <iostream>
 
-#if defined( CINDER_COCOA )
+#if defined(CINDER_COCOA)
 #include "cinder/cocoa/CinderCocoa.h"
 #define SAFE_AUTORELEASE ci::cocoa::SafeNsAutoreleasePool autorelease
 #else
@@ -29,15 +29,15 @@
  * AS DESCRIBED IN http://www.cplusplus.com/reference/iostream/ios/rdbuf/
  */
 
-static std::streambuf *backup;
-static std::ofstream filestr;
+static std::streambuf *gCoutBackup;
+static std::ofstream gCoutFilestr;
 
-static void logToFile(std::string filePath)
+static void logToFile(const std::string &filePath)
 {
-    filestr.open(filePath.c_str());
-    backup = std::cout.rdbuf();
+    gCoutFilestr.open(filePath.c_str());
+    gCoutBackup = std::cout.rdbuf();
     
-    std::streambuf *psbuf = filestr.rdbuf();
+    std::streambuf *psbuf = gCoutFilestr.rdbuf();
     std::cout.rdbuf(psbuf);
 }
 
@@ -46,8 +46,8 @@ static void logToFile(std::string filePath)
  */
 static void logToConsole()
 {
-    std::cout.rdbuf(backup);
-    filestr.close();
+    std::cout.rdbuf(gCoutBackup);
+    gCoutFilestr.close();
 }
 
 // ---
