@@ -76,7 +76,7 @@ void Texture::end()
 
 void Texture::drawFromCenter()
 {
-    draw(width * 0.5, height * 0.5);
+    draw(width * 0.5f, height * 0.5f);
 }
 
 void Texture::draw(float rx, float ry)

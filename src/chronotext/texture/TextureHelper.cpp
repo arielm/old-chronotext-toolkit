@@ -128,7 +128,7 @@ void TextureHelper::endTexture()
 
 void TextureHelper::drawTextureFromCenter(gl::Texture *texture)
 {
-    drawTexture(texture, texture->getWidth() * 0.5, texture->getHeight() * 0.5);
+    drawTexture(texture, texture->getWidth() * 0.5f, texture->getHeight() * 0.5f);
 }
 
 void TextureHelper::drawTexture(gl::Texture *texture, float rx, float ry)

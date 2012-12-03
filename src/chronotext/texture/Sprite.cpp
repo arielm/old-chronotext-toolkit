@@ -30,7 +30,7 @@ void Sprite::endTexture()
 
 void Sprite::drawFromCenter()
 {
-    draw(ow * 0.5, oh * 0.5);
+    draw(ow * 0.5f, oh * 0.5f);
 }
 
 void Sprite::draw(float rx, float ry)
