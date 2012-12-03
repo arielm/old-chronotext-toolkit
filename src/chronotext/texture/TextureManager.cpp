@@ -90,13 +90,13 @@ void TextureManager::unload()
 
 void TextureManager::reload()
 {
-    if (!unloaded)
+    if (unloaded)
     {
-        unload();
-    }
-    
-    for (list<Texture*>::iterator it = cache.begin(); it != cache.end(); ++it)
-    {
-        (*it)->reload();
+        unloaded = false;
+        
+        for (list<Texture*>::iterator it = cache.begin(); it != cache.end(); ++it)
+        {
+            (*it)->reload();
+        }
     }
 }

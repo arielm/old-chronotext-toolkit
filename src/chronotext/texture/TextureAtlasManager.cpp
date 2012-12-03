@@ -54,13 +54,13 @@ void TextureAtlasManager::unload()
 
 void TextureAtlasManager::reload()
 {
-    if (!unloaded)
+    if (unloaded)
     {
-        unload();
-    }
-    
-    for (map<int, TextureAtlas*>::iterator it = atlases.begin(); it != atlases.end(); ++it)
-    {
-        it->second->reload();
+        unloaded = false;
+        
+        for (map<int, TextureAtlas*>::iterator it = atlases.begin(); it != atlases.end(); ++it)
+        {
+            it->second->reload();
+        }
     }
 }
