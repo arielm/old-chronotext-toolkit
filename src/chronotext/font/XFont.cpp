@@ -66,14 +66,16 @@ void XFont::unload()
 
 void XFont::reload()
 {
-    if (unloaded)
+    if (!unloaded)
     {
-        read(inputSource);
-        init();
-        
-        unloaded = false;
-        DLOG("FONT LOADED: " << name << " (" << atlasWidth << "x" << atlasHeight << ")");
+        unload();
     }
+    
+    read(inputSource);
+    init();
+    
+    unloaded = false;
+    DLOG("FONT LOADED: " << name << " (" << atlasWidth << "x" << atlasHeight << ")");
 }
 
 void XFont::read(InputSourceRef inputSource)
