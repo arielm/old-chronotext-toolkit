@@ -12,7 +12,7 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD14FF0DC6FC520079059D /* OpenGLES.framework */; };
 		28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD15070DC6FC5B0079059D /* QuartzCore.framework */; };
-		A815C1131636DEC6006FC15E /* bulbo1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A815C1121636DEC6006FC15E /* bulbo1.jpg */; };
+		A81595B0166CD6D0002DD06C /* Louis_XIV_of_France.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A81595AF166CD6D0002DD06C /* Louis_XIV_of_France.jpg */; };
 		A815C1161636DEEF006FC15E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A815C1151636DEEF006FC15E /* Icon.png */; };
 		A815D75A164EED54003AFC42 /* CinderApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A815D756164EED54003AFC42 /* CinderApp.cpp */; };
 		A84558081649D6FC00FBD4AD /* TextureAtlasManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A84558061649D6FC00FBD4AD /* TextureAtlasManager.cpp */; };
@@ -65,7 +65,7 @@
 		28FD15070DC6FC5B0079059D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		32CA4F630368D1EE00C91783 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
-		A815C1121636DEC6006FC15E /* bulbo1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = bulbo1.jpg; path = ../resources/bulbo1.jpg; sourceTree = "<group>"; };
+		A81595AF166CD6D0002DD06C /* Louis_XIV_of_France.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Louis_XIV_of_France.jpg; path = ../resources/Louis_XIV_of_France.jpg; sourceTree = "<group>"; };
 		A815C1151636DEEF006FC15E /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		A815D756164EED54003AFC42 /* CinderApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CinderApp.cpp; sourceTree = "<group>"; };
 		A815D757164EED54003AFC42 /* CinderApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CinderApp.h; sourceTree = "<group>"; };
@@ -232,7 +232,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A815C1121636DEC6006FC15E /* bulbo1.jpg */,
+				A81595AF166CD6D0002DD06C /* Louis_XIV_of_France.jpg */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -492,8 +492,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A815C1131636DEC6006FC15E /* bulbo1.jpg in Resources */,
 				A815C1161636DEEF006FC15E /* Icon.png in Resources */,
+				A81595B0166CD6D0002DD06C /* Louis_XIV_of_France.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

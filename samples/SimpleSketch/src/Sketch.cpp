@@ -11,7 +11,7 @@ void Sketch::setup(bool renew)
      * UPON DEPLOYMENT ON MSW: PLACE THE FILE IN A resources FOLDER, ALONGSIDE THE EXECUTABLE
      * MORE DETAILS IN chronotext/InputSource.h
      */
-    texture = TextureHelper::loadTexture("bulbo1.jpg"); // BULBO IS (C) XEITH FEINBERG, http://www.bulbo.com/
+    texture = TextureHelper::loadTexture("Louis_XIV_of_France.jpg"); // BY Hyacinthe Rigaud, 1701 @MuseeLouvre
     
     position = getWindowSize() / 2;
     
@@ -36,15 +36,12 @@ void Sketch::resize(ResizeEvent event)
 
 void Sketch::draw()
 {
-    glClearColor(1, 0, 0, 1); 
-    glClear(GL_COLOR_BUFFER_BIT); 
-    
-    glMatrixMode(GL_MODELVIEW);
+    gl::clear(ColorA::black(), false);
     glLoadIdentity();
-
+    
     // ---
 
-    glColor4f(1, 1, 1, 1);
+    gl::color(ColorA::white());
     gl::translate(position);
 
     TextureHelper::beginTexture(texture);
