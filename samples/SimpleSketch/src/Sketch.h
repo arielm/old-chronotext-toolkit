@@ -9,11 +9,12 @@
 #pragma once
 
 #include "chronotext/cinder/CinderSketch.h"
-#include "chronotext/texture/TextureHelper.h"
+#include "chronotext/texture/TextureManager.h"
 
 class Sketch : public CinderSketch
 {
-    ci::gl::Texture *texture;
+    TextureManager textureManager;
+    Texture *texture;
     
     ci::Vec2f dragOrigin;
     ci::Vec2f position;
@@ -25,8 +26,6 @@ public:
     {}
 
     void setup(bool renew);
-    void shutdown();
-
     void resize(ci::app::ResizeEvent event);
     void draw();
     
