@@ -29,7 +29,6 @@
 		A87A5536162F63F90059878E /* FollowablePath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87A54D3162F63F90059878E /* FollowablePath.cpp */; };
 		A87A5537162F63F90059878E /* SplinePath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87A54D5162F63F90059878E /* SplinePath.cpp */; };
 		A87A5538162F63F90059878E /* ScreenManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87A54D7162F63F90059878E /* ScreenManager.cpp */; };
-		A87A5539162F63F90059878E /* AudioLoop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87A54DA162F63F90059878E /* AudioLoop.cpp */; };
 		A87A553A162F63F90059878E /* FontHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87A54DD162F63F90059878E /* FontHelper.cpp */; };
 		A87A553B162F63F90059878E /* FontManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87A54DF162F63F90059878E /* FontManager.cpp */; };
 		A87A553C162F63F90059878E /* WordWrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A87A54E2162F63F90059878E /* WordWrapper.cpp */; };
@@ -104,8 +103,6 @@
 		A87A54D6162F63F90059878E /* SplinePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplinePath.h; sourceTree = "<group>"; };
 		A87A54D7162F63F90059878E /* ScreenManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScreenManager.cpp; sourceTree = "<group>"; };
 		A87A54D8162F63F90059878E /* ScreenManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenManager.h; sourceTree = "<group>"; };
-		A87A54DA162F63F90059878E /* AudioLoop.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioLoop.cpp; sourceTree = "<group>"; };
-		A87A54DB162F63F90059878E /* AudioLoop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioLoop.h; sourceTree = "<group>"; };
 		A87A54DD162F63F90059878E /* FontHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FontHelper.cpp; sourceTree = "<group>"; };
 		A87A54DE162F63F90059878E /* FontHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontHelper.h; sourceTree = "<group>"; };
 		A87A54DF162F63F90059878E /* FontManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FontManager.cpp; sourceTree = "<group>"; };
@@ -287,7 +284,6 @@
 				A87A54D0162F63F90059878E /* path */,
 				A87A54D7162F63F90059878E /* ScreenManager.cpp */,
 				A87A54D8162F63F90059878E /* ScreenManager.h */,
-				A87A54D9162F63F90059878E /* sound */,
 				A87A54DC162F63F90059878E /* text */,
 				A87A54E4162F63F90059878E /* texture */,
 				A87A54F3162F63F90059878E /* time */,
@@ -346,15 +342,6 @@
 				A87A54D6162F63F90059878E /* SplinePath.h */,
 			);
 			path = path;
-			sourceTree = "<group>";
-		};
-		A87A54D9162F63F90059878E /* sound */ = {
-			isa = PBXGroup;
-			children = (
-				A87A54DA162F63F90059878E /* AudioLoop.cpp */,
-				A87A54DB162F63F90059878E /* AudioLoop.h */,
-			);
-			path = sound;
 			sourceTree = "<group>";
 		};
 		A87A54DC162F63F90059878E /* text */ = {
@@ -517,7 +504,6 @@
 				A87A5536162F63F90059878E /* FollowablePath.cpp in Sources */,
 				A87A5537162F63F90059878E /* SplinePath.cpp in Sources */,
 				A87A5538162F63F90059878E /* ScreenManager.cpp in Sources */,
-				A87A5539162F63F90059878E /* AudioLoop.cpp in Sources */,
 				A87A553A162F63F90059878E /* FontHelper.cpp in Sources */,
 				A87A553B162F63F90059878E /* FontManager.cpp in Sources */,
 				A87A553C162F63F90059878E /* WordWrapper.cpp in Sources */,

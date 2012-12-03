@@ -19,6 +19,10 @@ void CinderApp::shutdown()
 
 void CinderApp::resize(ResizeEvent event)
 {
+#if defined(CINDER_COCOA_TOUCH)
+    event = ResizeEvent(getWindowSize()); // FIXING ISSUE ON RETINA DISPLAYS
+#endif
+    
     sketch->resize(event);
 
     if (startCount == 0)
@@ -107,11 +111,6 @@ void CinderApp::pause()
     sketch->stop(CinderSketch::FLAG_APP_PAUSE);
 }
 #endif
-
-void CinderApp::receiveMessageFromSketch(int what, const string &body)
-{
-    DLOG(what << " " << body);
-}
 
 void CinderApp::sendMessageToSketch(int what, const string &body)
 {
