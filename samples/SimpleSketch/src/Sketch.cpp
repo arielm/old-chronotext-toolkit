@@ -9,6 +9,7 @@ void Sketch::setup(bool renew)
 {
     if (renew)
     {
+        textureManager.unload(); // KIND OF NO-OP IN THE CASE OF TextureManager, BUT NECESSARY TO BE CALLED BEFORE reload()
         textureManager.reload();
     }
     else
