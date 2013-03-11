@@ -1,5 +1,5 @@
 ### The [chronotext](http://chronotext.org) toolkit for Cinder & C++
 
-This is not ready for public usage. But stay tuned...
-
 The licence should be similar as Cinder's.
+
+This project has been deprecated in favor of the [new chronotext toolkit](https://github.com/arielm/chronotext-blocks-base).
